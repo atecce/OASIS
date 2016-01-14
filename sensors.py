@@ -7,6 +7,8 @@ class sensor:
 		self.sensor_range        = sensor_range
 		self.required_resolution = required_resolution
 
+	def read(self): pass
+
 class EC(sensor):
 
 	def __init__(self):
@@ -93,25 +95,13 @@ class flow_meter(sensor):
 
 		self.required_resolution = .05
 
-class relative_humidity(sensor):
+class RH_temp(sensor):
 
 	def __init__(self):
 
-		self.function            = "Internal (2) & External (1) Relative Humidity"
+		self.function            = "Internal (2) & External (1) Relative Humidity & Air Temperature"
 		
-		self.units               = "%"
-
-		self.sensor_range        = (5, 99)
-
-		self.required_resolution = 1
-
-class air_temperature(sensor):
-
-	def __init__(self):
-
-		self.function            = "Internal (2) & External (1) Air Temperature"
-		
-		self.units               = "C"
+		self.units               = "%", "C"
 
 		self.sensor_range        = (5, 99)
 
@@ -176,3 +166,39 @@ class camera(sensor):
 		self.sensor_range        = (1, 255)
 
 		self.required_resolution = "1k0x1k"
+
+S101 = EC()
+S102 = pH()
+S103 = temperature()
+S104 = EC()
+S105 = liquid_level()
+S106 = liquid_level()
+S107 = liquid_level()
+S108 = liquid_level()
+S109 = liquid_level()
+S110 = flow_meter()
+S111 = flow_meter()
+S112 = liquid_level()
+
+S201 = temperature()
+S202 = temperature()
+S203 = temperature()
+S204 = temperature()
+S205 = EC()
+S206 = pH()
+S208 = moisture()
+S209 = moisture()
+S210 = moisture()
+S211 = moisture()
+
+S301 = RH_temp()
+S302 = RH_temp()
+S303 = total_pressure()
+S304 = oxygen()
+S305 = CO2()
+S306 = light_PAR()
+S307 = camera()
+
+S401 = RH_temp()
+S402 = total_pressure()
+S403 = light_PAR()
