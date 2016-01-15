@@ -1,11 +1,5 @@
 class component:
 
-#	# unfinished general template
-#	dimensions = tuple([int() for i in range(len(dimensions))])
-#
-#	AC_DC = {"AC", "DC"}
-#	input_voltage = (120, AC_DC)
-
 	def __init__(self, dimensions, input_voltage, flow_rate, concentration, outlet_pressure, internal_pressure):
 
 		self.dimensions        = dimensions
@@ -14,6 +8,8 @@ class component:
 		self.concentration     = concentration
 		self.outlet_pressure   = outlet_pressure
 		self.internal_pressure = internal_pressure
+
+	def activate(self): pass
 
 class oxygen_concentrator(component):
 
@@ -36,6 +32,8 @@ class oxygen_concentrator(component):
 
 		# not applicable
 		self.internal_pressure = None
+
+	def activate(self): pass
 
 class nitrogen_tank(component):
 
