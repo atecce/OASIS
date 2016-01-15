@@ -2,61 +2,34 @@ def set_system(status):
 
 	if status == "initiate germination": 
 
-		activate("P11")
-		activate("P7")
-		activate("F2")
-		activate("M6")
-		activate("M7")
-		activate("P10", 10)
+		P11.activate()
+		P7.activate()
+		F2.activate()
+		M6.activate()
+		M7.activate()
+		P10.activate(10)
 
 	elif status == "autonomous":
 
-		water("start")
-		mix("start")
-		compose_gas("start")
-		vapor_pressure("start")
-		light("start")
-		time_lapse("start")
-		day_cycle("start")
+		water.start()
+		mix.start()
+		compose_gas.start()
+		vapor_pressure.start()
+		light.start()
+		time_lapse.start()
+		day_cycle.start()
 
 	elif status == "stand by":
 
-		water("stop")
-		mix("stop")
-		compose_gas("stop")
-		vapor_pressure("stop")
-		light("stop")
-		time_lapse("stop")
-		day_cycle("stop")
+		water.stop()
+		mix.stop()
+		compose_gas.stop()
+		vapor_pressure.stop()
+		light.stop()
+		time_lapse.stop()
+		day_cycle.stop()
 
 		# some stuff after this
-
-def water():
-
-	for k in range(208, 212): pass
-
-# need to figure out optional arguments
-def activate(component, time):
-
-	if component == "P7":
-
-		component.start_troubleshooting_and monitoring()
-		component.start_heating_cooling()
-		start_ph_conditioning()
-		activate("P1")
-
-	# this needs work
-	elif component == "P1": 
-
-		reading = float("inf")
-
-		# threshold in cm
-		while reading >= threshold: reading = read("S105")
-
-		deactivate("P1")
-
-		mixing_process()
-	
 
 def run_health_checks():
 
