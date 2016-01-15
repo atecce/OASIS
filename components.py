@@ -127,4 +127,7 @@ def display_components():
 
 	components = (O2_concentrator_test, N2_tank_test, CO2_tank_test, dehumidifier_test, fogging_nozzle_test)
 
-	for component in components: print component.dimensions, component.input_voltage, component.flow_rate, component.concentration, component.outlet_pressure, component.internal_pressure
+	for component in components: 
+		
+		print component.dimensions,    component.input_voltage,   component.flow_rate, \
+		      component.concentration, component.outlet_pressure, component.internal_pressure
