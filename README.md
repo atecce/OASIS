@@ -4,4 +4,6 @@ I think a good approach right now is to think of this in two parts. Building an 
 
 Adafruit is a library for interacting with Beaglebone, which I am certain we will need at some point to interact with the hardware using the IO module.  It's README has installation instructions (just enter the directory and it's in the same format you're staring at right now). 
 
-We are going to need to use threading extensively, as different components run in parallel, just a heads up.
+We are going to need to use threading extensively, as different components run in parallel, just a heads up. Python has a thread library however, this may or may not be sufficient enough. 
+
+A place where we can post and share articles, documents and books would be great. 
