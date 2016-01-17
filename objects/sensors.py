@@ -1,133 +1,111 @@
-class sensor:
+import threading
+
+class sensor(threading.Thread):
+
+	function            = str()
+	units               = str()
+	sensor_range        = tuple()
+	required_resolution = float()
 
 	def __init__ (self, units, sensor_range, required_resolution):
 
-		self.function            = function
-		self.units               = units
-		self.sensor_range        = sensor_range
-		self.required_resolution = required_resolution
+		threading.Thread.__init__(self)
 
 	def read(self): pass
 
 class EC(sensor):
 
-	def __init__(self):
+	function            = "Electrical Conductivity (Measuring Nutrient Deficit) in Growth Medium & Reservoir"
+	
+	# check this again
+	units               = "micro-S-cm-l"	
 
-		self.function            = "Electrical Conductivity (Measuring Nutrient Deficit) in Growth Medium & Reservoir"
-		
-		# check this again
-		self.units               = "micro-S-cm-l"	
-
-		self.sensor_range        = (3, 3000)
-		self.required_resolution = 1
+	sensor_range        = (3, 3000)
+	required_resolution = 1
 
 class pH(sensor): 
 
-	def __init__(self):
-
-		self.function            = "pH in Growth Medium & Reservoir"
-		self.units               = "pH"
-		self.sensor_range        = (2, 12)
-		self.required_resolution = .2
+	function            = "pH in Growth Medium & Reservoir"
+	units               = "pH"
+	sensor_range        = (2, 12)
+	required_resolution = .2
 
 class temperature(sensor): 
 
-	def __init__(self):
-
-		self.function            = "Liquid Temperature in Reservoir (1) & Growth Medium (4)"
-		self.units               = "C"
-		self.sensor_range        = (0, 100)
-		self.required_resolution = 1
+	function            = "Liquid Temperature in Reservoir (1) & Growth Medium (4)"
+	units               = "C"
+	sensor_range        = (0, 100)
+	required_resolution = 1
 
 class moisture(sensor): 
 
-	def __init__(self):
-
-		self.function            = "Volumetric Water Content in Growth Medium"
-		self.units               = "%"
-		self.sensor_range        = (0, 50)
-		self.required_resolution = 1
+	function            = "Volumetric Water Content in Growth Medium"
+	units               = "%"
+	sensor_range        = (0, 50)
+	required_resolution = 1
 
 class DO_probe(sensor): 
 
-	def __init__(self):
-
-		self.function            = "Dissolved Oxygen in Mixing Reservoir"
-		self.units               = "mg/L"
-		self.sensor_range        = (0, 15)
-		self.required_resolution = .1
+	function            = "Dissolved Oxygen in Mixing Reservoir"
+	units               = "mg/L"
+	sensor_range        = (0, 15)
+	required_resolution = .1
 
 class liquid_level(sensor): 
 
-	def __init__(self):
-
-		self.function            = "Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks"
-		self.units               = "cm"
-		self.sensor_range        = (0, 40.5)
-		self.required_resolution = 1.25
+	function            = "Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks"
+	units               = "cm"
+	sensor_range        = (0, 40.5)
+	required_resolution = 1.25
 
 class flow_meter(sensor): 
 
-	def __init__(self):
-
-		self.function            = "Water Flow Rate Into & Out of Growth"
-		self.units               = "gpm"
-		self.sensor_range        = (.2, 2)
-		self.required_resolution = .05
+	function            = "water Flow Rate Into & Out of Growth"
+	units               = "gpm"
+	sensor_range        = (.2, 2)
+	required_resolution = .05
 
 class RH_temp(sensor):
 
-	def __init__(self):
-
-		self.function            = "Internal (2) & External (1) Relative Humidity & Air Temperature"
-		self.units               = "%", "C"
-		self.sensor_range        = (5, 99)
-		self.required_resolution = 1
+	function            = "Internal (2) & External (1) Relative Humidity & Air Temperature"
+	units               = "%", "C"
+	sensor_range        = (5, 99)
+	required_resolution = 1
 
 class total_pressure(sensor):
 
-	def __init__(self):
-
-		self.function            = "Internal (1) & External (1) Total Atmospheric Pressure"
-		self.units               = "kPA"
-		self.sensor_range        = (30, 110)
-		self.required_resolution = 1
+	function            = "Internal (1) & External (1) Total Atmospheric Pressure"
+	units               = "kPA"
+	sensor_range        = (30, 110)
+	required_resolution = 1
 
 class oxygen(sensor):
 
-	def __init__(self):
-
-		self.function            = "Internal (1) & External (1) O2 concentration"
-		self.units               = "%"
-		self.sensor_range        = (0, 100)
-		self.required_resolution = 1
+	function            = "Internal (1) & External (1) O2 concentration"
+	units               = "%"
+	sensor_range        = (0, 100)
+	required_resolution = 1
 
 class CO2(sensor):
 
-	def __init__(self):
-
-		self.function            = "Internal (1) & External CO2 concentration"
-		self.units               = "ppm"
-		self.sensor_range        = (0, 2000)
-		self.required_resolution = 100
+	function            = "Internal (1) & External CO2 concentration"
+	units               = "ppm"
+	sensor_range        = (0, 2000)
+	required_resolution = 100
 
 class light_PAR(sensor):
 
-	def __init__(self):
-
-		self.function            = "Internal (1) & External (1) Photosynthetically Active Radiation (PAR)"
-		self.units               = "micro-mol / (m**2 * s)"
-		self.sensor_range        = (0, 2000)
-		self.required_resolution = 2
+	function            = "Internal (1) & External (1) Photosynthetically Active Radiation (PAR)"
+	units               = "micro-mol / (m**2 * s)"
+	sensor_range        = (0, 2000)
+	required_resolution = 2
 
 class camera(sensor):
 
-	def __init__(self):
-
-		self.function            = "Plant Health Imagery"
-		self.units               = "RGB"
-		self.sensor_range        = (1, 255)
-		self.required_resolution = "1k0x1k"
+	function            = "Plant Health Imagery"
+	units               = "RGB"
+	sensor_range        = (1, 255)
+	required_resolution = "1k0x1k"
 
 S101 = EC()
 S102 = pH()

@@ -1,9 +1,13 @@
-class tank:
+import threading
+
+class tank(threading.Thread):
 
 	volume    = float()
 	substance = str()
 
 	def __init__(self, volume, substance): 
+
+		threading.Thread.__init__(self)
 
 		# need to specify units
 		self.volume = volume

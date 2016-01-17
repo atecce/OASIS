@@ -1,121 +1,113 @@
-class component:
+import threading
 
-	def __init__(self, dimensions, input_voltage, flow_rate, concentration, outlet_pressure, internal_pressure):
+class component(threading.Thread):
 
-		self.dimensions        = dimensions
-		self.input_voltage     = input_voltage
-		self.flow_rate         = flow_rate
-		self.concentration     = concentration
-		self.outlet_pressure   = outlet_pressure
-		self.internal_pressure = internal_pressure
+	dimensions        = dict()
+	input_voltage     = tuple()
+	flow_rate         = float()
+	concentration     = float()
+	outlet_pressure   = float()
+	internal_pressure = float()
+
+	def __init__(self):
+
+		threading.Thread.__init__(self)
 
 	def activate(self): pass
 
 class oxygen_concentrator(component):
 
-	def __init__(self):
+	# inches
+	dimensions        = {"W": 18.375, "H": 26.375, "D": 14.375}
 
-		# inches
-		self.dimensions        = {"W": 18.375, "H": 26.375, "D": 14.375}
+	# volts, alternating current
+	input_voltage     = (120, "AC")
 
-		# volts, alternating current
-		self.input_voltage     = (120, "AC")
+	# range of numbers (min, max) (L/min)
+	flow_rate         = (0.5, 5)
 
-		# range of numbers (min, max) (L/min)
-		self.flow_rate         = (0.5, 5)
+	# percentage
+	concentration     = .93
 
-		# percentage
-		self.concentration     = .93
+	# outlet pressure (psi)
+	outlet_pressure   = (-4.5, 4.5)
 
-		# outlet pressure (psi)
-		self.outlet_pressure   = (-4.5, 4.5)
-
-		# not applicable
-		self.internal_pressure = None
-
-	def activate(self): pass
+	# not applicable
+	internal_pressure = None
 
 class nitrogen_tank(component):
 
-	def __init__(self):
+	# inches
+	dimensions        = {"H": 20, "OD": 7}
 
-		# inches
-		self.dimensions        = {"H": 20, "OD": 7}
+	# volts, alternating current
+	input_voltage     = (120, "AC")
 
-		# volts, alternating current
-		self.input_voltage     = (120, "AC")
+	# (L/s)
+	flow_rate         = 0.5
 
-		# (L/s)
-		self.flow_rate         = 0.5
+	# percentage
+	concentration     = .99
 
-		# percentage
-		self.concentration     = .99
+	# outlet pressure (psi)
+	outlet_pressure   = 5
 
-		# outlet pressure (psi)
-		self.outlet_pressure   = 5
-
-		# internal pressure (psi)
-		self.internal_pressure = 1600
+	# internal pressure (psi)
+	internal_pressure = 1600
 
 class carbon_dioxide_tank(component):
 
-	def __init__(self):
+	# inches
+	dimensions        = {"H": 20, "OD": 7}
 
-		# inches
-		self.dimensions        = {"H": 20, "OD": 7}
+	# volts, alternating current
+	input_voltage     = (120, "AC")
 
-		# volts, alternating current
-		self.input_voltage     = (120, "AC")
+	# (L/s)
+	flow_rate         = 0.5
 
-		# (L/s)
-		self.flow_rate         = 0.5
+	# percentage
+	concentration     = .99
 
-		# percentage
-		self.concentration     = .99
+	# (psi)
+	outlet_pressure   = 5
 
-		# (psi)
-		self.outlet_pressure   = 5
-
-		# (psi)
-		self.internal_pressure = 700
+	# (psi)
+	internal_pressure = 700
 
 class dehumidifier(component):
+		
+	# inches
+	dimensions        = {"W": 5.7, "H": 8.7, "D": 5.3}
 
-	def __init__(self):
+	# volts, alternating current
+	input_voltage     = (120, "AC")
 
-		# inches
-		self.dimensions        = {"W": 5.7, "H": 8.7, "D": 5.3}
+	# (mL/day)
+	flow_rate         = 250
 
-		# volts, alternating current
-		self.input_voltage     = (120, "AC")
-
-		# (mL/day)
-		self.flow_rate         = 250
-
-		# categories not applicable
-		self.concentration     = None
-		self.outlet_pressure   = None
-		self.internal_pressure = None
+	# categories not applicable
+	concentration     = None
+	outlet_pressure   = None
+	internal_pressure = None
 
 class fogging_nozzle(component):
 
-	def __init__(self):
+	# inches
+	dimensions        = {"OD": .5625, "L": .9375}
 
-		# inches
-		self.dimensions        = {"OD": .5625, "L": .9375}
+	# volts, alternating current
+	input_voltage     = (120, "AC")
 
-		# volts, alternating current
-		self.input_voltage     = (120, "AC")
+	# (mL/s)
+	flow_rate         = 9
 
-		# (mL/s)
-		self.flow_rate         = 9
+	# (psi)
+	outlet_pressure   = 40
 
-		# (psi)
-		self.outlet_pressure   = 40
-
-		# categories not applicable
-		self.concentration     = None
-		self.internal_pressure = None
+	# categories not applicable
+	concentration     = None
+	internal_pressure = None
 
 def display_components():
 
@@ -131,3 +123,5 @@ def display_components():
 		
 		print component.dimensions,    component.input_voltage,   component.flow_rate, \
 		      component.concentration, component.outlet_pressure, component.internal_pressure
+
+display_components()
