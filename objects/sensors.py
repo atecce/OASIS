@@ -25,9 +25,6 @@ class sensor(threading.Thread):
 		# will read voltage from Beaglebone (for now assumes a random value for testing)
 		voltage = random.uniform(0, 3.3)
 
-		print self.name
-		print voltage, "volts"
-
 		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
 		return (self.sensor_range["high"] / 3.3) * voltage + self.sensor_range["low"]
 
@@ -151,14 +148,6 @@ class camera(sensor):
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
-def test_sensors(sensors):
-
-	for sensor in sensors: 
-		
-		print sensor.read(), sensor.units
-		print sensor.sensor_range
-		print
-
 S101 = EC()
 S102 = pH()
 S103 = temperature()
@@ -195,11 +184,7 @@ S401 = RH_temp()
 S402 = total_pressure()
 S403 = light_PAR()
 
-sensors = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
-	   S201, S202, S203, S204, S205, S206,       S208, S209, S210, S211,
-	   S301, S302, S303, S304, S305, S306, S307,
-	   S401, S402, S403)
-
-print
-
-test_sensors(sensors)
+sensor_suite = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
+	        S201, S202, S203, S204, S205, S206,       S208, S209, S210, S211,
+	        S301, S302, S303, S304, S305, S306, S307,
+	        S401, S402, S403)
