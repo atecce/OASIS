@@ -28,7 +28,7 @@ class NeuralNetwork():
 	def makeNetwork(self):
 		for input_node in range(1024): #training images are 32 x 32, these represent 1024 feature detectors
 			self.inputLayer.append(Neuron())
-		for hidden_node in range(20): #arbitrary number of hidden units
+		for hidden_node in range(512): #arbitrary number of hidden units
 			self.hiddenLayer.append(Neuron())
 		for output_node in range(2): #alive or dead
  			self.outputLayer.append(Neuron())
@@ -116,11 +116,12 @@ class NeuralNetwork():
 
 	def plusPhase(self,plant,minusPhaseOutput):
 		correct, plant_ = self.checkMinusPhaseOutput(plant,minusPhaseOutput)
-
+		print correct, plant_
 		#BACKPROPAGATION
 		outputCounter = 0
 		for output in self.outputLayer:
 			error = self.getExpected(output,plant) - output.act
+			print error
 			hiddenCounter = 0
 			for hidden in self.hiddenLayer:
 				#the change in weights for each output/hidden connection are:
@@ -251,16 +252,14 @@ def main():
 	else:
 		print "initializing random weights...\n"
 		net.initializeRandomWeights()
-		try:
-			#net.test()
-			print "beginning training...\n"
-			net.train()
-			print "Success!"
-			print "Error across 100 epochs: ", net.epochError
-			print "Epochs to convergence:", net.epochs
-			#print net.stateList
-		except:
-			print "training failed"
+	try:
+		print "beginning training...\n"
+		net.train()
+		print "Success!"
+		print "Error across 100 epochs: ", net.epochError
+		print "Epochs to convergence:", net.epochs
+	except:
+		print "training failed"
 	print "testing network...\n"
 	net.test()
 	if raw_input("Would you like to save the network's weights? (y/n) ") == "y":
