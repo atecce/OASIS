@@ -1,3 +1,6 @@
+# need this for testing
+import random
+
 import threading
 
 class sensor(threading.Thread):
@@ -7,11 +10,20 @@ class sensor(threading.Thread):
 	sensor_range        = tuple()
 	required_resolution = float()
 
-	def __init__ (self, units, sensor_range, required_resolution):
+	def __init__ (self):
 
 		threading.Thread.__init__(self)
 
-	def read(self): pass
+	def read(self): 
+
+		# will read voltage from Beaglebone
+		voltage = 3.3 * random.random()
+
+		print self.function
+		print voltage, "volts"
+
+		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
+		return (self.sensor_range[1] / 3.3) * voltage + self.sensor_range[0]
 
 class EC(sensor):
 
@@ -107,6 +119,13 @@ class camera(sensor):
 	sensor_range        = (1, 255)
 	required_resolution = "1k0x1k"
 
+def test_sensors(sensors):
+
+	for sensor in sensors: 
+		
+		print sensor.read(), sensor.units
+		print
+
 S101 = EC()
 S102 = pH()
 S103 = temperature()
@@ -142,3 +161,12 @@ S307 = camera()
 S401 = RH_temp()
 S402 = total_pressure()
 S403 = light_PAR()
+
+sensors = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
+	   S201, S202, S203, S204, S205, S206,       S208, S209, S210, S211,
+	   S301, S302, S303, S304, S305, S306, S307,
+	   S401, S402, S403)
+
+print
+
+test_sensors(sensors)
