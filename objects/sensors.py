@@ -81,7 +81,9 @@ class DO_probe(sensor):
 
 class liquid_level(sensor): 
 
-	function            = "Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks"
+	# Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks
+
+	name 		    = "liquid level"
 	units               = "cm"
 	sensor_range        = {"low": 0, "high": 40.5}
 	required_resolution = 1.25
