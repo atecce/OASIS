@@ -26,7 +26,7 @@ class sensor(threading.Thread):
 		voltage = random.uniform(0, 3.3)
 
 		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
-		return (self.sensor_range["high"] / 3.3) * voltage + self.sensor_range["low"]
+		return ((self.sensor_range["high"] - self.sensor_range["low"]) / 3.3) * voltage + self.sensor_range["low"]
 
 class EC(sensor):
 
