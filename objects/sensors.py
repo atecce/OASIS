@@ -1,122 +1,152 @@
-# need this for testing
+# need this for testingjjjjj
 import random
 
 import threading
+
+O = list()
 
 class sensor(threading.Thread):
 
 	function            = str()
 	units               = str()
-	sensor_range        = tuple()
+	sensor_range        = dict()
 	required_resolution = float()
 
 	def __init__ (self):
 
 		threading.Thread.__init__(self)
 
-	def read(self): 
+	def read(self):
 
-		# will read voltage from Beaglebone
-		voltage = 3.3 * random.random()
+		return self.run()
 
-		print self.function
+	def run(self): 
+
+		# will read voltage from Beaglebone (for now assumes a random value for testing)
+		voltage = random.uniform(0, 3.3)
+
+		print self.name
 		print voltage, "volts"
 
 		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
-		return (self.sensor_range[1] / 3.3) * voltage + self.sensor_range[0]
+		return (self.sensor_range["high"] / 3.3) * voltage + self.sensor_range["low"]
 
 class EC(sensor):
 
-	function            = "Electrical Conductivity (Measuring Nutrient Deficit) in Growth Medium & Reservoir"
+	# Electrical Conductivity (Measuring Nutrient Deficit) in Growth Medium & Reservoir
+
+	name 		    = "EC"
 	
 	# check this again
 	units               = "micro-S-cm-l"	
 
-	sensor_range        = (3, 3000)
+	sensor_range        = {"low": 3, "high": 3000}
 	required_resolution = 1
 
 class pH(sensor): 
 
-	function            = "pH in Growth Medium & Reservoir"
+	# pH in Growth Medium & Reservoir
+
+	name 		    = "pH"
 	units               = "pH"
-	sensor_range        = (2, 12)
+	sensor_range        = {"low": 2, "high": 12}
 	required_resolution = .2
 
 class temperature(sensor): 
 
-	function            = "Liquid Temperature in Reservoir (1) & Growth Medium (4)"
+	# Liquid Temperature in Reservoir (1) & Growth Medium (4)
+
+	name 	            = "temperature"
 	units               = "C"
-	sensor_range        = (0, 100)
+	sensor_range        = {"low": 0, "high": 100}
 	required_resolution = 1
 
 class moisture(sensor): 
 
-	function            = "Volumetric Water Content in Growth Medium"
+	# Volumetric Water Content in Growth Medium
+
+	name 		    = "moisture"
 	units               = "%"
-	sensor_range        = (0, 50)
+	sensor_range        = {"low": 0, "high": 50}
 	required_resolution = 1
 
 class DO_probe(sensor): 
 
-	function            = "Dissolved Oxygen in Mixing Reservoir"
+	# Dissolved Oxygen in Mixing Reservoir
+
+	name 		    = "DO probe"
 	units               = "mg/L"
-	sensor_range        = (0, 15)
+	sensor_range        = {"low": 0, "high": 15}
 	required_resolution = .1
 
 class liquid_level(sensor): 
 
 	function            = "Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks"
 	units               = "cm"
-	sensor_range        = (0, 40.5)
+	sensor_range        = {"low": 0, "high": 40.5}
 	required_resolution = 1.25
 
 class flow_meter(sensor): 
 
-	function            = "water Flow Rate Into & Out of Growth"
+	# water Flow Rate Into & Out of Growth
+
+	name 		    = "flow meter"
 	units               = "gpm"
-	sensor_range        = (.2, 2)
+	sensor_range        = {"low": .2, "high": 2}
 	required_resolution = .05
 
 class RH_temp(sensor):
 
-	function            = "Internal (2) & External (1) Relative Humidity & Air Temperature"
+	# Internal (2) & External (1) Relative Humidity & Air Temperature
+
+	name 		    = "RH temp"
 	units               = "%", "C"
-	sensor_range        = (5, 99)
+	sensor_range        = {"low": 5, "high": 99}
 	required_resolution = 1
 
 class total_pressure(sensor):
 
-	function            = "Internal (1) & External (1) Total Atmospheric Pressure"
+	# Internal (1) & External (1) Total Atmospheric Pressure"
+
+	name		    = "total pressure"
 	units               = "kPA"
-	sensor_range        = (30, 110)
+	sensor_range        = {"low": 30, "high": 110}
 	required_resolution = 1
 
 class oxygen(sensor):
 
-	function            = "Internal (1) & External (1) O2 concentration"
+	# Internal (1) & External (1) O2 concentration"
+
+	name		    = "oxygen"
 	units               = "%"
-	sensor_range        = (0, 100)
+	sensor_range        = {"low": 0, "high": 100}
 	required_resolution = 1
 
 class CO2(sensor):
 
-	function            = "Internal (1) & External CO2 concentration"
+	# Internal (1) & External CO2 concentration"
+
+	name		    = "CO2"
 	units               = "ppm"
-	sensor_range        = (0, 2000)
+	sensor_range        = {"low": 0, "high": 2000}
 	required_resolution = 100
 
 class light_PAR(sensor):
 
-	function            = "Internal (1) & External (1) Photosynthetically Active Radiation (PAR)"
+	# Internal (1) & External (1) Photosynthetically Active Radiation (PAR)"
+
+	name		    = "light PAR"
 	units               = "micro-mol / (m**2 * s)"
-	sensor_range        = (0, 2000)
+	sensor_range        = {"low": 0, "high": 2000}
 	required_resolution = 2
 
 class camera(sensor):
 
-	function            = "Plant Health Imagery"
+	# Plant Health Imagery
+
+	name		    = "camera"
 	units               = "RGB"
-	sensor_range        = (1, 255)
+	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
 def test_sensors(sensors):
@@ -124,6 +154,7 @@ def test_sensors(sensors):
 	for sensor in sensors: 
 		
 		print sensor.read(), sensor.units
+		print sensor.sensor_range
 		print
 
 S101 = EC()
