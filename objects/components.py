@@ -124,4 +124,4 @@ def display_components():
 		print component.dimensions,    component.input_voltage,   component.flow_rate, \
 		      component.concentration, component.outlet_pressure, component.internal_pressure
 
-display_components()
+#display_components()
