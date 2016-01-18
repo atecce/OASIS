@@ -3,7 +3,7 @@ from sensors import sensor_suite
 
 class sensor_test(unittest.TestCase):
 
-	def test_voltage(self):
+	def test_readings(self):
 
 		# sample size
 		n = int(100)
