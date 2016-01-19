@@ -8,12 +8,15 @@ from sensors import sensor_suite
 
 class sensor_test(unittest.TestCase):
 
-	def test_readings(self):
+	def test_ranges(self):
 
 		# sample size
 		n = int(100)
 
 		for sensor in sensor_suite:
+
+			# start thread
+			sensor.start()
 
 			sample = list()
 
@@ -24,7 +27,7 @@ class sensor_test(unittest.TestCase):
 			for observation in sample:
 
 				# print the results
-				print sensor.name, sensor.sensor_range, sensor.read()
+				print sensor.name, sensor.sensor_range, sensor.read(), sensor.units
 
 				# check if observation lies in sensor range
 				self.assertTrue(sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"])
