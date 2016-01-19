@@ -17,7 +17,7 @@ class sensor_test(unittest.TestCase):
 	def test_ranges(self):
 
 		# sample size
-		n = int()
+		n = int(100)
 
 		# for each sensor
 		for sensor in sensor_suite:
