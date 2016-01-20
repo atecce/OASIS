@@ -20,11 +20,12 @@ class NeuralNetwork():
 
 		# synapses
 		# randomly initialize weights with mean 0
-		self.syn0 = 2*np.random.random((1024,self.training_size)) - 1 # weights connecting input and hidden layers
-		self.syn1 = 2*np.random.random((self.training_size,1)) - 1    # weights connecting hidden and output layers
-		
-		#self.syn0 = np.load('syn0_weights')
-		#self.syn1 = np.load('syn1_weights')
+		#self.syn0 = 2*np.random.random((1024,self.training_size)) - 1 # weights connecting input and hidden layers
+		#self.syn1 = 2*np.random.random((self.training_size,1)) - 1    # weights connecting hidden and output layers
+	
+		print "loading weights..."	
+		self.syn0 = np.load('syn0_weights')
+		self.syn1 = np.load('syn1_weights')
 
 	def saveWeights(self):
 		with open("syn0_weights", "w") as weights1:
@@ -34,7 +35,6 @@ class NeuralNetwork():
 
     	def loadTrainingData(self):
         	for file_ in glob.glob("training_images/*"):
-			print file_
 			plant = Image.open(file_)
 			pix = list(plant.getdata())
 			activation = []
@@ -68,19 +68,12 @@ class NeuralNetwork():
 			# calculating error
 			output_layer_error = self.output_training_matrix - output_layer
 			if epoch % 100000 == 0:
-				print "Epoch:", epoch, "Error:", str(np.mean(np.abs(output_layer_error)))
-			
+				print "Epoch:", epoch, "Error:", str(np.mean(np.abs(output_layer_error)))	
 			# in what direction is the target value?
-  			# were we really sure? if so, don't change too much.
     			output_layer_delta = output_layer_error*self.sigmoid(output_layer,deriv=True)
-
-    			# how much did each hidden_layer value contribute to the output_layer error (according to the weights)?
+    			# hidden layer backprop
     			hidden_layer_error = output_layer_delta.dot(self.syn1.T)
-
-    			# in what direction is the target hidden_layer?
-   			# were we really sure? if so, don't change too much.
     			hidden_layer_delta = hidden_layer_error * self.sigmoid(hidden_layer,deriv=True)
-
    			self.syn1 += hidden_layer.T.dot(output_layer_delta)
    			self.syn0 += input_layer.T.dot(hidden_layer_delta)
 
