@@ -1,0 +1,87 @@
+---
+layout: index
+title: writeTextFile
+scripts: [ '/static/bonescript-demo.js' ]
+style: |
+ #code {
+  position: relative;
+  width: 500px;
+  padding-left: 0;
+  border-radius: 4px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-bottom: 0px;
+  margin-left: 30px;
+  margin-right: 0px;
+  align: left;
+ }
+ #console-output {
+  margin-top: 0px;
+  margin-left: 30px;
+  width: 496px;
+  border: 1px solid #cccccc;
+  resize: vertical;
+ }
+---
+{% include side_menu.html title="BoneScript" %}
+<div class="t3_content_1">
+<div id='connect-status'></div>
+<div id="content_child">
+
+<p>You might be able to see a newer version of this on <a href="http://beagleboard.org/support/bonescript/writeTextFile">beagleboard.org/support/bonescript/writeTextFile</a></p>
+<h1>writeTextFile(filename, data, [callback])</h1>
+<p>Write the contents of a text (ASCII) file.</p>
+<h2>Arguments</h2>
+<ul>
+ <li><em>filename</em>: complete path of the file to be written</li>
+ <li><em>data</em>: ASCII string to be written</li>
+ <li><em>callback</em>: called upon completion</li>
+</ul>
+<h2>Return value</h2>
+<h2>callback(x)</h2>
+<ul>
+ <li><em>x.err</em>: error status message</li>
+</ul>
+<h2>Example
+ <button class="dynlink" onclick="demoRun('code')">run</button>
+ <button class="dynlink" onclick="demoRestore('code')">restore</button>
+</h2>
+<pre id="code" class="use-editor" style="height: 200px;">
+var b = require('bonescript');
+var file = '/sys/class/leds/beaglebone:green:usr3/trigger';
+b.writeTextFile(file, 'heartbeat', readStatus);
+function readStatus(x) {
+    console.log(JSON.stringify(x));
+    b.readTextFile(file, printStatus);
+}
+function printStatus(x) {
+    console.log(JSON.stringify(x));
+}</pre>
+<div readonly id='console-output' style='height: 80px;'></div>
+<h2>Build and execute instructions</h2>
+<ul>
+    <li>Be careful not to overwrite important files!</li>
+    <li>Run the above to see the USR3 LED start to blink in a heartbeat pattern.</li>
+    <li>Adjust the LED selection and trigger.</li>
+</ul>
+<h2>See also</h2>
+<!--
+<h3>Topics</h3>
+<ul>
+</ul>
+-->
+<h3>Related functions</h3>
+<ul>
+ <li><a href="{{site.baseurl}}/Support/BoneScript/#require">require</a></li>
+ <li><a href="{{site.baseurl}}/Support/BoneScript/readTextFile/">readTextFile</a></li>
+</ul>
+<h3>Examples</h3>
+<ul>
+ <li><a href="{{site.baseurl}}/Support/BoneScript/demo_bmp085/">BMP085 I2C pressure/temperature sensor
+  demo</a></li>
+ <li><a href="{{site.baseurl}}/Support/BoneScript/demo_bmp085_graphing/">BMP085 I2C pressure/temperature
+  sensor graphing demo</a></li>
+</ul>
+
+</div>
+</div>

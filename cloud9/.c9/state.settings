@@ -1,0 +1,502 @@
+{
+    "console": {
+        "@expanded": true,
+        "@height": 291,
+        "@maximized": "false",
+        "json()": {
+            "meta": {
+                "accessList": [
+                    "tab22",
+                    "tab3",
+                    "tab27",
+                    "tab9",
+                    "tab2",
+                    "tab14"
+                ]
+            },
+            "name": "pane1",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab22",
+                    "path": null,
+                    "className": [
+                        "tab22"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "bash - \"beaglebone\"",
+                        "tooltip": "bash - \"beaglebone\"",
+                        "terminal": {
+                            "id": "devel_36",
+                            "cwd": "",
+                            "width": 0,
+                            "height": 0,
+                            "scrollTop": -1
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {},
+                        "changed": false
+                    },
+                    "editorType": "terminal",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab27",
+                    "path": null,
+                    "className": [
+                        "tab27",
+                        "focus"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "bash - \"beaglebone\"",
+                        "tooltip": "bash - \"beaglebone\"",
+                        "terminal": {
+                            "id": "devel_834",
+                            "cwd": "",
+                            "width": 0,
+                            "height": 0,
+                            "scrollTop": -1
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {
+                            "timestamp": 1425273064532
+                        },
+                        "changed": false
+                    },
+                    "editorType": "terminal",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab9",
+                    "path": null,
+                    "className": [
+                        "tab9"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "MarsOASISshutdown.py - Idle",
+                        "tooltip": "MarsOASISshutdown.py - Idle",
+                        "output": {
+                            "id": "output4297236",
+                            "width": 1013,
+                            "height": 265,
+                            "scrollTop": -1,
+                            "config": {
+                                "runner": "Python",
+                                "command": "MarsOASISshutdown.py",
+                                "debug": true,
+                                "name": ""
+                            }
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {
+                            "timestamp": 1425248389407
+                        },
+                        "changed": false
+                    },
+                    "editorType": "output",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab2",
+                    "path": null,
+                    "className": [
+                        "tab2"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "MarsOASISBBBReady.py - Idle",
+                        "tooltip": "MarsOASISBBBReady.py - Idle",
+                        "output": {
+                            "id": "output103210",
+                            "width": 1013,
+                            "height": 265,
+                            "scrollTop": -1,
+                            "config": {
+                                "runner": "Python",
+                                "command": "MarsOASISBBBReady.py",
+                                "debug": true,
+                                "name": ""
+                            }
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {
+                            "timestamp": 1425243999292
+                        },
+                        "changed": false
+                    },
+                    "editorType": "output",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab14",
+                    "path": null,
+                    "className": [
+                        "tab14"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "BBB\\ BoneScript\\ Web\\ Server/server.js - Idle",
+                        "tooltip": "BBB\\ BoneScript\\ Web\\ Server/server.js - Idle",
+                        "output": {
+                            "id": "output835980",
+                            "width": 1013,
+                            "height": 265,
+                            "scrollTop": 28,
+                            "config": {
+                                "runner": "Node.js",
+                                "command": "BBB\\ BoneScript\\ Web\\ Server/server.js",
+                                "debug": true,
+                                "name": ""
+                            }
+                        },
+                        "hash": "67452301efcdab8998badcfe10325476c3d2e1f0",
+                        "meta": {
+                            "timestamp": 1425259699499
+                        },
+                        "changed": false
+                    },
+                    "editorType": "output",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab3",
+                    "path": null,
+                    "className": [
+                        "tab3"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1425243400481
+                        },
+                        "filter": true,
+                        "title": "Test/test.py - Idle",
+                        "tooltip": "Test/test.py - Idle",
+                        "output": {
+                            "id": "output443980",
+                            "width": 1013,
+                            "height": 265,
+                            "config": {
+                                "runner": "Python",
+                                "command": "Test/test.py",
+                                "debug": true
+                            }
+                        }
+                    },
+                    "editorType": "output",
+                    "active": true
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "ext": {
+        "counters": {
+            "@ace": 1,
+            "@acestatus": 1,
+            "@divider": 1,
+            "@document": 11,
+            "@form": 4,
+            "@immediate": 1,
+            "@menu": 3,
+            "@menuitem": 6,
+            "@pane": 3,
+            "@postmessage": 1,
+            "@preferences": 1,
+            "@preview": 1,
+            "@session": 5,
+            "@tab": 5,
+            "@undoManager": 11,
+            "@welcome": 1
+        }
+    },
+    "findinfiles": {
+        "@console": "true",
+        "@matchcase": "false",
+        "@regex": "false",
+        "@wholeword": "false"
+    },
+    "menus": {
+        "@minimized": "false"
+    },
+    "nak": {
+        "@installed": true
+    },
+    "panecycle": {
+        "json()": [
+            "tab4",
+            "tab3"
+        ]
+    },
+    "panels": {
+        "@active-left": "tree",
+        "@width-left": 281,
+        "commands.panel": {
+            "@enabled": "true",
+            "@name": "commands.panel"
+        },
+        "debugger": {
+            "@enabled": "true",
+            "@name": "debugger"
+        },
+        "navigate": {
+            "@enabled": "true",
+            "@name": "navigate"
+        },
+        "outline": {
+            "@enabled": "true",
+            "@name": "outline"
+        },
+        "tree": {
+            "@enabled": "true",
+            "@name": "tree"
+        }
+    },
+    "projecttree": {
+        "@scrollpos": -10,
+        "@showfs": true,
+        "expanded": {
+            "json()": [
+                "/Support/bone101",
+                "/Support/bonecard",
+                "/Support/BoneScript",
+                "/Support/BoneScript/pinMode",
+                "/autorun",
+                "/root",
+                "/"
+            ]
+        }
+    },
+    "recentfiles": {
+        "json()": []
+    },
+    "tabs": {
+        "json()": {
+            "focus": "tab4",
+            "meta": {
+                "accessList": [
+                    "tab4",
+                    "tab7",
+                    "tab8",
+                    "tab0",
+                    "tab1"
+                ]
+            },
+            "name": "pane0",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab7",
+                    "path": "/MarsOASISshutdown.py",
+                    "className": [
+                        "tab7"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "MarsOASISshutdown.py",
+                        "tooltip": "/MarsOASISshutdown.py",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 0,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 9,
+                                    "column": 0
+                                },
+                                "end": {
+                                    "row": 9,
+                                    "column": 0
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "0d9d56e3a9031331acdae4d21d240f8f39843011",
+                        "meta": {
+                            "timestamp": 1425244181000
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab8",
+                    "path": "/MarsOASISBBBSetup.py",
+                    "className": [
+                        "tab8"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "MarsOASISBBBSetup.py",
+                        "tooltip": "/MarsOASISBBBSetup.py",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 596,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 3,
+                                    "column": 13
+                                },
+                                "end": {
+                                    "row": 3,
+                                    "column": 13
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "836be09e8977c2083f97d21fda495c487fb6b4d0",
+                        "meta": {
+                            "timestamp": 1425268831000
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab0",
+                    "path": "/MarsOASISBBBReady.py",
+                    "className": [
+                        "tab0"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "MarsOASISBBBReady.py",
+                        "tooltip": "/MarsOASISBBBReady.py",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 0,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 14,
+                                    "column": 36
+                                },
+                                "end": {
+                                    "row": 14,
+                                    "column": 36
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "dc1e9a9d605642adcc40c4819bddc14f4ff16bdc",
+                        "meta": {
+                            "timestamp": 1425269401000
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab1",
+                    "path": "/Test/test.py",
+                    "className": [
+                        "tab1"
+                    ],
+                    "document": {
+                        "filter": true,
+                        "title": "test.py",
+                        "tooltip": "/Test/test.py",
+                        "ace": {
+                            "folds": [],
+                            "scrolltop": 0,
+                            "scrollleft": 0,
+                            "selection": {
+                                "start": {
+                                    "row": 1,
+                                    "column": 15
+                                },
+                                "end": {
+                                    "row": 1,
+                                    "column": 15
+                                },
+                                "isBackwards": false
+                            },
+                            "options": {
+                                "guessTabSize": true,
+                                "useWrapMode": false,
+                                "wrapToView": true
+                            },
+                            "firstLineState": 0
+                        },
+                        "hash": "180e73645e826282fdf47c8c6ece8d1a5484aab9",
+                        "meta": {
+                            "timestamp": 1425243646000
+                        },
+                        "changed": false
+                    },
+                    "editorType": "ace",
+                    "active": false
+                },
+                {
+                    "type": "tab",
+                    "name": "tab4",
+                    "path": null,
+                    "className": [
+                        "tab4",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1425243085114
+                        },
+                        "filter": true,
+                        "title": "bash - \"beaglebone\"",
+                        "tooltip": "bash - \"beaglebone\"",
+                        "terminal": {
+                            "id": "devel_495",
+                            "cwd": "",
+                            "width": 1013,
+                            "height": 295
+                        }
+                    },
+                    "editorType": "terminal",
+                    "active": true
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "tree_selection": {
+        "json()": [
+            "/MarsOASIS_LED.py"
+        ]
+    }
+}

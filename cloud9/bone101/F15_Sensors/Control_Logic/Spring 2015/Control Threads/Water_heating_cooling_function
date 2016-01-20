@@ -1,0 +1,16 @@
+def water_heat_cool():
+    temp_value=gettempvalue()
+    HSST_H11=2
+    HSST_L11=1
+    while True:
+        while temp_value > HSST_L11:
+            while temp_value >= HSST_H11:
+                mech_ctrl.pump(chiller_port,GPIO.HIGH) #Activate M2 Chiller
+                temp_value=gettempvalue()
+            
+                
+
+                    
+            
+            
+            
