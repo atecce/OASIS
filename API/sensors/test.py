@@ -8,66 +8,50 @@ from sensors import sensor_suite
 
 class sensor_test(unittest.TestCase):
 
-#	def test_ranges(self):
-#
-#		# sample size
-#		n = int(1)
-#
-#		# for each sensor
-#		for sensor in sensor_suite:
-#
-#			# initalize sample
-#			sample = list()
-#
-#			# take a sample of size n
-#			for i in range(n): sample.append(sensor.read())
-#
-#			# for each observation
-#			for observation in sample:
-#
-#				# print the results
-#				print sensor.name, sensor.sensor_range, sensor.read()
-#
-#				# check if observation lies in sensor range
-#				self.assertTrue(sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"])
-#
-#		# more pythonic way with 'for all observation in self.sample: sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"]'?
-
-	def test_sample_sensors(self):
+	def test_sample_RH_temp(self):
 
 		# sample size
-		n = int(100)
+		n = int(5)
 
 		# for each sensor
 		for sensor in sensor_suite:
 
-			# if a connection has been made
-			if sensor.connection: 
+			# if a pin is specified
+			if sensor.pin: 
 
 				# initalize sample
 				sample = list()
 
 				# take a sample of size n
 				for i in range(n): sample.append(sensor.read())
+				
+				humidities, temperatures = zip(*sample)				
 
-				# take the sample mean
-				mean_hat = sum(sample) / n
+				# take the sample means
+				humidities_hat = sum(humidities) / n
+				temperatures_hat = sum(temperatures) / n
 
 				# take the sample variance
-				variance_hat = float()
+				variance_humid_hat = float()
+				variance_temp_hat  = float()
 
-				for x in sample: variance_hat += (x - mean_hat)**2
+				for observation in humidities:   variance_humid_hat += (observation - humidities_hat)**2
+				for observation in temperatures: variance_temp_hat  += (observation - temperatures_hat)**2
 
-				variance_hat = (float(1) / float(n-1)) * variance_hat
+				variance_humid_hat = (float(1) / float(n-1)) * variance_humid_hat
+				variance_temp_hat  = (float(1) / float(n-1)) * variance_temp_hat
 
 				# display results
 				print
 				print "sensor:", sensor.name
 				print "pin:", sensor.pin
 				print "expected range:", sensor.sensor_range["low"], sensor.sensor_range["high"]
-				print "actual range:", min(sample), max(sample)
-				print "mean:",   mean_hat
-				print "variance:", variance_hat
+				print "actual temp range:", min(temperatures), max(temperatures)
+				print "actual humid range:", min(humidities), max(humidities)
+				print "temperature mean:", temperatures_hat
+				print "humidities mean:", humidities_hat
+				print "variance temp:",  variance_temp_hat
+				print "variance humid:", variance_humid_hat
 				print
 
 if __name__ == "__main__": unittest.main()

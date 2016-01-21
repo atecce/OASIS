@@ -7,6 +7,8 @@ import Adafruit_BBIO.ADC  as ADC
 import Adafruit_BBIO.UART as UART
 from Adafruit_I2C import Adafruit_I2C
 
+import Adafruit_DHT
+
 class sensor():
 
 	""" Each sensor has a name, a pin number, a range, and a required resolution. """ 
@@ -24,16 +26,10 @@ class sensor():
 		self.pin        = pin
 		self.connection = connection
 
-		# set up the pin (only takes GPIO now)
-		if connection == "GPIO": GPIO.setup(pin, GPIO.IN)
-
 	def read(self): 
 
-		# will read voltage from Beaglebone (for now assumes a random value for unimplemented sensors)
-		if self.connection == "GPIO": reading = GPIO.input(self.pin)
-		else: 			      reading = random.uniform(0, 3.3)
-
-		return reading
+		# will read voltage from Beaglebone
+		if self.pin: return Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, self.pin) 	
 
 class EC(sensor):
 
@@ -113,39 +109,39 @@ class camera(sensor):
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
-S101 =           EC("S101", None,    None)
-S102 =           pH("S102", None,    None)
-S103 =  temperature("S103", "P8_3", "GPIO")
-S104 =     DO_probe("S104", None,    None)
-S105 = liquid_level("S105", None,    None)
-S106 = liquid_level("S106", None,    None)
-S107 = liquid_level("S107", None,    None)
-S108 = liquid_level("S108", None,    None)
-S109 = liquid_level("S109", None,    None)
-S110 =   flow_meter("S110", None,    None)
-S111 =   flow_meter("S111", None,    None)
-S112 = liquid_level("S112", None,    None)
+S101 =           EC("S101", None, None)
+S102 =           pH("S102", None, None)
+S103 =  temperature("S103", None, None)
+S104 =     DO_probe("S104", None, None)
+S105 = liquid_level("S105", None, None)
+S106 = liquid_level("S106", None, None)
+S107 = liquid_level("S107", None, None)
+S108 = liquid_level("S108", None, None)
+S109 = liquid_level("S109", None, None)
+S110 =   flow_meter("S110", None, None)
+S111 =   flow_meter("S111", None, None)
+S112 = liquid_level("S112", None, None)
 
-S201 = temperature("S201", "P8_4", "GPIO")
-S202 = temperature("S202", "P8_5", "GPIO")
-S203 = temperature("S203", "P8_6", "GPIO")
-S204 = temperature("S204", "P8_7", "GPIO")
-S205 =          EC("S205", None,    None)
-S206 =          pH("S206", None,    None)
-S208 =    moisture("S208", None,    None)
-S209 =    moisture("S209", None,    None)
-S210 =    moisture("S210", None,    None)
-S211 =    moisture("S211", None,    None)
+S201 = temperature("S201", None, None)
+S202 = temperature("S202", None, None)
+S203 = temperature("S203", None, None)
+S204 = temperature("S204", None, None)
+S205 =          EC("S205", None, None)
+S206 =          pH("S206", None, None)
+S208 =    moisture("S208", None, None)
+S209 =    moisture("S209", None, None)
+S210 =    moisture("S210", None, None)
+S211 =    moisture("S211", None, None)
 
-S301 =        RH_temp("S301", "P8_8", "GPIO")
-S302 =        RH_temp("S302", "P8_9", "GPIO")
-S303 = total_pressure("S303", None,    None)
-S304 =         oxygen("S304", None,    None)
-S305 =            CO2("S305", None,    None)
-S306 =      light_PAR("S306", None,    None)
-S307 =         camera("S307", None,    None)
+S301 =        RH_temp("S301", None,   None)
+S302 =        RH_temp("S302", "P8_9", None)
+S303 = total_pressure("S303", None,   None)
+S304 =         oxygen("S304", None,   None)
+S305 =            CO2("S305", None,   None)
+S306 =      light_PAR("S306", None,   None)
+S307 =         camera("S307", None,   None)
 
-S401 =        RH_temp("S401", "P8_10", "GPIO")
+S401 =        RH_temp("S401", "P8_10", None)
 S402 = total_pressure("S402", None,    None)
 S403 =      light_PAR("S403", None,    None)
 
