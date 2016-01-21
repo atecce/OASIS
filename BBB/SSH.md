@@ -1,5 +1,8 @@
 # SSH Settings
 
+
+BeagleBone Black ip address: 128.138.158.234
+
 We want our BBB to be secure. I have taken the following steps:
 
 
