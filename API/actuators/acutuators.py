@@ -83,8 +83,288 @@ class nutrient_dosing_pump(acuator):
 
 class pH_down_dosing_pump(acuator):
 
-class nutruent_tank_1_recirculation_pump(acuator):
+class nutrient_tank_1_recirculation_pump(acuator):
 
+class air_pump(acuator):
+
+class filter_pump(acuator):
+
+class nutrient_tank_2_recirculation_pump(acuator):
+
+class humidifier_pump(acuator):
+
+class submers_mix_tank(acuator):
+
+class air_pump_2(acuator):
+
+class regulator_1(acuator):
+
+class regulator_2(acuator):
+
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+class (acuator):
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
+
+
+F1 = sediment_filter(self)
+F2 = UV_filter(self)
+F3 = mesh_filter(self)
+F4 = 
+F5 = 
+
+M01 = reservoir_heater(self)
 
 
 F1 = sediment_filter(self)
