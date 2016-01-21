@@ -1,28 +1,25 @@
 # need this for testing
 import random
 
-import threading
-
 O = list()
 
-class sensor(threading.Thread):
+class sensor():
 
 	name	 	    = str()
+	pin		    = int()
 	units               = str()
 	sensor_range        = dict()
 	required_resolution = float()
 
-	def __init__ (self, name):
+	def __init__ (self, name, pin):
 
 		self.name = name
 
+		self.pin = pin
+
 		threading.Thread.__init__(self)
 
-	def read(self):
-
-		return self.run()
-
-	def run(self): 
+	def read(self): 
 
 		# will read voltage from Beaglebone (for now assumes a random value for testing)
 		voltage = random.uniform(0, 3.3)
@@ -136,41 +133,41 @@ class camera(sensor):
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
-S101 = EC("S101")
-S102 = pH("S102")
-S103 = temperature("S103")
-S104 = EC("S104")
-S105 = liquid_level("S105")
-S106 = liquid_level("S106")
-S107 = liquid_level("S107")
-S108 = liquid_level("S108")
-S109 = liquid_level("S109")
-S110 = flow_meter("S110")
-S111 = flow_meter("S111")
-S112 = liquid_level("S112")
+S101 = EC("S101", None)
+S102 = pH("S102", None)
+S103 = temperature("S103", None)
+S104 = EC("S104", None)
+S105 = liquid_level("S105", None)
+S106 = liquid_level("S106", None)
+S107 = liquid_level("S107", None)
+S108 = liquid_level("S108", None)
+S109 = liquid_level("S109", None)
+S110 = flow_meter("S110", None)
+S111 = flow_meter("S111", None)
+S112 = liquid_level("S112", None)
 
-S201 = temperature("S201")
-S202 = temperature("S202")
-S203 = temperature("S203")
-S204 = temperature("S204")
-S205 = EC("S205")
-S206 = pH("S206")
-S208 = moisture("S208")
-S209 = moisture("S209")
-S210 = moisture("S210")
-S211 = moisture("S211")
+S201 = temperature("S201", None)
+S202 = temperature("S202", None)
+S203 = temperature("S203", None)
+S204 = temperature("S204", None)
+S205 = EC("S205", None)
+S206 = pH("S206", None)
+S208 = moisture("S208", None)
+S209 = moisture("S209", None)
+S210 = moisture("S210", None)
+S211 = moisture("S211", None)
 
-S301 = RH_temp("S301")
-S302 = RH_temp("S302")
-S303 = total_pressure("S303")
-S304 = oxygen("S304")
-S305 = CO2("S305")
-S306 = light_PAR("S306")
-S307 = camera("S307")
+S301 = RH_temp("S301", 'P8_8')
+S302 = RH_temp("S302", 'P8_9')
+S303 = total_pressure("S303", None)
+S304 = oxygen("S304", None)
+S305 = CO2("S305", None)
+S306 = light_PAR("S306", None)
+S307 = camera("S307", None)
 
-S401 = RH_temp("S401")
-S402 = total_pressure("S402")
-S403 = light_PAR("S403")
+S401 = RH_temp("S401", 'P8_10')
+S402 = total_pressure("S402", None)
+S403 = light_PAR("S403", None)
 
 sensor_suite = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
 	        S201, S202, S203, S204, S205, S206,       S208, S209, S210, S211,
