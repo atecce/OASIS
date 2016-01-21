@@ -1,16 +1,6 @@
 # need this for testing
 import random
 
-# list of pins which are referred to in the documentation as P9_01, P9_02, ..., P9_46
-P9 = list()
-
-for k in range(1, 47): 	
-
-	P9.append({"$PINS": None, "ADDR/OFFSET": None, "Name":  None, "GPIO NO.": None
-		   "Mode7": None, "Mode6":       None, "Mode5": None, "Mode4":    None, 
-		   "Mode3": None, "Mode2":       None, "Mode1": None, "Mode0":    None, 
-		   "PIN":   None, "Notes":       None}
-
 class sensor():
 
 	name	 	    = str()
@@ -139,41 +129,41 @@ class camera(sensor):
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
-S101 =           EC("S101", None, None)
-S102 =           pH("S102", None, None)
-S103 =  temperature("S103", None, None)
+S101 =           EC("S101", None)
+S102 =           pH("S102", None)
+S103 =  temperature("S103", None)
 S104 =           EC("S104", None)
-S105 = liquid_level("S105", None, None)
-S106 = liquid_level("S106", None, None)
-S107 = liquid_level("S107", None, None)
-S108 = liquid_level("S108", None, None)
-S109 = liquid_level("S109", None, None)
-S110 =   flow_meter("S110", None, None)
-S111 =   flow_meter("S111", None, None)
-S112 = liquid_level("S112", None, None)
+S105 = liquid_level("S105", None)
+S106 = liquid_level("S106", None)
+S107 = liquid_level("S107", None)
+S108 = liquid_level("S108", None)
+S109 = liquid_level("S109", None)
+S110 =   flow_meter("S110", None)
+S111 =   flow_meter("S111", None)
+S112 = liquid_level("S112", None)
 
-S201 = temperature("S201", None, None)
-S202 = temperature("S202", None, None)
-S203 = temperature("S203", None, None)
-S204 = temperature("S204", None, None)
-S205 =          EC("S205", None, None)
-S206 =          pH("S206", None, None)
-S208 =    moisture("S208", None, None)
-S209 =    moisture("S209", None, None)
-S210 =    moisture("S210", None, None)
-S211 =    moisture("S211", None, None)
+S201 = temperature("S201", None)
+S202 = temperature("S202", None)
+S203 = temperature("S203", None)
+S204 = temperature("S204", None)
+S205 =          EC("S205", None)
+S206 =          pH("S206", None)
+S208 =    moisture("S208", None)
+S209 =    moisture("S209", None)
+S210 =    moisture("S210", None)
+S211 =    moisture("S211", None)
 
-S301 =        RH_temp("S301", 'GPIO', 'P8_8')
-S302 =        RH_temp("S302", 'GPIO', 'P8_9')
-S303 = total_pressure("S303", None, None)
-S304 =         oxygen("S304", None, None)
-S305 =            CO2("S305", None, None)
-S306 =      light_PAR("S306", None, None)
-S307 =         camera("S307", None, None)
+S301 =        RH_temp("S301", 'P8_8')
+S302 =        RH_temp("S302", 'P8_9')
+S303 = total_pressure("S303", None)
+S304 =         oxygen("S304", None)
+S305 =            CO2("S305", None)
+S306 =      light_PAR("S306", None)
+S307 =         camera("S307", None)
 
-S401 =        RH_temp("S401", 'GPIO', 'P8_10')
-S402 = total_pressure("S402", None, None)
-S403 =      light_PAR("S403", None, None)
+S401 =        RH_temp("S401", 'P8_10')
+S402 = total_pressure("S402", None)
+S403 =      light_PAR("S403", None)
 
 sensor_suite = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
 	        S201, S202, S203, S204, S205, S206,       S208, S209, S210, S211,
