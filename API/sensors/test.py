@@ -3,9 +3,6 @@
 # need this for unit tests
 import unittest
 
-# need this for thread tests
-import time
-
 # import the suite of sensors
 from sensors import sensor_suite
 
