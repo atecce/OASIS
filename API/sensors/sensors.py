@@ -3,7 +3,6 @@ import random
 
 # need these to interface with Beaglebone
 import Adafruit_BBIO.GPIO as GPIO
-import Adafruit_BBIO.PWM  as PWM
 import Adafruit_BBIO.ADC  as ADC
 import Adafruit_BBIO.UART as UART
 from Adafruit_I2C import Adafruit_I2C
