@@ -6,7 +6,7 @@ import Adafruit_BBIO.PWM as PWM
 from Adafruit_I2C import Adafruit_I2C
 
 class Actuator():
-  """ name, pin, range? """
+  """ name, pin, connection """
   name  = str()
   pin   = str()
   connection  = str()
@@ -17,7 +17,7 @@ class Actuator():
   outlet_pressure = float()
   internal_pressure = float()
 
-  def __init__ (self, name, pin, connection):
+  def __init__ (self, name, pin, connection="GPIO"):
 
     # attributes
     self.name = name
@@ -33,24 +33,59 @@ class Actuator():
     # perform the particular action for this actuator
 
 
-# classes for each actuator
-class dehumidifier(actuator):
-  # dehu class
+class sediment_filter(acuator):
 
-class aqua_chiller(actuator): 
-  # aqua class
+class UV_filter(acuator):
 
-class h2O_pump(actuator):
-  # h20_pump class
+class mesh_filter(acuator):
 
-class O2_concentrator(actuator):
-  # O2 class
+class pre_filter_p1(acuator):
 
-class power_bubbles(actuator):
-  # power_bubbles class
+class pre_filter_p2(acuator):
 
-class low_volume_pump(actuator):
-  # low_volume_pump class
+class reservor_heater(acuator):
+
+class reservoir_chiller(acuator):
+
+class air_stone_bubbler(acuator):
+
+class pressure_compensating_drippers(acuator):
+
+class ventilation_fan_1(acuator):
+
+class ventialation_fan_2(acuator):
+
+class O2_concentrator(acuator):
+
+class dehumidifier(acuator):
+
+class mister(acuator):
+
+class blue_apple_1(acuator):
+
+class blue_apple_2(acuator):
+
+class stepper_motor(acuator):
+
+class bracket(acuator):
+
+class sensor_pole(acuator):
+
+class LED(acuator):
+
+class twenty_movement(acuator):
+
+class main_pump(acuator):
+
+class fresh_H2O_pump(acuator):
+
+class nutrient_dosing_pump(acuator):
+
+class pH_down_dosing_pump(acuator):
+
+class nutruent_tank_1_recirculation_pump(acuator):
+
+
 
 F1 = sediment_filter(self)
 F2 = UV_filter(self)
