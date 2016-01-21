@@ -4,138 +4,113 @@ import random
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM  as PWM
 import Adafruit_BBIO.ADC  as ADC
-import Adafruit_BBIO.SPI  as SPI
 import Adafruit_BBIO.UART as UART
 
 from Adafruit_I2C import Adafruit_I2C
 
 class sensor():
 
+	""" Each sensor has a name, a pin number, a range, and a required resolution. """ 
+
 	name	 	    = str()
 	pin		    = int()
-	units               = str()
 	sensor_range        = dict()
 	required_resolution = float()
 
 	def __init__ (self, name, pin):
 
+		# attributes of a sensor 
 		self.name = name
-
 		self.pin = pin
 
+		# set up the pin (only takes GPIO now)
 		if pin: GPIO.setup(pin, GPIO.IN)
 
 	def read(self): 
 
 		# will read voltage from Beaglebone (for now assumes a random value for testing)
-		voltage = random.uniform(0, 3.3)
+		if pin: voltage = GPIO.input(self.pin)
+		else:	voltage = random.uniform(0, 3.3)
+		
 
 		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
 		return ((self.sensor_range["high"] - self.sensor_range["low"]) / 3.3) * voltage + self.sensor_range["low"]
 
 class EC(sensor):
 
-	# Electrical Conductivity (Measuring Nutrient Deficit) in Growth Medium & Reservoir
-
-	# check this again
-	units               = "micro-S-cm-l"	
-
+	# micro-S-cm-l
 	sensor_range        = {"low": 3, "high": 3000}
 	required_resolution = 1
 
 class pH(sensor): 
 
-	# pH in Growth Medium & Reservoir
-
-	units               = "pH"
+	# pH 
 	sensor_range        = {"low": 2, "high": 12}
 	required_resolution = .2
 
 class temperature(sensor): 
 
-	# Liquid Temperature in Reservoir (1) & Growth Medium (4)
-
-	units               = "C"
+	# C
 	sensor_range        = {"low": 0, "high": 100}
 	required_resolution = 1
 
 class moisture(sensor): 
 
-	# Volumetric Water Content in Growth Medium
-
-	units               = "%"
+	# %
 	sensor_range        = {"low": 0, "high": 50}
 	required_resolution = 1
 
 class DO_probe(sensor): 
 
-	# Dissolved Oxygen in Mixing Reservoir
-
-	units               = "mg/L"
+	# mg/L
 	sensor_range        = {"low": 0, "high": 15}
 	required_resolution = .1
 
 class liquid_level(sensor): 
 
-	# Liquid Level in Mixing, Nutrient, pH, Leachate, & Condensate Tanks
-
-	units               = "cm"
+	# cm
 	sensor_range        = {"low": 0, "high": 40.5}
 	required_resolution = 1.25
 
 class flow_meter(sensor): 
 
-	# water Flow Rate Into & Out of Growth
-
-	units               = "gpm"
+	# gpm
 	sensor_range        = {"low": .2, "high": 2}
 	required_resolution = .05
 
 class RH_temp(sensor):
 
-	# Internal (2) & External (1) Relative Humidity & Air Temperature
-
-	units               = "%", "C"
+	# C
 	sensor_range        = {"low": 5, "high": 99}
 	required_resolution = 1
 
 class total_pressure(sensor):
 
-	# Internal (1) & External (1) Total Atmospheric Pressure"
-
-	units               = "kPA"
+	# kPA
 	sensor_range        = {"low": 30, "high": 110}
 	required_resolution = 1
 
 class oxygen(sensor):
 
-	# Internal (1) & External (1) O2 concentration"
-
-	units               = "%"
+	# %
 	sensor_range        = {"low": 0, "high": 100}
 	required_resolution = 1
 
 class CO2(sensor):
 
-	# Internal (1) & External CO2 concentration"
-
-	units               = "ppm"
+	# ppm
 	sensor_range        = {"low": 0, "high": 2000}
 	required_resolution = 100
 
 class light_PAR(sensor):
 
-	# Internal (1) & External (1) Photosynthetically Active Radiation (PAR)"
-
-	units               = "micro-mol / (m**2 * s)"
+	# micro-mol per meters-squared seconds
 	sensor_range        = {"low": 0, "high": 2000}
 	required_resolution = 2
 
 class camera(sensor):
 
-	# Plant Health Imagery
-
-	units               = "RGB"
+	# RGB
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
