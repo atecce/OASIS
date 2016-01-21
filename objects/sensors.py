@@ -1,6 +1,8 @@
 # need this for testing
 import random
 
+import Adafruit_BBIO.GPIO as GPIO
+
 class sensor():
 
 	name	 	    = str()
@@ -14,6 +16,8 @@ class sensor():
 		self.name = name
 
 		self.pin = pin
+
+		GPIO.setup(pin, GPIO.IN)
 
 	def read(self): 
 
@@ -131,7 +135,7 @@ class camera(sensor):
 
 S101 =           EC("S101", None)
 S102 =           pH("S102", None)
-S103 =  temperature("S103", None)
+S103 =  temperature("S103", "P8_03")
 S104 =           EC("S104", None)
 S105 = liquid_level("S105", None)
 S106 = liquid_level("S106", None)
@@ -142,10 +146,10 @@ S110 =   flow_meter("S110", None)
 S111 =   flow_meter("S111", None)
 S112 = liquid_level("S112", None)
 
-S201 = temperature("S201", None)
-S202 = temperature("S202", None)
-S203 = temperature("S203", None)
-S204 = temperature("S204", None)
+S201 = temperature("S201", "P8_04")
+S202 = temperature("S202", "P8_05")
+S203 = temperature("S203", "P8_06")
+S204 = temperature("S204", "P8_07")
 S205 =          EC("S205", None)
 S206 =          pH("S206", None)
 S208 =    moisture("S208", None)
@@ -153,8 +157,8 @@ S209 =    moisture("S209", None)
 S210 =    moisture("S210", None)
 S211 =    moisture("S211", None)
 
-S301 =        RH_temp("S301", 'P8_8')
-S302 =        RH_temp("S302", 'P8_9')
+S301 =        RH_temp("S301", "P8_08")
+S302 =        RH_temp("S302", "P8_09")
 S303 = total_pressure("S303", None)
 S304 =         oxygen("S304", None)
 S305 =            CO2("S305", None)
