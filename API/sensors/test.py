@@ -11,13 +11,10 @@ from sensors import sensor_suite
 
 class sensor_test(unittest.TestCase):
 
-	# for each sensor, start thread
-	for sensor in sensor_suite: sensor.start()
-
 	def test_ranges(self):
 
 		# sample size
-		n = int(100)
+		n = int(1)
 
 		# for each sensor
 		for sensor in sensor_suite:

@@ -28,7 +28,8 @@ class sensor():
 	def read(self): 
 
 		# will read voltage from Beaglebone (for now assumes a random value for testing)
-		voltage = random.uniform(0, 3.3)
+		if self.pin: voltage = GPIO.input(self.pin)
+		else: voltage = random.uniform(0, 3.3)
 
 		# assumes the function from the voltage is a straight line connecting the two points (y = mx + b)
 		return ((self.sensor_range["high"] - self.sensor_range["low"]) / 3.3) * voltage + self.sensor_range["low"]
