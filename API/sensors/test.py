@@ -8,50 +8,62 @@ from sensors import sensor_suite
 
 class sensor_test(unittest.TestCase):
 
-	def test_ranges(self):
+#	def test_ranges(self):
+#
+#		# sample size
+#		n = int(1)
+#
+#		# for each sensor
+#		for sensor in sensor_suite:
+#
+#			# initalize sample
+#			sample = list()
+#
+#			# take a sample of size n
+#			for i in range(n): sample.append(sensor.read())
+#
+#			# for each observation
+#			for observation in sample:
+#
+#				# print the results
+#				print sensor.name, sensor.sensor_range, sensor.read()
+#
+#				# check if observation lies in sensor range
+#				self.assertTrue(sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"])
+#
+#		# more pythonic way with 'for all observation in self.sample: sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"]'?
+
+	def test_sample_sensors(self):
 
 		# sample size
-		n = int(1)
+		n = int(100)
 
 		# for each sensor
 		for sensor in sensor_suite:
 
-			# initalize sample
-			sample = list()
+			# if a connection has been made
+			if sensor.connection: 
 
-			# take a sample of size n
-			for i in range(n): sample.append(sensor.read())
+				# initalize sample
+				sample = list()
 
-			# for each observation
-			for observation in sample:
+				# take a sample of size n
+				for i in range(n): sample.append(sensor.read())
 
-				# print the results
-				print sensor.name, sensor.sensor_range, sensor.read(), sensor.units
+				mean_hat = sum(sample) / n
 
-				# check if observation lies in sensor range
-				self.assertTrue(sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"])
+				variance_hat = float()
 
-		# more pythonic way with 'for all observation in self.sample: sensor.sensor_range["low"] <= observation <= sensor.sensor_range["high"]'?
+				for x in sample: variance_hat += (x - mean_hat)**2
 
-	def test_observations(self):
+				variance_hat = float(1) / float(n-1)
 
-		# initialize length of time (in cycles)
-		T = int(100)
-
-		# initalize list of observations
-		O = list()
-
-		for t in range(T):
-
-			# initalize entry
-			entry = dict()
-
-			# for each sensor, add it's reading
-			for sensor in sensor_suite: entry[sensor.name] = sensor.read()
-
-			print t, entry
-
-			# append entry to list of observations
-			O.append(entry)
+				print
+				print "sensor:", sensor.name
+				print "expected range:", sensor.sensor_range["low"], sensor.sensor_range["high"]
+				print "actual range:", min(sample), max(sample)
+				print "mean:",   mean_hat
+				print "variance:", variance_hat
+				print
 
 if __name__ == "__main__": unittest.main()
