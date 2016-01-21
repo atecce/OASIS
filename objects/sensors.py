@@ -17,7 +17,7 @@ class sensor():
 
 		self.pin = pin
 
-		GPIO.setup(pin, GPIO.IN)
+		if pin: GPIO.setup(pin, GPIO.IN)
 
 	def read(self): 
 
