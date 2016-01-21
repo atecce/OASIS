@@ -50,16 +50,20 @@ class sensor_test(unittest.TestCase):
 				# take a sample of size n
 				for i in range(n): sample.append(sensor.read())
 
+				# take the sample mean
 				mean_hat = sum(sample) / n
 
+				# take the sample variance
 				variance_hat = float()
 
 				for x in sample: variance_hat += (x - mean_hat)**2
 
-				variance_hat = float(1) / float(n-1)
+				variance_hat = (float(1) / float(n-1)) * variance_hat
 
+				# display results
 				print
 				print "sensor:", sensor.name
+				print "pin:", sensor.pin
 				print "expected range:", sensor.sensor_range["low"], sensor.sensor_range["high"]
 				print "actual range:", min(sample), max(sample)
 				print "mean:",   mean_hat

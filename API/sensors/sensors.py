@@ -30,22 +30,10 @@ class sensor():
 	def read(self): 
 
 		# will read voltage from Beaglebone (for now assumes a random value for unimplemented sensors)
-		if self.connection == "GPIO": x = GPIO.input(self.pin)
-		else: 			      x = random.uniform(0, 3.3)
+		if self.connection == "GPIO": reading = GPIO.input(self.pin)
+		else: 			      reading = random.uniform(0, 3.3)
 
-		# assumes the function from the voltage to the units of the sensor 
-		# is a straight line connecting the two points of the range (y = mx + b)
-
-		delta_y = self.sensor_range["high"] - self.sensor_range["low"]
-		delta_x = 3.3
-
-		m = delta_y / delta_x
-
-		b = self.sensor_range["low"]
-
-		y = m*x + b
-
-		return y
+		return reading
 
 class EC(sensor):
 
