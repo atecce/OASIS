@@ -27,3 +27,20 @@ class Actuator():
 
 
 # classes for each actuator
+class dehumidifier(actuator):
+  # dehu class
+
+class aqua_chiller(actuator): 
+  # aqua class
+
+class h2O_pump(actuator):
+  # h20_pump class
+
+class O2_concentrator(actuator):
+  # O2 class
+
+class power_bubbles(actuator):
+  # power_bubbles class
+
+class low_volume_pump(actuator):
+  # low_volume_pump class
