@@ -1,7 +1,15 @@
 # need this for testing
 import random
 
-O = list()
+# list of pins which are referred to in the documentation as P9_01, P9_02, ..., P9_46
+P9 = list()
+
+for k in range(1, 47): 	
+
+	P9.append({"$PINS": None, "ADDR/OFFSET": None, "Name":  None, "GPIO NO.": None
+		   "Mode7": None, "Mode6":       None, "Mode5": None, "Mode4":    None, 
+		   "Mode3": None, "Mode2":       None, "Mode1": None, "Mode0":    None, 
+		   "PIN":   None, "Notes":       None}
 
 class sensor():
 
