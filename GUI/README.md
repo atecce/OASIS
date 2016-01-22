@@ -1,4 +1,4 @@
-<header>Folder for everything that has to do with GUI</header>
+<title>Folder for everything that has to do with GUI</title>
 
 <h1>Reading List:</h1> <br />
 	- https://drive.google.com/open?id=19qSf5OElvmdUL-ZGFuwTzcxxByvLyyBIkDU6msNdELI <br />
