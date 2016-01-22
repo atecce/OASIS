@@ -1,7 +1,5 @@
-<title>Folder for everything that has to do with GUI</title>
-<head>
-<title>Folder for everything that has to do with GUI</title>
-</head>
+<h1>Folder for everything that has to do with GUI</h1>
+
 <h1>Reading List:</h1> <br />
 	- https://drive.google.com/open?id=19qSf5OElvmdUL-ZGFuwTzcxxByvLyyBIkDU6msNdELI <br />
 	- https://drive.google.com/open?id=0BzJPR2uuc1fIdWtndGZ2cDJ2eHM <br />
