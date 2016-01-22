@@ -13,3 +13,22 @@ I2C only (or not?)
 	S101, S104, S102, S205, S206, S303, S402
 
 PWM is for actuators only
+
+
+Actuators ~RyBo
+=========
+
+Looking at the chart, if I'm understanding everything, the
+actuators take up a big portion of the lookup table in the API
+directory. 
+
+Instead of having a single giant actuator file I think it would be 
+best to organize them in seperate files by subsystem. 
+
+Originally I tried to organize them by function type, however I think organizing them by subsystem would be much cleaner.
+ 
+TODO:
+
+    [ ] Switch from function type to subsystem
+    [ ] Create templates (based off of API/sensors/sensors.py  
+    [ ] Add details to each class
