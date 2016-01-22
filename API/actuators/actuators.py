@@ -1,5 +1,4 @@
-# needed for testing
-import random
+# Main file for the actuators suite
 
 # interface with beaglebone - acutators only use
 import Adafruit_BBIO.PWM as PWM
