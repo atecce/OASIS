@@ -6,5 +6,5 @@ Reading List: <br />
 	- https://drive.google.com/open?id=0B8ZDkkicQktGTmx3TEM4OWV1dFE  <br />
 
 To-do list
-- [ ] Test
+- [x] Test
 - [ ] Test2
