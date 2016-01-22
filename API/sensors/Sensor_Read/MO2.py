@@ -1,9 +1,9 @@
 import smbus
 import time
 bus = smbus.SMBus(2) # bus 2 is i2c bus on pins 17, 18
-results = bus.read_i2c_block_data(0x21,0xF0) # 0xF0 for PAR1 sensor connected to VIN8 channel of ADC with I2C Address 0x21
+results = bus.read_i2c_block_data(0x21,0xA0) # 0xA0 for MO2 sensor connected to VIN3 channel of ADC with I2C Address 0x21
 #results = [108, 119, 103, 130, 104, 110, 108, 200, 104, 180, 103, 130, 105, 165, 108, 135, 106, 146, 107, 139, 108, 190, 104, 173, 107, 30, 104, 130, 105, 176, 105, 161]
-print "ADC Results from PAR1 sensor:"
+print "ADC Results from MO2 sensor:"
 print results
 sensordata = []
 for i in range(len(results)):
@@ -41,6 +41,14 @@ print "Chosen Sensor ADC Value:"+ str(sensorVal)
 analogVal = (sensorVal/4095.0)*3.3
 print "Chosen Sensor Analog Value in V:"+str(analogVal)
 
-parValue = analogVal*1000*0.5
+VWC=0 #VWC(Volumetric Water Content) = 0
+if (analogVal>=0 and analogVal<1.1):
+	VWC=10*analogVal-1
+if (analogVal>=1.1 and analogVal<1.3):
+	VWC=25*analogVal-17.5
+if (analogVal>=1.3 and analogVal<=1.82):
+	VWC=48.08*analogVal-47.5
+if (analogVal>=1.8 and analogVal<=2.2):
+	VWC=26.32*analogVal-7.89
 
-print "PAR 1 Value is "+str(parValue)+"micro-mol m^-2 s^-1"
+print "Volumetric Water Content is "+str(VWC)+"%"

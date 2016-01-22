@@ -1,9 +1,9 @@
 import smbus
 import time
 bus = smbus.SMBus(2) # bus 2 is i2c bus on pins 17, 18
-results = bus.read_i2c_block_data(0x21,0xA0) # 0xA0 for MO2 sensor connected to VIN3 channel of ADC with I2C Address 0x21
+results = bus.read_i2c_block_data(0x21,0x80) # 0x80 for MO1 sensor connected to VIN1 channel of ADC with I2C Address 0x21
 #results = [108, 119, 103, 130, 104, 110, 108, 200, 104, 180, 103, 130, 105, 165, 108, 135, 106, 146, 107, 139, 108, 190, 104, 173, 107, 30, 104, 130, 105, 176, 105, 161]
-print "ADC Results from MO2 sensor:"
+print "ADC Results from MO1 sensor:"
 print results
 sensordata = []
 for i in range(len(results)):
