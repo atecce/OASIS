@@ -7,8 +7,8 @@ import Adafruit_DHT
 
 class sensor():
 
-	""" Each sensor has a name, a data communication type, a range, 
-	    a required resolution, and a pin number """ 
+	""" Each sensor has units, a data communication type, a range, 
+	    a required resolution, a name, and a pin number """ 
 
 	# these are constrained by the sensor type
 	units		    = str()
