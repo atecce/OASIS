@@ -11,9 +11,9 @@ class sensor():
 	    a required resolution, and a pin number """ 
 
 	# these are constrained by the sensor type
+	units		    = str()
 	data_comm	    = str()
 	sensor_range        = dict()
-	connection          = str()
 	required_resolution = float()
 
 	# these are determined at construction
