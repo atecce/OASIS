@@ -1,6 +1,3 @@
-# need this for testing
-import random
-
 # need these to interface with Beaglebone
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.ADC  as ADC
@@ -121,6 +118,7 @@ class camera(sensor):
 	sensor_range        = {"low": 1, "high": 255}
 	required_resolution = "1k0x1k"
 
+# liquid tanks and plumbing
 S101 =           EC("S101", 0x66)
 S102 =           pH("S102", 0x65)
 S103 =  temperature("S103", None)
@@ -134,6 +132,7 @@ S110 =   flow_meter("S110", None)
 S111 =   flow_meter("S111", None)
 S112 = liquid_level("S112", None)
 
+# growth medium
 S201 = temperature("S201", None)
 S202 = temperature("S202", None)
 S203 = temperature("S203", None)
@@ -145,6 +144,7 @@ S209 =    moisture("S209", None)
 S210 =    moisture("S210", None)
 S211 =    moisture("S211", None)
 
+# internal atmosphere
 S301 =        RH_temp("S301", None)
 S302 =        RH_temp("S302", "P8_9")
 S303 = total_pressure("S303", 0x77)
@@ -153,6 +153,7 @@ S305 =            CO2("S305", None)
 S306 =      light_PAR("S306", None)
 S307 =         camera("S307", None)
 
+# external environment
 S401 =        RH_temp("S401", "P8_10")
 S402 = total_pressure("S402", None)
 S403 =      light_PAR("S403", None)
