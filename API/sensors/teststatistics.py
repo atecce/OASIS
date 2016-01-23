@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-# need this for tests
+# need this to generate plausible benchmark
 import random
 
-# need this for unit tests
+# need this for unit tests class
 import unittest
 
 from statistics import statistics
@@ -23,6 +23,8 @@ class statistics_test(unittest.TestCase):
 		print
 		print "test of standard uniform distribution"
 		print
+		print "\tsample size:", self.n
+		print
 		print "\tsample mean:", standard_uniform.mu
 		print "\texpectation:", float(1) / float(2)
 		print
@@ -40,6 +42,8 @@ class statistics_test(unittest.TestCase):
 
 		print
 		print "test of standard normal distribution"
+		print
+		print "\tsample size:", self.n
 		print
 		print "\tsample mean:", standard_normal.mu
 		print "\texpectation:", 0
