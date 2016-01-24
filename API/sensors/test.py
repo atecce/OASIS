@@ -2,16 +2,17 @@
 
 # need this to interact with BBB
 import Adafruit_BBIO.GPIO
+import Adafruit_BBIO.UART
 
 # need this for unit tests
 import unittest
 
 # need these for pins
-from pins import P8, P9, GPIO
+from pins import P8, P9, GPIO, UART
 
 class sensor_test(unittest.TestCase):
 
-	def test_GPIO_in(self):
+	def test_input(self):
 
 		# for each pin in P9
 		for number in P8: 
