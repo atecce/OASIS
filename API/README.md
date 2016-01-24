@@ -29,6 +29,6 @@ Originally I tried to organize them by function type, however I think organizing
  
 TODO:
 
-    [ ] Switch from function type to subsystem
+    [X] Switch from function type to subsystem
     [ ] Create templates (based off of API/sensors/sensors.py  
     [ ] Add details to each class
