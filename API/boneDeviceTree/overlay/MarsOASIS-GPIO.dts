@@ -1,0 +1,203 @@
+/*  
+* Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Purpose License Version 2 as
+* published by the Free Software Foundation
+*
+* Original from: github.com/jadonk/validation-scripts/blob/master/test-capemgr/ 
+*
+* Modified by Derek Molloy for the example on www.derekmolloy.ie
+* that maps GPIO pins for the example
+* 
+* The example was further modified for MarsOASIS use by Christine Chamberlain on 
+* 08/15/2015 to integrate the BBB with the 06/11/2015 version of the system schematics
+* and using the Device Tree Overlay Generator at 
+* http://kilobaser.com/blog/2014-07-28-beaglebone-black-devicetreeoverlay-generator#dtogenerator
+*
+*/
+
+/dts-v1/;
+/plugin/;
+
+/{
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+    part_number = "MarsOASISGPIO";
+    version = "00A0";
+
+/* Set exclusive use for GPIO Inputs, using Element14 pin mapping (see SRM) */
+    exclusive-use =
+        "P8.3", 
+	"gpio1_6",
+	"P8.4", 
+        "gpio1_7",
+	"P8.5", 
+	"gpio1_2",
+	"P8.6", 
+	"gpio1_3",
+	"P8.7", 
+	"gpio2_2",
+	"P8.8", 
+	"gpio2_3",
+	"P8.9", 
+	"gpio2_5",
+	"P8.10", 
+	"gpio2_4",
+	"P9.19", 
+	"gpio0_13",
+	"P9.20", 
+	"gpio0_12",
+/* Set exlusive use for GPIO Outputs, using Element14 pin mapping (see SRM) */
+        "P8.11", 
+	"gpio1_13",
+ 	"P8.12", 
+	"gpio1_12",
+	"P8.14", 
+	"gpio0_26",
+	"P8.15", 
+	"gpio1_15",
+	"P8.16", 
+	"gpio1_14",
+	"P8.17", 
+	"gpio0_27",
+	"P8.18", 
+	"gpio2_1",
+	"P8.20", 
+	"gpio1_31",
+	"P8.21", 
+	"gpio1_30",
+	"P8.22", 
+	"gpio1_5",
+	"P8.23", 
+	"gpio1_4",
+	"P8.24", 
+	"gpio1_1",
+	"P8.25", 
+	"gpio1_0",
+	"P8.26", 
+	"gpio1_29",
+	"P8.27", 
+	"gpio2_22",
+	"P8.28", 
+	"gpio2_24",
+	"P8.29", 
+	"gpio2_23",
+	"P8.30", 
+	"gpio2_25",
+	"P8.31", 
+	"gpio0_10",
+	"P8.32", 
+	"gpio0_11",
+	"P8.33", 
+	"gpio0_9",
+	"P8.34", 
+	"gpio2_17",
+	"P8.35", 
+	"gpio0_8",
+	"P9.27", 
+	"gpio3_19",		/*This is READY2, set to low */
+	/* Set exclusive use for PWM signals */
+	"P8.13", 
+	"ehrpwm2B",
+	"P8.36", 
+	"ehrpwm1A",
+	"P8.45", 
+	"ehrpwm2A",
+	/*"P8.46","ehrpwm2B", */
+        /*note this FAN PWM 8.46 pin may have to change, seems to be in conflict with P8.13 */
+	/* Set exlusive use for UART signals */
+	"P8.37", 
+	"uart5_txd",
+	"P8.38", 
+	"uart5_rxd",
+ 	"P9.11", 
+	"uart4_rxd_mux2",
+	"P9.13", 
+	"uart4_txd_mux2",
+	"P9.24", 
+	"uart1_txd",
+	"P9.26", 
+	"uart1_rxd",
+	/* Set exlusive use for I2C signals */
+	"P9.17", 
+	"I2C1_SCL",
+	"P9.18", 
+	"I2C1_SDA",
+	"P9.21", 
+	"I2C2_SCL",
+	"P9.22", 
+	"I2C2_SDA";
+
+
+	fragment@0 {
+             target = <&am33xx_pinmux>;
+            
+             __overlay__ {
+                  MarsOASISGPIO: pinmux_MarsOASISGPIO {
+			pinctrl-single,pins = <
+
+				0x018 0x2f  /* P8_3  GPIO INPUT MODE7 none - TEMP1 */
+				0x01c 0x2f  /* P8_4  GPIO INPUT MODE7 none - TEMP2 */
+				0x008 0x2f  /* P8_5  GPIO INPUT MODE7 none - TEMP3 */
+				0x00c 0x2f  /* P8_6  GPIO INPUT MODE7 none - TEMP4 */
+				0x090 0x2f  /* P8_7  GPIO INPUT MODE7 none - TEMP5 */
+                	        0x094 0x2f  /* P8_8  GPIO INPUT MODE7 none - RH/TEMP1 */
+				0x09C 0x2f  /* P8_9  GPIO INPUT MODE7 none - RH/TEMP2 */
+				0x098 0x2f  /* P8_10 GPIO INPUT MODE7 none - RH/TEMP3 */
+				0x17C 0x2f  /* P9_19 GPIO INPUT MODE7 none - LS3_1*/
+				0x178 0x2f  /* P9_20 GPIO INPUT MODE7 none - LS4_1 */
+				0x034 0xf  /* P8_11 GPIO OUTPUT MODE7 NONE - HC_En*/
+				0x030 0xf  /* P8_12 GPIO OUTPUT MODE7 NONE - HC_Sw*/
+				0x028 0xf  /* P8_14 GPIO OUTPUT MODE7 NONE - OxConEn*/
+				0x03c 0xf  /* P8_15 GPIO OUTPUT MODE7 NONE - LinearActuatorDir*/
+				0x038 0xf  /* P8_16 GPIO OUTPUT MODE7 NONE - LinearActuatorEn*/
+				0x02c 0xf  /* P8_17 GPIO OUTPUT MODE7 NONE - P01EN*/
+				0x08c 0xf  /* P8_18 GPIO OUTPUT MODE7 NONE - P02EN*/
+				0x084 0xf  /* P8_20 GPIO OUTPUT MODE7 NONE - P03EN*/
+				0x080 0xf  /* P8_21 GPIO OUTPUT MODE7 NONE - P04EN*/
+				0x014 0xf  /* P8_22 GPIO OUTPUT MODE7 NONE - P05EN*/
+				0x010 0xf  /* P8_23 GPIO OUTPUT MODE7 NONE - P06EN*/
+				0x004 0xf  /* P8_24 GPIO OUTPUT MODE7 NONE - P07EN*/
+				0x000 0xf  /* P8_25 GPIO OUTPUT MODE7 NONE - P08EN*/
+				0x07c 0xf  /* P8_26 GPIO OUTPUT MODE7 NONE - P09EN*/
+				0x0e0 0xf  /* P8_27 GPIO OUTPUT MODE7 NONE - P10EN*/
+				0x0e8 0xf  /* P8_28 GPIO OUTPUT MODE7 NONE - P11EN*/
+				0x0e4 0xf  /* P8_29 GPIO OUTPUT MODE7 NONE - P12-DeHumidEn*/
+				0x0eC 0xf  /* P8_30 GPIO OUTPUT MODE7 NONE - Sol2En*/
+				0x0d8 0xf  /* P8_31 GPIO OUTPUT MODE7 NONE - Sol1En*/
+				0x0dc 0xf  /* P8_32 GPIO OUTPUT MODE7 NONE - UVFilterEn*/
+				0x0d4 0xf  /* P8_33 GPIO OUTPUT MODE7 NONE - READY1, active high*/
+				0x0cc 0xf  /* P8_34 GPIO OUTPUT MODE7 NONE - SD_DIR_3.3*/
+				0x0d0 0xf  /* P8_35 GPIO OUTPUT MODE7 NONE - SD_ON/OFF_3.3*/
+				0x078 0xf  /* P9_12 GPIO OUTPUT MODE7 NONE - 3_3V VOLTAGE MONITOR*/
+				0x1ac 0xf  /* P9_25 GPIO OUTPUT MODE7 NONE - 12V VOLTAGE MONITOR*/
+				0x1a4 0xf  /* P9_27 GPIO OUTPUT MODE7 NONE - READY2 SIGNAL, LOW*/				
+				0x19c 0xf  /* P9_28 GPIO OUTPUT MODE7 NONE - 24V VOLTAGE MONITOR*/
+				0x024 0xc /* P8_13 PWM 2B MODE4 NONE - LED PWM Control
+				0x0c8 0xa /* P8_36 PWM 1A MODE2 NONE - Stepper Motor Clock PWM Control
+				0x0a0 0xb /* P8_45 PWM 2A MODE3 NONE - Fan1 PWM Control
+				/* Note: add line here for Fan2 control after jumpering to different pin */
+				/* UART1, UART4, and UART5 device tree overlays will be set using Adafruit python libraries
+				0x15c 0xa /* P9_17 I2C1_SCL */
+				0x158 0x2a /* P9_18 I2C1_SDA */
+				0x154 0xa /* P9_21 I2C2_SCL */
+				0x150 0x2a /* P9_22 I2C2_SDA */
+                            
+			>;
+		  };
+             };
+       };
+
+
+       fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			MarsOASISGPIO_pinmux {
+				compatible = "bone-pinmux-helper";
+				pinctrl-names = "default";
+				pinctrl-0 = <&MarsOASISGPIO>;
+				status = "okay";
+			};
+		};
+	};
+};
