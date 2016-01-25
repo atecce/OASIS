@@ -136,14 +136,16 @@
                   MarsOASISGPIO: pinmux_MarsOASISGPIO {
 			pinctrl-single,pins = <
 
-				0x018 0x2f  /* P8_3  GPIO INPUT MODE7 none - TEMP1 */
-				0x01c 0x2f  /* P8_4  GPIO INPUT MODE7 none - TEMP2 */
-				0x008 0x2f  /* P8_5  GPIO INPUT MODE7 none - TEMP3 */
-				0x00c 0x2f  /* P8_6  GPIO INPUT MODE7 none - TEMP4 */
-				0x090 0x2f  /* P8_7  GPIO INPUT MODE7 none - TEMP5 */
-                	        0x094 0x2f  /* P8_8  GPIO INPUT MODE7 none - RH/TEMP1 */
-				0x09C 0x2f  /* P8_9  GPIO INPUT MODE7 none - RH/TEMP2 */
-				0x098 0x2f  /* P8_10 GPIO INPUT MODE7 none - RH/TEMP3 */
+				// assuming that the sensors are sorted in the mapping from S([1-499]) format and current one
+
+				0x018 0x2f  /* P8_3  GPIO INPUT MODE7 none - TEMP1, S103 */
+				0x01c 0x2f  /* P8_4  GPIO INPUT MODE7 none - TEMP2, S201 */
+				0x008 0x2f  /* P8_5  GPIO INPUT MODE7 none - TEMP3, S202 */
+				0x00c 0x2f  /* P8_6  GPIO INPUT MODE7 none - TEMP4, S203 */
+				0x090 0x2f  /* P8_7  GPIO INPUT MODE7 none - TEMP5, S204 */
+                	        0x094 0x2f  /* P8_8  GPIO INPUT MODE7 none - RH/TEMP1, S301 */
+				0x09C 0x2f  /* P8_9  GPIO INPUT MODE7 none - RH/TEMP2, S302 */
+				0x098 0x2f  /* P8_10 GPIO INPUT MODE7 none - RH/TEMP3, S401 */
 				0x17C 0x2f  /* P9_19 GPIO INPUT MODE7 none - LS3_1*/
 				0x178 0x2f  /* P9_20 GPIO INPUT MODE7 none - LS4_1 */
 				0x034 0xf  /* P8_11 GPIO OUTPUT MODE7 NONE - HC_En*/
