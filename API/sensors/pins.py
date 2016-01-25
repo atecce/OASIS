@@ -19,7 +19,7 @@ class GPIO(pin):
 	pin = int()
 
 	# GPIO has separate pin
-	def __init__(self, pin = None):
+	def __init__(self, pin):
 
 		self.pin = pin
 
@@ -27,10 +27,10 @@ P8 = dict()
 P9 = dict()
 
 P9[12] = GPIO(60)
-P9[25] = GPIO(117)
-P9[28] = GPIO(113)
 P9[19] = GPIO(13)
 P9[20] = GPIO(12)
+P9[25] = GPIO(117)
+P9[28] = GPIO(113)
 
 P8[37] = UART(5, "transmit")
 P8[38] = UART(5, "receive")
