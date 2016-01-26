@@ -1,0 +1,309 @@
+
+#nav {
+	list-style: none;
+	margin: 0px;
+	margin-left: 5px;
+	padding: 0px;
+}
+#nav li {
+	float: left;
+	margin-right: 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+
+
+
+#nav :last-child
+{
+	margin-left:-1px;
+	margin-right:0px;
+}
+
+#nav li a button{
+	
+	color:yellow;
+	background-color:green;
+	border-radius:25%;
+	text-decoration: none;
+	padding:5px;
+	cursor:pointer;
+	outline:0 !important;
+}
+
+#message_li,
+#notification_li,
+#account_li {
+	position: relative;
+}
+
+#account_li {
+	margin-top:-5px;
+}
+
+#messageContainer,
+#notificationContainer,
+#accountContainer {
+	background-color: #fff;
+	border: 1px solid rgba(100, 100, 100, .4);
+	-webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+	overflow: visible;
+	position: absolute;
+	top: 38px;
+	margin-left: -185px;
+	width: 405px;
+	z-index: 102;
+	display: none;	
+}
+
+#messageContainer{
+	margin-left: -170px;	
+}
+#accountContainer {
+	width: 305px;
+	margin-left: -150px;
+	top: 44px;	
+}
+
+#messageContainer:before,
+#notificationContainer:before ,
+#accountContainer:before 
+{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	color: transparent;
+	border: 10px solid black;
+	border-color: transparent transparent white;
+	margin-top: -20px;
+	margin-left: 188px;
+}
+#accountContainer:before 
+{
+	margin-left: 158px;
+}
+#messageTitle,
+#notificationTitle,
+#accountTitle {
+	z-index: 100;
+	color: black;
+	font-weight: bold;
+	padding: 8px;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);
+	font-size: 13px;
+	background-color: #ffffff;
+	width: 384px;
+	border-bottom: 1px solid #dddddd;
+}
+
+#accountTitle {
+	width: 284px;
+}
+
+#messagesBody,
+#notificationsBody,
+#accountBody{
+	padding: 2px 0px 0px 0px !important;
+	min-height: 200px;
+	max-height: 350px;
+	overflow:scroll;
+	color: black;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);
+	z-index:100;
+}
+#accountBody
+{
+	overflow: hidden;
+}
+#messagesBody::-webkit-scrollbar-track,
+#notificationsBody::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+#messagesBody::-webkit-scrollbar,
+#notificationsBody::-webkit-scrollbar
+{
+	width: 2px;
+	background-color: #F5F5F5;
+}
+
+#messagesBody::-webkit-scrollbar-thumb,
+#notificationsBody::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #FFF;
+	background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(#4D9C41),
+									   to(#19911D),
+									   color-stop(.6,#54DE5D))
+}
+
+#messageFooter,
+#notificationFooter,
+#accountFooter {
+	background-color: #e9eaed;
+	text-align: center;
+	font-weight: bold;
+	color: black;
+	padding: 8px;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);
+	font-size: 12px;
+	border-top: 1px solid #dddddd;
+}
+
+#message_count {
+	padding: 6px 7px 3px 7px;
+	background: #cc0000;
+	color: #ffffff;
+	font-weight: bold;
+	margin-left: 27px;
+	z-index:100;
+	border-radius: 9px;
+	position: absolute;
+	margin-top: -11px;
+	font-size: 11px;
+}
+
+#notification_count {
+	padding: 6px 7px 3px 7px;
+	background: #cc0000;
+	color: #ffffff;
+	font-weight: bold;
+	margin-left: 27px;
+	z-index:100;
+	border-radius: 9px;
+	position: absolute;
+	margin-top: -11px;
+	font-size: 11px;
+}
+
+
+p
+{
+	margin:0;
+}
+
+#title
+{			
+	display: block;
+	font-size: 16px;
+	color: black;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);
+}
+
+#msg
+{
+	display: block;
+	font-size: 12px;
+	color: black;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);
+}
+
+#row
+{
+	display:flex;
+	flex-direction:row;
+	border-bottom: 1px solid black;
+	padding-bottom: 10px;
+	border-top: 1px solid black;
+	padding-top: 6px;
+	color: black;
+}
+
+.elementN,
+.elementM,
+.elementA
+{
+	background-color:white;
+	
+}
+.elementN :hover,
+.elementN :focus,
+.elementM :hover,
+.elementM :focus,
+.elementA :hover,
+.elementA :focus
+{
+	background-color:blue;
+}
+
+#row1
+{
+	display:flex;
+	width:270px;
+	flex-direction:row;
+	padding-top:10px;
+	margin-left:10px;
+	color: black;
+}
+#row10
+{
+	display:flex;
+	width:170px;
+	flex-direction:row;
+	padding-top:10px;
+	margin-left:10px;
+	color: black;
+}
+
+#column
+{
+	display:flex;
+	flex-direction:column;
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);			
+}
+
+#column1
+{							
+	position:relative;
+	margin-top:-6px;
+	font-size:12px;	
+	text-shadow: 1px 1px 14px rgba(150, 150, 150, 1);			
+}
+
+.circular 
+{
+	margin-left:5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url("avatar04.png") no-repeat;
+	box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);	
+}
+
+.circular img 
+{
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+#user-header
+{
+	height:150px;
+}
+
+#user-header .circular 
+{
+	width:  100px;
+	height: 100px;
+	background: url("avatar040.png") no-repeat;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+#user-header #memberSince
+{
+	margin-top:5px;
+}

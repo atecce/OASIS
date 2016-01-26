@@ -1,0 +1,748 @@
+*
+{
+	transition: all 0.3s ease-in 0s; 
+}
+body
+{	text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px red; 
+	color: yellow;
+	transition: all 0.1s ease-in 0s; 
+	background-image:url("../../images/bgImage.png"); 
+    background-repeat: repeat;	
+	height:100%;
+	position:relative;
+}
+
+#bodyContainer
+{
+	min-height:100%;
+}
+.footer {
+	width:100%;
+	position:relative;
+	bottom:0;
+	left:0;
+}
+.parentNav .sticky {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    border-top: 0;
+}
+
+.no-js #loader { display: none;  }
+
+.error {
+	color:white;
+	font-weight: thick;
+}
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	
+	z-index: 999;
+	background: url(loading.gif) 50% 50% no-repeat  #000;
+}
+
+/* Sticky Nav Bar */
+
+
+.sampleImg
+{
+	width:200px;
+	height:200px;
+}
+
+
+
+input[type="submit"],
+input[type="button"]
+{
+	color:yellow;
+	padding: 0.2em;
+	background-color:green;
+	border-radius:25%;
+	font-size:100%;
+	cursor:pointer;
+	outline:0 !important;
+}
+
+
+
+/* The Following CSS is for VALUES IN DASHBOARD.... */
+
+.content
+{
+	width:80%;
+}
+
+#recentImageWindow
+{
+}
+
+#dynamicPlotWindow, #recentImageWindow, #growthMediumData
+{
+	width:575px;
+	height:350px;
+}
+
+
+.dynamicPlotWindowBody,.dynamicPlotWindowHeader,.growthMediumDataBody, .element, .growthMediumDataHeader, .recentImageWindowHeader, .recentImageWindowBody
+{
+	border: 2px solid limegreen;
+}
+
+.dynamicPlotWindowHeader, .recentImageWindowHeader, .growthMediumDataHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:565px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(34,139,34,0.5);
+	color:white;
+}
+
+.dynamicPlotWindowBody, .recentImageWindowBody, .growthMediumDataBody
+{
+	width:575px;
+	margin:5px;
+	margin-top: 0px;
+	display:block;
+    border-bottom: 1px solid limegreen;
+	background-color:rgba(255,255,255,0.1);
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+}
+
+.dynamicPlotWindowImage, .recentImageWindowImage
+{
+	padding:15px;
+}
+
+.elementParent
+{
+	display: inline-block;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.element
+{
+	display:inline-block;
+	margin:5px;
+	width:175px;
+	height:150px;
+	border-radius:25px;
+	background-color:rgba(50,205,50,0.1);
+	border:0;
+	position:relative;
+}
+
+.element .first
+{
+	float:left;
+}
+
+.default1
+{
+	background-color:rgba(34,139,34,0.5);
+	font-size:12px;
+	margin:0px;
+	color:white;
+}
+
+.dynamicPlotWindowFooter, .recentImageWindowFooter
+{
+	font-size:15px;
+	width:inherit;
+    border-top: none;
+	padding-top:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+}
+
+.elementHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	height:25px;
+	padding-top:5px;
+    width: inherit;
+}
+
+.elementBody
+{
+	margin-top:0;
+}
+
+.elementValue
+{
+	font-size: 30px;
+	padding-top:10px;
+	padding-bottom:10px;
+	background:transparent;
+}
+
+.elementRange, .elementRangeValue
+{
+	padding:1px;
+}
+
+.elementFooter
+{
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+    bottom: 0;
+	position:absolute;
+	height: 25px;
+    width: inherit;
+}
+
+#liquidTanks
+{
+	width:575px;
+	height:350px;
+}
+.liquidTanksBody,.elementLIQ, .liquidTanksHeader
+{
+	border: 2px solid blue;
+}
+
+.liquidTanksBody
+{
+	width:590px;
+}
+.liquidTanksHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:580px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.liquidTanksBody
+{
+	margin:5px;
+	margin-top: 0px;
+	display:block;
+	background-color:transparent;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+}
+
+.elementParentLIQ
+{
+	display: inline-block;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+.elementLIQ
+{
+	display:inline-block;
+	margin:5px;
+	width:180px;
+	height:160px;
+	border-radius:25px;
+	background-color:rgba(65,105,225,0.1);
+	border:0;
+	position:relative;
+}
+
+.elementLIQ .first
+{
+	float:left;
+}
+
+.default2
+{
+	background-color:rgba(65,105,225,0.3);
+	font-size:12px;
+	margin:0px;
+	color:white;
+}
+.elementHeaderLIQ
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	height:35px;
+	padding-top:5px;
+    width: inherit;
+}
+
+.elementBodyLIQ
+{
+	margin-top:0;
+}
+
+.elementValueLIQ
+{
+	font-size: 30px;
+	padding-top:10px;
+	padding-bottom:10px;
+	background:transparent;
+}
+
+.elementRangeLIQ, .elementRangeValueLIQ
+{
+	padding:1px;
+}
+
+.elementFooterLIQ
+{
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	position: absolute;
+    bottom: 0;
+	height: 25px;
+    width: inherit;
+}
+
+#update
+{
+	width:575px;
+	height:375px;
+}
+
+.updateBody, .updateHeader, .updateFooter
+{
+	border: 2px solid blue;
+}
+
+.updateHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:580px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.updateBody
+{
+	width:590px;
+	margin:5px;
+	margin-top: 0px;
+	margin-bottom:0px;
+    border-bottom: 1px solid blue;
+	display:block;
+	background-color:transparent;
+	
+}
+
+.updateFooter
+{
+	width:590px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	margin:5px;
+    border-top: none;
+	background-color:rgba(0,0,255,0.3);
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top: 0px;
+}
+
+
+#staticPlotting
+{
+	margin-top:25px;
+	margin-bottom:25px;
+	width:575px;
+	height:375px;
+}
+.staticPlottingBody, .staticPlottingHeader, .staticPlottingFooter
+{
+	border: 2px solid blue;
+}
+
+
+.staticPlottingHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:580px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.staticPlottingBody
+{
+	width:590px;
+	margin:5px;
+    border-bottom: 1px solid blue;
+	margin-top: 0px;
+	margin-bottom:0px;
+	display:block;
+	background-color:transparent;
+	
+}
+
+.staticPlottingBody select
+{
+	width:193px;
+	margin-bottom:20px;
+	margin-left:12px;
+}
+.staticPlottingBody p
+{
+	padding:10px;
+	position: relative;
+}
+
+.staticPlottingBody p img
+{
+	position: absolute;
+}
+
+.staticPlottingFooter
+{
+	width:590px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	margin:5px;
+    border-top: none;
+	background-color:rgba(0,0,255,0.3);
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top: 0px;
+}
+
+
+#cameraControl
+{
+	margin-top:35px;
+	width:575px;
+	height:375px;
+}
+.cameraControlBody, .cameraControlHeader, .cameraControlFooter
+{
+	border: 2px solid blue;
+}
+
+
+.cameraControlHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:580px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.cameraControlBody
+{
+	width:590px;
+	margin:5px;
+	margin-top: 0px;
+	margin-bottom:0px;
+	display:block;
+	background-color:transparent;
+	
+}
+
+.cameraControlBody p
+{
+	padding:10px;
+}
+
+.cameraControlFooter
+{
+	width:590px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	margin:5px;
+    border-top: none;
+	background-color:rgba(0,0,255,0.3);
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top: 0px;
+}
+
+.capturedImg
+{
+	padding:10px;
+	display: none;
+}
+
+
+
+#imgContainer
+{
+	margin-top:25px;
+	margin-bottom:25px;
+	width:575px;
+	height:375px;
+}
+.imgContainerBody, .imgContainerHeader, .imgContainerFooter
+{
+	border: 2px solid blue;
+}
+
+
+.imgContainerHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:580px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.imgContainerBody
+{
+	width:590px;
+	margin:5px;
+	margin-top: 0px;
+	margin-bottom:0px;
+	border-bottom: 1px solid blue;
+	display:block;
+	background-color:transparent;
+	
+}
+
+.images
+{
+	margin-top: 15px;
+	margin-bottom:15px;
+}
+
+.sampleImg
+{
+	margin:5px;
+	border: 1px solid white;
+}
+
+.imgContainerFooter
+{
+	width:590px;
+	height:14px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	margin:5px;
+    border-top: none;
+	background-color:rgba(0,0,255,0.3);
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top: 0px;
+}
+
+#aboutContent
+{
+	margin-top:35px;
+	width:700px;
+	height:375px;
+}
+.aboutContentBody, .aboutContentHeader, .aboutContentFooter
+{
+	border: 2px solid blue;
+}
+
+
+.aboutContentHeader
+{
+	border-top-left-radius:25px;
+	border-top-right-radius:25px;
+	margin-left:5px;
+	width:690px;
+	height:28px;
+	padding:5px;
+	padding-top:9px;
+	margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+	background-color:rgba(0,0,255,0.3);
+	color:white;
+}
+
+.aboutContentBody
+{
+	width:700px;
+	margin:5px;
+	margin-top: 0px;
+	margin-bottom:0px;
+	display:block;
+    border-bottom: 1px solid blue;	
+	background-color:rgba(255,255,255,0.8);
+	
+}
+
+.aboutContentFooter
+{
+	width:700px;
+	height:15px;
+	border-bottom-left-radius:25px;
+	border-bottom-right-radius:25px;
+	margin:5px;
+    border-top: none;
+	background-color:rgba(0,0,255,0.3);
+	display:block;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top: 0px;
+}
+
+#aboutContentPara
+{
+	margin:5px;
+	font-size:20px;
+	color:black;
+	text-shadow: none;
+    padding:10px;
+}
+.integratedTestContent
+{
+	padding:20px;
+	margin-top:40px;
+	border: 2px solid blue;
+	border-radius:25px;
+	min-width:528px;
+	max-width:728px;
+}
+
+ /* Styles for material switches */
+ 
+.operationsContent
+{
+	padding:20px;
+	margin-top:40px;
+	border: 2px solid blue;
+	border-radius:25px;
+	min-width:528px;
+	max-width:728px;
+}
+
+#resetAll,#checkAll,#displayStart,#displayStop,#displayWFC,#displayWC,#displayAM,#displayLI,#displaySM
+{
+	margin-bottom:10px;
+}
+
+.toggleStart, .toggleStop, .toggleWFCBody, .toggleWCBody, .toggleAMBody, .toggleLIBody, .toggleSMBody, .togglePumpsBody, .toggleValvesBody
+{
+	display:none;
+	padding:20px;
+}
+
+.toggle
+{
+	height:auto;
+	display:flex;
+	margin-left:10%;
+}
+
+.toggleStart .toggle, 
+.toggleStop .toggle
+{
+	width:150px;
+}
+
+.toggle p
+{
+	margin:0;
+	padding-top:15px;
+	margin-right:10px;
+	font-size: 25px;
+}
+
+.onoffswitch {
+	margin:20px;
+    position: relative;
+	width: 50px;
+    -webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select: none;
+	 transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block;
+	overflow: hidden;
+	cursor: pointer;
+    height: 20px;
+	padding: 0;
+	line-height: 20px;
+    border: 0px solid #FFFFFF;
+	border-radius: 30px;
+    background-color: #9E9E9E;
+	 transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 30px; margin: -5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 31px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 9px 3px #757575;
+	 transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #42A5F5;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #42A5F5;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+    background-color: #2196F3; 
+    box-shadow: 0px 0px 9px 1px #757575;
+	 transition: all 0.3s ease-in 0s; 
+}
+
