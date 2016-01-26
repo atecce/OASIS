@@ -114,11 +114,12 @@ int gpio_set_dir(unsigned int gpio, PIN_DIRECTION out_flag)
 	int fd;
 	char buf[MAX_BUF];
 
-	// write directly
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR  "/gpio%d/direction", gpio);
 
 	// open export device file write only
 	fd = open(buf, O_WRONLY);
+
+	// catch errors opening file
 	if (fd < 0) {
 		perror("gpio/direction");
 		return fd;
@@ -138,12 +139,16 @@ int gpio_set_dir(unsigned int gpio, PIN_DIRECTION out_flag)
  ****************************************************************/
 int gpio_set_value(unsigned int gpio, PIN_VALUE value)
 {
+	// initialize file descriptor and fixed buffer
 	int fd;
 	char buf[MAX_BUF];
 
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/value", gpio);
 
+	// open set value file write only
 	fd = open(buf, O_WRONLY);
+
+	// catch errors opening file
 	if (fd < 0) {
 		perror("gpio/set-value");
 		return fd;
