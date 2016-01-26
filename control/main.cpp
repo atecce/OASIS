@@ -2,7 +2,7 @@
 unsigned int time = 0;
 
 // declare different possible states
-typedef enum state {initiate, germinate, autopilot, standby, shutdown}
+typedef enum state {initiating, germinate, autopilot, standby, shutdown}
 
 // initialize state
 state mode = initiating;
@@ -31,17 +31,22 @@ int main() {
                 
             case shutdown:
                 
-                system("shutdown -P now");
+                break;
 
-			// standby case
-			default:
+            case standby:
 
 				choice = prompt();
                 obey(choice);
+                
+			default:
+                
+                userInputError();
 		}
 
 		time++;
 	}
+    
+    system("shutdown -P now");
 	
 	return 0;
 }
