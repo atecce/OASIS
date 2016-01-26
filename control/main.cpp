@@ -1,14 +1,16 @@
+// start counter for time step
 unsigned int time = 0;
 
-typedef enum state {germinate, autopilot, standby, shutdown}
+// declare different possible states
+typedef enum state {initiate, germinate, autopilot, standby, shutdown}
 
-unsigned const int memories = 0;
-
-float observations[memories];
-
-state mode = standby;
+// initialize state
+state mode = initiating;
 
 int main() {
+
+	// should start at system start up
+	initiate();
 
 	// signals from user, presumably
 	while(mode != shutdown) {
