@@ -1,3 +1,9 @@
 #!/bin/bash
 
-for i in `ls -v /sys/devices/virtual/gpio`; do echo $i; done;
+for i in `ls -v /sys/devices/virtual/gpio*`; 
+
+	do 
+		printf $i,	
+
+		cat /sys/devices/virtual/gpio/$i/value; 
+	done;
