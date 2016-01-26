@@ -114,6 +114,7 @@ int gpio_set_dir(unsigned int gpio, PIN_DIRECTION out_flag)
 	int fd;
 	char buf[MAX_BUF];
 
+	// stores file location in buffer
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR  "/gpio%d/direction", gpio);
 
 	// open export device file write only
@@ -143,6 +144,7 @@ int gpio_set_value(unsigned int gpio, PIN_VALUE value)
 	int fd;
 	char buf[MAX_BUF];
 
+	// stores file location in buffer
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/value", gpio);
 
 	// open set value file write only
@@ -154,12 +156,16 @@ int gpio_set_value(unsigned int gpio, PIN_VALUE value)
 		return fd;
 	}
 
+	// flip the switch
 	if (value==LOW)
 		write(fd, "0", 2);
 	else
 		write(fd, "1", 2);
 
+	// close file
 	close(fd);
+
+	// success
 	return 0;
 }
 
@@ -176,23 +182,32 @@ int gpio_get_value(unsigned int gpio, unsigned int *value)
 	char buf[MAX_BUF];
 	char ch;
 
+	// stores file location in buffer
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/value", gpio);
 
+	// open file read only
 	fd = open(buf, O_RDONLY);
+
+	// catch errors
 	if (fd < 0) {
 		perror("gpio/get-value");
 		return fd;
 	}
 
+	// store file in ch
 	read(fd, &ch, 1);
 
+	// flip the switch
 	if (ch != '0') {
 		*value = 1;
 	} else {
 		*value = 0;
 	}
 
+	// close file
 	close(fd);
+
+	// success
 	return 0;
 }
 
