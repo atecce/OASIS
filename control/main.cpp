@@ -1,6 +1,6 @@
 unsigned int time = 0;
 
-typedef enum state {germinate, autopilot, standby}
+typedef enum state {germinate, autopilot, standby, shutdown}
 
 unsigned const int memories = 0;
 
@@ -11,16 +11,12 @@ state mode = standby;
 int main() {
 
 	// signals from user, presumably
-	while(some condition) {
+	while(mode != shutdown) {
+        
+        // sense as often as possible. the more data, the better, whether you're going to use it or not
+		sense();
 
-		// dump all the sensor data to a server when capacity is reached
-		if (memories == capacity) 
-		{	
-			forget();
-			
-			memories = 0;
-		}
-
+        // decide what to do next based on what mode you are in
 		switch(mode) {
 
 			case germinate:
@@ -29,13 +25,17 @@ int main() {
 
 			case autopilot: 
 
-				sense();
 				act();
+                
+            case shutdown:
+                
+                system("shutdown -P now");
 
 			// standby case
 			default:
 
-				prompt();
+				choice = prompt();
+                obey(choice);
 		}
 
 		time++;
