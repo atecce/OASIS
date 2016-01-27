@@ -1,3 +1,6 @@
+// need this to connect with database
+#include "networking.h"
+
 // start counter for time step
 unsigned int time = 0;
 
@@ -33,9 +36,14 @@ void act() {
 
 void obey(char *choice) {
 
-	// map the components to a list of natural numbers 0, 1, ..., sensor_amt
+	// map the components to a list of natural numbers 0, 1, ..., sensor_amt + actuator_amt
 	if      (choice == 0) 
 	else if (choice == 1) 
+		.
+		.
+		.
+	else if (choice == sensor_amt + actuator amount - 1)
+}
 
 int main() {
 
