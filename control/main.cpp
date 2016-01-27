@@ -7,18 +7,60 @@ typedef enum state {initiating, germinate, autopilot, standby, shutdown}
 // initialize state
 state mode = initiating;
 
+float observation[sensor_amt]
+
+// string for now, this is rather open-ended
+char *choice;
+
+void sense() {
+
+	// thread this process for the duration of the program
+	while(1) {
+		
+		// for each sensor, record the observation
+		for (int i = 0; i < sensor_amt; i++) observation[i] = sensor_suite[i].read();
+
+		// send observation to server
+		dump(&observation);	
+	}
+}
+
+void act() {
+
+	// toggle each actuator
+	for (int i = 0; i < actuator_amt; i++) actuator_suite[i].toggle();
+}
+
+void prompt() {
+
+	// some networking required here
+}
+
+void dump(float *observation) {
+
+	// some networking required here
+}
+
+void obey(char *choice) {
+
+	// map the components to a list of natural numbers 0, 1, ..., sensor_amt
+	if      (choice == 0) 
+	else if (choice == 1) 
+
 int main() {
 
 	// should start at system start up
 	initiate();
 
+	thread consciousness (sense);
+
 	// signals from user, presumably
 	while(mode != shutdown) {
-        
-        // sense as often as possible. the more data, the better, whether you're going to use it or not
+
+		// sense as often as possible. the more data, the better, whether you're going to use it or not
 		sense();
 
-        // decide what to do next based on what mode you are in
+		// decide what to do next based on what mode you are in
 		switch(mode) {
 
 			case germinate:
@@ -28,25 +70,25 @@ int main() {
 			case autopilot: 
 
 				act();
-                
-            case shutdown:
-                
-                break;
 
-            case standby:
+			case standby:
 
 				choice = prompt();
-                obey(choice);
-                
+				obey(choice);
+
+			case shutdown:
+
+				break;
+
 			default:
-                
-                userInputError();
+
+				userInputError();
 		}
 
 		time++;
 	}
-    
-    system("shutdown -P now");
-	
+
+	system("shutdown -P now");
+
 	return 0;
 }
