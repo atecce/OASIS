@@ -31,16 +31,6 @@ void act() {
 	for (int i = 0; i < actuator_amt; i++) actuator_suite[i].toggle();
 }
 
-void prompt() {
-
-	// some networking required here
-}
-
-void dump(float *observation) {
-
-	// some networking required here
-}
-
 void obey(char *choice) {
 
 	// map the components to a list of natural numbers 0, 1, ..., sensor_amt
