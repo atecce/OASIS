@@ -1,5 +1,5 @@
 // prompts the user for an action. should return a choice
-void prompt() {
+char *prompt() {
 
 	// some networking required here
 	return choice;
