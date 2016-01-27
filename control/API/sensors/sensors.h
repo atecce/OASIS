@@ -1,5 +1,45 @@
 #include <stdio.h>
 
+struct HSST_table {
+
+	// micro-Siemens per centimeter
+	EC_min = 1150
+	EC_max = 1250
+
+	// pH
+	pH_min = 5.5
+	pH_max = 6
+
+	// celsius
+	day_temp_min = 23
+	day_temp_max = 27
+
+	night_temp_min = 18
+	night_temp_max = 22
+
+	soil_temp_min = 15
+	soil_temp_max = 20
+
+	water_temp_min = 22
+	water_temp_max = 24
+		
+	// %
+	humidity_min = 50
+	humidity_max = 70
+
+	// kPA
+	pressure_min = 80
+	pressure_max = 84
+
+	// ppm
+	const float C02_min = 1000
+	const float C02_max = 2000
+
+	// micro-mol per meters-squared seconds
+	const float PAR_min = 200
+	const float PAR_max = 250
+};
+
 class sensor {
 
 	public:
@@ -239,7 +279,7 @@ class camera : public sensor {
 	const char *data_comm	    = "USB";
 	const float sensor_range[2] = {1, 255};
 	//float required_resolution = "1k0x1k";
-
+	
 	public:
 
 		camera(const char *name, const char *pin) 
