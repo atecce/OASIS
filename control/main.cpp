@@ -42,7 +42,7 @@ void obey(char *choice) {
 		.
 		.
 		.
-	else if (choice == sensor_amt + actuator amount - 1)
+	else if (choice == sensor_amt + actuator_amt - 1)
 }
 
 int main() {
