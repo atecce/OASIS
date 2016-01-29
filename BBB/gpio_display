@@ -23,6 +23,6 @@ for i in `ls -v /sys/devices/virtual/gpio*`;
       printf "$format" \
       $i $value \
 
-    ;fi
+    fi
 
   done;
