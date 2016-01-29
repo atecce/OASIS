@@ -1,8 +1,28 @@
 #!/bin/bash
 
+for i in "$@"
+do
+case $i in
+    -g | --gpio)
+    GPIO="${i#*=}"
+    shift # past argument=value
+    ;;
+    -b | --bit)
+    VALUE="${i#*=}"
+    shift # past argument=value
+    ;;
+    -h | --help)
+    printf "Usage: fuck bit."
+    shift # past argument with no value
+    ;;
+    *)
+    printf "Usage: mutha fucka"
+    
 
-printf "arg1 = $1"
-printf "\narg2 = $2"
+    ;;
+esac
+done
+
 
 device="/sys/devices/virtual/gpio/gpio$2/value"
 
