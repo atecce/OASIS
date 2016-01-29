@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+printf "arg1 = $1"
+printf "\narg2 = $2"
+
+device="/sys/devices/virtual/gpio/gpio$2/value"
+
+if [ -f device ]; then
+  echo $3 > device
+fi
+
