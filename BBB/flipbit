@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Simple script to flip the gpio devices on/off
+
+device="/sys/devices/virtual/gpio/gpio$2/value"
+
+if [ -f device ]; then
+  value=$(cat $device)
+  if [ $value == 0 ]; then
+    echo 1 > $device
+  else 
+    echo 0 > $device
+  fi
+fi
+
