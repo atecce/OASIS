@@ -80,7 +80,7 @@ class ADC_sensor(sensor):
 		self.register = register
 
 		# bus 2 is I2C bus on pins P9.17, P9.18
-		bus = smbus.SMBus(interface_number) 
+		self.bus = smbus.SMBus(interface_number) 
 
 	def read(self):
 
@@ -97,7 +97,7 @@ class ADC_sensor(sensor):
 		# 0xB0 for O2 OX1 sensor connected to VIN4 channel of ADC with I2C Address 0x22
 		# 0xF0 for PAR1 sensor connected to VIN8 channel of ADC with I2C Address 0x21
 		# 0xD0 for PAR2 sensor connected to VIN6 channel of ADC with I2C Address 0x21
-		results = bus.read_i2c_block_data(address, register) 
+		results = self.bus.read_i2c_block_data(self.address, self.register) 
 
 		# LL sensors
 
@@ -388,39 +388,35 @@ class one_wire_sensor(sensor):
 
 	def __init__(self, ID):
 
-	# temperatures
-	# (Note all the pins P8.3, P8.4, P8.5, P8.6 are shorted for intefacing all temp sensors on one-wire protocol)
+		# temperatures
+		# (Note all the pins P8.3, P8.4, P8.5, P8.6 are shorted for intefacing all temp sensors on one-wire protocol)
 
-	# Reading data from Temp 1 device with device ID:28-00000673a8a7 connected to P8.3 
-	w1="/sys/bus/w1/devices/28-00000673a8a7/w1_slave" 
+		# Reading data from Temp 1 device with device ID:28-00000673a8a7 connected to P8.3 
+		# Reading data from Temp 2 device with device ID:28-0000065f27cc connected to P8.4 
+		# Reading data from Temp 3 device with device ID:28-0000065eb57a connected to P8.5 
+		# Reading data from Temp 4 device with device ID:28-000006747f7f connected to P8.6
+		self.w1="/sys/bus/w1/devices/" + ID + "/w1_slave" 
 
-	# Reading data from Temp 2 device with device ID:28-0000065f27cc connected to P8.4 
-	w1="/sys/bus/w1/devices/28-0000065f27cc/w1_slave" 
+	def read(self):
 
-	# Reading data from Temp 3 device with device ID:28-0000065eb57a connected to P8.5 
-	w1="/sys/bus/w1/devices/28-0000065eb57a/w1_slave" 
-
-	# Reading data from Temp 4 device with device ID:28-000006747f7f connected to P8.6
-	w1="/sys/bus/w1/devices/28-000006747f7f/w1_slave" 
-
-	raw = open(w1, "r").read()
-	print "Temperature is "+str(float(raw.split("t=")[-1])/1000)+" degrees"
+		raw = open(self.w1, "r").read()
+		print "Temperature is " + str(float(raw.split("t=")[-1])/1000) + " degrees"
 
 class USB_sensor(sensor): 
 
 	def __init__(self):
 
-		camera = cv2.VideoCapture(0)
+		self.camera = cv2.VideoCapture(0)
 
 	def read(self):
 
-		ret, frame = camera.read()
+		ret, frame = self.camera.read()
 		cv2.imwrite("image1.jpeg", frame)
-		camera.release()
+		self.camera.release()
 		cv2.destroyAllWindows()
 
 # liquid tanks and plumbing
-S101 =      I2C_sensor(0x66, 0x52, 2)		# EC1
+#S101 =      I2C_sensor(0x66, 0x52, 2)		# EC1
 S102 =      I2C_sensor(0x65, 0x52, 2)		# pH1
 S103 = one_wire_sensor("28-00000673a8a7")	# temp1
 S104 =      I2C_sensor(0x61, 0x52, 2)		# DO
@@ -429,8 +425,8 @@ S106 =      ADC_sensor(0x22, 0xA0, 2)	        # LL2
 S107 =      ADC_sensor(0x22, 0xC0, 2)	        # LL3
 S108 =      ADC_sensor(0x22, 0xE0, 2)	        # LL4
 S109 =      ADC_sensor(0x22, 0xF0, 2)	        # LL5
-S110 =     UART_sensor(1)			# flow_met1
-S111 =     UART_sensor(4)			# flow_met2
+#S110 =     UART_sensor(1)			# flow_met1
+#S111 =     UART_sensor(4)			# flow_met2
 S112 = 	    ADC_sensor(0x22, 0xD0, 2)		# LL6
 
 # growth medium
@@ -450,18 +446,18 @@ S211 = ADC_sensor(0x21, 0xE0, 2)	# MO4
 #S302 = one_wire_sensor("P8_9")	# RHTemp2
 #S303 = I2C_sensor()	# TP1
 S304 = ADC_sensor(0x22, 0xB0, 2)	# O2
-S305 = UART_sensor(5)	# C02
+#S305 = UART_sensor(5)	# C02
 S306 = ADC_sensor(0x21, 0xF0, 2)	# PAR1
 S307 = USB_sensor()		# camera
 
 # external environment
 #S401 = one_wire_sensor("P8_10")	# RHTemp3
 #S402 = I2C_sensor()		# TP2
-S403 = ADC_sensor(0x21, 0xD0, 2)	# PAR2
+#S403 = ADC_sensor(0x21, 0xD0, 2)	# PAR2
 
-sensor_suite = (S101, S102, S103, S104, S105, S106, S107, S108, S109, S110, S111, S112, 
+sensor_suite = (      S102, S103, S104, S105, S106, S107, S108, S109,             S112, 
 		S201, S202, S203,       S205, S206,       S208, S209, S210, S211,
-		                  S304, S305, S306, S307,
-		            S403)
+		                  S304,       S306, S307,
+		                )
 
 for sensor in sensor_suite: sensor.read()
