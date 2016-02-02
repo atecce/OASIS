@@ -21,13 +21,10 @@ def sense():
 	# thread this process for the duration of the program
 	while True:
 
-		# initialize observation
-		observation = list()
-		
-		# for each sensor, record the observation
-		for sensor in sensor_suite: observation.append(sensor.read())
+		# observe
+		observation = [sensor.read() for sensor in sensor_suite]
 
-		# send observation to server
+		# send 
 		dump(observation)
 
 def act(): 
@@ -37,13 +34,13 @@ def act():
 
 def obey(choice)
 
-	# map the components to a list of natural numbers 0, 1, ..., sensor_amt + actuator_amt
+	# map the components to a list of natural numbers 0, 1, ..., len(sensor_suite) + len(actuator_suite) - 1
 	if   choice == 0: pass
 	elif choice == 1: pass 
 	       .
 	       .
 	       .
-        elif choice == sensor_amt + actuator_amt - 1: pass
+        elif choice == len(sensor_suite) + len(actuator_suite) - 1: pass
 
 # should start at system start up
 initiate()
