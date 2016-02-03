@@ -1,10 +1,9 @@
 class actuator:
 
-	def __init__(self, name, pin):
+	def __init__(self, name):#, pin):
 
 		# these are determined at construction
-		name = name;
-		pin  = pin;
+		self.name = name
 
 class GPIO_actuator(actuator): 
 
@@ -111,3 +110,5 @@ actuator_suite = (F1,  F2,  F3,  F4,  F5,
 		  T01, T02, T03, T04, T05, T06, T07, T08, T09,
 		       V02, V03, V04, V05,      V07, 
 		  Z01, Z02, Z03, Z04, Z05, Z06, Z07, Z08, Z09, Z10, Z11, Z12, Z13)
+
+print len(actuator_suite)
