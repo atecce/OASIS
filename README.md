@@ -1,8 +1,6 @@
-OASIS/
+../OASIS/
 ├── AI
 │   ├── API
-│   │   ├── API-lookup\ table.png
-│   │   ├── HSST.h
 │   │   ├── README.md
 │   │   ├── actuators.py
 │   │   ├── legacy
@@ -188,9 +186,7 @@ OASIS/
 │   │       │   ├── OUTPUTSetup.py
 │   │       │   └── inputsetup.py
 │   │       └── Sensor\ Inventory.xlsx
-│   ├── main.cpp
 │   ├── main.py
-│   ├── networking.h
 │   └── networking.py
 ├── BBB
 │   ├── MYSQL.md
@@ -461,4 +457,4 @@ OASIS/
 └── SQL
     └── login_mysql
 
-57 directories, 404 files
+57 directories, 400 files
