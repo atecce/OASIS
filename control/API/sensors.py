@@ -149,42 +149,6 @@ class ADC_sensor(sensor):
 		# MO sensors
 
 		print "ADC Results from MO sensor:", results
-		print results
-		sensordata = []
-		for i in range(len(results)):
-			#print "i value:"
-			#print i
-			if i%2 == 0:
-				#print "inside if condition:"
-				a = bin(results[i])
-				if(len(a)>5):
-					a = a[len(a)-4:] # To get last 4 characters in the binary string
-				#print a
-
-				b = bin(results[i+1])[2:]
-				#print b
-
-				len(b)
-
-				if(len(b)<8):
-					for j in range(len(b), 8):
-						b='0'+b;
-
-				c = a + b
-
-				#print int(c,2)
-				sensordata.append(int(c,2))
-
-		print "\r\nLength of SensorData:"
-		print len(sensordata)
-		print "SensorData:"+str(sensordata)
-		sensordata.sort()
-		print "Sorted SensorData:"+str(sensordata)
-
-		sensorVal = (sensordata[7] +  sensordata[8])/(2.0)
-		print "Chosen Sensor ADC Value:"+ str(sensorVal)
-		analogVal = (sensorVal/4095.0)*3.3
-		print "Chosen Sensor Analog Value in V:"+str(analogVal)
 
 		VWC=0 #VWC(Volumetric Water Content) = 0
 		if (analogVal>=0 and analogVal<1.1):
@@ -198,88 +162,15 @@ class ADC_sensor(sensor):
 
 		print "\r\nADC Results from O2 OX1 sensor:", results
 
-		sensordata = []
-		for i in range(len(results)):
-			#print "i value:"
-			#print i
-			if i%2 == 0:
-				#print "inside if condition:"
-				a = bin(results[i])
-				if(len(a)>5):
-					a = a[len(a)-4:] # To get last 4 characters in the binary string
-				#print a
-
-				b = bin(results[i+1])[2:]
-				#print b
-
-				len(b)
-
-				if(len(b)<8):
-					for j in range(len(b), 8):
-						b='0'+b;
-
-				c = a + b
-
-				#print int(c,2)
-				sensordata.append(int(c,2))
-
-		print "\r\nLength of SensorData:"
-		print len(sensordata)
-		print "SensorData:"+str(sensordata)
-		sensordata.sort()
-		print "Sorted SensorData:"+str(sensordata)
-
-		sensorVal = (sensordata[7] +  sensordata[8])/(2.0)
-		print "Chosen Sensor ADC Value:"+ str(sensorVal)
-		analogVal = (sensorVal/4095.0)*3.3
-		print "Chosen Sensor Analog Value in V:"+str(analogVal)
-
 		gainVal = 40*5.86
 
 		analogValmV = (analogVal/gainVal)*1000
 		print "Chosen Sensor Analog Value in mV:"+str(analogValmV)
 
-		slope = (9.0-0.0)/(20.0-0.0) # considering slope of linear line in the graph related to low range of sensor operation
 
 		# PAR sensors
 
 		print "ADC Results from PAR sensor:"
-		print results
-		sensordata = []
-		for i in range(len(results)):
-			#print "i value:"
-			#print i
-			if i%2 == 0:
-				#print "inside if condition:"
-				a = bin(results[i])
-				if(len(a)>5):
-					a = a[len(a)-4:] # To get last 4 characters in the binary string
-				#print a
-
-				b = bin(results[i+1])[2:]
-				#print b
-
-				len(b)
-
-				if(len(b)<8):
-					for j in range(len(b), 8):
-						b='0'+b;
-
-				c = a + b
-
-				#print int(c,2)
-				sensordata.append(int(c,2))
-
-		print "\r\nLength of SensorData:"
-		print len(sensordata)
-		print "SensorData:"+str(sensordata)
-		sensordata.sort()
-		print "Sorted SensorData:"+str(sensordata)
-
-		sensorVal = (sensordata[7] +  sensordata[8])/(2.0)
-		print "Chosen Sensor ADC Value:"+ str(sensorVal)
-		analogVal = (sensorVal/4095.0)*3.3
-		print "Chosen Sensor Analog Value in V:"+str(analogVal)
 
 		parValue = analogVal*1000*0.5
 
