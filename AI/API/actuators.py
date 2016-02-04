@@ -112,3 +112,14 @@ actuator_suite = (F1,  F2,  F3,  F4,  F5,
 		  Z01, Z02, Z03, Z04, Z05, Z06, Z07, Z08, Z09, Z10, Z11, Z12, Z13)
 
 print len(actuator_suite)
+
+EC_HSST = (1150, 1250)
+pH_HSST = (5.5, 6)
+day_temp_HSST = (23, 27)
+night_temp_HSST = (18, 22)
+soil_temp_HSST = (15, 20)
+water_temp_HSST = (22, 24)
+humidity_HSST = (50, 70)
+pressure_HSST = (80, 84)
+CO2_HSST = (1000, 2000)
+PAR_HSST = (200, 250)
