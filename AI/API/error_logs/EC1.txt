@@ -1,0 +1,13 @@
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+VIDIOC_QUERYMENU: Invalid argument
+Traceback (most recent call last):
+  File "sensors.py", line 345, in <module>
+    S101.read()
+  File "sensors.py", line 49, in read
+    self.bus.write_byte(self.address, self.register) #R
+IOError: [Errno 121] Remote I/O error
