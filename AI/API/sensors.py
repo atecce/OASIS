@@ -65,6 +65,60 @@ class I2C_sensor(sensor):
 
 		print results_string
 
+class liquid_level(ADC_sensor):
+
+	def read(self):
+
+		# LL sensors
+
+		RES = 2400
+		supply_voltage = 5
+		I=(supply_voltage-actualAnalogVal) / RES
+
+		resistance=actualAnalogVal/I
+		#resistance=1500-resistance
+		print "resistance is "
+		print resistance
+
+class MO_sensor(ADC_sensor):
+
+	def read(self):
+
+		# MO sensors
+
+		VWC = 0 #VWC(Volumetric Water Content) = 0
+		if (analogVal>=0 and analogVal<1.1):
+			VWC=10*analogVal-1
+		if (analogVal>=1.1 and analogVal<1.3):
+			VWC=25*analogVal-17.5
+		if (analogVal>=1.3 and analogVal<=1.82):
+			VWC=48.08*analogVal-47.5
+
+		print "VWC", VWC
+
+class O2_sensor(ADC_sensor):
+
+	def read(self):
+
+		# O2 sensor
+
+		gainVal = 40*5.86
+
+		analogValmV = (analogVal/gainVal)*1000
+		print "Chosen Sensor Analog Value in mV:"+str(analogValmV)
+
+class PAR_sensor(ADC_sensor):
+
+	def read(self):
+
+		# PAR sensors
+
+		print "ADC Results from PAR sensor:"
+
+		parValue = analogVal*1000*0.5
+
+		print "PAR Value is "+str(parValue)+"micro-mol m^-2 s^-1"
+
 class ADC_sensor(sensor):
 
 	# each ADC device has an address, register, and interface number
@@ -98,9 +152,7 @@ class ADC_sensor(sensor):
 		# 0xF0 for PAR1 sensor connected to VIN8 channel of ADC with I2C Address 0x21
 		# 0xD0 for PAR2 sensor connected to VIN6 channel of ADC with I2C Address 0x21
 		results = self.bus.read_i2c_block_data(self.address, self.register) 
-
-		# LL sensors
-
+	
 		print "ADC Results:", results
 
 		sensordata = []
@@ -137,48 +189,9 @@ class ADC_sensor(sensor):
 
 		actualAnalogVal = (3.3 - analogVal) / 2 + 1
 
-		RES = 2400
-		supply_voltage = 5
-		I=(supply_voltage-actualAnalogVal) / RES
+class CO2_sensor(UART_sensor):
 
-		resistance=actualAnalogVal/I;
-		#resistance=1500-resistance;
-		print "resistance is "
-		print resistance
-
-		# MO sensors
-
-		VWC = 0 #VWC(Volumetric Water Content) = 0
-		if (analogVal>=0 and analogVal<1.1):
-			VWC=10*analogVal-1
-		if (analogVal>=1.1 and analogVal<1.3):
-			VWC=25*analogVal-17.5
-		if (analogVal>=1.3 and analogVal<=1.82):
-			VWC=48.08*analogVal-47.5
-
-		print "VWC", VWC
-
-		# O2 sensor
-
-		gainVal = 40*5.86
-
-		analogValmV = (analogVal/gainVal)*1000
-		print "Chosen Sensor Analog Value in mV:"+str(analogValmV)
-
-
-		# PAR sensors
-
-		print "ADC Results from PAR sensor:"
-
-		parValue = analogVal*1000*0.5
-
-		print "PAR Value is "+str(parValue)+"micro-mol m^-2 s^-1"
-
-class UART_sensor(sensor):
-
-	def __init__(self, UART_number):
-
-		UART.setup("UART" + str(UART_number))
+	def read(self):
 
 		# CO2
 		data = [0xfe, 0x44, 0x00, 0x08, 0x02, 0x9f, 0x25]
@@ -196,6 +209,8 @@ class UART_sensor(sensor):
 		A = ser.read(ser.inWaiting())
 		percent = (ord(A[3])*256 + ord(A[4]))/10000.0
 		print(str(percent) + "%")
+
+class flow_meter(UART_sensor):
 
 		# flow meters
 
@@ -231,7 +246,7 @@ class UART_sensor(sensor):
 		single_flow_reading = ser.read(num)
 		# print values 
 		print "Flow Meter 1 Values:"
-
+		
 		# need to setup UART1 at boot, does not set up immediately
 		# UART1 corresponds to ttyO1 in adafruit libraries
 		# to manually enable use:
@@ -248,6 +263,12 @@ class UART_sensor(sensor):
 		ser.close()
 		boolean_is_close = ser.isOpen()
 		print "Serial open?", boolean_is_close
+
+class UART_sensor(sensor):
+
+	def __init__(self, UART_number):
+
+		UART.setup("UART" + str(UART_number))
 
 class one_wire_sensor(sensor):
 
