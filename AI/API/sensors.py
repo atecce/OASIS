@@ -21,14 +21,14 @@ class sensor:
 		# these are determined at construction
 		pin  = pin
 
-	# This method depends on quite a bit. Depending on the data communication
+	# this method depends on quite a bit. Depending on the data communication
 	# type and the sensor, it will use different libraries and return different 
 	# values.
 	def read(self): pass
 
 class I2C_sensor(sensor): 
 
-	# Each I2C device has an address, register, and interface number
+	# each I2C device has an address, register, and interface number
 
 	address          = int()
 	register	 = int()
@@ -63,11 +63,11 @@ class I2C_sensor(sensor):
 
 		results_string = ''.join(chr(i) for i in results)
 
-		return results_string
+		print results_string
 
 class ADC_sensor(sensor):
 
-	# Each ADC device has an address, register, and interface number
+	# each ADC device has an address, register, and interface number
 
 	address    	 = int()
 	register	 = int()
@@ -101,7 +101,7 @@ class ADC_sensor(sensor):
 
 		# LL sensors
 
-		print "ADC Results from LL:", results
+		print "ADC Results:", results
 
 		sensordata = []
 
@@ -130,16 +130,16 @@ class ADC_sensor(sensor):
 		sensordata.sort()
 		print "Sorted SensorData:" + str(sensordata)
 
-		sensorVal = (sensordata[7] +  sensordata[8])/(2.0)
-		print "Chosen Sensor ADC Value:"+ str(sensorVal)
-		analogVal = (sensorVal/4095.0)*3.3
-		print "Chosen Sensor Analog Value in V:"+str(analogVal)
+		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
+		print "Chosen Sensor ADC Value:" + str(sensorVal)
+		analogVal = (sensorVal/4095.0) * 3.3
+		print "Chosen Sensor Analog Value in V:" + str(analogVal)
 
-		actualAnalogVal = (3.3 - analogVal)/(2) + 1
+		actualAnalogVal = (3.3 - analogVal) / 2 + 1
 
-		RES=2400
-		supply_voltage=5
-		I=(supply_voltage-actualAnalogVal)/RES
+		RES = 2400
+		supply_voltage = 5
+		I=(supply_voltage-actualAnalogVal) / RES
 
 		resistance=actualAnalogVal/I;
 		#resistance=1500-resistance;
@@ -148,9 +148,7 @@ class ADC_sensor(sensor):
 
 		# MO sensors
 
-		print "ADC Results from MO sensor:", results
-
-		VWC=0 #VWC(Volumetric Water Content) = 0
+		VWC = 0 #VWC(Volumetric Water Content) = 0
 		if (analogVal>=0 and analogVal<1.1):
 			VWC=10*analogVal-1
 		if (analogVal>=1.1 and analogVal<1.3):
@@ -158,9 +156,9 @@ class ADC_sensor(sensor):
 		if (analogVal>=1.3 and analogVal<=1.82):
 			VWC=48.08*analogVal-47.5
 
-		# O2 sensor
+		print "VWC", VWC
 
-		print "\r\nADC Results from O2 OX1 sensor:", results
+		# O2 sensor
 
 		gainVal = 40*5.86
 
@@ -322,9 +320,65 @@ S307 = USB_sensor()		# camera
 #S402 = I2C_sensor()		# TP2
 #S403 = ADC_sensor(0x21, 0xD0, 2)	# PAR2
 
-sensor_suite = (      S102, S103, S104, S105, S106, S107, S108, S109,             S112, 
-		S201, S202, S203,       S205, S206,       S208, S209, S210, S211,
-		                  S304,       S306, S307,
-		                )
+# test pH1
+#S102.read()
 
-for sensor in sensor_suite: sensor.read()
+# test temp1
+#S103.read()
+
+# test DO
+#S104.read()
+
+# test LL1
+#S105.read()
+
+# test LL2
+#S106.read()
+
+# test LL3
+#S107.read()
+
+# test LL4
+#S108.read()
+
+# test LL5
+#S109.read()
+
+# test LL6
+#S112.read()
+
+# test temp2
+#S201.read()
+
+# test temp3
+#S202.read()
+
+# test temp4
+#S203.read()
+
+# test EC2
+#S205.read()
+
+# test pH2
+#S206.read()
+
+# test MO1
+#S208.read()
+
+# test MO2
+#S209.read()
+
+# test MO3
+#S210.read()
+
+# test MO4
+#S211.read()
+
+# test O2
+#S304.read()
+
+# test PAR1
+#S306.read()
+
+# test camera
+#S307.read()

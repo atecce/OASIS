@@ -1,1 +1,31 @@
-After iterating through a couple of different approaches. The classes are going to be split by the actuators and sensors and the child classes are going to be split by data communication type. These are the most direct concepts the programmer of the API has to deal with, and the higher level issues such as what the function of the component is and what part of the system it is associated with will be left to the actual control logic code.
+# Log for sensors
+
+General issues:
+
+	Output discriminates by data comm type but not by sensor.
+
+Specific issues:
+
+	Assume all unmentioned components are broken.
+
+	pH1   produces output. (not known if it is sensible)
+	temp1 produces output. (not known if it is sensible)
+	DO    produces output. (not known if it is sensible)
+	LL1   produces output. (not known if it is sensible)
+	LL2   produces output. (not known if it is sensible)
+	LL3   produces output. (not known if it is sensible)
+	LL4   produces output. (not known if it is sensible)
+	LL5   produces output. (not known if it is sensible)
+	LL6   produces output. (not known if it is sensible)
+	temp2 produces output. (not known if it is sensible)
+	temp3 produces output. (not known if it is sensible)
+	temp4 produces output. (not known if it is sensible)
+	EC2   produces output. (not known if it is sensible)
+	pH2   produces output. (not known if it is sensible)
+	MO1   produces output. (not known if it is sensible)
+	MO2   produces output. (not known if it is sensible)
+	MO3   produces output. (not known if it is sensible)
+	MO4   produces output. (not known if it is sensible)
+	O2    produces output. (not known if it is sensible)
+	PAR1  produces output. (not known if it is sensible)
+	Camera takes images but produces warnings. (Potential resolution: update OpenCV)
