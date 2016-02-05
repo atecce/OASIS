@@ -1,1 +1,3 @@
-After iterating through a couple of different approaches. The classes are going to be split by the actuators and sensors and the child classes are going to be split by data communication type. These are the most direct concepts the programmer of the API has to deal with, and the higher level issues such as what the function of the component is and what part of the system it is associated with will be left to the actual control logic code.
+# Bug log for sensors
+
+Camera takes images but produces warnings

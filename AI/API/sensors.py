@@ -327,4 +327,4 @@ sensor_suite = (      S102, S103, S104, S105, S106, S107, S108, S109,           
 		                  S304,       S306, S307,
 		                )
 
-for sensor in sensor_suite: sensor.read()
+S306.read()
