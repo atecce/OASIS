@@ -1,23 +1,5 @@
-# need this to wait
-import time
-
-# need this for I2C's
-import smbus
-
-# need this for camera
-import cv2
-
-# need this for UART
-import Adafruit_BBIO.UART as UART
-
 # need this for temperature
 import Adafruit_DHT
-
-# need this to read serial buffer
-import serial
-
-# what is this?
-import struct 
 
 # doesn't seem like one wire sensors are standardized in any fashion
 class one_wire_sensor: pass

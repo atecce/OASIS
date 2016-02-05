@@ -60,4 +60,3 @@ S302 = RH_and_temp('P8_9')			# RHTemp2
 S304 = ADC_sensor(0x22, 0xB0, 2)		# O2
 S306 = ADC_sensor(0x21, 0xF0, 2)		# PAR1
 #S403 = ADC_sensor(0x21, 0xD0, 2)		# PAR2
-S307 = USB_sensor()				# camera

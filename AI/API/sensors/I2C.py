@@ -4,20 +4,8 @@ import time
 # need this for I2C's
 import smbus
 
-# need this for camera
-import cv2
-
 # need this for UART
 import Adafruit_BBIO.UART as UART
-
-# need this for temperature
-import Adafruit_DHT
-
-# need this to read serial buffer
-import serial
-
-# what is this?
-import struct 
 
 class I2C_sensor: 
 
@@ -200,7 +188,6 @@ LL = (None, liquid_level(0x22, 0x80, 2),	# LL1
 	    liquid_level(0x22, 0xE0, 2),	# LL4
 	    liquid_level(0x22, 0xD0, 2),	# LL5
 	    liquid_level(0x22, 0xF0, 2))	# LL6
-
 
 # dissolved oxygen probe
 DO = I2C_sensor(0x61, 0x52, 2)			# DO
