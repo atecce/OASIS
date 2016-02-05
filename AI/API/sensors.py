@@ -210,6 +210,7 @@ class UART_sensor(sensor):
 		#while True:
 		# baudrate corresponds to flow meter circuit baud rate 
 		ser = serial.Serial(port = "/dev/ttyO1", baudrate = 38400)
+
 		ser.open()
 		boolean_is_open = ser.isOpen()
 		print "Serial open?", boolean_is_open
@@ -232,11 +233,6 @@ class UART_sensor(sensor):
 		single_flow_reading = ser.read(num)
 		# print values 
 		print "Flow Meter 1 Values:"
-		print "Model Num is ", model_num
-		print "Flow rate [total vol] [LPM] [LPH]:", single_flow_reading
-		ser.close()
-		boolean_is_close = ser.isOpen()
-		print "Serial open?", boolean_is_close
 
 		# need to setup UART1 at boot, does not set up immediately
 		# UART1 corresponds to ttyO1 in adafruit libraries
@@ -247,27 +243,7 @@ class UART_sensor(sensor):
 		#while True:
 		# baudrate corresponds to flow meter circuit baud rate 
 		ser = serial.Serial(port = "/dev/ttyO4", baudrate = 38400)
-		ser.open()
-		boolean_is_open = ser.isOpen()
-		print "Serial open?", boolean_is_open
-		# turn on LEDs. Green = power, red = instruction received/data transmit, 
-		# amber = one rotation of meter blades
-		ser.write("L1\r")
-		time.sleep(.4)
-		# write model number TurboFlow 226000
-		ser.write("T1\r")
-		time.sleep(0.4)
-		# return num of chars in receive buffer
-		num = ser.inWaiting()
-		# read Turboflow
-		model_num = ser.read(num)
-		time.sleep(0.4)
-		ser.write("R\r")
-		time.sleep(2)
-		# return num of chars in receive buffer
-		num = ser.inWaiting()
-		single_flow_reading = ser.read(num)
-		# print values 
+
 		print "Flow Meter 2 Values:"
 		print "Model Num is ", model_num
 		print "Flow rate [total vol] [LPM] [LPH]:", single_flow_reading
@@ -286,7 +262,7 @@ class one_wire_sensor(sensor):
 		# Reading data from Temp 2 device with device ID:28-0000065f27cc connected to P8.4 
 		# Reading data from Temp 3 device with device ID:28-0000065eb57a connected to P8.5 
 		# Reading data from Temp 4 device with device ID:28-000006747f7f connected to P8.6
-		self.w1="/sys/bus/w1/devices/" + ID + "/w1_slave" 
+		self.w1 = "/sys/bus/w1/devices/" + ID + "/w1_slave" 
 
 	def read(self):
 
