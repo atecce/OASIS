@@ -1,0 +1,124 @@
+body
+{
+	text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px red; 
+	color: yellow; 
+	background-image:url('../images/bgImage.jpg'); 
+	background-repeat: no-repeat; 
+	background-size:cover;
+	cursor:default; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;
+}
+
+.no-js #loader { display: none;  }
+
+.error {
+	color:white;
+	font-weight: thick;
+}
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	
+	z-index: 9999;
+	background: url(loading.gif) 50% 50% no-repeat  #000;
+}
+
+#logo
+{
+	 height: 15%;
+	 width: 20%;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"]
+{
+	width: 222px;
+	outline: 0;
+	padding:10px;
+	
+}
+
+.inputText
+{
+	border: 1px solid blue;	
+}
+
+.inputText:focus
+{
+	-webkit-box-shadow: inset 0px 0px 11px 0px rgba(0,51,204,1);
+	-moz-box-shadow: inset 0px 0px 11px 0px rgba(0,51,204,1);
+	box-shadow: inset 0px 0px 11px 0px rgba(0,51,204,1);
+}
+
+.errorText:focus
+{
+	-webkit-box-shadow: inset 0px 0px 11px 0px red;
+	-moz-box-shadow: inset 0px 0px 11px 0px red;
+	box-shadow: inset 0px 0px 11px 0px red;
+}
+
+.successText:focus
+{
+	-webkit-box-shadow: inset 0px 0px 11px 0px green;
+	-moz-box-shadow: inset 0px 0px 11px 0px green;
+	box-shadow: inset 0px 0px 11px 0px green;
+}
+
+.error
+{
+	display:none;
+}
+
+.form-child
+{
+	margin-bottom:20px;
+}
+
+input[type="submit"],
+input[type="button"]
+{
+	color:yellow;
+	background-color:green;
+	border-radius:25%;
+	font-size:100%;
+	cursor:pointer;
+	outline:0 !important;
+}
+
+input[type="submit"]:disabled,
+input[type="button"]:disabled
+{
+	background-color:#dddddd;
+	color:black;
+}
+
+.footer
+{
+	margin-top:50px;
+}
+
+#register_dept
+{
+	padding:9px;
+	width: 222px;
+}
+
+.tooltip {
+    background-color:#fff;
+    border:3px solid #fff;
+    padding:10px 15px;
+    width:228px;
+    display:none;
+	text-shadow: none;
+    color:blue;
+    text-align:left;
+    font-size:15px;
+    font-weight: bold;
+
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 20px #fff;
+    -webkit-box-shadow:0 0 20px #fff;
+}

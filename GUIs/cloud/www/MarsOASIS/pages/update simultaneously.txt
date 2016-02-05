@@ -1,0 +1,59 @@
+$('.pumpsValues').click(function(){
+			var id = $(this).attr('id');
+			var size = id.indexOf("o");
+			var id_py = "";
+			for(i = 0; i < size; i++)
+				id_py += id[i];
+			var f = false;
+			if($("#"+id).prop("checked"))
+			{
+				alert(id_py + " : true");
+				f = true;
+			}
+			else
+			{
+				alert(id_py + " : false");	
+				f = false;
+			}
+			var dataString = "pump="+id_py+"&flag="+f;
+			$.ajax({
+					type: "POST",
+					url: "py/getPumpsData.php",
+					data: dataString,
+					cache: false,
+					success: function(result)
+					{
+						alert("Result : "+result.flag)
+					}
+				});
+		});
+		
+		$('.valvesValues').click(function(){
+			var id = $(this).attr('id');
+			var size = id.indexOf("o");
+			var id_py = "";
+			for(i = 0; i < size; i++)
+				id_py += id[i];
+			var f = false;
+			if($("#"+id).prop("checked"))
+			{
+				alert(id_py + " : true");
+				f = true;
+			}
+			else
+			{
+				alert(id_py + " : false");	
+				f = false;
+			}
+			var dataString = "valve="+id_py+"&flag="+f;
+			$.ajax({
+					type: "POST",
+					url: "py/getValvesData.php",
+					data: dataString,
+					cache: false,
+					success: function(result)
+					{
+						alert("Result : "+result.flag)
+					}
+				});
+		});
