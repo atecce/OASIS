@@ -17,6 +17,9 @@ class UART_sensor:
 		# initiate sensor with a UART value
 		UART.setup("UART" + str(UART_number))
 
+		# terminal number corresponds to terminal number (convenient)
+		self.tty = UART_number
+
 class CO2_sensor(UART_sensor):
 
 	def read(self):
@@ -28,7 +31,7 @@ class CO2_sensor(UART_sensor):
 		d = struct.pack("7B", *data)
 
 		# is this a port to a terminal somewhere? why? why does the baudrate = 9600?
-		ser = serial.Serial(port = "/dev/ttyO5", baudrate = 9600)
+		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = 9600)
 
 		# this was commented out. why was it ultimately unnecessary to initialize the serial class?
 		#serial.begin(9600)
@@ -51,12 +54,14 @@ class CO2_sensor(UART_sensor):
 		# third bit times 2^8 (a byte) + fourth bit divided by 10^4
 		percent = (ord(A[3])*256 + ord(A[4]))/10000.0
 
+		# never closes serial port, potential problems with that
+
 		# return percentage, probably shouldn't be a string
 		return str(percent)
 
 class flow_meter(UART_sensor):
 
-	def __init__(self, tty):
+	def read(self):
 
 		# need to setup UART1 at boot, does not set up immediately
 		# UART1 corresponds to ttyO1 in adafruit libraries
@@ -71,7 +76,7 @@ class flow_meter(UART_sensor):
 		# ls /dev/tty*   in terminal 
 
 		# baudrate corresponds to flow meter circuit baud rate 
-		ser = serial.Serial(port = "/dev/ttyO" + str(UART_number), baudrate = 38400)
+		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = 38400)
 
 		# open serial port
 		ser.open()
@@ -119,8 +124,9 @@ class flow_meter(UART_sensor):
 		# flow rate [total vol] [LPM] [LPH]
 		return single_flow_reading
 
-# is CO2 broken?
-flow_meter = (None, flow_meter(1, 1)
-		    flow_meter(4, 4)
+# flow meters
+flow_meter = {1: flow_meter(1),
+	      2: flow_meter(4)}
 
+# CO2 sensor
 CO2 = CO2_sensor(5)

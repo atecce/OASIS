@@ -85,14 +85,14 @@ class RH_and_temp(one_wire_sensor):
 		# pretty sure I'd want to raise an error here
 		else: print 'Failed to get reading. Try again!'
 
-# why no temperature 5?
-temp = (None, temperature("28-00000673a8a7")		# temp1
-	      temperature("28-0000065f27cc")		# temp2
-	      temperature("28-0000065eb57a")		# temp3
-	      temperature("28-000006747f7f")		# temp4
-	      one_wire_sensor())			# temp5
-
-# internal atmosphere
-RHTemp = (None, RH_and_temp('P8_8')			# RHTemp1
-		RH_and_temp('P8_9')			# RHTemp2
-		one_wire_sensor('P8_10'))		# RHTemp3
+# temperature sensors (temp5?)
+temp = {1: temperature("28-00000673a8a7"),
+	2: temperature("28-0000065f27cc"),
+	3: temperature("28-0000065eb57a"),
+	4: temperature("28-000006747f7f"),
+	5: one_wire_sensor()}
+	      
+# relative humidity and temperature sensors, (RHTemp3?)
+RHTemp = {1: RH_and_temp('P8_8'),
+	  2: RH_and_temp('P8_9'),
+	  3: RH_and_temp('P8_10')}

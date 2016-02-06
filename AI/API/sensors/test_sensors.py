@@ -2,85 +2,84 @@
 import pytest
 
 # import sensors by category
-from I2C      import LL, DO, pH, EC, TP, PAR, MO, O2
+from I2C      import LL, DO, pH, EC, PAR, MO, O2
 from one_wire import temp, RHTemp
 from UART     import flow_meter, CO2
 from USB      import camera
 
-class test_sensors:
+def test_camera():
 
-	def test_camera(self):
+	camera.read()
 
-		camera.read()
+def test_CO2_sensor():
 
-	def test_CO2_sensor(self):
+	observation = CO2.read()
 
-		observation = CO2.read()
+	print observation
 
-		print observation
+def test_dissolved_oxygen_sensor():
 
-	def test_dissolved_oxygen_sensor(self):
+	observation = DO.read()
 
-		observation = DO.read()
+	print observation
 
-		print observation
+def test_electrical_conductivity_sensors():
 
-	def test_electrical_conductivity_sensors(self):
+	observation = [EC[i].read() for i in EC]
 
-		observation = [electrical_conductivity.read() for electrical_conductivity in EC]
+	print observation
 
-		print observation
+def test_flow_meters():
 
-	def test_flow_meters(self):
+	observation = [flow_meter[i].read() for i in flow_meter] 
 
-		observation = [flow.read() for flow in flow_meter] 
+	print observation
 
-		print observation
+def test_liquid_level_sensors():
 
-	def test_liquid_level_sensors(self):
+	observation = [LL[i].read() for i in LL]
 
-		observation = [liquid_level.read() for liquid_level in LL]
+	print observation
 
-		print observation
+def test_moisture_sensors():
 
-	def test_moisture_sensors(self):
+	observation = [MO[i].read() for i in MO]
 
-		observation = [moisture.read() for moisture in MO]
+	print observation
 
-		print observation
+def test_oxygen_sensor():
 
-	def test_oxygen_sensor(self):
+	observation = O2.read()
 
-		observation = O2.read()
+	print observation
 
-		print observation
+def test_PAR_sensors():
 
-	def test_PAR_sensors(self):
+	observation = [PAR[i].read() for i in PAR]
 
-		observation = [PAR_value.read() for PAR_value in PAR]
+	print observation
 
-		print observation
+def test_pH_sensors():
 
-	def test_pH_sensors(self):
+	observation = [pH[i].read() for i in pH]
 
-		observation = [pH_sensor.read() for pH_sensor in pH]
+	print observation
 
-		print observation
+def test_relative_humidity_and_temperature_sensors():
 
-	def test_relative_humidity_and_temperature_sensors(self):
+	observation = [RHTemp[i].read() for i in RHTemp]
 
-		observation = [relative_humidity_and_temperature.read() for relative_humidity_and_temperature in RHTemp]
+	print observation
 
-		print observation
+def test_temperature_sensors():
 
-	def test_temperature_sensors(self):
+	observation = [temp[i].read() for i in temp]
 
-		observation = [temperature.read() for temperature in temp]
+	print observation
 
-		print observation
-
-	def test_total_pressure_sensors(self):
-
-		observation = [total_pressure.read() for total_pressure in TP]
-
-		print observation
+# have not attempted implementation yet
+#	def test_total_pressure_sensors(self):
+#
+#		observation = [TP[i].read() for i in TP]
+#
+#		print observation

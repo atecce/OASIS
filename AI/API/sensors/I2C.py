@@ -10,10 +10,6 @@ import Adafruit_BBIO.UART as UART
 class I2C_sensor: 
 
 	# each I2C device has an address, register, and interface number
-	address          = int()
-	register	 = int()
-	interface_number = int()
-
 	def __init__(self, address, register, interface_number):
 
 		# set address and register
@@ -57,7 +53,7 @@ class I2C_sensor:
 		# iterates through the string, converts them all to characters, and concatenates them in one line
 		results_string = ''.join(chr(i) for i in results)
 
-		# probably shouldn't be a list though
+		# probably shouldn't be a string though
 		return results_string
 
 class ADC_sensor(I2C_sensor):
@@ -126,6 +122,50 @@ class liquid_level(ADC_sensor):
 	# doesn't seem to be much different than parent class? why did Sairam only want to calculate resistance on liquid level?
 	def read(self):
 
+		results = self.bus.read_i2c_block_data(self.address, self.register) 
+	
+		# initialize list of data
+		sensordata = []
+
+		# for each result
+		for i in range(len(results)):
+
+			# check only even numbers
+			if i % 2 == 0:
+
+				# convert result to binary string
+				a = bin(results[i])
+
+				# to get last 4 characters in the binary string
+				if(len(a) > 5): a = a[len(a)-4:] 
+
+				# (what is this binary string?)
+				b = bin(results[i+1])[2:]
+
+				# (and how is it split up?)
+				if(len(b) < 8):
+
+					# add prefix 0b?
+					for j in range(len(b), 8): b = '0' + b
+
+				# concatenation? or addition?
+				c = a + b
+
+				# append integer conversion to sensor data
+				sensordata.append(int(c, 2))
+
+		# sort the sensor data
+		sensordata.sort()
+
+		# get median
+		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
+
+		# (4095 = 2**10 - 1), why not 4096?
+		analogVal = (sensorVal/4095.0) * 3.3
+
+		# difference between this and analogVal?
+		actualAnalogVal = (3.3 - analogVal) / 2 + 1
+	
 		# resolution?
 		RES = 2400
 
@@ -145,6 +185,50 @@ class MO_sensor(ADC_sensor):
 
 	def read(self):
 
+		results = self.bus.read_i2c_block_data(self.address, self.register) 
+	
+		# initialize list of data
+		sensordata = []
+
+		# for each result
+		for i in range(len(results)):
+
+			# check only even numbers
+			if i % 2 == 0:
+
+				# convert result to binary string
+				a = bin(results[i])
+
+				# to get last 4 characters in the binary string
+				if(len(a) > 5): a = a[len(a)-4:] 
+
+				# (what is this binary string?)
+				b = bin(results[i+1])[2:]
+
+				# (and how is it split up?)
+				if(len(b) < 8):
+
+					# add prefix 0b?
+					for j in range(len(b), 8): b = '0' + b
+
+				# concatenation? or addition?
+				c = a + b
+
+				# append integer conversion to sensor data
+				sensordata.append(int(c, 2))
+
+		# sort the sensor data
+		sensordata.sort()
+
+		# get median
+		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
+
+		# (4095 = 2**10 - 1), why not 4096?
+		analogVal = (sensorVal/4095.0) * 3.3
+
+		# difference between this and analogVal?
+		actualAnalogVal = (3.3 - analogVal) / 2 + 1
+	
 		# initialize volumetric water content to zero
 		VWC = 0 
 
@@ -160,6 +244,50 @@ class O2_sensor(ADC_sensor):
 
 	def read(self):
 
+		results = self.bus.read_i2c_block_data(self.address, self.register) 
+	
+		# initialize list of data
+		sensordata = []
+
+		# for each result
+		for i in range(len(results)):
+
+			# check only even numbers
+			if i % 2 == 0:
+
+				# convert result to binary string
+				a = bin(results[i])
+
+				# to get last 4 characters in the binary string
+				if(len(a) > 5): a = a[len(a)-4:] 
+
+				# (what is this binary string?)
+				b = bin(results[i+1])[2:]
+
+				# (and how is it split up?)
+				if(len(b) < 8):
+
+					# add prefix 0b?
+					for j in range(len(b), 8): b = '0' + b
+
+				# concatenation? or addition?
+				c = a + b
+
+				# append integer conversion to sensor data
+				sensordata.append(int(c, 2))
+
+		# sort the sensor data
+		sensordata.sort()
+
+		# get median
+		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
+
+		# (4095 = 2**10 - 1), why not 4096?
+		analogVal = (sensorVal/4095.0) * 3.3
+
+		# difference between this and analogVal?
+		actualAnalogVal = (3.3 - analogVal) / 2 + 1
+	
 		# what determines this constant?
 		gainVal = 40*5.86
 
@@ -173,6 +301,50 @@ class PAR_sensor(ADC_sensor):
 
 	def read(self):
 
+		results = self.bus.read_i2c_block_data(self.address, self.register) 
+	
+		# initialize list of data
+		sensordata = []
+
+		# for each result
+		for i in range(len(results)):
+
+			# check only even numbers
+			if i % 2 == 0:
+
+				# convert result to binary string
+				a = bin(results[i])
+
+				# to get last 4 characters in the binary string
+				if(len(a) > 5): a = a[len(a)-4:] 
+
+				# (what is this binary string?)
+				b = bin(results[i+1])[2:]
+
+				# (and how is it split up?)
+				if(len(b) < 8):
+
+					# add prefix 0b?
+					for j in range(len(b), 8): b = '0' + b
+
+				# concatenation? or addition?
+				c = a + b
+
+				# append integer conversion to sensor data
+				sensordata.append(int(c, 2))
+
+		# sort the sensor data
+		sensordata.sort()
+
+		# get median
+		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
+
+		# (4095 = 2**10 - 1), why not 4096?
+		analogVal = (sensorVal/4095.0) * 3.3
+
+		# difference between this and analogVal?
+		actualAnalogVal = (3.3 - analogVal) / 2 + 1
+	
 		# straight line? why that constant?
 		parValue = 1000*0.5*analogVal
 
@@ -181,40 +353,38 @@ class PAR_sensor(ADC_sensor):
 
 # may not be proper syntax, but it's python, set for proper indexing and creates a linked list
 
-# tuple of liquid level sensors
-LL = (None, liquid_level(0x22, 0x80, 2),	# LL1
-	    liquid_level(0x22, 0xA0, 2),	# LL2
-	    liquid_level(0x22, 0xC0, 2),	# LL3
-	    liquid_level(0x22, 0xE0, 2),	# LL4
-	    liquid_level(0x22, 0xD0, 2),	# LL5
-	    liquid_level(0x22, 0xF0, 2))	# LL6
+# liquid level sensors
+LL = {1: liquid_level(0x22, 0x80, 2),
+      2: liquid_level(0x22, 0xA0, 2),
+      3: liquid_level(0x22, 0xC0, 2),
+      4: liquid_level(0x22, 0xE0, 2),
+      5: liquid_level(0x22, 0xD0, 2),
+      6: liquid_level(0x22, 0xF0, 2)}
 
 # dissolved oxygen probe
 DO = I2C_sensor(0x61, 0x52, 2)			# DO
 
 # pH probes
-pH = (None, I2C_sensor(0x65, 0x52, 2),		# pH1
-	    I2C_sensor(0x63, 0x52, 2))		# pH2
+pH = {1: I2C_sensor(0x65, 0x52, 2),
+      2: I2C_sensor(0x63, 0x52, 2)}
 
 # electrical conductivity probes
-EC = (None, I2C_sensor(0x66, 0x52, 2), 		# EC1
-	    I2C_sensor(0x64, 0x52, 2))		# EC2
+EC = {1: I2C_sensor(0x66, 0x52, 2),
+      2: I2C_sensor(0x64, 0x52, 2)}
 
-# total pressure sensors
-TP = (None, I2C_sensor(), 			# TP1
-	     I2C_sensor())			# TP2
+# total pressure sensors (have not attempted implementation yet
+#TP = {1: I2C_sensor(),
+#      2: I2C_sensor()}
 
 # PAR sensors
-PAR = (None, ADC_sensor(0x21, 0xF0, 2), 	# PAR1
-	     ADC_sensor(0x21, 0xD0, 2))		# PAR2
+PAR = {1: ADC_sensor(0x21, 0xF0, 2),
+       2: ADC_sensor(0x21, 0xD0, 2)}
 
 # MO sensors
-MO1 = MO_sensor(0x21, 0x80, 2)
-MO2 = MO_sensor(0x21, 0xA0, 2)
-MO3 = MO_sensor(0x21, 0xC0, 2)
-MO4 = MO_sensor(0x21, 0xE0, 2)
-
-MO = (None, MO1, MO2, MO3, MO4)
+MO = {1: MO_sensor(0x21, 0x80, 2),
+      2: MO_sensor(0x21, 0xA0, 2),
+      3: MO_sensor(0x21, 0xC0, 2),
+      4: MO_sensor(0x21, 0xE0, 2)}
 
 # oxygen sensor
 O2 = ADC_sensor(0x22, 0xB0, 2)
