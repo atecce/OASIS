@@ -16,8 +16,8 @@ for i in (1, 2): sensor_suite.append(EC[i])
 # two pH sensors
 for i in (1, 2): sensor_suite.append(pH[i])
 
-# five temperature sensors
-for i in (1, 2, 3, 4, 5): sensor_suite.append(temp[i])
+# four temperature sensors
+for i in (1, 2, 3, 4): sensor_suite.append(temp[i])
 
 # four moisture sensors
 for i in (1, 2, 3, 4): sensor_suite.append(MO[i])

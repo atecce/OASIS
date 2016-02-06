@@ -89,8 +89,7 @@ class RH_and_temp(one_wire_sensor):
 temp = {1: temperature("28-00000673a8a7"),
 	2: temperature("28-0000065f27cc"),
 	3: temperature("28-0000065eb57a"),
-	4: temperature("28-000006747f7f"),
-	5: one_wire_sensor()}
+	4: temperature("28-000006747f7f")}
 	      
 # relative humidity and temperature sensors, (RHTemp3?)
 RHTemp = {1: RH_and_temp('P8_8'),
