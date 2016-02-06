@@ -7,7 +7,23 @@ import smbus
 # need this for total pressure sensors
 import Adafruit_BMP.BMP085 as BMP085
 
+# need this for parent class
+from I2C import I2C_sensor
+
 class ADC_sensor(I2C_sensor):
+
+	# all ADC sensors have an interface number of 2
+	interface_number = 2
+
+	# each I2C device has an address, register, and interface number
+	def __init__(self, address, register):
+
+		# create bus with interface number
+		self.bus = smbus.SMBus(self.interface_number) 
+
+		# set address and register
+		self.address  = address
+		self.register = register
 
 	def read(self):
 
@@ -70,12 +86,15 @@ class ADC_sensor(I2C_sensor):
 		
 class liquid_level(ADC_sensor):
 
-	# all liquid level sensors have an interface number of 2 and an address 0x22
-	interface_number = 2
-	address          = 0x22
+	# all liquid level sensors have an address 0x22
+	address = 0x22
 
 	def __init__(self, register):
 
+		# create bus with interface number
+		self.bus = smbus.SMBus(self.interface_number) 
+		
+		# set register value
 		self.register = register
 
 	# doesn't seem to be much different than parent class? why did Sairam only want to calculate resistance on liquid level?
@@ -142,9 +161,17 @@ class liquid_level(ADC_sensor):
 
 class MO_sensor(ADC_sensor):
 
-	# all liquid level sensors have an interface number of 2 and an address 0x22
-	interface_number = 2
+	# all liquid level sensors have an address 0x21
 	address          = 0x21
+
+	# each I2C device has an address, register, and interface number
+	def __init__(self, register):
+
+		# create bus with interface number
+		self.bus = smbus.SMBus(self.interface_number) 
+
+		# set register
+		self.register = register
 
 	def read(self):
 
@@ -205,10 +232,14 @@ class MO_sensor(ADC_sensor):
 
 class O2_sensor(ADC_sensor):
 
-	# interface number, address, and register of O2 sensor are set
-	interface_number = 2
-	address		 = 0x22
-	register	 = 0xB0
+	# address and register of O2 sensor are set
+	address	 = 0x22
+	register = 0xB0
+
+	def __init__(self):
+
+		# set bus with interface number
+		self.bus = smbus.SMBus(self.interface_number) 
 
 	def read(self):
 
@@ -266,6 +297,17 @@ class O2_sensor(ADC_sensor):
 		return analogValmV
 
 class PAR_sensor(ADC_sensor):
+
+	# address of PAR sensor is set
+	address = 0x21
+
+	def __init__(self, register):
+
+		# set bus with interface number
+		self.bus = smbus.SMBus(self.interface_number) 
+
+		# set and register
+		self.register = register
 
 	def read(self):
 
@@ -327,13 +369,9 @@ LL = {1: liquid_level(0x80),
       5: liquid_level(0xD0),
       6: liquid_level(0xF0)}
 
-# total pressure sensors
-TP = {1: total_pressure_sensor(1),
-      2: total_pressure_sensor(2)}
-
 # PAR sensors
-PAR = {1: ADC_sensor(0x21, 0xF0),
-       2: ADC_sensor(0x21, 0xD0)}
+PAR = {1: PAR_sensor(0xF0),
+       2: PAR_sensor(0xD0)}
 
 # MO sensors
 MO = {1: MO_sensor(0x80),
@@ -342,4 +380,4 @@ MO = {1: MO_sensor(0x80),
       4: MO_sensor(0xE0)}
 
 # oxygen sensor
-O2 = ADC_sensor()
+O2 = O2_sensor()
