@@ -4,20 +4,23 @@ import time
 # need this for I2C's
 import smbus
 
-# need this for UART
-import Adafruit_BBIO.UART as UART
+# need this for total pressure sensors
+import Adafruit_BMP.BMP085 as BMP085
 
 class I2C_sensor: 
 
+	# interface number is the same for all sensors seen so far
+	interface_number = 2
+
 	# each I2C device has an address, register, and interface number
-	def __init__(self, address, register, interface_number):
+	def __init__(self, interface_number, address, register):
+
+		# create bus with interface number
+		self.bus = smbus.SMBus(interface_number) 
 
 		# set address and register
 		self.address  = address
 		self.register = register
-
-		# create bus with interface number
-		self.bus = smbus.SMBus(interface_number) 
 
 	def read(self):
 
@@ -25,7 +28,7 @@ class I2C_sensor:
 		time.sleep(3)
 
 		# write byte to the bus, (a request?)
-		self.bus.write_byte(self.address, self.register) #R
+		self.bus.write_byte(self.address, self.register)
 
 		# actions punctuated by delays (is this necessary?)
 		time.sleep(3)
@@ -60,12 +63,6 @@ class ADC_sensor(I2C_sensor):
 
 	def read(self):
 
-		# 0x80 for LL1    sensor connected to VIN1 channel of ADC with I2C Address 0x22
-		# 0xA0 for LL2    sensor connected to VIN3 channel of ADC with I2C Address 0x22
-		# 0xC0 for LL3    sensor connected to VIN5 channel of ADC with I2C Address 0x22
-		# 0xE0 for LL4    sensor connected to VIN7 channel of ADC with I2C Address 0x22
-		# 0xF0 for LL5    sensor connected to VIN8 channel of ADC with I2C Address 0x22
-		# 0xD0 for LL6    sensor connected to VIN6 channel of ADC with I2C Address 0x22
 		# 0x80 for MO1    sensor connected to VIN1 channel of ADC with I2C Address 0x21
 		# 0xA0 for MO2    sensor connected to VIN3 channel of ADC with I2C Address 0x21
 		# 0xC0 for MO3    sensor connected to VIN5 channel of ADC with I2C Address 0x21
@@ -73,6 +70,12 @@ class ADC_sensor(I2C_sensor):
 		# 0xB0 for O2 OX1 sensor connected to VIN4 channel of ADC with I2C Address 0x22
 		# 0xF0 for PAR1   sensor connected to VIN8 channel of ADC with I2C Address 0x21
 		# 0xD0 for PAR2   sensor connected to VIN6 channel of ADC with I2C Address 0x21
+		# 0x80 for LL1    sensor connected to VIN1 channel of ADC with I2C Address 0x22
+		# 0xA0 for LL2    sensor connected to VIN3 channel of ADC with I2C Address 0x22
+		# 0xC0 for LL3    sensor connected to VIN5 channel of ADC with I2C Address 0x22
+		# 0xE0 for LL4    sensor connected to VIN7 channel of ADC with I2C Address 0x22
+		# 0xF0 for LL5    sensor connected to VIN8 channel of ADC with I2C Address 0x22
+		# 0xD0 for LL6    sensor connected to VIN6 channel of ADC with I2C Address 0x22
 		results = self.bus.read_i2c_block_data(self.address, self.register) 
 	
 		# initialize list of data
@@ -118,6 +121,14 @@ class ADC_sensor(I2C_sensor):
 		actualAnalogVal = (3.3 - analogVal) / 2 + 1
 		
 class liquid_level(ADC_sensor):
+
+	# all liquid level sensors have an interface number of 2 and an address 0x22
+	interface_number = 2
+	address          = 0x22
+
+	def __init__(self, register):
+
+		self.register = register
 
 	# doesn't seem to be much different than parent class? why did Sairam only want to calculate resistance on liquid level?
 	def read(self):
@@ -183,6 +194,10 @@ class liquid_level(ADC_sensor):
 
 class MO_sensor(ADC_sensor):
 
+	# all liquid level sensors have an interface number of 2 and an address 0x22
+	interface_number = 2
+	address          = 0x21
+
 	def read(self):
 
 		results = self.bus.read_i2c_block_data(self.address, self.register) 
@@ -241,6 +256,11 @@ class MO_sensor(ADC_sensor):
 		return VWC
 
 class O2_sensor(ADC_sensor):
+
+	# interface number, address, and register of O2 sensor are set
+	interface_number = 2
+	address		 = 0x22
+	register	 = 0xB0
 
 	def read(self):
 
@@ -351,40 +371,104 @@ class PAR_sensor(ADC_sensor):
 		# probably shouldn't be returned as a string
 		return str(parValue)
 
-# may not be proper syntax, but it's python, set for proper indexing and creates a linked list
+class total_pressure_sensor(I2C_sensor):
+
+	# Copyright (c) 2014 Adafruit Industries
+	# Author: Tony DiCola
+	#
+	# Permission is hereby granted, free of charge, to any person obtaining a copy
+	# of this software and associated documentation files (the "Software"), to deal
+	# in the Software without restriction, including without limitation the rights
+	# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	# copies of the Software, and to permit persons to whom the Software is
+	# furnished to do so, subject to the following conditions:
+	#
+	# The above copyright notice and this permission notice shall be included in
+	# all copies or substantial portions of the Software.
+	#
+	# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	# THE SOFTWARE.
+
+	# Can enable debug output by uncommenting:
+	#import logging
+	#logging.basicConfig(level=logging.DEBUG)
+
+	# Default constructor will pick a default I2C bus.
+	#
+	# For the Raspberry Pi this means you should hook up to the only exposed I2C bus
+	# from the main GPIO header and the library will figure out the bus number based
+	# on the Pi's revision.
+	#
+	# For the Beaglebone Black the library will assume bus 1 by default, which is
+	# exposed with SCL = P9_19 and SDA = P9_20.
+
+	# In MarsOASIS case, SCL = P9_17 and SDA = P9_18 of bus 2.
+	sensor = BMP085.BMP085(busnum = 2) 
+
+	# Optionally you can override the bus number:
+	#sensor = BMP085.BMP085(busnum=2)
+
+	# You can also optionally change the BMP085 mode to one of BMP085_ULTRALOWPOWER, 
+	# BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES.  See the BMP085
+	# datasheet for more details on the meanings of each mode (accuracy and power
+	# consumption are primarily the differences).  The default mode is STANDARD.
+	#sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
+
+	print 'TP1 Sensor Values:'
+	print 'Temp = {0:0.2f} *C'.format(sensor.read_temperature())
+	print 'Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
+	print 'Altitude = {0:0.2f} m'.format(sensor.read_altitude())
+	print 'Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
+
+	# In MarsOASIS case, SCL = P9_21 and SDA = P9_22 of bus 1.
+	sensor = BMP085.BMP085() 
+
+	# Optionally you can override the bus number:
+	#sensor = BMP085.BMP085(busnum = 2)
+
+	print 'TP2 Sensor Values:'
+	print 'Temp = {0:0.2f} *C'.format(sensor.read_temperature())
+	print 'Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
+	print 'Altitude = {0:0.2f} m'.format(sensor.read_altitude())
+	print 'Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
 
 # liquid level sensors
-LL = {1: liquid_level(0x22, 0x80, 2),
-      2: liquid_level(0x22, 0xA0, 2),
-      3: liquid_level(0x22, 0xC0, 2),
-      4: liquid_level(0x22, 0xE0, 2),
-      5: liquid_level(0x22, 0xD0, 2),
-      6: liquid_level(0x22, 0xF0, 2)}
+LL = {1: liquid_level(0x80),
+      2: liquid_level(0xA0),
+      3: liquid_level(0xC0),
+      4: liquid_level(0xE0),
+      5: liquid_level(0xD0),
+      6: liquid_level(0xF0)}
 
 # dissolved oxygen probe
-DO = I2C_sensor(0x61, 0x52, 2)			# DO
+DO = I2C_sensor(0x61, 0x52)
 
 # pH probes
-pH = {1: I2C_sensor(0x65, 0x52, 2),
-      2: I2C_sensor(0x63, 0x52, 2)}
+pH = {1: I2C_sensor(0x65, 0x52),
+      2: I2C_sensor(0x63, 0x52)}
 
 # electrical conductivity probes
-EC = {1: I2C_sensor(0x66, 0x52, 2),
-      2: I2C_sensor(0x64, 0x52, 2)}
+EC = {1: I2C_sensor(0x66, 0x52),
+      2: I2C_sensor(0x64, 0x52)}
 
-# total pressure sensors (have not attempted implementation yet
-#TP = {1: I2C_sensor(),
-#      2: I2C_sensor()}
+# total pressure sensors
+TP = {1: total_pressure_sensor(),
+      2: total_pressure_sensor()}
 
 # PAR sensors
-PAR = {1: ADC_sensor(0x21, 0xF0, 2),
-       2: ADC_sensor(0x21, 0xD0, 2)}
+PAR = {1: ADC_sensor(0x21, 0xF0),
+       2: ADC_sensor(0x21, 0xD0)}
 
 # MO sensors
-MO = {1: MO_sensor(0x21, 0x80, 2),
-      2: MO_sensor(0x21, 0xA0, 2),
-      3: MO_sensor(0x21, 0xC0, 2),
-      4: MO_sensor(0x21, 0xE0, 2)}
+MO = {1: MO_sensor(0x80),
+      2: MO_sensor(0xA0),
+      3: MO_sensor(0xC0),
+      4: MO_sensor(0xE0)}
 
 # oxygen sensor
-O2 = ADC_sensor(0x22, 0xB0, 2)
+O2 = ADC_sensor()
