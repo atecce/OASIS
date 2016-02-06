@@ -56,8 +56,8 @@ class CO2_sensor(UART_sensor):
 
 		# never closes serial port, potential problems with that
 
-		# return percentage, probably shouldn't be a string
-		return str(percent)
+		# return percentage
+		return percent
 
 class flow_meter(UART_sensor):
 
