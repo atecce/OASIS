@@ -55,6 +55,6 @@ for sensor in sensor_suite:
 	
 		print sensor.name, sensor.read()
 
-	except IOError: print sensor
+	except IOError: print "IOError"
 
-	except AttributeError: print sensor
+	#except AttributeError: print "AttributeError"
