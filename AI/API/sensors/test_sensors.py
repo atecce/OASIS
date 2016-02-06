@@ -2,9 +2,9 @@
 import pytest
 
 # import sensors by category
-from I2C      import DO, EC, LL, MO, O2, PAR, pH
-from one_wire import temp, RHTemp
-from UART     import flow_meter, CO2
+from I2C      import DO, EC, LL, MO, O2, PAR, pH, TP
+from one_wire import RHTemp, temp
+from UART     import CO2, flow_meter
 from USB      import camera
 
 class test_I2C_sensors:
@@ -51,6 +51,12 @@ class test_I2C_sensors:
 
 		print observation
 
+	def test_total_pressure_sensors(self):
+
+		observation = [TP[i].read() for i in TP]
+
+		print observation
+
 class test_one_wire_sensors:
 
 	def test_relative_humidity_and_temperature_sensors():
@@ -65,7 +71,7 @@ class test_one_wire_sensors:
 
 		print observation
 
-def test_UART_sensors:
+class test_UART_sensors:
 
 	def test_CO2_sensor():
 
@@ -85,9 +91,4 @@ class test_USB:
 
 		camera.read()
 
-# have not attempted implementation yet
-#	def test_total_pressure_sensors(self):
-#
-#		observation = [TP[i].read() for i in TP]
-#
-#		print observation
+
