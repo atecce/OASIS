@@ -11,19 +11,17 @@ class I2C_sensor:
 
 	# default interface number and address for I2C sensors
 	interface_number = 2
-	address          = 0x52
+	register         = 0x52
 
-	def __init__(self, name, interface_number, address, register):
+	def __init__(self, name, address):
 
 		# name sensor
 		self.name = name
 
 		# create bus with interface number
-		self.bus = smbus.SMBus(interface_number) 
+		self.bus = smbus.SMBus(self.interface_number) 
 
-		# set register
-		self.register = register
-
+		# set address
 		self.address = address
 
 	def read(self):
@@ -70,6 +68,7 @@ class total_pressure_sensor(I2C_sensor):
 		# name sensor
 		self.name = name
 
+		# set interface number
 		self.interface_number = interface_number
 
 	def read(self):
@@ -121,15 +120,15 @@ class total_pressure_sensor(I2C_sensor):
 		return sensor.read_temperature(), sensor.read_pressure(), sensor.read_altitude(), sensor.read_sealevel_pressure()
 
 # dissolved oxygen probe
-DO = I2C_sensor("DO", 2, 0x52, 0x61)
+DO = I2C_sensor("DO", 0x61)
 
 # pH probes
-pH = {1: I2C_sensor("pH1", 2, 0x52, 0x65),
-      2: I2C_sensor("pH2", 2, 0x52, 0x63)}
+pH = {1: I2C_sensor("pH1", 0x65),
+      2: I2C_sensor("pH2", 0x63)}
 
 # electrical conductivity probes
-EC = {1: I2C_sensor("EC1", 2, 0x52, 0x66),
-      2: I2C_sensor("EC2", 2, 0x52, 0x64)}
+EC = {1: I2C_sensor("EC1", 0x66),
+      2: I2C_sensor("EC2", 0x64)}
 
 # total pressure sensors
 TP = {1: total_pressure_sensor("TP1", 2),

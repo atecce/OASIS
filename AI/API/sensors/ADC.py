@@ -127,7 +127,7 @@ class liquid_level(ADC_sensor):
 class MO_sensor(ADC_sensor):
 
 	# all liquid level sensors have an address 0x21
-	address          = 0x21
+	address = 0x21
 
 	# each I2C device has an address, register, and interface number
 	def __init__(self, name, register):
@@ -162,7 +162,7 @@ class O2_sensor(ADC_sensor):
 	address	 = 0x22
 	register = 0xB0
 
-	def __init__(self):
+	def __init__(self, name):
 
 		self.name = name
 
@@ -188,7 +188,7 @@ class PAR_sensor(ADC_sensor):
 	# address of PAR sensor is set
 	address = 0x21
 
-	def __init__(self, register):
+	def __init__(self, name, register):
 
 		self.name = name
 
