@@ -9,14 +9,16 @@ import Adafruit_BMP.BMP085 as BMP085
 
 class I2C_sensor: 
 
-	# each I2C device has an address, register, and interface number
-	def __init__(self, interface_number, address, register):
+	# default interface number and address for I2C sensors
+	interface_number = 2
+	address          = 0x52
+
+	def __init__(self, register):
 
 		# create bus with interface number
-		self.bus = smbus.SMBus(interface_number) 
+		self.bus = smbus.SMBus(self.interface_number) 
 
-		# set address and register
-		self.address  = address
+		# set register
 		self.register = register
 
 	def read(self):
@@ -98,8 +100,9 @@ class total_pressure_sensor(I2C_sensor):
 		# For the Beaglebone Black the library will assume bus 1 by default, which is
 		# exposed with SCL = P9_19 and SDA = P9_20.
 
-		# In MarsOASIS case, SCL = P9_17 and SDA = P9_18 of bus 2.
-		sensor = BMP085.BMP085(busnum = 2) 
+		# In MarsOASIS case, TP1 has SCL = P9_17 and SDA = P9_18 of bus 2.
+		# In MarsOASIS case, TP2 has SCL = P9_21 and SDA = P9_22 of bus 1.
+		sensor = BMP085.BMP085(busnum = self.interface_number) 
 
 		# You can also optionally change the BMP085 mode to one of BMP085_ULTRALOWPOWER, 
 		# BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES.  See the BMP085
@@ -107,35 +110,19 @@ class total_pressure_sensor(I2C_sensor):
 		# consumption are primarily the differences).  The default mode is STANDARD.
 		#sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
 
-		print 'TP1 Sensor Values:'
-		print 'Temp = {0:0.2f} *C'.format(sensor.read_temperature())
-		print 'Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
-		print 'Altitude = {0:0.2f} m'.format(sensor.read_altitude())
-		print 'Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
-
-		# In MarsOASIS case, SCL = P9_21 and SDA = P9_22 of bus 1.
-		sensor = BMP085.BMP085() 
-
-		# Optionally you can override the bus number:
-		#sensor = BMP085.BMP085(busnum = 2)
-
-		print 'TP2 Sensor Values:'
-		print 'Temp = {0:0.2f} *C'.format(sensor.read_temperature())
-		print 'Pressure = {0:0.2f} Pa'.format(sensor.read_pressure())
-		print 'Altitude = {0:0.2f} m'.format(sensor.read_altitude())
-		print 'Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())
+		return sensor.read_temperature(), sensor.read_pressure(), sensor.read_altitude(), sensor.read_sealevel_pressure()
 
 # dissolved oxygen probe
-DO = I2C_sensor(2, 0x61, 0x52)
+DO = I2C_sensor(0x61)
 
 # pH probes
-pH = {1: I2C_sensor(2, 0x65, 0x52),
-      2: I2C_sensor(2, 0x63, 0x52)}
+pH = {1: I2C_sensor(0x65),
+      2: I2C_sensor(0x63)}
 
 # electrical conductivity probes
-EC = {1: I2C_sensor(2, 0x66, 0x52),
-      2: I2C_sensor(2, 0x64, 0x52)}
+EC = {1: I2C_sensor(0x66),
+      2: I2C_sensor(0x64)}
 
 # total pressure sensors
-TP = {1: total_pressure_sensor(1),
-      2: total_pressure_sensor(2)}
+TP = {1: total_pressure_sensor(2),
+      2: total_pressure_sensor(1)}

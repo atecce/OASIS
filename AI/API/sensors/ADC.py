@@ -25,7 +25,7 @@ class ADC_sensor(I2C_sensor):
 		self.address  = address
 		self.register = register
 
-	def read(self):
+	def voltage(self):
 
 		# 0x80 for MO1    sensor connected to VIN1 channel of ADC with I2C Address 0x21
 		# 0xA0 for MO2    sensor connected to VIN3 channel of ADC with I2C Address 0x21
@@ -43,7 +43,7 @@ class ADC_sensor(I2C_sensor):
 		results = self.bus.read_i2c_block_data(self.address, self.register) 
 	
 		# initialize list of data
-		sensordata = []
+		sensordata = list()
 
 		# for each result
 		for i in range(len(results)):
@@ -83,6 +83,8 @@ class ADC_sensor(I2C_sensor):
 
 		# difference between this and analogVal?
 		actualAnalogVal = (3.3 - analogVal) / 2 + 1
+
+		return sensorVal, analogVal, actualAnalogVal
 		
 class liquid_level(ADC_sensor):
 
@@ -100,50 +102,9 @@ class liquid_level(ADC_sensor):
 	# doesn't seem to be much different than parent class? why did Sairam only want to calculate resistance on liquid level?
 	def read(self):
 
-		results = self.bus.read_i2c_block_data(self.address, self.register) 
-	
-		# initialize list of data
-		sensordata = []
+		# get raw data from parent class
+		sensorVal, analogVal, actualAnalogVal = self.voltage()
 
-		# for each result
-		for i in range(len(results)):
-
-			# check only even numbers
-			if i % 2 == 0:
-
-				# convert result to binary string
-				a = bin(results[i])
-
-				# to get last 4 characters in the binary string
-				if(len(a) > 5): a = a[len(a)-4:] 
-
-				# (what is this binary string?)
-				b = bin(results[i+1])[2:]
-
-				# (and how is it split up?)
-				if(len(b) < 8):
-
-					# add prefix 0b?
-					for j in range(len(b), 8): b = '0' + b
-
-				# concatenation? or addition?
-				c = a + b
-
-				# append integer conversion to sensor data
-				sensordata.append(int(c, 2))
-
-		# sort the sensor data
-		sensordata.sort()
-
-		# get median
-		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
-
-		# (4095 = 2**10 - 1), why not 4096?
-		analogVal = (sensorVal/4095.0) * 3.3
-
-		# difference between this and analogVal?
-		actualAnalogVal = (3.3 - analogVal) / 2 + 1
-	
 		# resolution?
 		RES = 2400
 
@@ -175,50 +136,9 @@ class MO_sensor(ADC_sensor):
 
 	def read(self):
 
-		results = self.bus.read_i2c_block_data(self.address, self.register) 
-	
-		# initialize list of data
-		sensordata = []
+		# get raw data from parent class
+		sensorVal, analogVal, actualAnalogVal = self.voltage()
 
-		# for each result
-		for i in range(len(results)):
-
-			# check only even numbers
-			if i % 2 == 0:
-
-				# convert result to binary string
-				a = bin(results[i])
-
-				# to get last 4 characters in the binary string
-				if(len(a) > 5): a = a[len(a)-4:] 
-
-				# (what is this binary string?)
-				b = bin(results[i+1])[2:]
-
-				# (and how is it split up?)
-				if(len(b) < 8):
-
-					# add prefix 0b?
-					for j in range(len(b), 8): b = '0' + b
-
-				# concatenation? or addition?
-				c = a + b
-
-				# append integer conversion to sensor data
-				sensordata.append(int(c, 2))
-
-		# sort the sensor data
-		sensordata.sort()
-
-		# get median
-		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
-
-		# (4095 = 2**10 - 1), why not 4096?
-		analogVal = (sensorVal/4095.0) * 3.3
-
-		# difference between this and analogVal?
-		actualAnalogVal = (3.3 - analogVal) / 2 + 1
-	
 		# initialize volumetric water content to zero
 		VWC = 0 
 
@@ -243,50 +163,9 @@ class O2_sensor(ADC_sensor):
 
 	def read(self):
 
-		results = self.bus.read_i2c_block_data(self.address, self.register) 
-	
-		# initialize list of data
-		sensordata = []
+		# get raw data from parent class
+		sensorVal, analogVal, actualAnalogVal = self.voltage()
 
-		# for each result
-		for i in range(len(results)):
-
-			# check only even numbers
-			if i % 2 == 0:
-
-				# convert result to binary string
-				a = bin(results[i])
-
-				# to get last 4 characters in the binary string
-				if(len(a) > 5): a = a[len(a)-4:] 
-
-				# (what is this binary string?)
-				b = bin(results[i+1])[2:]
-
-				# (and how is it split up?)
-				if(len(b) < 8):
-
-					# add prefix 0b?
-					for j in range(len(b), 8): b = '0' + b
-
-				# concatenation? or addition?
-				c = a + b
-
-				# append integer conversion to sensor data
-				sensordata.append(int(c, 2))
-
-		# sort the sensor data
-		sensordata.sort()
-
-		# get median
-		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
-
-		# (4095 = 2**10 - 1), why not 4096?
-		analogVal = (sensorVal/4095.0) * 3.3
-
-		# difference between this and analogVal?
-		actualAnalogVal = (3.3 - analogVal) / 2 + 1
-	
 		# what determines this constant?
 		gainVal = 40*5.86
 
@@ -311,50 +190,9 @@ class PAR_sensor(ADC_sensor):
 
 	def read(self):
 
-		results = self.bus.read_i2c_block_data(self.address, self.register) 
-	
-		# initialize list of data
-		sensordata = []
+		# get raw data from parent class
+		sensorVal, analogVal, actualAnalogVal = self.voltage()
 
-		# for each result
-		for i in range(len(results)):
-
-			# check only even numbers
-			if i % 2 == 0:
-
-				# convert result to binary string
-				a = bin(results[i])
-
-				# to get last 4 characters in the binary string
-				if(len(a) > 5): a = a[len(a)-4:] 
-
-				# (what is this binary string?)
-				b = bin(results[i+1])[2:]
-
-				# (and how is it split up?)
-				if(len(b) < 8):
-
-					# add prefix 0b?
-					for j in range(len(b), 8): b = '0' + b
-
-				# concatenation? or addition?
-				c = a + b
-
-				# append integer conversion to sensor data
-				sensordata.append(int(c, 2))
-
-		# sort the sensor data
-		sensordata.sort()
-
-		# get median
-		sensorVal = (sensordata[7] + sensordata[8])/(2.0)
-
-		# (4095 = 2**10 - 1), why not 4096?
-		analogVal = (sensorVal/4095.0) * 3.3
-
-		# difference between this and analogVal?
-		actualAnalogVal = (3.3 - analogVal) / 2 + 1
-	
 		# straight line? why that constant?
 		parValue = 1000*0.5*analogVal
 
