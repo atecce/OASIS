@@ -1,7 +1,7 @@
 # need this for camera
 import cv2
 
-class camera: 
+class USB: 
 
 	# may not need a constructor here
 	def __init__(self): pass
@@ -23,4 +23,4 @@ class camera:
 		# close cv2?
 		cv2.destroyAllWindows()
 
-cam = camera()
+camera = USB()

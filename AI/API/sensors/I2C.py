@@ -201,18 +201,20 @@ EC = (None, I2C_sensor(0x66, 0x52, 2), 		# EC1
 	    I2C_sensor(0x64, 0x52, 2))		# EC2
 
 # total pressure sensors
-#TP = (None, I2C_sensor(), 			# TP1
-#	     I2C_sensor())			# TP2
+TP = (None, I2C_sensor(), 			# TP1
+	     I2C_sensor())			# TP2
 
 # PAR sensors
 PAR = (None, ADC_sensor(0x21, 0xF0, 2), 	# PAR1
 	     ADC_sensor(0x21, 0xD0, 2))		# PAR2
 
 # MO sensors
-MO = (None, MO_sensor(0x21, 0x80, 2)		# MO1
-	    MO_sensor(0x21, 0xA0, 2)		# MO2
-	    MO_sensor(0x21, 0xC0, 2)		# MO3
-	    MO_sensor(0x21, 0xE0, 2))		# MO4
+MO1 = MO_sensor(0x21, 0x80, 2)
+MO2 = MO_sensor(0x21, 0xA0, 2)
+MO3 = MO_sensor(0x21, 0xC0, 2)
+MO4 = MO_sensor(0x21, 0xE0, 2)
+
+MO = (None, MO1, MO2, MO3, MO4)
 
 # oxygen sensor
 O2 = ADC_sensor(0x22, 0xB0, 2)

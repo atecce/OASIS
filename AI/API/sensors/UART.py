@@ -120,6 +120,7 @@ class flow_meter(UART_sensor):
 		return single_flow_reading
 
 # is CO2 broken?
-S110 = flow_meter(1, 1)				# flow_met1
-S111 = flow_meter(4, 4)				# flow_met2
-S305 = CO2_sensor(5)				# C02
+flow_meter = (None, flow_meter(1, 1)
+		    flow_meter(4, 4)
+
+CO2 = CO2_sensor(5)
