@@ -1,52 +1,60 @@
 # import sensors by category
-from I2C      import LL, DO, pH, EC, TP, PAR, MO, O2
+from ADC      import LL, MO, O2, PAR
+from I2C      import DO, EC, pH, TP
 from one_wire import temp, RHTemp
-from UART     import flow_meter, CO2
+from UART     import CO2, flow_meter
 from USB      import camera
 
-# initializing as set because no requirement for order that I can see
-# always assume as little as you need to
-# Einstein: "Make things as simple as possible, but no simpler."
-# don't see a reason to assume order
-sensor_suite = set()
+# needs to be ordered when dumping observation
+sensor_suite = list()
 
 # populate sensor suite
 
 # one camera
-sensor_suite.add(camera)
+sensor_suite.append(camera)
 
 # six liquid level sensors
-for i in {1, 2, 3, 4, 5, 6}: sensor_suite.add(LL[i])
+for i in (1, 2, 3, 4, 5, 6): sensor_suite.append(LL[i])
 
-# one dissolved oxygen sensor
-sensor_suite.add(DO)
+# one dissolved oxygen probe
+sensor_suite.append(DO)
 
 # two pH sensors
-for i in {1, 2}: sensor_suite.add(pH[i])
+for i in (1, 2): sensor_suite.append(pH[i])
 
 # two electrical conductivity sensors
-for i in {1, 2}: sensor_suite.add(EC[i])
+for i in (1, 2): sensor_suite.append(EC[i])
 
 # two total pressure sensors
-for i in {1, 2}: sensor_suite.add(TP[i])
+for i in (1, 2): sensor_suite.append(TP[i])
 
 # two PAR sensors
-for i in {1, 2}: sensor_suite.add(PAR[i])
+for i in (1, 2): sensor_suite.append(PAR[i])
 
 # four moisture sensors
-for i in {1, 2, 3, 4}: sensor_suite.add(MO[i])
+for i in (1, 2, 3, 4): sensor_suite.append(MO[i])
 
 # one oxygen sensor
-sensor_suite.add(O2)
+sensor_suite.append(O2)
 
 # five temperature sensors
-for i in {1, 2, 3, 4, 5}: sensor_suite.add(temp[i])
+for i in (1, 2, 3, 4, 5): sensor_suite.append(temp[i])
 
 # three relative humidity and temperature sensors
-for i in {1, 2, 3}: sensor_suite.add(RHTemp[i])
+for i in (1, 2, 3): sensor_suite.append(RHTemp[i])
 
-# two flow meter sensors
-for i in {1, 2}: sensor_suite.add(flow_meter[i])
+# two flow meters
+for i in (1, 2): sensor_suite.append(flow_meter[i])
 
 # one CO2 sensor
-sensor_suite.add(CO2)
+sensor_suite.append(CO2)
+
+for sensor in sensor_suite: 
+
+	try:
+	
+		print sensor.read()
+
+	except IOError: print sensor
+
+	except AttributeError: print sensor
