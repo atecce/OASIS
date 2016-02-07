@@ -53,7 +53,7 @@ for sensor in sensor_suite:
 
 	try:
 	
-		print sensor.read()
+		print sensor.name, sensor.read()
 
 	except IOError: print sensor
 

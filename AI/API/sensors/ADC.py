@@ -16,7 +16,9 @@ class ADC_sensor(I2C_sensor):
 	interface_number = 2
 
 	# each I2C device has an address, register, and interface number
-	def __init__(self, address, register):
+	def __init__(self, name, address, register):
+
+		self.name = name
 
 		# create bus with interface number
 		self.bus = smbus.SMBus(self.interface_number) 
@@ -91,7 +93,9 @@ class liquid_level(ADC_sensor):
 	# all liquid level sensors have an address 0x22
 	address = 0x22
 
-	def __init__(self, register):
+	def __init__(self, name, register):
+
+		self.name = name
 
 		# create bus with interface number
 		self.bus = smbus.SMBus(self.interface_number) 
@@ -126,7 +130,9 @@ class MO_sensor(ADC_sensor):
 	address          = 0x21
 
 	# each I2C device has an address, register, and interface number
-	def __init__(self, register):
+	def __init__(self, name, register):
+
+		self.name = name
 
 		# create bus with interface number
 		self.bus = smbus.SMBus(self.interface_number) 
@@ -158,6 +164,8 @@ class O2_sensor(ADC_sensor):
 
 	def __init__(self):
 
+		self.name = name
+
 		# set bus with interface number
 		self.bus = smbus.SMBus(self.interface_number) 
 
@@ -182,6 +190,8 @@ class PAR_sensor(ADC_sensor):
 
 	def __init__(self, register):
 
+		self.name = name
+
 		# set bus with interface number
 		self.bus = smbus.SMBus(self.interface_number) 
 
@@ -200,22 +210,22 @@ class PAR_sensor(ADC_sensor):
 		return str(parValue)
 
 # liquid level sensors
-LL = {1: liquid_level(0x80),
-      2: liquid_level(0xA0),
-      3: liquid_level(0xC0),
-      4: liquid_level(0xE0),
-      5: liquid_level(0xD0),
-      6: liquid_level(0xF0)}
+LL = {1: liquid_level("LL1", 0x80),
+      2: liquid_level("LL2", 0xA0),
+      3: liquid_level("LL3", 0xC0),
+      4: liquid_level("LL4", 0xE0),
+      5: liquid_level("LL5", 0xD0),
+      6: liquid_level("LL6", 0xF0)}
 
 # PAR sensors
-PAR = {1: PAR_sensor(0xF0),
-       2: PAR_sensor(0xD0)}
+PAR = {1: PAR_sensor("PAR1", 0xF0),
+       2: PAR_sensor("PAR2", 0xD0)}
 
 # MO sensors
-MO = {1: MO_sensor(0x80),
-      2: MO_sensor(0xA0),
-      3: MO_sensor(0xC0),
-      4: MO_sensor(0xE0)}
+MO = {1: MO_sensor("MO1", 0x80),
+      2: MO_sensor("MO2", 0xA0),
+      3: MO_sensor("MO3", 0xC0),
+      4: MO_sensor("MO4", 0xE0)}
 
 # oxygen sensor
-O2 = O2_sensor()
+O2 = O2_sensor("O2")
