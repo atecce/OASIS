@@ -2,7 +2,9 @@ class actuator:
 
 	def __init__(self, pin):
 
-		self.path = "/sys/devices/virtual/gpio/gpio" + pin + "/value" 
+		self.pin = pin
+
+		self.path = "/sys/devices/virtual/gpio/gpio" + str(pin) + "/value" 
 
 	def read(self): 
 
@@ -32,7 +34,7 @@ fan = {1: actuator(70),
 
 LED = actuator(51)
 
-for i in pump: print pump[i].read()
+for i in pump: print pump[i].pin, pump[i].read(), 
 
 EC_HSST         = (1150, 1250)
 pH_HSST         = (5.5, 6)
