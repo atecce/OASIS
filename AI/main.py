@@ -4,9 +4,6 @@ from sensors import sensor_suite
 # need this to connect with database
 from networking import 
 
-# start counter for time step
-time = int()
-
 # declare different possible states 
 states = {"initiating", "germinate", "autopilot", "standby", "shutdown"}
 
@@ -52,21 +49,23 @@ thread consciousness (sense)
 # signals from user, presumably
 while mode != shutdown:
 
-	# decide what to do next based on what mode you are in
+	# plant the seeds
 	if   mode == "germinate": germinate()
+
+	# activate AI
 	elif mode == "autopilot": act()
 
+	# command prompt interface
 	elif standby:
 
 		choice = prompt()
 		obey(choice)
 
+	# shutdown
 	elif shutdown: break
 
+	# throw error
 	else: userInputError()
-
-	# increment time step
-	time += 1
 
 # need python replacement
 system("shutdown -P now");
