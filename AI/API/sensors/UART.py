@@ -12,9 +12,11 @@ import struct
 
 class UART_sensor:
 
-	def __init__(self, name, UART_number):
+	def __init__(self, name, table, UART_number):
 
 		self.name = name
+
+		self.table = table
 
 		# initiate sensor with a UART value
 		UART.setup("UART" + str(UART_number))
@@ -127,8 +129,8 @@ class flow_meter(UART_sensor):
 		return single_flow_reading
 
 # flow meters
-flow_meter = {1: flow_meter("flow_meter1", 1),
-	      2: flow_meter("flow_meter2", 4)}
+flow_meter = {1: flow_meter("flow_meter1", "flow_meter_and_circuitry", 1),
+	      2: flow_meter("flow_meter2", "flow_meter_and_circuitry", 4)}
 
 # CO2 sensor
-CO2 = CO2_sensor("CO2", 5)
+CO2 = CO2_sensor("CO2", "CO2", 5)

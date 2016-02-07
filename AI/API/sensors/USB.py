@@ -4,9 +4,11 @@ import cv2
 class USB: 
 
 	# may not need a constructor here
-	def __init__(self, name):
+	def __init__(self, table, name):
 
 		self.name = name
+
+		self.table = table
 
 	def read(self):
 
@@ -25,4 +27,4 @@ class USB:
 		# close cv2?
 		cv2.destroyAllWindows()
 
-camera = USB("camera")
+camera = USB("camera", "camera")

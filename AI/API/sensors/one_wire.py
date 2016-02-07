@@ -6,9 +6,11 @@ class one_wire_sensor: pass
 
 class temperature(one_wire_sensor):
 
-	def __init__(self, name, ID):
+	def __init__(self, name, table, ID):
 
 		self.name = name
+
+		self.table = table
 
 		# note all the pins P8.3, P8.4, P8.5, P8.6 are shorted for intefacing all temp sensors on one-wire protocol
 
@@ -33,9 +35,11 @@ class temperature(one_wire_sensor):
 
 class RH_and_temp(one_wire_sensor):
 
-	def __init__(self, name, pin):
+	def __init__(self, name, table, pin):
 
 		self.name = name
+
+		self.table = table
 
 		# each relative humidity and temperature sensor has a pin
 		self.pin = pin
@@ -90,12 +94,12 @@ class RH_and_temp(one_wire_sensor):
 		else: print 'Failed to get reading. Try again!'
 
 # temperature sensors (temp5?)
-temp = {1: temperature("temp1", "28-00000673a8a7"),
-	2: temperature("temp2", "28-0000065f27cc"),
-	3: temperature("temp3", "28-0000065eb57a"),
-	4: temperature("temp4", "28-000006747f7f")}
+temp = {1: temperature("temp1", "liquid_temp", "28-00000673a8a7"),
+	2: temperature("temp2", "liquid_temp", "28-0000065f27cc"),
+	3: temperature("temp3", "liquid_temp", "28-0000065eb57a"),
+	4: temperature("temp4", "liquid_temp", "28-000006747f7f")}
 	      
 # relative humidity and temperature sensors, (RHTemp3?)
-RHTemp = {1: RH_and_temp("RHTemp1", 'P8_8'),
-	  2: RH_and_temp("RHTemp2", 'P8_9'),
-	  3: RH_and_temp("RHTemp3", 'P8_10')}
+RHTemp = {1: RH_and_temp("RHTemp1", "rh_and_air_temp", 'P8_8'),
+	  2: RH_and_temp("RHTemp2", "rh_and_air_temp", 'P8_9'),
+	  3: RH_and_temp("RHTemp3", "rh_and_air_temp", 'P8_10')}
