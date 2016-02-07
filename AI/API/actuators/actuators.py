@@ -27,13 +27,31 @@ class actuator:
 
 		self.path = "/sys/devices/virtual/gpio/gpio" + str(pin) + "/value" 
 
-	def read(self): 
+	def check_status(self): 
 
 		value = int(open(self.path).read().rstrip())
 
 		state = self.lookup_key[self.pin][value]
 
 		return state
+
+	def toggle(self):
+
+		device = open(self.path)
+
+		value = int(device.read().rstrip())
+
+		device.close()
+
+		if   value == 0: value = 1
+		elif value == 1: value = 0
+		else: print "throw error"
+
+		device = open(self.path, 'w')
+
+		device.write(str(value))
+
+		device.close()
 
 heater = actuator(45)
 chiller = actuator(44)
@@ -57,17 +75,8 @@ fan = {1: actuator(70),
 
 LED = actuator(51)
 
-print "heater", heater.read()
-
-print "chiller", chiller.read()
-
-print "O2_concentrator", O2_concentrator.read()
-
-print "LED", LED.read(),
-
-for i in pump: print "Pump", i,  pump[i].read() 
-
-for i in fan: print "Fan", i, fan[i].read()
+LED.toggle()
+print LED.check_status()
 
 EC_HSST         = (1150, 1250)
 pH_HSST         = (5.5, 6)
@@ -79,5 +88,3 @@ humidity_HSST   = (50, 70)
 pressure_HSST   = (80, 84)
 CO2_HSST 	= (1000, 2000)
 PAR_HSST 	= (200, 250)
-
-
