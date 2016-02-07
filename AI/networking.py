@@ -9,7 +9,7 @@ def prompt():
 	return choice;
 
 # dumps the current observation to a file (for now)
-def dump(observation):
+def dump(observation): 
 
 	with open("datalog.csv", 'w') as data:
 
@@ -20,6 +20,34 @@ def dump(observation):
 
 		data.write('\n')
 
+# dumps current observation to mysql db
+# arguments must be strings 
+def dump_to_db(table, row, observation):
+	
+	connection = mdb.connect('mysql.topboulder.com', 'mars_jared', 'password', 'mars_oasis_project'); # we should have a master user for this
+	
+	with connection: 
+	
+		cursor = connection.cursor()
+		
+		try:
+		
+			cursor.execute( "INSERT INTO "
+					+table
+					+"("+row+") "
+					+"VALUES"
+					+"("+observation+")" )
+
+		except mdb.Error, e:
+  
+    			print "Error %d: %s" % (e.args[0],e.args[1])
+    			sys.exit(1)
+
+		finally:
+
+			if connection:
+				connection.close()
+
 # querys the mars_oasis_project db
 # accepts sql query string as argument (i.e. ("SELECT * FROM liquid_temp")
 # currently just prints the result
@@ -29,11 +57,23 @@ def load(query):
 
 	with connection: # automatically connect w/ error handling 
 
-		cursor = connection.cursor()
-    		cursor.execute(query) 
+		try:
+		
+			cursor = connection.cursor()
+    			cursor.execute(query) 
 
-		rows = cursor.fetchall() # get all the table rows
+			rows = cursor.fetchall() # get all the table rows
 
-    		for row in rows:
-        		print row
+    			for row in rows:
+        			print row
+		
+		except mdb.Error, e:
+  
+    			print "Error %d: %s" % (e.args[0],e.args[1])
+    			sys.exit(1)
+
+		finally:
+
+			if connection:
+				connection.close()
 
