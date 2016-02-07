@@ -1,6 +1,7 @@
 class actuator:
 
-	lookup_key = {44: {1: "off", 0: "on"},
+	lookup_key = {45: {1: "off", 0: "on"},
+		      44: {1: "off", 0: "on"},
 		      26: {1: "off", 0: "on"},	
 		      87: {1: "off", 0: "on"},
 		      89: {1: "off", 0: "on"},
@@ -28,9 +29,9 @@ class actuator:
 
 	def read(self): 
 
-		value = open(self.path).read()
+		value = int(open(self.path).read().rstrip())
 
-		state = self.lookup_key[pin][value]
+		state = self.lookup_key[self.pin][value]
 
 		return state
 
@@ -56,7 +57,17 @@ fan = {1: actuator(70),
 
 LED = actuator(51)
 
-for i in pump: print pump[i].pin, pump[i].read(), 
+print "heater", heater.read()
+
+print "chiller", chiller.read()
+
+print "O2_concentrator", O2_concentrator.read()
+
+print "LED", LED.read(),
+
+for i in pump: print "Pump", i,  pump[i].read() 
+
+for i in fan: print "Fan", i, fan[i].read()
 
 EC_HSST         = (1150, 1250)
 pH_HSST         = (5.5, 6)
