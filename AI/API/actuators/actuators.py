@@ -2,10 +2,13 @@ class actuator:
 
 	def __init__(self, pin):
 
-		# these are determined at construction
-		self.pin = pin
+		self.path = "/sys/devices/virtual/gpio/gpio" + pin + "/value" 
 
-	def toggle(self): pass
+	def read(self): 
+
+		state = open(self.path).read()
+
+		return state
 
 heater = actuator(45)
 chiller = actuator(44)
@@ -28,6 +31,8 @@ fan = {1: actuator(70),
        2: actuator(71)}
 
 LED = actuator(51)
+
+for i in pump: print pump[i].read()
 
 EC_HSST         = (1150, 1250)
 pH_HSST         = (5.5, 6)
