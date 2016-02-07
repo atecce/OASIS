@@ -91,7 +91,7 @@ class RH_and_temp(one_wire_sensor):
 			return '{0:0.1f}, {1:0.1f}'.format(temperature, humidity)
 
 		# pretty sure I'd want to raise an error here
-		else: print 'Failed to get reading. Try again!'
+		else: return 'Reading Failure'
 
 # temperature sensors (temp5?)
 temp = {1: temperature("temp1", "liquid_temp", "28-00000673a8a7"),
