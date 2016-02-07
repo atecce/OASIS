@@ -28,7 +28,9 @@ class actuator:
 
 	def read(self): 
 
-		state = open(self.path).read()
+		value = open(self.path).read()
+
+		state = self.lookup_key[pin][value]
 
 		return state
 
