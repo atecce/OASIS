@@ -1,3 +1,7 @@
+#!usr/bin/env python
+
+import MySQLdb as mdb # we can also import the MySQL C API with import _mysql
+
 # prompts the user for an action. should return a choice
 def prompt():
 
@@ -7,7 +11,7 @@ def prompt():
 # dumps the current observation to a file (for now)
 def dump(observation):
 
-	with data as open("datalog.csv", 'w'):
+	with open("datalog.csv", 'w') as data:
 
 		for sense in observation: 
 			
@@ -16,31 +20,20 @@ def dump(observation):
 
 		data.write('\n')
 
-# will leave this alone for now, I like the way it looks
-// loading data from db (this example should help with writing to db eventually)
-void load() {
-	// interacting with mysql requires the mysql.h header file
-	// do we want to include that file in this file or in the control loop file?
-	
-	MYSQL     *conn;
-	MYSQL_RES *res;
-	MYSQL_ROW *row;
+# querys the mars_oasis_project db
+# accepts sql query string as argument (i.e. ("SELECT * FROM liquid_temp")
+# currently just prints the result
+def load(query): 
 
-	char *server   = "server";
-	char *user     = "username";
-	char *password = "password";
-	char *database = "local"; // for now
-	
-	conn = mysql_init(NULL);
-	mysql_real_connect(conn, server, user, password, database, 0, NULL, 0);
-	
-	mysql_query(conn, "SELECT * FROM website"); // get all the data
-	
-	res = mysql_use_result(conn);
-	while ((row = mysql_fetch_row(res)) != NULL)
-	{
-		printf(row);
-	}
-	mysql_free_result(res);
-	mysql_close(conn);
-}
+	connection = mdb.connect('mysql.topboulder.com', 'mars_jared', 'password', 'mars_oasis_project');
+
+	with connection: # automatically connect w/ error handling 
+
+		cursor = connection.cursor()
+    		cursor.execute(query) 
+
+		rows = cursor.fetchall() # get all the table rows
+
+    		for row in rows:
+        		print row
+
