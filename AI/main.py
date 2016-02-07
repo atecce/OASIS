@@ -2,7 +2,7 @@
 from sensors import sensor_suite
 
 # need this to connect with database
-from networking import 
+from networking import * #imports load, dump, dump_to_db
 
 # declare different possible states 
 states = {"initiating", "germinate", "autopilot", "standby", "shutdown"}
@@ -23,6 +23,9 @@ def sense():
 
 		# send 
 		dump(observation)
+		
+		# write to db
+		map(dump_to_db, [sensor.table, sensor.name, sensor.read() for sensor in sensor_suite])
 
 def act(): 
 
