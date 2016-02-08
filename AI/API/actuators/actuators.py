@@ -17,7 +17,7 @@ class actuator:
 		      86: {0: "off", 1: "on"},
 		      32: {0: "off", 1: "on"},
 		      36: {0: "off", 1: "on"},
-		      70: None,	
+		      70: {0: "low", 1: "high"},
 		      71: {0: "low", 1: "high"},	
 		      51: {0: "off", 1: "on"}}	
 
@@ -29,7 +29,9 @@ class actuator:
 
 	def check_status(self): 
 
-		value = int(open(self.path).read().rstrip())
+		device = open(self.path)
+
+		value = int(device.read().rstrip())
 
 		state = self.lookup_key[self.pin][value]
 
