@@ -3,6 +3,7 @@ import time
 
 class actuator:
 
+	# makes output more readable
 	lookup_key = {45: {1: "off", 0: "on"},
 		      44: {1: "off", 0: "on"},
 		      26: {1: "off", 0: "on"},	
@@ -20,46 +21,58 @@ class actuator:
 		      86: {0: "off", 1: "on"},
 		      32: {0: "off", 1: "on"},
 		      36: {0: "off", 1: "on"},
-		      70: {0: "low", 1: "high"}, # this is an assumption
+		      70: {0: "low", 1: "high"},
 		      71: {0: "low", 1: "high"},	
 		      51: {0: "off", 1: "on"}}	
 
 	def __init__(self, name, pin):
 
+		# assign name and pin
 		self.name = name
-
 		self.pin = pin
 
+		# set path for device file with pin
 		self.path = "/sys/devices/virtual/gpio/gpio" + str(pin) + "/value" 
 
 	def check_status(self): 
 
+		# open up the device
 		device = open(self.path)
 
+		# read in the value as an integer
 		value = int(device.read().rstrip())
 
+		# close the device
 		device.close()
 
+		# look up the state
 		state = self.lookup_key[self.pin][value]
 
 		return state
 
 	def toggle(self):
 
+		# open the device for reading
 		device = open(self.path)
 
+		# read in the value as an integer
 		value = int(device.read().rstrip())
 
+		# close the device
 		device.close()
 
+		# flip the switch
 		if   value == 0: value = 1
 		elif value == 1: value = 0
 		else: print "throw error"
 
+		# open the device for writing
 		device = open(self.path, 'w')
 
+		# write the new value
 		device.write(str(value))
 
+		# close the device
 		device.close()
 
 actuator_suite = list()
@@ -98,6 +111,7 @@ for i in (1, 2): actuator_suite.append(fan[i])
 # overhead light
 actuator_suite.append(actuator("Overhead light", 51))
 
+# turn each actuator on and off
 for actuator in actuator_suite:
 
 	actuator.toggle()	
