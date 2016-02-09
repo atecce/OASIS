@@ -2,12 +2,12 @@
 
 Sensors (prioritized over actuators):
 
-	[] Test all sensors for output
+	[x] Test all sensors for output
 	[] Make sure output is sensible (calibration)
 	
 Actuators:
 
-	[] Test all actuators for feedback (Zach and I have done much of this, some uncertainty as to whether it is all of them. Need to consult Noah.)
+	[x] Test all actuators for feedback
 
 AI:
 
