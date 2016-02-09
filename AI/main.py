@@ -8,7 +8,7 @@ from networking import * #imports load, dump, dump_to_db
 states = {"initiating", "germinate", "autopilot", "standby", "shutdown"}
 
 # initialize state
-state mode = initiating;
+mode = "initiating"
 
 # string for now, this is rather open-ended
 choice = str()
@@ -30,7 +30,7 @@ def sense():
 def act(): 
 
 	# toggle each actuator
-	for (int i = 0; i < actuator_amt; i++) actuator_suite[i].toggle();
+	for actuator in actuator_suite: actuator[i].toggle();
 
 def obey(choice)
 

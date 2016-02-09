@@ -6,7 +6,7 @@ import MySQLdb as mdb # we can also import the MySQL C API with import _mysql
 def prompt():
 
 	# some networking required here
-	return choice;
+	return choice
 
 # dumps the current observation to a file (for now)
 def dump(observation): 
@@ -24,29 +24,36 @@ def dump(observation):
 # arguments must be strings 
 def dump_to_db(table, row, observation):
 	
+	# logs in to database
 	connection = mdb.connect('mysql.topboulder.com', 'mars_jared', 'password', 'mars_oasis_project'); # we should have a master user for this
 	
+	# open connection 
 	with connection: 
 	
+		# set up cursor
 		cursor = connection.cursor()
 		
 		try:
 		
+			# add entry to database
 			cursor.execute( "INSERT INTO "
-					+table
-					+"("+row+") "
-					+"VALUES"
-					+"("+observation+")" )
+					+ table
+					+ "("+row+") "
+					+ "VALUES"
+					+ "("+observation+")" )
 
+		# catch database errors
 		except mdb.Error, e:
   
-    			print "Error %d: %s" % (e.args[0],e.args[1])
+			# display error
+    			print "Error %d: %s" % (e.args[0], e.args[1])
+
+			# potentially don't want to exit
     			sys.exit(1)
 
 		finally:
 
-			if connection:
-				connection.close()
+			if connection: connection.close()
 
 # querys the mars_oasis_project db
 # accepts sql query string as argument (i.e. ("SELECT * FROM liquid_temp")
