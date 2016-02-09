@@ -1,3 +1,6 @@
+# need this to wait
+import time
+
 class actuator:
 
 	lookup_key = {45: {1: "off", 0: "on"},
@@ -71,32 +74,35 @@ actuator_suite.append(actuator("chiller", 44))
 actuator_suite.append(actuator("O2 concentrator", 26))
 
 # twelve pumps
-pump = {1:  actuator(62),
-	2:  actuator(63),
-	3:  actuator(23),
-	4:  actuator(65),
-	5:  actuator(27),
-	6:  actuator(37),
-	7:  actuator(33),
-	8:  actuator(61),
-	9:  actuator(86),
-	10: actuator(32),
-	11: actuator(36),
-	12: actuator(87)}
+pump = {1:  actuator("Pump 1",  62),
+	2:  actuator("Pump 2",  63),
+	3:  actuator("Pump 3",  23),
+	4:  actuator("Pump 4",  65),
+	5:  actuator("Pump 5",  27),
+	6:  actuator("Pump 6",  37),
+	7:  actuator("Pump 7",  33),
+	8:  actuator("Pump 8",  61),
+	9:  actuator("Pump 9",  86),
+	10: actuator("Pump 10", 32),
+	11: actuator("Pump 11", 36),
+	12: actuator("Pump 12", 87)}
 
 for i in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12): actuator_suite.append(pump[i])
 
 # two fans
-fan = {1: actuator(70),
-       2: actuator(71)}
+fan = {1: actuator("Fan 1", 70),
+       2: actuator("Fan 2", 71)}
 
 for i in (1, 2): actuator_suite.append(fan[i])
 
 # overhead light
-actuator_suite.append(actuator(51))
+actuator_suite.append(actuator("Overhead light", 51))
 
 for actuator in actuator_suite:
 
 	actuator.toggle()	
-	print actuator.check_status()
+	print actuator.name, "is", actuator.check_status()
+	time.sleep(3)
+	actuator.toggle()	
+	print actuator.name, "is", actuator.check_status()
 	time.sleep(3)
