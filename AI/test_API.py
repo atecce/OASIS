@@ -22,6 +22,16 @@ class test_sensor:
 		# returns the random value
 		return random.gauss(self.mu, self.sigma)
 
+	def read_low(self):
+
+		# returns a value two standard deviations below the mean
+		return self.HSST["low"] - 2*self.sigma
+
+	def read_high(self):
+
+		# returns a value two standard deviations above the mean
+		return self.HSST["high"] + 2*self.sigma
+
 # set up all sensors
 EC         = test_sensor(1150, 1250)
 pH         = test_sensor(5.5, 6)
