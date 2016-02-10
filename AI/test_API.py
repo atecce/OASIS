@@ -40,7 +40,7 @@ O = list()
 # length of time steps
 T = int(1000)
 
-# for the specified length of time
+# this for loop creates a simulated time series for the specified time T
 for t in range(T):
 
 	# observe
