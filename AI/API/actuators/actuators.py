@@ -21,7 +21,9 @@ class actuator:
 		      71: {0: "low", 1: "high"},	
 		      51: {0: "off", 1: "on"}}	
 
-	def __init__(self, pin):
+	def __init__(self, name, pin):
+
+		self.name = name
 
 		self.pin = pin
 
@@ -57,10 +59,18 @@ class actuator:
 
 		device.close()
 
-heater = actuator(45)
-chiller = actuator(44)
-O2_concentrator = actuator(26)
+actuator_suite = list()
 
+# one heater
+actuator_suite.append(actuator("heater", 45))
+
+# one chiller
+actuator_suite.append(actuator("chiller", 44))
+
+# one O2 concentrator
+actuator_suite.append(actuator("O2 concentrator", 26))
+
+# twelve pumps
 pump = {1:  actuator(62),
 	2:  actuator(63),
 	3:  actuator(23),
@@ -74,10 +84,19 @@ pump = {1:  actuator(62),
 	11: actuator(36),
 	12: actuator(87)}
 
+for i in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12): actuator_suite.append(pump[i])
+
+# two fans
 fan = {1: actuator(70),
        2: actuator(71)}
 
-LED = actuator(51)
+for i in (1, 2): actuator_suite.append(fan[i])
 
-LED.toggle()
-print LED.check_status()
+# overhead light
+actuator_suite.append(actuator(51))
+
+for actuator in actuator_suite:
+
+	actuator.toggle()	
+	print actuator.check_status()
+	time.sleep(3)
