@@ -1,6 +1,9 @@
 # need this to get random values
 import random
 
+# need this to wait
+import time
+
 class test_sensor:
 
 	""" This is a random normal variable which will cross both sides of the HSST's.
@@ -44,20 +47,58 @@ pressure   = test_sensor(80, 84)
 CO2        = test_sensor(1000, 2000)
 PAR        = test_sensor(200, 250)
 
-# this is a list of observations indexed t = 0, 1, 2, ...
-O = list()
+class actuator:
 
-# length of time steps
-T = int(1000)
+	def __init__(self, name):
 
-# this for loop creates a simulated time series for the specified time T
-for t in range(T):
+		# assign name 
+		self.name = name
 
-	# observe
-	observation = (EC.read(), 	  pH.read(), 	   day_temp.read(), night_temp.read(), soil_temp.read(),  \
-                       water_temp.read(), humidity.read(), pressure.read(), CO2.read(),        PAR.read())
+		# all actuators start as "off"
+		self.status = "off"
 
-	# store
-	O.append(observation)
+	def check_status(self): 
 
-	print observation
+		return self.status
+
+	def toggle(self):
+
+		if   self.status == "on":  self.status = "off"
+		elif self.status == "off": self.status = "on"
+
+# set up all the actuators
+actuator_suite = list()
+
+# one heater
+actuator_suite.append(actuator("heater"))
+
+# one chiller
+actuator_suite.append(actuator("chiller"))
+
+# one O2 concentrator
+actuator_suite.append(actuator("O2 concentrator"))
+
+# twelve pumps
+pump = {1:  actuator("Pump 1"),
+	2:  actuator("Pump 2"),
+	3:  actuator("Pump 3"),
+	4:  actuator("Pump 4"),
+	5:  actuator("Pump 5"),
+	6:  actuator("Pump 6"),
+	7:  actuator("Pump 7"),
+	8:  actuator("Pump 8"),
+	9:  actuator("Pump 9"),
+	10: actuator("Pump 10"),
+	11: actuator("Pump 11"),
+	12: actuator("Pump 12")}
+
+for i in range(1, 13): actuator_suite.append(pump[i])
+
+# two fans
+fan = {1: actuator("Fan 1"),
+       2: actuator("Fan 2")}
+
+for i in (1, 2): actuator_suite.append(fan[i])
+
+# overhead light
+actuator_suite.append(actuator("Overhead light"))
