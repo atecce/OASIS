@@ -63,6 +63,32 @@ class I2C_sensor:
 		# probably shouldn't be a string though
 		return results_string
 
+	def calibrate_low(self):
+
+		#e number
+
+		# ASCII			         	  C     a      l     ,    l     o     w     ,      5    .     0     0 
+		#bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x35, 0x2E, 0x30, 0x30]) # Cal,low,5.00
+		
+		# ASCII			        	C      a     l    ,      l     o    w      ,    3     .     0     0
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x33, 0x2E, 0x30, 0x30]) # Cal,low,3.00
+		time.sleep(5)
+		
+		results=bus.read_i2c_block_data(self.address, self.register) #get calibration info
+		time.sleep(5)
+		
+		print results #print data
+					
+		# ASCII			   c    	 C     a    l    ,    ?
+		bus.write_i2c_block_data(self.address, 0x43, [0x61,0x6C,0x2C,0x3F])#Cal,? (Query the calibration)
+		time.sleep(5.4)
+		
+		results = bus.read_i2c_block_data(self.address, self.register)
+
+		time.sleep(3)
+		
+		print results
+
 class total_pressure_sensor(I2C_sensor):
 
 	def __init__(self, name, table, interface_number):
@@ -137,3 +163,4 @@ EC = {1: I2C_sensor("EC1", "electrical_conductivity", 0x66),
 # total pressure sensors
 TP = {1: total_pressure_sensor("TP1", "total_pressure", 2),
       2: total_pressure_sensor("TP2", "total_pressure", 1)}
+
