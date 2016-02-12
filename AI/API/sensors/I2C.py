@@ -28,29 +28,25 @@ class I2C_sensor:
 
 	def read(self):
 
-		# write byte to the bus, (a request?)
+		# request reading
 		self.bus.write_byte(self.address, self.register)
+		time.sleep(1)
 
-		# actions punctuated by delays (is this necessary?)
-		time.sleep(3)
+		# read response
+		results = self.bus.read_i2c_block_data(self.address, self.register)
+		time.sleep(1)
 
-		# read data into results(read response?)
-		results = self.bus.read_i2c_block_data(self.address, self.register) #read cal info
-
-		# actions punctuated by delays (is this necessary?)
-		time.sleep(3)
-
-		# what does enumerate do?
+		# iterate through index and item
 		for index, item in enumerate(results):
 
-			# if first result?
+			# 0 indicates a terminating character (why not ASCII?)
 			if item == 0:
 				
-				# is this a bit?
+				# set stopping index
 				end_val = index
 				break
 
-		# is this the end of a binary string?
+		# parse results (first character just returns status)
 		results = results[1:end_val]
 
 		# beautiful list comprehension Sairam 
@@ -125,10 +121,12 @@ class dissolved_oxygen_sensor(I2C_sensor):
 
 	def calibrate(self):
 
-		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C]) #Cal (Calibrates the device to atmospheric oxygen levels)
+		# Cal (Calibrates the device to atmospheric oxygen levels)
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C]) 
 		time.sleep(1)
 
-		results=bus.read_i2c_block_data(self.address, self.register) #get calibration info
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
 		time.sleep(1)
 
 		print results
@@ -137,10 +135,12 @@ class electrical_conductivity_sensor(I2C_sensor):
 
 	def calibrate_dry(self):
 
-		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x64, 0x72, 0x79]) #Cal, dry
+		# Cal, dry
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x64, 0x72, 0x79]) 
 		time.sleep(1)
 
-		results = bus.read_i2c_block_data(self.address, self.register) #get calibration info
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
 		print results
 
 		for index, item in enumerate(results):
@@ -153,25 +153,28 @@ class electrical_conductivity_sensor(I2C_sensor):
 		results = results[1:end_val]
 		results_string = ''.join(chr(i) for i in results)
 
-		print results_string #print data
+		print results_string 
 
 	def calibrate_low(self):
 
-		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x31, 0x32, 0x38, 0x38, 0x30]) #Cal, low, n
+		# Cal, low, n
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x31, 0x32, 0x38, 0x38, 0x30]) 
 		time.sleep(1)
 
-		results = bus.read_i2c_block_data(self.address, self.register) #read cal info
-		print results #print data
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register)
+		print results 
 
 	def calibrate_high(self):
 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x38, 0x30, 0x30, 0x30, 0x30]) #Cal, high, n (80000)
 		time.sleep(1)
 
-		results = bus.read_i2c_block_data(self.address, self.register) #read cal info
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register)
 		time.sleep(1)
 
-		print results #print data
+		print results
 
 class total_pressure_sensor(I2C_sensor):
 
