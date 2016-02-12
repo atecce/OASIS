@@ -68,6 +68,17 @@ class I2C_sensor:
 		
 		print results
 
+	def calibrate_query_test(self):
+					
+		# ASCII				       
+		bus.write_i2c_block_data(self.address, 'C', ['a', 'l', ',', '?'])
+		time.sleep(1)
+		
+		results = bus.read_i2c_block_data(self.address, self.register)
+		time.sleep(1)
+		
+		print results
+
 	def calibrate_clear(self): 
 
 		# ASCII					C      a     l      ,    c     l      e    a     r       
