@@ -10,18 +10,19 @@ import Adafruit_BMP.BMP085 as BMP085
 class I2C_sensor: 
 
 	# default interface number and address for I2C sensors
-	interface_number = 2
-	register         = 0x52
+	bus_number = 2
+	register   = 0x52
 
 	def __init__(self, name, table,  address):
 
 		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
-		# create bus with interface number
-		self.bus = smbus.SMBus(self.interface_number) 
+		# create bus with bus number
+		self.bus = smbus.SMBus(self.bus_number) 
 
 		# set address
 		self.address = address
@@ -167,7 +168,8 @@ class electrical_conductivity_sensor(I2C_sensor):
 
 	def calibrate_high(self):
 
-		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x38, 0x30, 0x30, 0x30, 0x30]) #Cal, high, n (80000)
+		# Cal, high, n (80000)
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x38, 0x30, 0x30, 0x30, 0x30]) 
 		time.sleep(1)
 
 		# get calibration info
@@ -178,15 +180,16 @@ class electrical_conductivity_sensor(I2C_sensor):
 
 class total_pressure_sensor(I2C_sensor):
 
-	def __init__(self, name, table, interface_number):
+	def __init__(self, name, table, bus_number):
 
 		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# set interface number
-		self.interface_number = interface_number
+		self.bus_number = bus_number
 
 	def read(self):
 
