@@ -64,11 +64,10 @@ class I2C_sensor:
 					
 		# ASCII				       	 C     a      l    ,     ?
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x3F])
-		time.sleep(5.4)
+		time.sleep(1)
 		
 		results = bus.read_i2c_block_data(self.address, self.register)
-
-		time.sleep(3)
+		time.sleep(1)
 		
 		print results
 
@@ -76,11 +75,11 @@ class I2C_sensor:
 
 		# ASCII					C      a     l      ,    c     l      e    a     r       
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x63, 0x6C, 0x65, 0x61, 0x72])
-		time.sleep(5)
+		time.sleep(1)
 
 		# get calibration info
 		results = bus.read_i2c_block_data(self.address, self.register) 
-		time.sleep(5)
+		time.sleep(1)
 
 		print results
 
@@ -90,11 +89,11 @@ class pH_sensor(I2C_sensor):
 
 		# ASCII			        	C      a     l    ,      l     o    w      ,    4     .     0     0
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x34, 0x2E, 0x30, 0x30])
-		time.sleep(5)
+		time.sleep(1)
 
 		# get calibration info
 		results = bus.read_i2c_block_data(self.address, self.register) 
-		time.sleep(5)
+		time.sleep(1)
 		
 		print results
 
@@ -102,11 +101,11 @@ class pH_sensor(I2C_sensor):
 
 		# ASCII					C      a     l      ,    m     i      d    ,     7     .     0    0 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6D, 0x69, 0x64, 0x2C, 0x37, 0x2E, 0x30, 0x30])
-		time.sleep(5)
+		time.sleep(1)
 
 		# get calibration info
 		results = bus.read_i2c_block_data(self.address, self.register) 
-		time.sleep(5)
+		time.sleep(1)
 
 		print results
 		
@@ -114,11 +113,11 @@ class pH_sensor(I2C_sensor):
 
 		# ASCII					C      a     l      ,    h     i      g     h     ,     1      0     .     0    0 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x31, 0x30, 0x2E, 0x30, 0x30])
-		time.sleep(5)
+		time.sleep(1)
 
 		# get calibration info
 		results = bus.read_i2c_block_data(self.address, self.register) 
-		time.sleep(5)
+		time.sleep(1)
 
 		print results
 
@@ -127,10 +126,10 @@ class dissolved_oxygen_sensor(I2C_sensor):
 	def calibrate(self):
 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C]) #Cal (Calibrates the device to atmospheric oxygen levels)
-		time.sleep(5)
+		time.sleep(1)
 
 		results=bus.read_i2c_block_data(self.address, self.register) #get calibration info
-		time.sleep(3)
+		time.sleep(1)
 
 		print results
 
@@ -139,10 +138,10 @@ class electrical_conductivity_sensor(I2C_sensor):
 	def calibrate_dry(self):
 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x64, 0x72, 0x79]) #Cal, dry
-		time.sleep(5)
+		time.sleep(1)
 
 		results = bus.read_i2c_block_data(self.address, self.register) #get calibration info
-		print results #print data
+		print results
 
 		for index, item in enumerate(results):
 
@@ -159,7 +158,7 @@ class electrical_conductivity_sensor(I2C_sensor):
 	def calibrate_low(self):
 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x31, 0x32, 0x38, 0x38, 0x30]) #Cal, low, n
-		time.sleep(5)
+		time.sleep(1)
 
 		results = bus.read_i2c_block_data(self.address, self.register) #read cal info
 		print results #print data
@@ -167,10 +166,10 @@ class electrical_conductivity_sensor(I2C_sensor):
 	def calibrate_high(self):
 
 		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x38, 0x30, 0x30, 0x30, 0x30]) #Cal, high, n (80000)
-		time.sleep(5)
+		time.sleep(1)
 
 		results = bus.read_i2c_block_data(self.address, self.register) #read cal info
-		time.sleep(5)
+		time.sleep(1)
 
 		print results #print data
 
