@@ -248,7 +248,7 @@ class total_pressure_sensor(I2C_sensor):
 
 		# In MarsOASIS case, TP1 has SCL = P9_17 and SDA = P9_18 of bus 2.
 		# In MarsOASIS case, TP2 has SCL = P9_21 and SDA = P9_22 of bus 1.
-		sensor = BMP085.BMP085(busnum = self.interface_number) 
+		sensor = BMP085.BMP085(busnum = self.bus_number) 
 
 		# You can also optionally change the BMP085 mode to one of BMP085_ULTRALOWPOWER, 
 		# BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES.  See the BMP085
