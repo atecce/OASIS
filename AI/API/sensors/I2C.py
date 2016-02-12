@@ -63,24 +63,10 @@ class I2C_sensor:
 		# probably shouldn't be a string though
 		return results_string
 
-	def calibrate_low(self):
-
-		#e number
-
-		# ASCII			         	  C     a      l     ,    l     o     w     ,      5    .     0     0 
-		#bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x35, 0x2E, 0x30, 0x30]) # Cal,low,5.00
-		
-		# ASCII			        	C      a     l    ,      l     o    w      ,    3     .     0     0
-		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x33, 0x2E, 0x30, 0x30]) # Cal,low,3.00
-		time.sleep(5)
-		
-		results=bus.read_i2c_block_data(self.address, self.register) #get calibration info
-		time.sleep(5)
-		
-		print results #print data
+	def calibrate_query(self):
 					
-		# ASCII			   c    	 C     a    l    ,    ?
-		bus.write_i2c_block_data(self.address, 0x43, [0x61,0x6C,0x2C,0x3F])#Cal,? (Query the calibration)
+		# ASCII			       	 C     a      l    ,     ?
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x3F]) #Cal,? (Query the calibration)
 		time.sleep(5.4)
 		
 		results = bus.read_i2c_block_data(self.address, self.register)
@@ -88,6 +74,58 @@ class I2C_sensor:
 		time.sleep(3)
 		
 		print results
+
+	def calibrate_low(self):
+
+		# ASCII			        	C      a     l    ,      l     o    w      ,    4     .     0     0
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x34, 0x2E, 0x30, 0x30])
+		time.sleep(5)
+
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
+		time.sleep(5)
+		
+		print results
+
+	def calibrate_mid(self):
+
+		# ASCII					C      a     l      ,    m     i      d    ,     7     .     0    0 
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6D, 0x69, 0x64, 0x2C, 0x37, 0x2E, 0x30, 0x30])
+		time.sleep(5)
+
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
+		time.sleep(5)
+
+		print results
+		
+	def calibrate_high(self):
+
+		# ASCII					C      a     l      ,    h     i      g     h     ,     1      0     .     0    0 
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x31, 0x30, 0x2E, 0x30, 0x30])
+		time.sleep(5)
+
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
+		time.sleep(5)
+
+		print results
+
+	def calibrate_clear(self): 
+
+		# ASCII					C      a     l      ,    c     l      e    a     r       
+		bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x63, 0x6C, 0x65, 0x61, 0x72])
+		time.sleep(5)
+
+		# get calibration info
+		results = bus.read_i2c_block_data(self.address, self.register) 
+		time.sleep(5)
+
+		print results
+
+	def calibrate_query(self):
+
+
 
 class total_pressure_sensor(I2C_sensor):
 
@@ -163,4 +201,5 @@ EC = {1: I2C_sensor("EC1", "electrical_conductivity", 0x66),
 # total pressure sensors
 TP = {1: total_pressure_sensor("TP1", "total_pressure", 2),
       2: total_pressure_sensor("TP2", "total_pressure", 1)}
+
 
