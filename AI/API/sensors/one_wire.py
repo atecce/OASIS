@@ -6,10 +6,13 @@ class one_wire_sensor: pass
 
 class temperature(one_wire_sensor):
 
+	# each temperature sensor has a name, a db table, and an ID
 	def __init__(self, name, table, ID):
 
+		# set sensor name
 		self.name = name
 
+		# set db table
 		self.table = table
 
 		# note all the pins P8.3, P8.4, P8.5, P8.6 are shorted for intefacing all temp sensors on one-wire protocol
@@ -35,13 +38,16 @@ class temperature(one_wire_sensor):
 
 class RH_and_temp(one_wire_sensor):
 
+	# each relative humidity and temperature sensor has a name, a db table, and a pin
 	def __init__(self, name, table, pin):
 
+		# name the sensor
 		self.name = name
 
+		# set db table
 		self.table = table
 
-		# each relative humidity and temperature sensor has a pin
+		# set pin
 		self.pin = pin
 
 	def read(self):
@@ -70,11 +76,7 @@ class RH_and_temp(one_wire_sensor):
 		# Sensor should be set to Adafruit_DHT.DHT11,
 		# Adafruit_DHT.DHT22, or Adafruit_DHT.AM2302.
 		sensor = Adafruit_DHT.DHT22
-		
-		# Example using a Beaglebone Black with DHT sensor
-		# connected to pin P8_11.
-		#pin = 'P8_8'
-		
+			
 		# Try to grab a sensor reading.  Use the read_retry method which will retry up
 		# to 15 times to get a sensor reading (waiting 2 seconds between each retry).
 		humidity, temperature = Adafruit_DHT.read_retry(sensor, self.pin)

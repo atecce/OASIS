@@ -12,19 +12,25 @@ import struct
 
 class UART_sensor:
 
+	# each UART sensor comes with a name, a table for the database, and a UART number
 	def __init__(self, name, table, UART_number):
 
+		# name the sensor
 		self.name = name
 
+		# corresponding table for database
 		self.table = table
 
 		# initiate sensor with a UART value
 		UART.setup("UART" + str(UART_number))
 
-		# terminal number corresponds to terminal number (convenient)
+		# UART number corresponds to terminal number (convenient)
 		self.tty = UART_number
 
 class CO2_sensor(UART_sensor):
+
+	# CO2 sensors have a baudrate of 9600
+	baudrate = 9600
 
 	def read(self):
 
@@ -34,8 +40,8 @@ class CO2_sensor(UART_sensor):
 		# what does struct do? why 7B? what's the asterisk do?
 		d = struct.pack("7B", *data)
 
-		# is this a port to a terminal somewhere? why? why does the baudrate = 9600?
-		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = 9600)
+		# is this a port to a terminal somewhere? why?
+		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = self.baudrate)
 
 		# this was commented out. why was it ultimately unnecessary to initialize the serial class?
 		#serial.begin(9600)
@@ -65,6 +71,9 @@ class CO2_sensor(UART_sensor):
 
 class flow_meter(UART_sensor):
 
+	# ATLAS flow meters have a baudrate of 38400
+	baudrate = 38400
+
 	def read(self):
 
 		# need to setup UART1 at boot, does not set up immediately
@@ -80,7 +89,7 @@ class flow_meter(UART_sensor):
 		# ls /dev/tty*   in terminal 
 
 		# baudrate corresponds to flow meter circuit baud rate 
-		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = 38400)
+		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = self.baudrate)
 
 		# open serial port
 		ser.open()

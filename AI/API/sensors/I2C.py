@@ -155,14 +155,20 @@ class electrical_conductivity_sensor(I2C_sensor):
 		results = bus.read_i2c_block_data(self.address, self.register) 
 		print results
 
+		# iterate through index and item
 		for index, item in enumerate(results):
 
+			# 0 indicates a terminating character (why not ASCII?)
 			if item == 0:
-
+				
+				# set stopping index
 				end_val = index
 				break
 
+		# parse results (first character just returns status)
 		results = results[1:end_val]
+
+		# put results in a string
 		results_string = ''.join(chr(i) for i in results)
 
 		print results_string 
@@ -175,6 +181,8 @@ class electrical_conductivity_sensor(I2C_sensor):
 
 		# get calibration info
 		results = bus.read_i2c_block_data(self.address, self.register)
+		time.sleep(1)
+
 		print results 
 
 	def calibrate_high(self):

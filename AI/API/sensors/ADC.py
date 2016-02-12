@@ -18,8 +18,10 @@ class ADC_sensor(I2C_sensor):
 	# each I2C device has an address, register, and interface number
 	def __init__(self, name, table, address, register):
 
+		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# create bus with interface number
@@ -97,8 +99,10 @@ class liquid_level(ADC_sensor):
 
 	def __init__(self, name, table, register):
 
+		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# create bus with interface number
@@ -136,8 +140,10 @@ class MO_sensor(ADC_sensor):
 	# each I2C device has an address, register, and interface number
 	def __init__(self, name, table, register):
 
+		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# create bus with interface number
@@ -170,8 +176,10 @@ class O2_sensor(ADC_sensor):
 
 	def __init__(self, name, table):
 
+		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# set bus with interface number
@@ -198,8 +206,10 @@ class PAR_sensor(ADC_sensor):
 
 	def __init__(self, name, table, register):
 
+		# name sensor
 		self.name = name
 
+		# corresponding table in database
 		self.table = table
 
 		# set bus with interface number
