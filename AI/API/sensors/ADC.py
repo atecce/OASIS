@@ -126,7 +126,7 @@ class liquid_level(ADC_sensor):
 		# why are we returning resistance?
 		return resistance
 
-class MO_sensor(ADC_sensor):
+class moisture(ADC_sensor):
 
 	# all liquid level sensors have an address 0x21
 	address = 0x21
@@ -159,7 +159,7 @@ class MO_sensor(ADC_sensor):
 		# return volumetric water content to zero
 		return VWC
 
-class O2_sensor(ADC_sensor):
+class oxygen(ADC_sensor):
 
 	# address and register of O2 sensor are set
 	address	 = 0x22
@@ -187,7 +187,7 @@ class O2_sensor(ADC_sensor):
 		# analog value in mV 
 		return analogValmV
 
-class PAR_sensor(ADC_sensor):
+class PAR(ADC_sensor):
 
 	# address of PAR sensor is set
 	address = 0x21

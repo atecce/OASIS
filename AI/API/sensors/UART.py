@@ -24,7 +24,7 @@ class UART_sensor:
 		# UART number corresponds to terminal number (convenient)
 		self.tty = UART_number
 
-class CO2_sensor(UART_sensor):
+class CO2(UART_sensor):
 
 	# CO2 sensors have a baudrate of 9600
 	baudrate = 9600

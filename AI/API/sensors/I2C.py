@@ -51,7 +51,7 @@ class I2C_sensor:
 		# iterates through the string, converts them all to characters, and concatenates them in one line
 		results_string = ''.join(chr(i) for i in results)
 
-		return float(results_string)
+		return results_string
 
 	def calibrate_query(self):
 					
@@ -87,7 +87,7 @@ class I2C_sensor:
 
 		print results
 
-class pH_sensor(I2C_sensor):
+class pH(I2C_sensor):
 
 	def calibrate_low(self):
 
@@ -125,7 +125,7 @@ class pH_sensor(I2C_sensor):
 
 		print results
 
-class dissolved_oxygen_sensor(I2C_sensor):
+class dissolved_oxygen(I2C_sensor):
 
 	def calibrate(self):
 
@@ -139,7 +139,7 @@ class dissolved_oxygen_sensor(I2C_sensor):
 
 		print results
 
-class electrical_conductivity_sensor(I2C_sensor):
+class electrical_conductivity(I2C_sensor):
 
 	def calibrate_dry(self):
 
@@ -193,7 +193,7 @@ class electrical_conductivity_sensor(I2C_sensor):
 
 		print results
 
-class total_pressure_sensor(I2C_sensor):
+class total_pressure(I2C_sensor):
 
 	def __init__(self, table, bus_number):
 

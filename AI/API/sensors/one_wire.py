@@ -7,10 +7,7 @@ class one_wire_sensor: pass
 class temperature(one_wire_sensor):
 
 	# each temperature sensor has a name, a db table, and an ID
-	def __init__(self, name, table, ID):
-
-		# set sensor name
-		self.name = name
+	def __init__(self, table, ID):
 
 		# set db table
 		self.table = table
@@ -39,10 +36,7 @@ class temperature(one_wire_sensor):
 class RH_and_temp(one_wire_sensor):
 
 	# each relative humidity and temperature sensor has a name, a db table, and a pin
-	def __init__(self, name, table, pin):
-
-		# name the sensor
-		self.name = name
+	def __init__(self, table, pin):
 
 		# set db table
 		self.table = table
@@ -94,14 +88,3 @@ class RH_and_temp(one_wire_sensor):
 
 		# pretty sure I'd want to raise an error here
 		else: return 'Reading Failure'
-
-# temperature sensors
-temp = {1: temperature("temp1", "liquid_temp", "28-00000673a8a7"),
-	2: temperature("temp2", "liquid_temp", "28-0000065f27cc"),
-	3: temperature("temp3", "liquid_temp", "28-0000065eb57a"),
-	4: temperature("temp4", "liquid_temp", "28-000006747f7f")}
-	      
-# relative humidity and temperature sensors
-RHTemp = {1: RH_and_temp("RHTemp1", "rh_and_air_temp", 'P8_8'),
-	  2: RH_and_temp("RHTemp2", "rh_and_air_temp", 'P8_9'),
-	  3: RH_and_temp("RHTemp3", "rh_and_air_temp", 'P8_10')}
