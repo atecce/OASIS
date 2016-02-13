@@ -54,8 +54,7 @@ class I2C_sensor:
 		# iterates through the string, converts them all to characters, and concatenates them in one line
 		results_string = ''.join(chr(i) for i in results)
 
-		# probably shouldn't be a string though
-		return results_string
+		return float(results_string)
 
 	def calibrate_query(self):
 					

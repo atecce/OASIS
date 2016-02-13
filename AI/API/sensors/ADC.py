@@ -226,8 +226,7 @@ class PAR_sensor(ADC_sensor):
 		# straight line? why that constant?
 		parValue = 1000*0.5*analogVal
 
-		# probably shouldn't be returned as a string
-		return str(parValue)
+		return parValue
 
 # liquid level sensors
 LL = {1: liquid_level("LL1", "liquid_level", 0x80),
