@@ -28,16 +28,50 @@ class test_sensor:
 	def read_low(self):
 
 		# returns a value two standard deviations below the mean
-		return self.HSST["low"] - 2*self.sigma
+		return self.HSST["low"] - self.sigma
 
 	def read_high(self):
 
 		# returns a value two standard deviations above the mean
-		return self.HSST["high"] + 2*self.sigma
+		return self.HSST["high"] + self.sigma
+
+class test_air_temperature:
+
+	""" This is a special case because the HSST's for temperature vary from day to
+	    to night and from air to soil and water (need to consult with Noah, on which
+	    is which, assuming day and night only are concerns for air for now). """
+
+	# daytime
+	day_HSST   = {"low": 23, "high": 27}
+
+	day_mu    = (day_HSST["high"] + day_HSST["low"]) / 2
+	day_sigma = (day_HSST["high"] - day_HSST["low"]) / 2
+
+	# nighttime
+	night_HSST = {"low": 18, "high": 22}
+
+	night_mu    = (night_HSST["high"] + night_HSST["low"]) / 2
+	night_sigma = (night_HSST["high"] - night_HSST["low"]) / 2
+
+	def read(self):
+
+		# this is pseudo-code
+		if   time is day:   return random.gauss(self.day_mu,   self.day_sigma)
+		elif time is night: return random.gauss(self.night_mu, self.night_sigma)
+
+	def read_low(self):
+
+		# returns a value two standard deviations below the mean
+		if   time is day:   return self.day_HSST["low"]   - self.day_sigma
+		elif time is night: return self.night_HSST["low"] - self.night_sigma 
+
+	def read_high(self):
+
+		# returns a value two standard deviations above the mean
+		if   time is day:   return self.day_HSST["high"]   + self.sigma
+		elif time is night: return self.night_HSST["high"] + self.sigma
 
 # set up all sensors
-EC         = test_sensor(1150, 1250)
-pH         = test_sensor(5.5, 6)
 day_temp   = test_sensor(23, 27)
 night_temp = test_sensor(18, 22)
 soil_temp  = test_sensor(15, 20)
@@ -46,6 +80,12 @@ humidity   = test_sensor(50, 70)
 pressure   = test_sensor(80, 84)
 CO2        = test_sensor(1000, 2000)
 PAR        = test_sensor(200, 250)
+
+EC = {1: test_sensor(1150, 1250),
+      2: test_sensor(1150, 1250)}
+
+pH = {1: test_sensor(5.5, 6),
+      2: test_sensor(5.5, 6)}
 
 class actuator:
 
