@@ -13,10 +13,7 @@ import struct
 class UART_sensor:
 
 	# each UART sensor comes with a name, a table for the database, and a UART number
-	def __init__(self, name, table, UART_number):
-
-		# name the sensor
-		self.name = name
+	def __init__(self, table, UART_number):
 
 		# corresponding table for database
 		self.table = table
@@ -136,10 +133,3 @@ class flow_meter(UART_sensor):
 
 		# flow rate [total vol] [LPM] [LPH]
 		return single_flow_reading
-
-# flow meters
-flow_meter = {1: flow_meter("flow_meter1", "flow_meter_and_circuitry", 1),
-	      2: flow_meter("flow_meter2", "flow_meter_and_circuitry", 4)}
-
-# CO2 sensor
-CO2 = CO2_sensor("CO2", "CO2", 5)

@@ -16,10 +16,7 @@ class ADC_sensor(I2C_sensor):
 	interface_number = 2
 
 	# each I2C device has an address, register, and interface number
-	def __init__(self, name, table, address, register):
-
-		# name sensor
-		self.name = name
+	def __init__(self, table, address, register):
 
 		# corresponding table in database
 		self.table = table
@@ -97,10 +94,7 @@ class liquid_level(ADC_sensor):
 	# all liquid level sensors have an address 0x22
 	address = 0x22
 
-	def __init__(self, name, table, register):
-
-		# name sensor
-		self.name = name
+	def __init__(self, table, register):
 
 		# corresponding table in database
 		self.table = table
@@ -138,10 +132,7 @@ class MO_sensor(ADC_sensor):
 	address = 0x21
 
 	# each I2C device has an address, register, and interface number
-	def __init__(self, name, table, register):
-
-		# name sensor
-		self.name = name
+	def __init__(self, table, register):
 
 		# corresponding table in database
 		self.table = table
@@ -174,10 +165,7 @@ class O2_sensor(ADC_sensor):
 	address	 = 0x22
 	register = 0xB0
 
-	def __init__(self, name, table):
-
-		# name sensor
-		self.name = name
+	def __init__(self, table):
 
 		# corresponding table in database
 		self.table = table
@@ -204,10 +192,7 @@ class PAR_sensor(ADC_sensor):
 	# address of PAR sensor is set
 	address = 0x21
 
-	def __init__(self, name, table, register):
-
-		# name sensor
-		self.name = name
+	def __init__(self, table, register):
 
 		# corresponding table in database
 		self.table = table
@@ -227,24 +212,3 @@ class PAR_sensor(ADC_sensor):
 		parValue = 1000*0.5*analogVal
 
 		return parValue
-
-# liquid level sensors
-LL = {1: liquid_level("LL1", "liquid_level", 0x80),
-      2: liquid_level("LL2", "liquid_level", 0xA0),
-      3: liquid_level("LL3", "liquid_level", 0xC0),
-      4: liquid_level("LL4", "liquid_level", 0xE0),
-      5: liquid_level("LL5", "liquid_level", 0xD0),
-      6: liquid_level("LL6", "liquid_level", 0xF0)}
-
-# PAR sensors
-PAR = {1: PAR_sensor("PAR1", "light", 0xF0),
-       2: PAR_sensor("PAR2", "light", 0xD0)}
-
-# MO sensors
-MO = {1: MO_sensor("MO1", "moisture", 0x80),
-      2: MO_sensor("MO2", "moisture", 0xA0),
-      3: MO_sensor("MO3", "moisture", 0xC0),
-      4: MO_sensor("MO4", "moisture", 0xE0)}
-
-# oxygen sensor
-O2 = O2_sensor("O2", "O2")
