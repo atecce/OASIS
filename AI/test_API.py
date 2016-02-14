@@ -11,7 +11,10 @@ class test_sensor:
 	    the thresholds are crossed. For more information on how this works, see:
 	    https://en.wikipedia.org/wiki/Normal_distribution """
 
-	def __init__(self, HSST_low, HSST_high):
+	def __init__(self, table, HSST_low, HSST_high):
+
+		# set data table
+		self.table = table
 
 		# set HSST's
 		self.HSST  = {"low": HSST_low, "high": HSST_high}
@@ -77,15 +80,41 @@ night_temp = test_sensor(18, 22)
 soil_temp  = test_sensor(15, 20)
 water_temp = test_sensor(22, 24)
 humidity   = test_sensor(50, 70)
-pressure   = test_sensor(80, 84)
-CO2        = test_sensor(1000, 2000)
-PAR        = test_sensor(200, 250)
 
-EC = {1: test_sensor(1150, 1250),
-      2: test_sensor(1150, 1250)}
+# populate sensor suite
+S = {101:  test_sensor("electrical_conductivity", 1150, 1250),
+     102:  test_sensor("ph_and_circuitry",         5.5,    6),     
+     103:  temperature("liquid_temp", "28-00000673a8a7"),
+     104:   I2C_sensor("do_probe_and_circuitry",  0x61),
+     105: liquid_level("liquid_level", 0x80), 
+     106: liquid_level("liquid_level", 0xA0),
+     107: liquid_level("liquid_level", 0xC0),
+     108: liquid_level("liquid_level", 0xE0),
+     109: liquid_level("liquid_level", 0xD0),
+     110:   flow_meter("flow_meter_and_circuitry", 1),
+     111:   flow_meter("flow_meter_and_circuitry", 4),
+     112: liquid_level("liquid_level", 0xF0),
 
-pH = {1: test_sensor(5.5, 6),
-      2: test_sensor(5.5, 6)}
+     201: temperature("liquid_temp", "28-0000065f27cc"), 
+     202: temperature("liquid_temp", "28-0000065eb57a"),
+     203: temperature("liquid_temp", "28-000006747f7f"),
+     205: test_sensor("electrical_conductivity", 1150, 1250),
+     206: test_sensor("ph_and_circuitry",         5.5,    6),
+     208:    moisture("moisture", 0x80),
+     209:    moisture("moisture", 0xA0),
+     210:    moisture("moisture", 0xC0),
+     211:    moisture("moisture", 0xE0),
+
+     301: RH_and_temp("rh_and_air_temp", 'P8_8'),
+     302: RH_and_temp("rh_and_air_temp", 'P8_9'),
+     303: test_sensor("total_pressure", 80, 84),
+     304:      oxygen("O2"),
+     305: test_sensor(1000, 2000),
+     306: test_sensor("light", 200, 250),
+
+     401: RH_and_temp("rh_and_air_temp", 'P8_10'),
+     402: test_sensor("total_pressure", 80,  84),
+     403: test_sensor("light",         200, 250)}
 
 class actuator:
 
