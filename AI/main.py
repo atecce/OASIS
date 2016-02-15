@@ -33,6 +33,8 @@ def sense():
 		# write to db
 		map(dump_to_db, [sensor.table, sensor.name, sensor.read() for sensor in sensor_suite])
 
+		http.post("http://" + server.name() + "/reading", json(observation))
+
 def act(): 
 
 	# toggle each actuator
@@ -49,8 +51,21 @@ def obey(choice)
         elif choice == len(sensor_suite) + len(actuator_suite) - 1: pass
 
 def run(mode):
+
 	# signals from user
 	while mode != "shutdown":
+
+		response = http.get("http://" + server.name() + "/commands")
+
+		if response.status == 200: 
+			
+			payload = parse(response.body())
+
+			# set user input
+			mode   = payload["mode"]
+			choice = payload["choice"]
+
+		else: networkingError()
 
 		# chris seemed to think that threading wouldn't be the best option for sensor data collection
 		# here is another idea i had
