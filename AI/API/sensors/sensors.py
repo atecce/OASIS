@@ -1,3 +1,6 @@
+# need this to make sensor output readable
+from tabulate import tabulate
+
 # need this to concatenate ranges for predictable sensor suite iteration
 from itertools import chain
 
@@ -46,12 +49,15 @@ S = {101:   I2C_sensor("electrical_conductivity", 0x66),
 # set of ID's sensors take
 SysIDs = chain(range(101, 113), range(201, 204), range(205, 207), range(208, 212), range(301, 307), range(401, 404))
 
+table = list()
+
 for SysID in SysIDs:
 
-	try:
-	
-		print S[SysID], "S" + str(SysID), S[SysID].table, S[SysID].read()
+	entry = [repr(S[SysID]), "S" + str(SysID), S[SysID].table]
 
-	except IOError: print "IOError"
+	try:            entry.append(S[SysID].read())  
+	except IOError: entry.append("IOError")
 
-	#except AttributeError: print "AttributeError"
+	table.append(entry)
+
+print tabulate(table)
