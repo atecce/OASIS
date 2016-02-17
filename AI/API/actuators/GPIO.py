@@ -96,4 +96,4 @@ A = {"heater":          GPIO(45),
 # turn each actuator on and off
 for actuator in A:
 
-	print actuator, "is", actuator.check_status()
+	print actuator, "is", A[actuator].check_status()
