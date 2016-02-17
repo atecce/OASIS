@@ -114,9 +114,4 @@ actuator_suite.append(actuator("Overhead light", 51))
 # turn each actuator on and off
 for actuator in actuator_suite:
 
-	actuator.toggle()	
 	print actuator.name, "is", actuator.check_status()
-	time.sleep(3)
-	actuator.toggle()	
-	print actuator.name, "is", actuator.check_status()
-	time.sleep(3)
