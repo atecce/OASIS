@@ -16,19 +16,19 @@ nav.navbar.navbar-static-top.header-navbar
             .logo.text-nowrap
                 .logo__img
                     i.fa.fa-chevron-right
-                span.logo__text Right
+                span.logo__text Mars Oasis 
 
     .topnavbar
         ul.nav.navbar-nav.navbar-left
             li(class=page=='Dashboard' ? 'active' : '')
                 a(href="index.html")
-                    span Dashboard
+                    span Status 
             li(class=page=='Inbox' || page=='Sent' || page=='Compose' ? 'active' : '')
                 a(href="inbox.html")
-                    span Mailbox
+                    span Control 
             li.dropdown(class=page=='Products' || page=='Orders' || page=='Users' || page=='Blank' ? 'active' : '')
                 a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
-                    span Pages&nbsp;
+                    span Settings&nbsp;
                         i.caret
                 ul.dropdown-menu
                     li(class=page=='Products' ? 'active' : '')
