@@ -3,13 +3,15 @@
 ___
 
 #### Description:
-We are building a hybrid mobile app (iOS & Android) that will act as a control system for an autonomous greenhouse. It will display all necessary data from the greenhouse to the user graphically in addition to a control surface while also providing alerts about its state.
+We are building a GUI for iOS and Android which monitors controls a life-support system prototype that is funded by NASA to research life-support systems on Mars. The final product should display sensor data to any user who is curious about how the project is going and also allow the systems engineers to check the state of the system, perform tests, calibrate the sensors, toggle the actuators, etc. through an interface which does not require a CS background and allows greater specialization amongst the team working on it.
 
 #### Vision statement:
-(what you would tell potential customers) Be sure to follow the guidelines from lecture!
+Between Blue Origin's successful landing of a booster on a sub-orbital launch and SpaceX's even more impressive landing of the Falcon 9's rocket booster on a mission that launched 11 satellites, an incredibly impressive amount of progress is being made on the space transportation problem. Back-of-the-envelope calculations place SpaceX's feat in particular at reducing the variable cost of space transport _by a factor of three-hundred._
+
+However, there has not been matching progress on life-support systems. When we get to Mars, we still have to figure out how to live there. That makes this kind of work critical. Succesful completion of this project will create a framework in which it will be incredibly easy for engineers to work on the system while simultaneously generating interest in the cause in general.
 
 #### Motivation:
-for working on this particular project (Why would you develop this?)
+Because interplanetary civilization.
 
 #### Challenges & Risks:
 - Integrating front-end and back-end on the
