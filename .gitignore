@@ -1,3 +1,10 @@
+# npm libraries
+GUIs/web/webserver/node_modules
+# requires us to run gulp build in the webserver directory
+GUIs/web/webserver/dist
+
+
+
 __pycache__
 .cache
 .DS_Store
