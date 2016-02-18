@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS O2_concentration (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -161,6 +162,7 @@ CREATE TABLE IF NOT EXISTS heater (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -170,6 +172,7 @@ CREATE TABLE IF NOT EXISTS chiller (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -179,6 +182,7 @@ CREATE TABLE IF NOT EXISTS light (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -188,6 +192,7 @@ CREATE TABLE IF NOT EXISTS fan1 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -197,6 +202,7 @@ CREATE TABLE IF NOT EXISTS fan2 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -206,6 +212,7 @@ CREATE TABLE IF NOT EXISTS pump1 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -215,6 +222,7 @@ CREATE TABLE IF NOT EXISTS pump2 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -224,6 +232,7 @@ CREATE TABLE IF NOT EXISTS pump3 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -233,6 +242,7 @@ CREATE TABLE IF NOT EXISTS pump4 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -242,6 +252,7 @@ CREATE TABLE IF NOT EXISTS pump5 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -251,6 +262,7 @@ CREATE TABLE IF NOT EXISTS pump6 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -260,6 +272,7 @@ CREATE TABLE IF NOT EXISTS pump7 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -269,6 +282,7 @@ CREATE TABLE IF NOT EXISTS pump8 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -278,6 +292,7 @@ CREATE TABLE IF NOT EXISTS pump9 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -287,6 +302,7 @@ CREATE TABLE IF NOT EXISTS pump10 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -296,6 +312,7 @@ CREATE TABLE IF NOT EXISTS pump11 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 
@@ -305,6 +322,7 @@ CREATE TABLE IF NOT EXISTS pump12 (
 	SysID varchar(128) NOT NULL,
 	descritption varchar(256) NOT NULL,
 	time datetime NOT NULL,
+	SysID varchar(128) NOT NULL,
 	PRIMARY KEY (id)
 	);
 

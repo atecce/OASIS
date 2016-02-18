@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# if number of arguments isn't one or two
+if [ $# != 1 ] && [ $# != 2 ]; then
+
+	# display usage
+	printf "\n"
+	printf "Usage: read_sensor <sensor name>\n"
+	printf "       read_sensor <sensor name> <number of readings>\n"
+	printf "\n"
+
+	# exit with error status 1
+	exit 1
+fi
+
+# sensor is first argument
+sensor="$1" 
+
+# if only one argument
+if [ $# == 1 ]; then
+
+	# default amount of readings is 1
+	readings=1
+
+# otherwise
+else 
+
+	# second argument denotes readings
+	readings="$2"
+
+fi
+
+# wrap bash around python
+sudo python /home/atecce/OASIS/BBB/scripts/read_sensor.py $sensor $readings | python /home/atecce/OASIS/BBB/scripts/termgraph/termgraph.py
