@@ -26,6 +26,9 @@ class UART_sensor:
 
 class CO2(UART_sensor):
 
+	# time taken for CO2 sensor to read
+	wait = 2
+
 	# CO2 sensors have a baudrate of 9600
 	baudrate = 9600
 
@@ -68,6 +71,9 @@ class CO2(UART_sensor):
 
 class flow_meter(UART_sensor):
 
+	# time taken for flow meter to read
+	wait = 5
+
 	# ATLAS flow meters have a baudrate of 38400
 	baudrate = 38400
 
@@ -96,13 +102,13 @@ class flow_meter(UART_sensor):
 		ser.write("L1\r")
 
 		# why is this delay necessary?
-		time.sleep(.4)
+		time.sleep(1)
 
 		# write model number TurboFlow 226000
 		ser.write("T1\r")
 
 		# why is this delay neccesary?
-		time.sleep(0.4)
+		time.sleep(1)
 
 		# return num of chars in receive buffer
 		num = ser.inWaiting()
@@ -111,7 +117,7 @@ class flow_meter(UART_sensor):
 		model_num = ser.read(num)
 
 		# why is this delay necessary?
-		time.sleep(0.4)
+		time.sleep(1)
 
 		# what are we writing?
 		ser.write("R\r")
