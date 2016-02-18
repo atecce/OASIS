@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# if number of arguments isn't two
+if [ $# != 2 ]; then
+
+	# display usage
+	printf "\n"
+	printf "Usage: read <sensor name> <number of readings>\n"
+	printf "\n"
+
+	# exit with error status 1
+	exit 1
+fi
+
+# sensor is first argument
+sensor="$1" 
+
+# amount of readings is second argument
+readings="$2"
+
+# wrap bash around python
+sudo python /home/atecce/OASIS/BBB/scripts/read_sensor.py $sensor $readings | python /home/atecce/OASIS/BBB/scripts/termgraph/termgraph.py
