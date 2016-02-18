@@ -1,5 +1,5 @@
 # CSCI 3308 Project - MarsOASIS
-###### Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle G
+###### Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle Giacomini
 ___
 
 #### Description:
@@ -32,8 +32,10 @@ for working on this particular project (Why would you develop this?)
 #### Methodology:
 We will be using Agile Methodology for our project. Our sprints will consist of 1 week worth of tasks and we will have a weekly meeting to check-in and update each others on our progress.
 
-#### Project Tracking software: Trello (https://trello.com/b/pem09ey2/marsoasis)!
+#### Project Tracking software: 
+###### Trello (https://trello.com/b/pem09ey2/marsoasis)!
 
 #### GitHub Issues & Milestones
 
-Project plan: created from your Project Tracking software. Copy-paste the plan (or screenshot of) from your project tracking software into the repository.
+#### Project plan:
+https://www.dropbox.com/s/g7ti9bhhmzt4mfg/project.png?dl=0
