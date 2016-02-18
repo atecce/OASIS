@@ -1,11 +1,6 @@
 # CSCI 3308 Project - MarsOASIS
-
-#### Who:
-- Alessandro Tecce
-- Prayash Thapa
-- Conor Amanatullah
-- Trevor Gould
-- Kyle G
+###### Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle G
+___
 
 #### Description:
 We are building a hybrid mobile app (iOS & Android) that will act as a control system for an autonomous greenhouse. It will display all necessary data from the greenhouse to the user graphically in addition to a control surface while also providing alerts about its state.
@@ -23,20 +18,19 @@ for working on this particular project (Why would you develop this?)
 - Mitigation strategy for dealing with the risk ??
 
 #### List of requirements for the project
-Three separate tables for the requirements: User Requirements, Functional Requirements, Non-Functional Requirements, Each requirement must have a unique ID number
-Written in the Agile format: “As a [role], I want to [do X] so that I can [benefit with Y]”
-Each requirement must have a size. You have two options for sizing:
-Agile sizing – story points
+| User          | Functional    | Non-Functional  |
+| ------------- |:-------------:| ---------------:|
+| 01 - [S] As a user, I can log into the app.      | 10 - [L] Display dependent data using graphs.  | 30 - [L] Data transfer between database and front-end must be low-latency. |
+| 02 - [L] As a user, I am able to view the dashboard and relevant data such as CO2 levels, temperature, humidity, etc.      | 11 - [M] Display sliders and buttons for control parameters.       |   31 - [S] Latency between control surface and sensors/actuators must be low (almost imperceptible). |
+| 03 - [L] As a user, I am able to send commands control the systems in the greenhouse.  |     |    |
 
 #### Time estimate to complete
-All stories should be sized to be completed in less than 8 hours (approximately, and something equivalent to a day or less in Agile story points). If your story is bigger than that, then break it up into smaller stories.
-
-- [optional] you can add priority (Critical, High, Med, Low, Nice-to-have)
-- [optional] you can add topic/area (e.g., Login, Profile, DB, etc.)
-- [optional] you can add user type (e.g., Admin, end user, potential customer,…)
+- [S] -> 1 - 2 hours
+- [M] -> 3 - 5 hours
+- [L] -> 6 - 8 hours
 
 #### Methodology:
-Which methodology you plan to follow, though it may change: Waterfall, iterfall, Agile, mash-up of …
+We will be using Agile Methodology for our project. Our sprints will consist of 1 week worth of tasks and we will have a weekly meeting to check-in and update each others on our progress.
 
 #### Project Tracking software: Trello (https://trello.com/b/pem09ey2/marsoasis)!
 
