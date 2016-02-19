@@ -9,6 +9,9 @@ import Adafruit_BMP.BMP085 as BMP085
 
 class I2C_sensor: 
 
+	# time taken for I2C sensor to read
+	wait = 6
+
 	# default interface number and address for I2C sensors
 	bus_number = 2
 	register   = 0x52
@@ -55,7 +58,7 @@ class I2C_sensor:
 
 	def calibrate_query(self):
 					
-		# ASCII				       	 C     a      l    ,     ?
+		# ASCII				       	      C     a      l    ,     ?
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x3F])
 		time.sleep(3)
 		
@@ -64,20 +67,9 @@ class I2C_sensor:
 		
 		print results
 
-	def calibrate_query_test(self):
-					
-		# ASCII				       
-		self.bus.write_i2c_block_data(self.address, int('C'), [int('a'), int('l'), int(','), int('?')])
-		time.sleep(1)
-		
-		results = self.bus.read_i2c_block_data(self.address, self.register)
-		time.sleep(1)
-		
-		print results
-
 	def calibrate_clear(self): 
 
-		# ASCII					C      a     l      ,    c     l      e    a     r       
+		# ASCII					     C      a     l      ,    c     l      e    a     r       
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x63, 0x6C, 0x65, 0x61, 0x72])
 		time.sleep(3)
 
@@ -91,7 +83,7 @@ class pH(I2C_sensor):
 
 	def calibrate_low(self):
 
-		# ASCII			        	C      a     l    ,      l     o    w      ,    4     .     0     0
+		# ASCII			        	      C      a     l    ,      l     o    w      ,    4     .     0     0
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x34, 0x2E, 0x30, 0x30])
 		time.sleep(3)
 
@@ -103,7 +95,7 @@ class pH(I2C_sensor):
 
 	def calibrate_mid(self):
 
-		# ASCII					C      a     l      ,    m     i      d    ,     7     .     0    0 
+		# ASCII					      C      a     l      ,    m     i      d    ,     7     .     0    0 
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6D, 0x69, 0x64, 0x2C, 0x37, 0x2E, 0x30, 0x30])
 		time.sleep(3)
 
@@ -115,7 +107,7 @@ class pH(I2C_sensor):
 		
 	def calibrate_high(self):
 
-		# ASCII					C      a     l      ,    h     i      g     h     ,     1      0     .     0    0 
+		# ASCII					     C      a     l      ,    h     i      g     h     ,     1      0     .     0    0 
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x31, 0x30, 0x2E, 0x30, 0x30])
 		time.sleep(3)
 
@@ -140,6 +132,40 @@ class dissolved_oxygen(I2C_sensor):
 		print results
 
 class electrical_conductivity(I2C_sensor):
+
+	# EC gets returned as comma-separated list, need to overwrite read method to parse out value of interest
+	def read(self):
+
+		# request reading
+		self.bus.write_byte(self.address, self.register)
+		time.sleep(3)
+
+		# read response
+		results = self.bus.read_i2c_block_data(self.address, self.register)
+		time.sleep(3)
+
+		# iterate through index and item
+		for index, item in enumerate(results):
+
+			# 0 indicates a terminating character (why not ASCII?)
+			if item == 0:
+				
+				# set stopping index
+				end_val = index
+				break
+
+		# parse results (first character just returns status)
+		results = results[1:end_val]
+
+		# beautiful list comprehension Sairam 
+		# iterates through the string, converts them all to characters, and concatenates them in one line
+		results_string = ''.join(chr(i) for i in results)
+
+		# split results by comma
+		values = results_string.split(',')
+
+		# return first value
+		return values[1]
 
 	def calibrate_dry(self):
 
@@ -194,6 +220,9 @@ class electrical_conductivity(I2C_sensor):
 		print results
 
 class total_pressure(I2C_sensor):
+
+	# time taken for total pressure sensor to read
+	wait = 0
 
 	def __init__(self, table, bus_number):
 

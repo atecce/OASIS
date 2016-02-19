@@ -6,6 +6,9 @@ class one_wire_sensor: pass
 
 class temperature(one_wire_sensor):
 
+	# time taken for temperature sensors to read
+	wait = 0
+
 	# each temperature sensor has a name, a db table, and an ID
 	def __init__(self, table, ID):
 
@@ -34,6 +37,9 @@ class temperature(one_wire_sensor):
 		return float(lastelement)/1000
 
 class RH_and_temp(one_wire_sensor):
+
+	# time taken for RHTemp sensors to read
+	wait = 0
 
 	# each relative humidity and temperature sensor has a name, a db table, and a pin
 	def __init__(self, table, pin):
