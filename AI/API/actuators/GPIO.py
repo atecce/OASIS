@@ -25,7 +25,10 @@ class GPIO:
 		      71: {0: "low", 1: "high"},	
 		      51: {0: "off", 1: "on"}}	
 
-	def __init__(self, pin):
+	def __init__(self, table, pin):
+
+		# assign table
+		self.table = table
 
 		# assign pin
 		self.pin = pin
@@ -74,10 +77,14 @@ class GPIO:
 		# close the device
 		device.close()
 
-A = {"heater":          GPIO(45),
-     "chiller":         GPIO(44),
-     "O2 concentrator": GPIO(26),
-     "Pump 1":          GPIO(62),
+M = {1: GPIO("heater",          45),
+     2: GPIO("chiller",         44),
+     6: GPIO("fan 1",           70),
+     7: GPIO("fan 2",           71),
+     8: GPIO("O2 concentrator", 26),
+     9: GPIO("dehumidifier",    87),
+
+A = {"Pump 1":          GPIO(62),
      "Pump 2":          GPIO(63),
      "Pump 3":          GPIO(23),
      "Pump 4":          GPIO(65),
@@ -89,8 +96,6 @@ A = {"heater":          GPIO(45),
      "Pump 10":         GPIO(32),
      "Pump 11":         GPIO(36),
      "Pump 12":         GPIO(87),
-     "Fan 1":           GPIO(70),
-     "Fan 2":           GPIO(71),
      "LED":             GPIO(51)}
 
 # turn each actuator on and off
