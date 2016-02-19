@@ -1,11 +1,11 @@
 extends ./parts/layout.jade
 block vars
-    - page = 'Index';
+    - page = 'Dashboard';
 block main
     .main-heading
         .main-title
             ol.breadcrumb
-                li.active Index
+                li.active Dashboard
         .main-filter
             form.main-filter__search
                 .input-group
@@ -19,7 +19,27 @@ block main
                 .col-md-12
                     .panel.panel-danger
                         .panel-heading
-                            h3.panel-title Mars Oasis Status and Resources
+                            h3.panel-title Latest Readings
                         .panel-body
                             p This is a blank page.
+
+     .container-fluid.half-padding
+       .row
+         .col-md-12
+           .panel.panel-warning
+             .panel-heading
+               h3.panel-title Basic Device Control
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell BeagleBone
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', checked='checked', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Autopilot
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
+
+
 
