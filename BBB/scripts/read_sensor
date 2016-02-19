@@ -30,5 +30,15 @@ else
 
 fi
 
-# wrap bash around python
-sudo python /home/atecce/OASIS/BBB/scripts/read_sensor.py $sensor $readings | python /home/atecce/OASIS/BBB/scripts/termgraph/termgraph.py
+# if reading all sensors 
+if [ $sensor == "all" ]; then
+
+	sudo python /home/atecce/OASIS/AI/API/sensors/sensors.py
+
+# otherwise
+else
+
+	# wrap bash around python
+	sudo python /home/atecce/OASIS/BBB/scripts/read_sensor.py $sensor $readings | python /home/atecce/OASIS/BBB/scripts/termgraph/termgraph.py
+
+fi
