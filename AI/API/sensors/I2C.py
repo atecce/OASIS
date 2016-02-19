@@ -165,7 +165,7 @@ class electrical_conductivity(I2C_sensor):
 		values = results_string.split(',')
 
 		# return first value
-		return values[0]
+		return values[1]
 
 	def calibrate_dry(self):
 
