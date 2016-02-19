@@ -82,7 +82,6 @@ M = {1:  GPIO("heater",          45),
      6:  GPIO("fan 1",           70),
      7:  GPIO("fan 2",           71),
      8:  GPIO("O2 concentrator", 26),
-     9:  GPIO("dehumidifier",	 87),
      18: GPIO("LED",		 51)}
 
 V = {3: GPIO("CO2 solenoid", 89),
