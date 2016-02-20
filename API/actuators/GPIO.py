@@ -1,3 +1,6 @@
+# need this to chain SysID's together
+from itertools import chain
+
 # need this to wait
 import time
 
@@ -84,8 +87,20 @@ M = {1:  GPIO("heater",          45),
      8:  GPIO("O2 concentrator", 26),
      18: GPIO("LED",		 51)}
 
+SysIDs = chain(range(1, 3), range(6, 9), range(18, 19))
+
+for SysID in SysIDs:
+
+	print M[SysID].table, "is", M[SysID].check_status()
+
 V = {3: GPIO("CO2 solenoid", 89),
      4: GPIO("N2 solenoid",  10)}
+
+SysIDs = range(3, 5)
+
+for SysID in SysIDs:
+
+	print V[SysID].table, "is", V[SysID].check_status()
 
 P = {1:  GPIO("main pump", 	        62),
      2:  GPIO("condensate pump",        63),
@@ -99,3 +114,9 @@ P = {1:  GPIO("main pump", 	        62),
      10: GPIO("humidifier pump",	32),
      11: GPIO("main tank circulation",  36),
      12: GPIO("dehumidifier",		87)}
+
+SysIDs = range(1, 13)
+
+for SysID in SysIDs:
+
+	print P[SysID].table, "is", P[SysID].check_status()
