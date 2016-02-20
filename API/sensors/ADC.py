@@ -15,7 +15,6 @@ class ADC_sensor(I2C_sensor):
 	# all ADC sensors have an interface number of 2
 	interface_number = 2
 
-	# each I2C device has an address, register, and interface number
 	def __init__(self, table, address, register):
 
 		# corresponding table in database

@@ -12,7 +12,6 @@ import struct
 
 class UART_sensor:
 
-	# each UART sensor comes with a name, a table for the database, and a UART number
 	def __init__(self, table, UART_number):
 
 		# corresponding table for database
@@ -26,7 +25,7 @@ class UART_sensor:
 
 class CO2(UART_sensor):
 
-	# CO2 sensors have a baudrate of 9600
+	# ATLAS CO2 sensors have a baudrate of 9600
 	baudrate = 9600
 
 	def read(self):

@@ -9,7 +9,7 @@ import Adafruit_BMP.BMP085 as BMP085
 
 class I2C_sensor: 
 
-	# default interface number and address for I2C sensors
+	# default interface number and register for I2C sensors
 	bus_number = 2
 	register   = 0x52
 
@@ -118,7 +118,7 @@ class dissolved_oxygen(I2C_sensor):
 
 	def calibrate(self):
 
-		# Cal (Calibrates the device to atmospheric oxygen levels)
+		# ASCII					     C      a     l
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C]) 
 		time.sleep(3)
 
@@ -166,7 +166,7 @@ class electrical_conductivity(I2C_sensor):
 
 	def calibrate_dry(self):
 
-		# Cal, dry
+		# ASCII                                      C      a     l     ,     d     r     y
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x64, 0x72, 0x79]) 
 		time.sleep(3)
 
@@ -194,7 +194,7 @@ class electrical_conductivity(I2C_sensor):
 
 	def calibrate_low(self):
 
-		# Cal, low, n
+		# ASCII					     C      a     l     ,     l     o     w     ,     1     2     8     8     0
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x6C, 0x6F, 0x77, 0x2C, 0x31, 0x32, 0x38, 0x38, 0x30]) 
 		time.sleep(3)
 
@@ -206,7 +206,7 @@ class electrical_conductivity(I2C_sensor):
 
 	def calibrate_high(self):
 
-		# Cal, high, n (80000)
+		# ASCII					     C      a     l     ,     h     i     g     h     ,     8     0     0     0     0
 		self.bus.write_i2c_block_data(self.address, 0x43, [0x61, 0x6C, 0x2C, 0x68, 0x69, 0x67, 0x68, 0x2C, 0x38, 0x30, 0x30, 0x30, 0x30]) 
 		time.sleep(3)
 
