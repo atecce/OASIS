@@ -5,7 +5,7 @@ import time
 import sys
 
 # need this to import sensors
-sys.path.insert(0, '/home/atecce/OASIS/AI/sensors')
+sys.path.insert(0, '/home/atecce/OASIS/API/sensors')
 
 # import sensors by category
 from ADC      import *

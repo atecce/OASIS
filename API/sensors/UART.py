@@ -26,9 +26,6 @@ class UART_sensor:
 
 class CO2(UART_sensor):
 
-	# time taken for CO2 sensor to read
-	wait = 2
-
 	# CO2 sensors have a baudrate of 9600
 	baudrate = 9600
 
@@ -47,7 +44,7 @@ class CO2(UART_sensor):
 		#serial.begin(9600)
 
 		# why is this delay necessary?
-		time.sleep(1)
+		time.sleep(2.5)
 
 		# wait for some buffer to be non empty?
 		while(ser.inWaiting() == 0):
@@ -56,7 +53,7 @@ class CO2(UART_sensor):
 			ser.write(d)
 
 			# why is this delay necessary?
-			time.sleep(1)
+			time.sleep(2.5)
 
 		# read in some buffer?
 		A = ser.read(ser.inWaiting())
@@ -70,9 +67,6 @@ class CO2(UART_sensor):
 		return percent
 
 class flow_meter(UART_sensor):
-
-	# time taken for flow meter to read
-	wait = 5
 
 	# ATLAS flow meters have a baudrate of 38400
 	baudrate = 38400

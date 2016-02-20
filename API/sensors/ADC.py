@@ -1,3 +1,6 @@
+# need this to wait
+import time
+
 # need this for I2C's
 import smbus
 
@@ -8,9 +11,6 @@ import Adafruit_BMP.BMP085 as BMP085
 from I2C import I2C_sensor
 
 class ADC_sensor(I2C_sensor):
-
-	# time taken for ADC sensor to read
-	wait = 0
 
 	# all ADC sensors have an interface number of 2
 	interface_number = 2
@@ -44,6 +44,7 @@ class ADC_sensor(I2C_sensor):
 		# 0xF0 for LL5    sensor connected to VIN8 channel of ADC with I2C Address 0x22
 		# 0xD0 for LL6    sensor connected to VIN6 channel of ADC with I2C Address 0x22
 		results = self.bus.read_i2c_block_data(self.address, self.register) 
+		time.sleep(5)
 	
 		# initialize list of data
 		sensordata = list()

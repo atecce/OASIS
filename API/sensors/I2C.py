@@ -9,9 +9,6 @@ import Adafruit_BMP.BMP085 as BMP085
 
 class I2C_sensor: 
 
-	# time taken for I2C sensor to read
-	wait = 6
-
 	# default interface number and address for I2C sensors
 	bus_number = 2
 	register   = 0x52
@@ -31,11 +28,11 @@ class I2C_sensor:
 
 		# request reading
 		self.bus.write_byte(self.address, self.register)
-		time.sleep(3)
+		time.sleep(2.5)
 
 		# read response
 		results = self.bus.read_i2c_block_data(self.address, self.register)
-		time.sleep(3)
+		time.sleep(2.5)
 
 		# iterate through index and item
 		for index, item in enumerate(results):
@@ -138,11 +135,11 @@ class electrical_conductivity(I2C_sensor):
 
 		# request reading
 		self.bus.write_byte(self.address, self.register)
-		time.sleep(3)
+		time.sleep(2.5)
 
 		# read response
 		results = self.bus.read_i2c_block_data(self.address, self.register)
-		time.sleep(3)
+		time.sleep(2.5)
 
 		# iterate through index and item
 		for index, item in enumerate(results):
@@ -221,9 +218,6 @@ class electrical_conductivity(I2C_sensor):
 
 class total_pressure(I2C_sensor):
 
-	# time taken for total pressure sensor to read
-	wait = 0
-
 	def __init__(self, table, bus_number):
 
 		# corresponding table in database
@@ -278,4 +272,7 @@ class total_pressure(I2C_sensor):
 		# consumption are primarily the differences).  The default mode is STANDARD.
 		#sensor = BMP085.BMP085(mode=BMP085.BMP085_ULTRAHIGHRES)
 
-		return sensor.read_temperature(), sensor.read_pressure(), sensor.read_altitude(), sensor.read_sealevel_pressure()
+		reading = sensor.read_pressure()
+		time.sleep(5)
+
+		return reading
