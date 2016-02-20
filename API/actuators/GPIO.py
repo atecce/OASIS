@@ -12,6 +12,7 @@ class GPIO:
 		      26: {1: "off", 0: "on"},	
 		      87: {1: "off", 0: "on"},
 		      89: {1: "off", 0: "on"},
+		      10: {1: "off", 0: "on"},
 		      11: {1: "off", 0: "on"},
 		      62: {0: "off", 1: "on"},
 		      63: {0: "off", 1: "on"},
@@ -80,6 +81,18 @@ class GPIO:
 		# close the device
 		device.close()
 
+F = {1: GPIO("UV filter", 11)}
+
+print F[1].table, "is", F[1].check_status()
+
+V = {3: GPIO("CO2 solenoid", 89),
+     4: GPIO("N2 solenoid",  10)}
+
+for SysID in range(3, 5):
+
+	print V[SysID].table, "is", V[SysID].check_status()
+
+
 M = {1:  GPIO("heater",          45),
      2:  GPIO("chiller",         44),
      6:  GPIO("fan 1",           70),
@@ -92,15 +105,6 @@ SysIDs = chain(range(1, 3), range(6, 9), range(18, 19))
 for SysID in SysIDs:
 
 	print M[SysID].table, "is", M[SysID].check_status()
-
-V = {3: GPIO("CO2 solenoid", 89),
-     4: GPIO("N2 solenoid",  10)}
-
-SysIDs = range(3, 5)
-
-for SysID in SysIDs:
-
-	print V[SysID].table, "is", V[SysID].check_status()
 
 P = {1:  GPIO("main pump", 	        62),
      2:  GPIO("condensate pump",        63),
@@ -115,8 +119,6 @@ P = {1:  GPIO("main pump", 	        62),
      11: GPIO("main tank circulation",  36),
      12: GPIO("dehumidifier",		87)}
 
-SysIDs = range(1, 13)
-
-for SysID in SysIDs:
+for SysID in range(1, 13):
 
 	print P[SysID].table, "is", P[SysID].check_status()
