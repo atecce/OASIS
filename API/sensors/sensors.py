@@ -49,15 +49,21 @@ S = {101: electrical_conductivity("electrical_conductivity", 0x66),
 # set of ID's sensors take
 SysIDs = chain(range(101, 113), range(201, 204), range(205, 207), range(208, 212), range(301, 307), range(401, 404))
 
+# initialize table
 table = list()
 
+# for each system ID
 for SysID in SysIDs:
 
+	# initalize entry
 	entry = [repr(S[SysID]), "S" + str(SysID), S[SysID].table]
 
+	# try to append reading to entry
 	try:            entry.append(S[SysID].read())  
 	except IOError: entry.append("IOError")
 
+	# append the entry to table
 	table.append(entry)
 
+# print the table
 print tabulate(table)
