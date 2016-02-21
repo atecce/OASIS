@@ -24,15 +24,22 @@ html(lang="en")
                 form.login__form(action='index.html')
                     .login__logo
                     .form-group
+                        input.form-control(type='first_name', placeholder='First Name')
+                    .form-group
+                        input.form-control(type='last_name', placeholder='Last Name')
+                    .form-group
                         input.form-control(type='text', placeholder='Email')
                     .form-group
                         input.form-control(type='password', placeholder='Password')
+                    .form-group
+                        input.form-control(type='password', placeholder='Confirm Password')
+ 
                     .form-group.login__action
                         .checkbox.login__remember
                             input#chb1(type='checkbox')
                             label(for='chb1') Remember
                         .login__submit
-                            button.btn.btn-default(type='submit') Sign in
+                            button.btn.btn-default(type='submit') Register
         script(src='libs/jquery/jquery.min.js')
         script(src='libs/bootstrap/js/bootstrap.min.js')
         script(src='js/demo.js')
