@@ -14,18 +14,28 @@ block main
                         button.btn.btn-default(type="button")
                             .fa.fa-search
     .container-fluid.half-padding
-        .template.template__blank
+        .template.template__charts
             .row
-                .col-md-12
+                .col-md-6
                     .panel.panel-danger
                         .panel-heading
-                            h3.panel-title Latest Readings
+                            h3.panel-title Latest News
                         .panel-body
-                            p This is a blank page.
+                            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat nulla risus, eu posuere enim sodales in. Maecenas quis molestie augue. Nunc magna augue, efficitur eget pharetra quis, posuere vitae lectus. Nulla facilisi. Mauris vitae molestie felis. Nulla egestas, risus ut aliquam auctor, ligula nisl efficitur justo, et dapibus urna augue in massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                .col-md-6
+                    .panel.panel-danger
+                        .panel-heading
+                            h3.panel-title Plotting Info
+                        .panel-body
+                            .template__sparkline
+                                .template__sparkline-title Mouse speed
+                                .template__sparkline-ms.sparkline
+
+
 
      .container-fluid.half-padding
        .row
-         .col-md-12
+         .col-md-6
            .panel.panel-warning
              .panel-heading
                h3.panel-title Basic Device Control
@@ -42,4 +52,10 @@ block main
                        input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
 
 
-
+block css 
+    link(href='libs/morris.js/morris.css', rel='stylesheet')
+block js
+    script(src='libs/raphael/raphael-min.js')
+    script(src='libs/morris.js/morris.min.js')
+    if !release
+        script(src='js/template/charts.js')
