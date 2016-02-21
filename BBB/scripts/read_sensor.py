@@ -24,7 +24,10 @@ def main(argv):
 
 	# read in arguments
 	sensor_name =     argv[1]
-	readings    = int(argv[2])
+
+	# get amount of readings, default is 1
+	try: 		   readings = int(argv[2])
+	except IndexError: readings = 1
 
 	# doing it this way so not every sensor needs to be loaded every time the script is used
 	if   sensor_name == "EC1":	   sensor = electrical_conductivity("electrical_conductivity",  0x66)
@@ -116,6 +119,9 @@ def main(argv):
 
 		# print the table
 		print tabulate(table)
+
+		# exit with success	
+		sys.exit(0)
 
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
