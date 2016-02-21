@@ -39,18 +39,11 @@
             </div></a></div>
         <div class="topnavbar">
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="index.html"><span>Status </span></a></li>
-            <li><a href="inbox.html"><span>Control </span></a></li>
-            <li class="dropdown active"><a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><span>Settings&nbsp;<i class="caret"></i></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="products.html"><span>Products</span></a></li>
-                <li><a href="orders.html"><span>Orders</span></a></li>
-                <li><a href="users.html"><span>Users</span></a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="login.html">Login</a></li>
-                <li class="active"><a href="blank.html">Blank</a></li>
-              </ul>
-            </li>
+            <li><a href="index.html"><span>Dashboard </span></a></li>
+            <li><a href="control.html"><span>Control </span></a></li>
+            <li><a href="status.html"><span>Status </span></a></li>
+            <li><a href="data.html"><span>Data </span></a></li>
+            <li><a href="about.html"><span>About </span></a></li>
           </ul>
           <ul class="userbar nav navbar-nav">
             <li class="dropdown"><a href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="userbar__settings dropdown-toggle"><i class="fa fa-power-off"></i></a>
@@ -70,16 +63,16 @@
                   <div class="fa fa-fw fa-home"></div>
                 </div>
                 <div class="quickmenu__item">
-                  <div class="fa fa-fw fa-envelope-o"></div>
+                  <div class="fa fa-fw fa-area-chart"></div>
                 </div>
                 <div class="quickmenu__item new">
-                  <div class="fa fa-fw fa-comments-o"></div>
+                  <div class="fa fa-fw fa-warning"></div>
                 </div>
                 <div class="quickmenu__item">
                   <div class="fa fa-fw fa-feed"></div>
                 </div>
                 <div class="quickmenu__item">
-                  <div class="fa fa-fw fa-cog"></div>
+                  <div class="fa fa-fw fa-wrench"></div>
                 </div>
               </div>
             </div>
@@ -188,7 +181,7 @@
                 </div>
               </div>
               <div class="sidebar__menu">
-                <div class="sidebar__title">New Messages</div>
+                <div class="sidebar__title">New Warnings</div>
                 <div class="lm-widget">
                   <div class="lm-widget__list">
                     <div class="lm-widget__item new">
@@ -201,7 +194,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="sidebar__title">Recent list</div>
+                <div class="sidebar__title">Recent Warnings</div>
                 <div class="lm-widget">
                   <div class="lm-widget__list">
                     <div class="lm-widget__item">
@@ -333,52 +326,16 @@
                 <div class="ss-widget">
                   <div class="ss-widget__cont">
                     <div class="ss-widget__row">
-                      <div class="ss-widget__cell">Site</div>
+                      <div class="ss-widget__cell">BeagleBone</div>
                       <div class="ss-widget__cell">
                         <input type="checkbox" checked="checked" data-size="micro" data-on-color="success" data-off-color="danger" class="bs-switch">
                       </div>
                     </div>
                     <div class="ss-widget__row">
-                      <div class="ss-widget__cell">Mailing</div>
+                      <div class="ss-widget__cell">Autopilot</div>
                       <div class="ss-widget__cell">
                         <input type="checkbox" data-size="micro" data-on-color="success" data-off-color="danger" class="bs-switch">
                       </div>
-                    </div>
-                    <div class="ss-widget__item">
-                      <div class="ss-widget__label">Limit</div>
-                      <div class="ss-widget__value">
-                        <input type="text" name="" value="" data-grid="false" data-min="0" data-max="2000" data-from="600" data-step="200" class="settings-slider">
-                      </div>
-                    </div>
-                    <div class="ss-widget__row">
-                      <div class="ss-widget__cell">Timeout</div>
-                      <div class="ss-widget__cell">
-                        <input type="number" min="5" max="50" step="5" value="15" class="form-control input-sm">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="sidestat">
-                  <div class="sidestat__cont">
-                    <div class="sidestat__item">
-                      <div class="sidestat__value">1,760</div>
-                      <div class="sidestat__text">visits of your site</div>
-                      <div class="sidestat__chart sparkline bar">1699,1686,8368,9011,6129,3837,0997,2034,0483,1457,2950,8946,0866,6247,8222,5727,0020,6883,3410,5224,2034,0483,1457,2950,5946,0866</div>
-                    </div>
-                    <div class="sidestat__item">
-                      <div class="sidestat__value">2,034</div>
-                      <div class="sidestat__text">views of your products</div>
-                      <div class="sidestat__chart sparkline area">5696,6514,9647,6326,6028,8869,8251,9146,6137,8997,6892,9544,7011,6556,7737,8348,7011,6558,7556</div>
-                    </div>
-                    <div class="sidestat__item">
-                      <div class="sidestat__value">$2,950</div>
-                      <div class="sidestat__text">average day earning</div>
-                      <div class="sidestat__chart sparkline bar_thin">6658,8005,9033,8360,3385,9018,9089,7804,5574,7556,6910,4327,7500,6563,0649,2584,8757,6815,8368,9011,6129,3837,0997,2034,0483,1457,2950,8946,0866,6247,3385,9018,9089,7804,5574,7556,6910,4327,7500,7804,5574,7556,6910,4327,7500,6563,0649,2584</div>
-                    </div>
-                    <div class="sidestat__item">
-                      <div class="sidestat__value">290</div>
-                      <div class="sidestat__text">month orders</div>
-                      <div class="sidestat__chart sparkline line">075,487,581,520,075,630,350,631,794,666,466,322,833,471,721,703,042,328,844,996,099,342,841,599</div>
                     </div>
                   </div>
                 </div>
@@ -422,21 +379,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="demo">
-      <div class="demo__ico"></div>
-      <div class="demo__cont">
-        <div class="demo__settings">
-          <div class="demo__group">
-            <div class="demo__label">Color theme:</div>
-            <div class="demo__themes">
-              <div data-css="css/right.dark.css" title="Dark" class="demo__theme demo__theme_active demo__theme_dark"></div>
-              <div data-css="css/right.lilac.css" title="Lilac" class="demo__theme demo__theme_lilac"></div>
-              <div data-css="css/right.light.css" title="Light" class="demo__theme demo__theme_light"></div>
             </div>
           </div>
         </div>

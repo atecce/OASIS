@@ -22,7 +22,7 @@ block main
                             h3.panel-title Latest News
                         .panel-body
                             p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat nulla risus, eu posuere enim sodales in. Maecenas quis molestie augue. Nunc magna augue, efficitur eget pharetra quis, posuere vitae lectus. Nulla facilisi. Mauris vitae molestie felis. Nulla egestas, risus ut aliquam auctor, ligula nisl efficitur justo, et dapibus urna augue in massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                .col-md-6
+                .col-md-3
                     .panel.panel-danger
                         .panel-heading
                             h3.panel-title Plotting Info
@@ -30,9 +30,15 @@ block main
                             .template__sparkline
                                 .template__sparkline-title Mouse speed
                                 .template__sparkline-ms.sparkline
-
-
-
+                .col-md-3
+                    .panel.panel-danger
+                        .panel-heading
+                            h3.panel-title Plotting Info
+                        .panel-body
+                            .template__sparkline
+                                .template__sparkline-title Mouse speed
+                                .template__sparkline-ms.sparkline
+                
      .container-fluid.half-padding
        .row
          .col-md-6
@@ -50,6 +56,8 @@ block main
                      .ss-widget__cell Autopilot
                      .ss-widget__call
                        input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
+
+
 
 
 block css 
