@@ -33,7 +33,7 @@ fi
 # if reading all sensors 
 if [ $sensor == "all" ]; then
 
-	sudo python /home/atecce/OASIS/API/sensors/sensors.py
+	sudo python /home/atecce/OASIS/API/sensors/sensors.py $sensor
 
 # otherwise
 else
