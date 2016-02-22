@@ -5,13 +5,13 @@
                 .quickmenu__item(class=page!='Sent' && page!='Inbox' && page!='Compose' ? 'active' : '')
                     .fa.fa-fw.fa-home
                 .quickmenu__item(class=page=='Sent' || page=='Inbox' || page=='Compose' ? 'active' : '')
-                    .fa.fa-fw.fa-envelope-o
+                    .fa.fa-fw.fa-area-chart
                 .quickmenu__item.new
-                    .fa.fa-fw.fa-comments-o
+                    .fa.fa-fw.fa-warning
                 .quickmenu__item
                     .fa.fa-fw.fa-feed
                 .quickmenu__item
-                    .fa.fa-fw.fa-cog
+                    .fa.fa-fw.fa-wrench
     .scrollable.scrollbar-macosx
         .sidebar__cont
             .sidebar__menu
@@ -170,7 +170,7 @@
                             .nav-menu__text
                                 span Support
             .sidebar__menu
-                .sidebar__title New Messages
+                .sidebar__title New Warnings
                 .lm-widget
                     .lm-widget__list
                         .lm-widget__item.new
@@ -187,7 +187,7 @@
                             .lm-widget__text
                                 | Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue.
                             a.lm-widget__link(href='inbox.html')
-                .sidebar__title Recent list
+                .sidebar__title Recent Warnings
                 .lm-widget
                     .lm-widget__list
                         .lm-widget__item

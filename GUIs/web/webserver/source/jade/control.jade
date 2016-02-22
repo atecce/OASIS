@@ -22,4 +22,21 @@ block main
                             h3.panel-title Control Flow
                         .panel-body
                             p This is a blank page. Let's make it better!
+    .container-fluid.half-padding
+       .row
+         .col-md-6
+           .panel.panel-warning
+             .panel-heading
+               h3.panel-title Basic Device Control
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell BeagleBone
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', checked='checked', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Autopilot
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
 

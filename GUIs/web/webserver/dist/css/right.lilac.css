@@ -24,7 +24,7 @@ body:before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #582266 url('../img/background/lilac.jpg') 50% 50% no-repeat;
+  background: #582266 url('../img/background/marsspace.jpg') 50% 50% no-repeat;
   background-size: cover;
 }
 a {
@@ -1680,7 +1680,7 @@ body.main-scrollable .main {
 .login__logo {
   height: 125px;
   margin-bottom: 20px;
-  background: url('../img/rightlogo.png') 50% top no-repeat;
+  background: url('../img/MarsOASISlogo.png') 50% top no-repeat;
   background-size: contain;
 }
 .no-padding {
