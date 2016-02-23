@@ -7,45 +7,6 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
-
-      .state('tabsController.stats', {
-    url: '/stats',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/stats.html',
-        controller: 'statsCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.home', {
-    url: '/home',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.settings', {
-    url: '/settings',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/settings.html',
-        controller: 'settingsCtrl'
-      }
-    }
-  })
-
-  .state('tabsController', {
-    url: '/page1',
-    templateUrl: 'templates/tabsController.html',
-    abstract:true
-  })
-
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
@@ -57,9 +18,53 @@ angular.module('app.routes', [])
     templateUrl: 'templates/register.html',
     controller: 'registerCtrl'
   })
+  
+  .state('tabsController.overview', {
+    url: '/overview',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/overview.html',
+        controller: 'overviewCtrl'
+      }
+    }
+  })
 
-$urlRouterProvider.otherwise('/page1/stats')
+  .state('tabsController.sensors', {
+    url: '/sensors',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/sensors.html',
+        controller: 'sensorsCtrl'
+      }
+    }
+  })
 
+  .state('tabsController.actuators', {
+    url: '/actuators',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/actuators.html',
+        controller: 'actuatorsCtrl'
+      }
+    }
+  })
 
+  .state('tabsController.settings', {
+    url: '/settings',
+    views: {
+      'tab4': {
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
+      }
+    }
+  })
+
+  .state('tabsController', {
+    url: '/main',
+    templateUrl: 'templates/tabsController.html',
+    abstract: true
+  })
+
+$urlRouterProvider.otherwise('/main/overview')
 
 });
