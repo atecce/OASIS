@@ -1,13 +1,21 @@
-<ion-view title="Tabs Controller">
-    <ion-tabs class="tabs-stable tabs-icon-top">
-        <ion-tab title="Stats" icon="ion-arrow-graph-up-right" href="#/page1/stats">
-            <ion-nav-view name="tab1"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Home" icon="ion-home" href="#/page1/home">
-            <ion-nav-view name="tab2"></ion-nav-view>
-        </ion-tab>
-        <ion-tab title="Cloud Tab" icon="ion-ios-settings" href="#/page1/settings">
-            <ion-nav-view name="tab3"></ion-nav-view>
-        </ion-tab>
-    </ion-tabs>
+<ion-view title="MarsOASIS">
+  <ion-tabs class="tabs-stable tabs-icon-top">
+
+    <ion-tab title="Overview" icon="ion-home" href="#/main/overview">
+      <ion-nav-view name="tab1"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Sensors" icon="ion-ios-pulse-strong" href="#/main/sensors">
+      <ion-nav-view name="tab2"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Actuators" icon="ion-ios-toggle" href="#/main/actuators">
+      <ion-nav-view name="tab3"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Settings" icon="ion-ios-gear" href="#/main/settings">
+      <ion-nav-view name="tab4"></ion-nav-view>
+    </ion-tab>
+
+  </ion-tabs>
 </ion-view>

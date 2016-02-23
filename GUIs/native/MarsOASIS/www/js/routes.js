@@ -7,25 +7,32 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
-
-
-      .state('tabsController.stats', {
-    url: '/stats',
+  .state('tabsController.overview', {
+    url: '/overview',
     views: {
       'tab1': {
-        templateUrl: 'templates/stats.html',
-        controller: 'statsCtrl'
+        templateUrl: 'templates/overview.html',
+        controller: 'overviewCtrl'
       }
     }
   })
 
-  .state('tabsController.home', {
-    url: '/home',
+  .state('tabsController.sensors', {
+    url: '/sensors',
     views: {
       'tab2': {
-        templateUrl: 'templates/home.html',
-        controller: 'homeCtrl'
+        templateUrl: 'templates/sensors.html',
+        controller: 'sensorsCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.actuators', {
+    url: '/actuators',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/actuators.html',
+        controller: 'actuatorsCtrl'
       }
     }
   })
@@ -33,7 +40,7 @@ angular.module('app.routes', [])
   .state('tabsController.settings', {
     url: '/settings',
     views: {
-      'tab3': {
+      'tab4': {
         templateUrl: 'templates/settings.html',
         controller: 'settingsCtrl'
       }
@@ -41,7 +48,7 @@ angular.module('app.routes', [])
   })
 
   .state('tabsController', {
-    url: '/page1',
+    url: '/main',
     templateUrl: 'templates/tabsController.html',
     abstract:true
   })
@@ -58,8 +65,6 @@ angular.module('app.routes', [])
     controller: 'registerCtrl'
   })
 
-$urlRouterProvider.otherwise('/page1/stats')
-
-
+$urlRouterProvider.otherwise('/main/overview')
 
 });
