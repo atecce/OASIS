@@ -96,9 +96,6 @@ from API.test_actuators import F, V, M, P
 This gives you access to the following dictionaries:
 
 ```python
-# need this for test actuator class
-from test_API import test_actuator
-
 # filters
 F = {1: test_actuator("UV filter")}
 
