@@ -1,6 +1,9 @@
 # need this to wait
 import time
 
+# need this for the date
+import datetime
+
 # need this for command line arguments and for the path
 import sys
 
@@ -126,9 +129,6 @@ def main(argv):
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
 
-	# start timer
-	start = time.time()
-
 	# read the specified amount of times
 	for i in range(readings): 
 
@@ -136,10 +136,10 @@ def main(argv):
 		reading = sensor.read()
 
 		# calculate current time
-		current_time = time.time() - start
+		current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
 		
 		# print columns of readings indexed at 1
-		print current_time, reading
+		print current_time+",", reading
 
 		# wait a second
 		time.sleep(1)

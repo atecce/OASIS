@@ -31,7 +31,7 @@ else
 fi
 
 # if reading all sensors 
-if [ $sensor == "all" ]; then
+if [ $sensor == "all" ] || [ $readings == 1 ]; then
 
 	sudo python /home/atecce/OASIS/BBB/scripts/read_sensor.py $sensor
 

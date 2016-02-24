@@ -1,14 +1,17 @@
 # Outline of the Control Procedure Code
 
+from read_hsst import HSST
+
 # System power initiated
 
 # SET System mode to INITIATING
 
 # RUN SYSTEM Health Checks
-system_health_checks()
+#system_health_checks()
 
 # RUN Monitor and Record
-monitor_record()
+#monitor_record()
 
 # RUN Read HSST
-read_HSST()
+hsst = HSST()
+print hsst.hsst

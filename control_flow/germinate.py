@@ -1,5 +1,24 @@
-# If level S105 is greater than [HSST_M21]
 
+
+
+
+def initTrue():
+	P11.activate()
+	P7.activate()
+	UVF2.activate()
+	FanM6.activate()
+	FanM7.activate()
+	#let loop run for 10 seconds:
+		humidP10.activate()
+	NPK1P6.activate()
+	NPK2P9.activate()
+# If level S105 is greater than [HSST_M21]
+if S105 > [HSST_M21]: 
+	initTrue()
+	conMonitoringAndTrouble()
+	waterHeating()
+	nutrientConditioning()
+	pHConditioning()
 # Set system mode to germinate
 
 # Activate!
@@ -9,9 +28,11 @@
 # Run pH conditioning function
 
 # activate main pump P1
-if S105 is <= [HSST_M21] 
+	mainP1.activate()
+	while S105 <= [HSST_M21]:
+		# deactivate Main pump P1
+		mainP1.deactivate()
 
-# deactivate Main pump P1
 
 # set system mode autonomous
 # set time of day
