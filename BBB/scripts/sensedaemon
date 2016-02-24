@@ -4,58 +4,58 @@
 while true; do
 
 	# append CO2 reading to csv
-	sudo read_sensor CO2 >> ~/readings/CO2readings.csv
+	sudo read_sensor CO2 >> /home/atecce/readings/CO2readings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append O2 reading to csv
-	sudo read_sensor O2 >> ~/readings/O2readings.csv
+	sudo read_sensor O2 >> /home/atecce/readings/O2readings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append EC reading to csv
-	sudo read_sensor EC2 >> ~/readings/ECreadings.csv
+	sudo read_sensor EC2 >> /home/atecce/readings/ECreadings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append pH reading to csv
-	sudo read_sensor pH1 >> ~/readings/pHreadings.csv
+	sudo read_sensor pH1 >> /home/atecce/readings/pHreadings.csv
 
 	# append temp1 to csv
-	sudo read_sensor temp1 >> ~/readings/temp1readings.csv
+	sudo read_sensor temp1 >> /home/atecce/readings/temp1readings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append temp2 to csv
-	sudo read_sensor temp2 >> ~/readings/temp2readings.csv
+	sudo read_sensor temp2 >> /home/atecce/readings/temp2readings.csv
 
 	# wait five seconds
 	sleep 5
 	
 	# append temp3 to csv
-	sudo read_sensor temp3 >> ~/readings/temp3readings.csv
+	sudo read_sensor temp3 >> /home/atecce/readings/temp3readings.csv
 
 	# wait five seconds
 	sleep 5
 	
 	# append temp4 to csv
-	sudo read_sensor temp4 >> ~/readings/temp4readings.csv
+	sudo read_sensor temp4 >> /home/atecce/readings/temp4readings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append RHTemp2 to csv
-	sudo read_sensor RHT2 >> ~/readings/RHT2readings.csv
+	sudo read_sensor RHT2 >> /home/atecce/readings/RHT2readings.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append RHTemp3 to csv
-	sudo read_sensor RHT3 >> ~/readings/RHT3readings.csv
+	sudo read_sensor RHT3 >> /home/atecce/readings/RHT3readings.csv
 
 	# wait five seconds
 	sleep 5
