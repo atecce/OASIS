@@ -13,15 +13,12 @@ from tabulate import tabulate
 # need this to concatenate ranges for predictable sensor suite iteration
 from itertools import chain
 
-# need this to import sensors
-sys.path.insert(0, '/home/atecce/OASIS/API/sensors')
-
 # import sensors by category
-from ADC      import *
-from I2C      import *
-from one_wire import *
-from UART     import *
-from USB      import camera
+from sensors.ADC      import *
+from sensors.I2C      import *
+from sensors.one_wire import *
+from sensors.UART     import *
+from sensors.USB      import camera
 
 def main(argv):
 
