@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # need this to chain SysID's together
 from itertools import chain
 
