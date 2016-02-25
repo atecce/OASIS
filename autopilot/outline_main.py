@@ -2,13 +2,31 @@
 
 # System power initiated
 
+states = {"initiating", "germinate", "autopilot", "standby", "shutdown"}
+
 # SET System mode to INITIATING
 
-# RUN SYSTEM Health Checks
-system_health_checks()
+mode = "initiating"
+ if mode == "initiating":
+ 	# RUN SYSTEM Health Checks
+ 	#set all actuators to off/0 and check that all sensors work
+ 	system_health_checks()
+ 	# RUN Monitor and Record
+ 	#start recording from sensors
+	monitor_record()
+	# RUN Read HSST
+	#record all values from the HSST file
+	read_HSST()
 
-# RUN Monitor and Record
-monitor_record()
+mode = "germinate"
+if mode == "germinate":
+	pass
 
-# RUN Read HSST
-read_HSST()
+while mode == "autopilot":
+	#run autopilot.py
+
+
+
+
+
+
