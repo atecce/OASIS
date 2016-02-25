@@ -16,15 +16,5 @@ fi
 sensor="$1" 
 
 
-# if reading all sensors 
-if [ $sensor == "all" ]; then
-
-	sudo python /home/atecce/OASIS/BBB/read_sensor.py $sensor
-
-# otherwise
-else
-
-	# wrap bash around python
-	sudo python /home/atecce/OASIS/BBB/read_sensor.py $sensor
-
-fi
+# wrap bash around python
+sudo python /home/atecce/OASIS/BBB/read_sensor.py $sensor
