@@ -14,4 +14,4 @@ from read_hsst import HSST
 
 # RUN Read HSST
 hsst = HSST()
-print hsst.hsst
+print hsst.read('I', 28)
