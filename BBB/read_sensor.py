@@ -25,10 +25,6 @@ def main(argv):
 	# read in arguments
 	sensor_name =     argv[1]
 
-	# get amount of readings, default is 1
-	try: 		   readings = int(argv[2])
-	except IndexError: readings = 1
-
 	# doing it this way so not every sensor needs to be loaded every time the script is used
 	if   sensor_name == "EC1":	   sensor = electrical_conductivity("electrical_conductivity",  0x66)
 	elif sensor_name == "pH1":	   sensor =              I2C_sensor("ph_and_circuitry",         0x65)
@@ -126,19 +122,13 @@ def main(argv):
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
 
-	# read the specified amount of times
-	for i in range(readings): 
+	# take reading
+	reading = sensor.read()
 
-		# take reading
-		reading = sensor.read()
-
-		# calculate current time
-		current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
-		
-		# print columns of readings indexed at 1
-		print current_time+",", reading
-
-		# wait a second
-		time.sleep(1)
+	# calculate current time
+	current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
+	
+	# print in comma separated format
+	print current_time+",", reading
 
 if __name__ == "__main__": main(sys.argv)
