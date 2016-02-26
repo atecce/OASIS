@@ -40,22 +40,22 @@ def main(argv):
 	elif sensor_name == "flow_meter1": sensor =              flow_meter("flow_meter_and_circuitry", 1)
 	elif sensor_name == "flow_meter2": sensor =              flow_meter("flow_meter_and_circuitry", 4)
 	elif sensor_name == "LL6": 	   sensor =            liquid_level("liquid_level",             0xF0)
-	elif sensor_name == "temp2":	   sensor =             temperature("liquid_temp",             "28-0000065f27cc") 
-	elif sensor_name == "temp3":	   sensor =             temperature("liquid_temp",             "28-0000065eb57a")
-	elif sensor_name == "temp4":	   sensor =             temperature("liquid_temp",             "28-000006747f7f")
+	elif sensor_name == "temp2":	   sensor =             temperature("soil_temp",               "28-0000065f27cc") 
+	elif sensor_name == "temp3":	   sensor =             temperature("soil_temp",               "28-0000065eb57a")
+	elif sensor_name == "temp4":	   sensor =             temperature("soil_temp",               "28-000006747f7f")
 	elif sensor_name == "EC2":	   sensor = electrical_conductivity("electrical_conductivity",  0x64)
 	elif sensor_name == "pH2":	   sensor =              I2C_sensor("ph_and_circuitry",	        0x63)
 	elif sensor_name == "MO1":	   sensor =                moisture("moisture",                 0x80)
 	elif sensor_name == "MO2":	   sensor =                moisture("moisture",                 0xA0)
 	elif sensor_name == "MO3":	   sensor =                moisture("moisture",                 0xC0)
 	elif sensor_name == "MO4":	   sensor =                moisture("moisture",                 0xE0)
-	elif sensor_name == "RHT1":	   sensor =             RH_and_temp("rh_and_air_temp",         'P8_8')
-	elif sensor_name == "RHT2":	   sensor =             RH_and_temp("rh_and_air_temp",         'P8_9')
+	elif sensor_name == "RHT1":	   sensor =             RH_and_temp("rh_and_air_temp",         "P8_8")
+	elif sensor_name == "RHT2":	   sensor =             RH_and_temp("rh_and_air_temp",         "P8_9")
 	elif sensor_name == "TP1":	   sensor =          total_pressure("total_pressure",           2)
 	elif sensor_name == "O2":	   sensor =                  oxygen("O2")
 	elif sensor_name == "CO2":	   sensor =                     CO2("CO2",                      5)
 	elif sensor_name == "PAR1":	   sensor =                     PAR("light",                    0xF0)
-	elif sensor_name == "RHT3":	   sensor =             RH_and_temp("rh_and_air_temp",         'P8_10')
+	elif sensor_name == "RHT3":	   sensor =             RH_and_temp("rh_and_air_temp",         "P8_10")
 	elif sensor_name == "TP2":	   sensor =          total_pressure("total_pressure",           1)
 	elif sensor_name == "PAR2": 	   sensor =                     PAR("light",                    0xD0)
 
@@ -75,9 +75,9 @@ def main(argv):
 		     111:              flow_meter("flow_meter_and_circuitry", 4),
 		     112:            liquid_level("liquid_level", 0xF0),
 
-		     201: 	       temperature("liquid_temp", "28-0000065f27cc"), 
-		     202: 	       temperature("liquid_temp", "28-0000065eb57a"),
-		     203: 	       temperature("liquid_temp", "28-000006747f7f"),
+		     201: 	       temperature("soil_temp", "28-0000065f27cc"), 
+		     202: 	       temperature("soil_temp", "28-0000065eb57a"),
+		     203: 	       temperature("soil_temp", "28-000006747f7f"),
 		     205:  electrical_conductivity("electrical_conductivity", 0x64),
 		     206:  		I2C_sensor("ph_and_circuitry",	   0x63),
 		     208:  		  moisture("moisture", 0x80),
