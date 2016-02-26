@@ -1,0 +1,159 @@
+extends ./parts/layout.jade
+block vars
+    - page = 'Control';
+block main
+    .main-heading
+        .main-title
+            ol.breadcrumb
+                li.active Control Flow
+        .main-filter
+            form.main-filter__search
+                .input-group
+    .container-fluid.half-padding
+       .row
+         .col-md-12
+           .panel.panel-warning
+             .panel-heading
+               h3.panel-title Basic Device Control
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell BeagleBone
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', checked='checked', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Autopilot
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
+      .row
+        .col-md-6
+           .panel.panel-primary
+             .panel-heading
+               h3.panel-title Water Flow
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell Main Tank Pump
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Condensate Tank Pump
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Leachate Tank Pump
+                     .ss-widget__call  
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+        .col-md-6
+          .panel.panel-primary
+            .panel-heading
+              h3.panel-title Water Conditioning
+            .panel-body
+              .ss-widget
+                .ss-widget__cont
+                  .ss-widget__row
+                    .ss-widget__cell Water Heater
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Water Chiller
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Nutrient 1 Dosing
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Nutrient 2 Dosing
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell ph Dosing
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+      .row
+        .col-md-6
+           .panel.panel-info
+             .panel-heading
+               h3.panel-title Atmospheric Management
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell Humidifier / Mister Pump
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Dehumidifier and Air Pump
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell O2 Concentrator
+                     .ss-widget__call  
+                         input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell CO2 Gas Solenoid
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell N2 Gas Solenoid
+                     .ss-widget__call  
+                         input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+        .col-md-6
+          .panel.panel-info
+            .panel-heading
+              h3.panel-title Fan Control
+            .panel-body
+              .st-widget
+                .st-widget-wrap
+                  .st-widget-cont
+                    .st-widget__item.st-widget__item_slider
+                      .st-widget__label Fan 1
+                        .st-widget__slider
+                          .input.settings-slider(type="text", name="", value="", data-grid="true", data-min='0', data-max='100', data-from='100', data-step='1')
+                    .st-widget__item.st-widget__item_slider
+                      .st-widget__label Fan 2
+                        .st-widget__slider
+                          .input.settings-slider(type="text", name="", value="", data-grid="true", data-min='0', data-max='100', data-from='50', data-step='1')
+      .row
+        .col-md-12
+           .panel.panel-warning
+             .panel-heading
+               h3.panel-title Lighting and Imagery
+             .panel-body
+               .st-widget
+                 .st-widget-cont
+                   .st-widget__item.st-widget__item_slider
+                     .ss-widget__label LED Brightness
+                       .ss-widget__slider
+                         input.settings-slider(type='text', name="", value="", data-grid="true", data-min='0', data-max='100', data-from='25', data-step='1')
+      .row
+        .col-md-12
+          .panel.panel-default
+            .panel-heading
+              h3.panel-title System Maintenance
+            .panel-body
+              .ss-widget
+                .ss-widget__cont
+                  .ss-widget__row
+                    .ss-widget__cell Main Tank Circulation
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Main Tank Air Bubbler
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', checked="checked", data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Nutrient Tank 1 Circulation
+                    .ss-widget__call  
+                        input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell Nutrient Tank 2 Circulation
+                    .ss-widget__call
+                      input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
+                  .ss-widget__row
+                    .ss-widget__cell UV Filter
+                    .ss-widget__call  
+                        input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="danger")
