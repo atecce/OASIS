@@ -1,0 +1,69 @@
+extends ./parts/layout.jade
+block vars
+    - page = 'Dashboard';
+block main
+    .main-heading
+        .main-title
+            ol.breadcrumb
+                li.active Dashboard
+        .main-filter
+            form.main-filter__search
+                .input-group
+                    input.form-control(type="text", placeholder="Search...")
+                    span.input-group-btn
+                        button.btn.btn-default(type="button")
+                            .fa.fa-search
+    .container-fluid.half-padding
+        .template.template__charts
+            .row
+                .col-md-6
+                    .panel.panel-danger
+                        .panel-heading
+                            h3.panel-title Latest News
+                        .panel-body
+                            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat nulla risus, eu posuere enim sodales in. Maecenas quis molestie augue. Nunc magna augue, efficitur eget pharetra quis, posuere vitae lectus. Nulla facilisi. Mauris vitae molestie felis. Nulla egestas, risus ut aliquam auctor, ligula nisl efficitur justo, et dapibus urna augue in massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                .col-md-3
+                    .panel.panel-danger
+                        .panel-heading
+                            h3.panel-title Plotting Info
+                        .panel-body
+                            .template__sparkline
+                                .template__sparkline-title Mouse speed
+                                .template__sparkline-ms.sparkline
+                .col-md-3
+                    .panel.panel-danger
+                        .panel-heading
+                            h3.panel-title Plotting Info
+                        .panel-body
+                            .template__sparkline
+                                .template__sparkline-title Mouse speed
+                                .template__sparkline-ms.sparkline
+                
+     .container-fluid.half-padding
+       .row
+         .col-md-6
+           .panel.panel-warning
+             .panel-heading
+               h3.panel-title Basic Device Control
+             .panel-body
+               .ss-widget
+                 .ss-widget__cont
+                   .ss-widget__row
+                     .ss-widget__cell BeagleBone
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', checked='checked', data-size="macro", data-on-color="success", data-off-color="danger")
+                   .ss-widget__row
+                     .ss-widget__cell Autopilot
+                     .ss-widget__call
+                       input.bs-switch(type='checkbox', data-size="macro", data-on-color="success", data-off-color="warning")
+
+
+
+
+block css 
+    link(href='libs/morris.js/morris.css', rel='stylesheet')
+block js
+    script(src='libs/raphael/raphael-min.js')
+    script(src='libs/morris.js/morris.min.js')
+    if !release
+        script(src='js/template/charts.js')
