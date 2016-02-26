@@ -1,7 +1,10 @@
 # need this for temperature
 import Adafruit_DHT
 
-class temperature:
+# doesn't seem to be any unifrom behavior of one wire
+class one_wire_sensor: pass
+
+class temperature(one_wire_sensor):
 
 	# time taken for temperature sensors to read
 	wait = 0
@@ -33,7 +36,7 @@ class temperature:
 		# return parsed 
 		return float(lastelement)/1000
 
-class RH_and_temp:
+class RH_and_temp(one_wire_sensor):
 
 	# time taken for RHTemp sensors to read
 	wait = 0

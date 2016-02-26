@@ -15,23 +15,23 @@ from tabulate import tabulate
 # need this to concatenate ranges for predictable sensor suite iteration
 from itertools import chain
 
-# import sensors by category
-from sensors.ADC      import *
-from sensors.I2C      import *
-from sensors.one_wire import *
-from sensors.UART     import *
-from sensors.USB      import camera
-
 def main(argv):
+	
+	# import sensors by category
+	from sensors.ADC      import liquid_level, moisture, oxygen, PAR
+	from sensors.I2C      import pH, dissolved_oxygen, electrical_conductivity, total_pressure
+	from sensors.one_wire import temperature, RH_and_temp
+	from sensors.UART     import CO2, flow_meter
+	from sensors.USB      import camera
 
 	# read in arguments
-	sensor_name =     argv[1]
+	sensor_name = argv[1]
 
 	# doing it this way so not every sensor needs to be loaded every time the script is used
 	if   sensor_name == "EC1":	   sensor = electrical_conductivity("electrical_conductivity",  0x66)
-	elif sensor_name == "pH1":	   sensor =              I2C_sensor("ph_and_circuitry",         0x65)
-	elif sensor_name == "temp1":       sensor =             temperature("liquid_temp",             "28-00000673a8a7")
-	elif sensor_name == "DO":   	   sensor =              I2C_sensor("do_probe_and_circuitry",   0x61)
+	elif sensor_name == "pH1":	   sensor =              	 pH("ph_and_circuitry",         0x65)
+	elif sensor_name == "temp1":       sensor = 		temperature("liquid_temp",             "28-00000673a8a7")
+	elif sensor_name == "DO":   	   sensor =        dissolved_oxygen("do_probe_and_circuitry",   0x61)
 	elif sensor_name == "LL1": 	   sensor =            liquid_level("liquid_level",             0x80) 
 	elif sensor_name == "LL2": 	   sensor =            liquid_level("liquid_level",             0xA0)
 	elif sensor_name == "LL3": 	   sensor =            liquid_level("liquid_level",             0xC0)
@@ -40,11 +40,11 @@ def main(argv):
 	elif sensor_name == "flow_meter1": sensor =              flow_meter("flow_meter_and_circuitry", 1)
 	elif sensor_name == "flow_meter2": sensor =              flow_meter("flow_meter_and_circuitry", 4)
 	elif sensor_name == "LL6": 	   sensor =            liquid_level("liquid_level",             0xF0)
-	elif sensor_name == "temp2":	   sensor =             temperature("soil_temp",               "28-0000065f27cc") 
-	elif sensor_name == "temp3":	   sensor =             temperature("soil_temp",               "28-0000065eb57a")
-	elif sensor_name == "temp4":	   sensor =             temperature("soil_temp",               "28-000006747f7f")
+	elif sensor_name == "temp2":	   sensor = 		temperature("soil_temp",               "28-0000065f27cc") 
+	elif sensor_name == "temp3":	   sensor = 		temperature("soil_temp",               "28-0000065eb57a")
+	elif sensor_name == "temp4":	   sensor = 		temperature("soil_temp",               "28-000006747f7f")
 	elif sensor_name == "EC2":	   sensor = electrical_conductivity("electrical_conductivity",  0x64)
-	elif sensor_name == "pH2":	   sensor =              I2C_sensor("ph_and_circuitry",	        0x63)
+	elif sensor_name == "pH2":	   sensor =              	 pH("ph_and_circuitry",	        0x63)
 	elif sensor_name == "MO1":	   sensor =                moisture("moisture",                 0x80)
 	elif sensor_name == "MO2":	   sensor =                moisture("moisture",                 0xA0)
 	elif sensor_name == "MO3":	   sensor =                moisture("moisture",                 0xC0)
@@ -63,9 +63,9 @@ def main(argv):
 
 		# populate sensor suite
 		S = {101: electrical_conductivity("electrical_conductivity", 0x66),
-		     102:              I2C_sensor("ph_and_circuitry",        0x65),
+		     102:              	       pH("ph_and_circuitry",        0x65),
 		     103:             temperature("liquid_temp", "28-00000673a8a7"),
-		     104:              I2C_sensor("do_probe_and_circuitry",  0x61),
+		     104:        dissolved_oxygen("do_probe_and_circuitry",  0x61),
 		     105:            liquid_level("liquid_level", 0x80), 
 		     106:            liquid_level("liquid_level", 0xA0),
 		     107:            liquid_level("liquid_level", 0xC0),
@@ -79,7 +79,7 @@ def main(argv):
 		     202: 	       temperature("soil_temp", "28-0000065eb57a"),
 		     203: 	       temperature("soil_temp", "28-000006747f7f"),
 		     205:  electrical_conductivity("electrical_conductivity", 0x64),
-		     206:  		I2C_sensor("ph_and_circuitry",	   0x63),
+		     206:  			pH("ph_and_circuitry",	   0x63),
 		     208:  		  moisture("moisture", 0x80),
 		     209:  		  moisture("moisture", 0xA0),
 		     210:  		  moisture("moisture", 0xC0),
