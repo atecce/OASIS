@@ -124,13 +124,23 @@ def main(argv):
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
 
-	# take reading
-	reading = sensor.read()
-
 	# calculate current time
 	current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
-	
-	# print in comma separated format
-	print current_time+",", reading
+
+	# special case for RHT
+	if sensor_name == "RHT1" or sensor_name == "RHT2" or sensor_name == "RHT3":
+
+		relative_humidity, temperature = sensor.read()
+
+		# print in comma separated format
+		print current_time+",", str(relative_humidity)+",", str(temperature)
+
+	else:
+
+		# take reading
+		reading = sensor.read()
+		
+		# print in comma separated format
+		print current_time+",", reading
 
 if __name__ == "__main__": main(sys.argv)
