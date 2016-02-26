@@ -1,7 +1,5 @@
 
 
-
-
 def initTrue():
 	P11.activate()
 	P7.activate()

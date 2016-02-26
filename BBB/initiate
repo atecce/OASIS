@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+# need this to check the status
+import os
+
+# need this for necessary actuators
+from actuators.actuators import M, P
+
+# necessary fans
+fans = M[6], M[7]
+
+# necessary pumps
+pumps = P[6], P[7], P[9], P[11]
+
+# overhead light
+LED = M[18]
+
+# turn fans on high
+for fan in fans:
+
+	if fan.check_status() == "low": fan.toggle()
+
+# turn necessary pumps on
+for pump in pumps:
+
+	if pump.check_status == "off": pump.toggle()
+
+# turn light on
+if LED.check_status == "off": LED.toggle()
+
+# verify status
+os.system("check_status")

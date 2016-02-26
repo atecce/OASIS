@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # need this to wait
 import time
 
@@ -13,24 +15,17 @@ from tabulate import tabulate
 # need this to concatenate ranges for predictable sensor suite iteration
 from itertools import chain
 
-# need this to import sensors
-sys.path.insert(0, '/home/atecce/OASIS/API/sensors')
-
 # import sensors by category
-from ADC      import *
-from I2C      import *
-from one_wire import *
-from UART     import *
-from USB      import camera
+from sensors.ADC      import *
+from sensors.I2C      import *
+from sensors.one_wire import *
+from sensors.UART     import *
+from sensors.USB      import camera
 
 def main(argv):
 
 	# read in arguments
 	sensor_name =     argv[1]
-
-	# get amount of readings, default is 1
-	try: 		   readings = int(argv[2])
-	except IndexError: readings = 1
 
 	# doing it this way so not every sensor needs to be loaded every time the script is used
 	if   sensor_name == "EC1":	   sensor = electrical_conductivity("electrical_conductivity",  0x66)
@@ -129,19 +124,13 @@ def main(argv):
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
 
-	# read the specified amount of times
-	for i in range(readings): 
+	# take reading
+	reading = sensor.read()
 
-		# take reading
-		reading = sensor.read()
-
-		# calculate current time
-		current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
-		
-		# print columns of readings indexed at 1
-		print current_time+",", reading
-
-		# wait a second
-		time.sleep(1)
+	# calculate current time
+	current_time = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d, %H:%M:%S')
+	
+	# print in comma separated format
+	print current_time+",", reading
 
 if __name__ == "__main__": main(sys.argv)
