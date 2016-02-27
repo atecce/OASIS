@@ -16,3 +16,4 @@ Traceback (most recent call last):
   File "/usr/local/bin/read_sensor", line 133, in main
     relative_humidity, temperature = sensor.read()
 ValueError: too many values to unpack
+/home/atecce/OASIS/BBB/sensedaemon: line 62:  8941 Killed                  sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
