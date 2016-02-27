@@ -5,4 +5,4 @@
 # make sure to while you have sudo privileges (a hacky way is just to type "sudo ls" before running this) 
 # otherwise, you will be prompted for a password, and it will just write that prompt to the sensor data over and over again
 
-sudo nohup /home/atecce/OASIS/BBB/sensedaemon > /dev/null 2>/home/atecce/readings/errorlog.txt &
+sudo nohup /home/atecce/OASIS/BBB/sensedaemon > /dev/null 2>/home/atecce/OASIS/BBB/readings/errorlog.txt &
