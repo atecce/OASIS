@@ -39,6 +39,5 @@ for SysID in SysIDs:
 			# append entry to list
 			sensor_readings[SysID].append(entry)
 
-with open('S.json', 'w') as jsonfile:
-
-	json.dump(sensor_readings, jsonfile)
+# dump results to JSON file
+with open('S.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
