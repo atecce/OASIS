@@ -1,3 +1,6 @@
+# need this for json file
+import json
+
 # need this to parse csv's
 import csv
 
@@ -24,12 +27,18 @@ for SysID in SysIDs:
 
 		# for each reading
 		for reading in readings: 
+
+			try: 
 			
-			# date and time is key, reading is value
-			entry = {(reading[0], reading[1]): reading[2]}
+				# date and time is key, reading is value
+				entry = {str(reading[0])+str(reading[1]): float(reading[2])}
+
+			# originally introduced for failed entry in pH
+			except ValueError: continue
 
 			# append entry to list
 			sensor_readings[SysID].append(entry)
 
-# check dictionary 
-print sensor_readings
+with open('S.json', 'w') as jsonfile:
+
+	json.dump(sensor_readings, jsonfile)
