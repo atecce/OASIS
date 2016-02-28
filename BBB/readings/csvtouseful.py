@@ -10,6 +10,8 @@ import csv
 # need this to chain SysID's
 from itertools import chain
 
+sensor_conversion = {"401": "relative humidity and air temperature", "402": "total pressure", "403": "photosynthetically active radiation", "301": "relative humidity and air temperature", "302": "relative humidity and air temperature", "303": "total pressure", "304": "oxygen", "305": "carbon dioxide", "306": "photosynthetically active radiation", "201": "soil temperature", "202": "soil temperature", "203": "soil temperature", "205": "electrical conductivity", "206": "pH", "208": "moisture", "209": "moisture", "210": "moisture", "211": "moisture", "101": "electrical conductivity", "102": "pH", "103": "liquid temperature", "104": "dissolved oxygen", "105": "liquid level", "106": "liquid level", "107": "liquid level", "108": "liquid level", "109": "liquid level", "110": "flow meter", "111": "flow meter", "112": "liquid level"}
+
 # SysID's for sensors being read not
 SysIDs = chain(range(101, 104), range(201, 204), range(301, 303), range(304, 306))
 
@@ -19,8 +21,11 @@ sqlfile = open('readings.sql', 'w')
 # iterate through SysID's
 for SysID in SysIDs: 
 
+	# get sensor type
+	sensor_type = sensor_conversion[str(SysID)]
+
 	# initialize sensor readings for each SysID
-	sensor_readings = list()
+	sensor_readings = {sensor_type: list()}
 
 	# add insert statement to top of file
 	sqlfile.write("insert into sensor_data (sensor_ID, read_at, reading) values\n")
@@ -46,7 +51,7 @@ for SysID in SysIDs:
 			except ValueError: continue
 
 			# append entry to list
-			sensor_readings.append(entry)
+			sensor_readings[sensor_type].append(entry)
 
 	# dump results to JSON file
 	with open('S'+str(SysID)+'.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
@@ -60,3 +65,6 @@ for SysID in SysIDs:
 
 # close the sql file
 sqlfile.close()
+
+
+
