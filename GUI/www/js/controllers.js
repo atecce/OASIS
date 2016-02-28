@@ -11,6 +11,8 @@ angular.module('app.controllers', [])
 .controller('overviewCtrl', function($scope) {
   var chart = c3.generate({
     bindto: '#chart',
+    point: { r: 0 },
+    tooltip: { show: false },
     data: {
       mimeType: 'json',
       url: 'data/fake_sensor_data.json'

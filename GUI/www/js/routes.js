@@ -18,7 +18,7 @@ angular.module('app.routes', [])
     templateUrl: 'templates/register.html',
     controller: 'registerCtrl'
   })
-  
+
   .state('tabsController.overview', {
     url: '/overview',
     views: {
