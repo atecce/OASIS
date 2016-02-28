@@ -21,11 +21,11 @@ sqlfile = open('readings.sql', 'w')
 # iterate through SysID's
 for SysID in SysIDs: 
 
-	# get sensor type
-	sensor_type = sensor_conversion[str(SysID)]
+	# initialize x axis with date time
+	x = ['date time']
 
-	# initialize sensor readings for each SysID
-	sensor_readings = {sensor_type: list()}
+	# initialize y axis with sensor type
+	y = [sensor_conversion[str(SysID)]]
 
 	# add insert statement to top of file
 	sqlfile.write("insert into sensor_data (sensor_ID, read_at, reading) values\n")
@@ -40,9 +40,12 @@ for SysID in SysIDs:
 		for reading in readings: 
 
 			try: 
-			
-				# date and time is key, reading is value
-				entry = {str(reading[0])+str(reading[1]): float(reading[2])}
+
+				# append date time
+				x.append(str(reading[0])+str(reading[1]))
+
+				# append reading
+				y.append(float(reading[2]))
 
 				# write to file for 'insert into' statement
 				sqlfile.write("\n\t("+str(SysID)+str(", '")+str(reading[0])+str(reading[1])+"', "+reading[2]+"),")
@@ -50,8 +53,8 @@ for SysID in SysIDs:
 			# originally introduced for failed entry in pH
 			except ValueError: continue
 
-			# append entry to list
-			sensor_readings[sensor_type].append(entry)
+	# put readings in json format
+	sensor_readings = {"columns":[x, y]}
 
 	# dump results to JSON file
 	with open('S'+str(SysID)+'.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
