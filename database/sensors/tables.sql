@@ -13,7 +13,7 @@ create table if not exists sensor_data (
 	ID 	  int(1)   not null,
 	read_at   datetime not null default now(),
 	reading   float    not null,
-	primary key (read_at),
 
+	primary key (read_at),
 	foreign key (ID) references sensors (SysID)
 );
