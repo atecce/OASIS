@@ -13,20 +13,17 @@ from itertools import chain
 # SysID's for sensors being read not
 SysIDs = chain(range(101, 104), range(201, 204), range(301, 303), range(304, 306))
 
-# initialize dictionary of SysID's
-sensor_readings = dict()
-
 # open sql file
 sqlfile = open('readings.sql', 'w')
 
 # iterate through SysID's
 for SysID in SysIDs: 
 
+	# initialize sensor readings for each SysID
+	sensor_readings = list()
+
 	# add insert statement to top of file
 	sqlfile.write("insert into sensor_data (sensor_ID, read_at, reading) values\n")
-
-	# initialize time indexed list of sensor readings for each SysID
-	sensor_readings[SysID] = list()
 
 	# read from the csv file
 	with open('S'+str(SysID)+'.csv') as csvfile:
@@ -49,7 +46,10 @@ for SysID in SysIDs:
 			except ValueError: continue
 
 			# append entry to list
-			sensor_readings[SysID].append(entry)
+			sensor_readings.append(entry)
+
+	# dump results to JSON file
+	with open('S'+str(SysID)+'.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
 
 	# strip last comma
 	sqlfile.seek(-1, os.SEEK_END)
@@ -60,6 +60,3 @@ for SysID in SysIDs:
 
 # close the sql file
 sqlfile.close()
-
-# dump results to JSON file
-with open('S.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
