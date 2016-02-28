@@ -30,9 +30,6 @@ while mode == "autopilot":
 
 
 
-<<<<<<< Updated upstream
 # RUN Read HSST
 hsst = HSST()
 print hsst.read('I', 28)
-=======
->>>>>>> Stashed changes
