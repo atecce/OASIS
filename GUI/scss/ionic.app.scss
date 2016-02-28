@@ -17,7 +17,41 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+$big-bg: '../img/bg.jpg';
+$dark: #1e1e1e !default;
 
+@import "themes/dark.scss";
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+.scroll-bg {
+  // background: url($big-bg) no-repeat center center fixed;
+  background: $dark no-repeat center center fixed;
+  background-size: cover;
+}
+
+.bar {
+  border-style: none;
+}
+
+.title {
+  color: white;
+}
+
+.tabs-striped .tabs {
+  border-bottom: none;
+}
+
+#chart {
+  .c3-axis {
+    fill: white;
+  }
+
+  .c3 path {
+    stroke: white;
+  }
+
+  svg {
+    fill: white;
+  }
+}
