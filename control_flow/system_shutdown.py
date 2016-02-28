@@ -4,3 +4,6 @@
 # shutdown auto control and turn off ALL components
 
 # turn off system power
+
+def shutdown():
+    pass
