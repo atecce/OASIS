@@ -1,11 +1,3 @@
-create table if not exists sensors (
-	SysID int(1) not null,
-	SenseID varchar(15) not null,
-	sensor_type varchar(100) not null,
-	units varchar(100) not null,
-	primary key (SysID)
-);
-
 insert into sensors (SysID, SenseID, sensor_type, units) values
  
  	(101, 'EC1', 	     'electrical conductivity', 	      'micro-Siemens per centimeter'),
@@ -35,7 +27,7 @@ insert into sensors (SysID, SenseID, sensor_type, units) values
  	(302, 'RHT2',	     'relative humidity and air temperature', '%, celsius'),
  	(303, 'TP1',	     'total pressure', 			      'pascals'),
  	(304, 'O2',	     'oxygen', 				      '%'),
- 	(305, 'CO2',	     'carbon dioxide', 			      'parts per-million'),
+ 	(305, 'CO2',	     'carbon dioxide', 			      'parts per million'),
  	(306, 'PAR1',	     'photosynthetically active radiation',   'micro-mol photons per meters-squared per second'),
  	
  	(401, 'RHT3',	     'relative humidity and air temperature', '%, celsius'),
