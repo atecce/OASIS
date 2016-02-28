@@ -23,10 +23,10 @@ for fan in fans:
 # turn necessary pumps on
 for pump in pumps:
 
-	if pump.check_status == "off": pump.toggle()
+	if pump.check_status() == "off": pump.toggle()
 
 # turn light on
-if LED.check_status == "off": LED.toggle()
+if LED.check_status() == "off": LED.toggle()
 
 # verify status
 os.system("check_status")
