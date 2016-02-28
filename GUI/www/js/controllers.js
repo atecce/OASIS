@@ -14,8 +14,10 @@ angular.module('app.controllers', [])
     point: { r: 0 },
     tooltip: { show: false },
     data: {
+      // x: 'date-time',
       mimeType: 'json',
-      url: 'data/fake_sensor_data.json'
+      url: 'data/S305.json'
+
     }
   });
 })
