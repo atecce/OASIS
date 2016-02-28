@@ -17,3 +17,42 @@ Traceback (most recent call last):
     relative_humidity, temperature = sensor.read()
 ValueError: too many values to unpack
 /home/atecce/OASIS/BBB/sensedaemon: line 62:  8941 Killed                  sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
+/home/atecce/OASIS/BBB/sensedaemon: line 62: 18732 Killed                  sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
+/home/atecce/OASIS/BBB/sensedaemon: line 62: 21304 Killed                  sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
+/home/atecce/OASIS/BBB/sensedaemon: line 62: 29746 Killed                  sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
+Traceback (most recent call last):
+  File "/usr/local/bin/read_sensor", line 146, in <module>
+    if __name__ == "__main__": main(sys.argv)
+  File "/usr/local/bin/read_sensor", line 133, in main
+    relative_humidity, temperature = sensor.read()
+ValueError: too many values to unpack
