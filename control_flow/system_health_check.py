@@ -10,15 +10,17 @@ from API.test_sensors import S
 
 # ELSE RUN System Shutdown
 
+def initial_health_check():
+	#turn off all actuators
+	for actuator in actuator_suite:
+		actuator[i].toggle()
+		actuator[i].check_status()
 
-#turn off all actuators
-for actuator in actuator_suite:
-	actuator[i].toggle()
-	actuator[i].check_status()
-
-#check that all sensors can read
-for sensor in sensor_suite:
-	if sensor[i].read() != float:
-		print "Does not work"
-	else:
-		print "Does work"
+	#check that all sensors can read
+	for sensor in sensor_suite:
+		if sensor[i].read() != float:
+			print "Does not work"
+			return False
+		else:
+			print "Does work"
+			return True
