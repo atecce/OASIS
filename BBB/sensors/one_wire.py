@@ -1,7 +1,7 @@
 # need this for temperature
 import Adafruit_DHT
 
-# doesn't seem like one wire sensors are standardized in any fashion
+# doesn't seem to be any unifrom behavior of one wire
 class one_wire_sensor: pass
 
 class temperature(one_wire_sensor):
