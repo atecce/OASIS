@@ -1,16 +1,6 @@
-# npm libraries
-GUIs/web/webserver/node_modules
-# requires us to run gulp build in the webserver directory
-GUIs/web/webserver/dist
-GUIs/web/webserver/express/node_modules
-
-dist
-node_modules
-
-
-
 __pycache__
 .cache
 .DS_Store
 *.jpeg
 *.pyc
+icon.png
