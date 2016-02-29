@@ -1,3 +1,5 @@
+import datetime
+
 # need this to strip last character
 import os
 
@@ -22,7 +24,7 @@ sqlfile = open('readings.sql', 'w')
 for SysID in SysIDs: 
 
 	# initialize x axis with date time
-	x = ['date time']
+	x = ['epoch']
 
 	# initialize y axis with sensor type
 	y = [sensor_conversion[str(SysID)]]
@@ -41,8 +43,18 @@ for SysID in SysIDs:
 
 			try: 
 
+				datetime_format = str(reading[0])+str(reading[1])
+
+				first = datetime_format.split()
+
+				second = first[0].split('-') + first[1].split(':')
+
+				third = map(int, second)
+
+				fourth = datetime.datetime(third[0], third[1], third[2], third[3], third[4], third[5]).strftime('%s')
+
 				# append date time
-				x.append(str(reading[0])+str(reading[1]))
+				x.append(int(fourth))
 
 				# append reading
 				y.append(float(reading[2]))
@@ -68,6 +80,3 @@ for SysID in SysIDs:
 
 # close the sql file
 sqlfile.close()
-
-
-
