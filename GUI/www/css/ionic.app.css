@@ -9110,3 +9110,9 @@ a.button {
 
 #chart svg {
   fill: white; }
+
+#chart .regionDangerous {
+  fill: red; }
+
+#chart .regionSafe {
+  fill: white; }

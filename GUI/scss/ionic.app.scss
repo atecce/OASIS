@@ -54,4 +54,12 @@ $dark: #1e1e1e !default;
   svg {
     fill: white;
   }
+
+  .regionDangerous {
+    fill: red;
+  }
+
+  .regionSafe {
+    fill: white;
+  }
 }
