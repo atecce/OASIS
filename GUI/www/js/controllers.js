@@ -13,7 +13,7 @@ angular.module('app.controllers', [])
   var readings;
   $http({ method: 'GET', url: 'data/S305.json' }).then(function successCallback(response) {
       readings = response;
-      console.log(readings.data[0][0]);
+      console.log(readings.data);
       var chart = c3.generate({
         bindto: '#chart',
         point: { r: 0 },
@@ -38,16 +38,16 @@ angular.module('app.controllers', [])
         grid: {
           y: {
             lines: [
-              // { value: 0.3, text: 'Dangerous', axis: 'y', position: 'end' },
-              // { value: 0.2, text: 'Safe', axis: 'y', position: 'end' },
-              // { value: 0.1, text: 'Safe', axis: 'y', position: 'end' },
+              { value: 0.0, text: 'Dangerous', axis: 'y', position: 'end' },
+              { value: 0.1, text: 'Safe', axis: 'y', position: 'end' },
+              { value: 0.2, text: 'Dangerous', axis: 'y', position: 'end' },
             ]
           }
         },
         regions: [
           {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
           // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
-          // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
+          {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
           {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
         ]
       });
