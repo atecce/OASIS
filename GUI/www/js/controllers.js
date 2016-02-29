@@ -14,6 +14,9 @@ angular.module('app.controllers', [])
   $http({ method: 'GET', url: 'data/S305.json' }).then(function successCallback(response) {
       readings = response;
       console.log(readings.data);
+      var date = new Date(readings.data[0][1] * 1000).getHours();
+      // console.log(date.getHours());
+      console.log(date);
       var chart = c3.generate({
         bindto: '#chart',
         point: { r: 0 },
@@ -23,8 +26,8 @@ angular.module('app.controllers', [])
             readings.data[0],
             readings.data[1]
           ],
-          x: readings.data[0][0],
-          y: readings.data[1][0]
+          x: readings.data[0][0], // epoch
+          y: readings.data[1][0]  // CO2
         },
         axis: {
           x: {
@@ -45,9 +48,9 @@ angular.module('app.controllers', [])
           }
         },
         regions: [
-          {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
+          // {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
           // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
-          {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
+          // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
           {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
         ]
       });
