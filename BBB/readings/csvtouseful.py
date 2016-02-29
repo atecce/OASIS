@@ -16,6 +16,8 @@ from itertools import chain
 # need this to use firebase
 import firebase
 
+firebase = firebase.FirebaseApplication('https://cumarsoasis.firebaseio.com', None)
+
 sensor_conversion = {"401": "relative humidity and air temperature", "402": "total pressure", "403": "photosynthetically active radiation", "301": "relative humidity and air temperature", "302": "relative humidity and air temperature", "303": "total pressure", "304": "oxygen", "305": "carbon dioxide", "306": "photosynthetically active radiation", "201": "soil temperature", "202": "soil temperature", "203": "soil temperature", "205": "electrical conductivity", "206": "pH", "208": "moisture", "209": "moisture", "210": "moisture", "211": "moisture", "101": "electrical conductivity", "102": "pH", "103": "liquid temperature", "104": "dissolved oxygen", "105": "liquid level", "106": "liquid level", "107": "liquid level", "108": "liquid level", "109": "liquid level", "110": "flow meter", "111": "flow meter", "112": "liquid level"}
 
 # SysID's for sensors being read not
@@ -73,3 +75,7 @@ for SysID in SysIDs:
 
 	# dump results to JSON file
 	with open('S'+str(SysID)+'.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
+
+	result = firebase.post('/data', sensor_readings)
+
+	print result
