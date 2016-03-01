@@ -18,48 +18,179 @@ This gives you access to the following dictionary:
 # populate sensor suite
 S = {
      # liquid tanks and plumbing		
-     101: test_sensor("electrical_conductivity",  1150, 1250),
-     102: test_sensor("ph_and_circuitry",          5.5,    6),     
-     103: test_sensor("liquid_temp", 		    22,   24),
+     101: test_sensor(1150, 1250),
+     102: test_sensor( 5.5,    6),     
+     103: test_sensor(  22,   24),
 #     104:   I2C_sensor("do_probe_and_circuitry",   0x61),
-     105: test_sensor("liquid_level", 	    	   2.5,   13), 
-     106: test_sensor("liquid_level", 	    	   2.5,    6),
-     107: test_sensor("liquid_level", 	    	   2.5,    6),
-     108: test_sensor("liquid_level", 	    	   2.5,    6),
-     109: test_sensor("liquid_level", 	    	   2.5,    6),
-     110: test_sensor("flow_meter_and_circuitry",  .23,  .47),
-     111: test_sensor("flow_meter_and_circuitry",  .23,  .47),
-     112: test_sensor("liquid_level", 	    	   2.5,    6),
+     105: test_sensor( 2.5,   13), 
+     106: test_sensor( 2.5,    6),
+     107: test_sensor( 2.5,    6),
+     108: test_sensor( 2.5,    6),
+     109: test_sensor( 2.5,    6),
+     110: test_sensor( .23,  .47),
+     111: test_sensor( .23,  .47),
+     112: test_sensor( 2.5,    6),
 
 
      # growth medium
-     201: test_sensor("soil_temp", 		   15,   20), 
-     202: test_sensor("soil_temp", 		   15,   20),
-     203: test_sensor("soil_temp", 		   15,   20),
-     205: test_sensor("electrical_conductivity", 1150, 1250),
-     206: test_sensor("ph_and_circuitry",         5.5,    6),
-     208: test_sensor("moisture", 		   25,   50),
-     209: test_sensor("moisture", 		   25,   50),
-     210: test_sensor("moisture", 		   25,   50),
-     211: test_sensor("moisture", 		   25,   50),
+     201: test_sensor(  15,   20), 
+     202: test_sensor(  15,   20),
+     203: test_sensor(  15,   20),
+     205: test_sensor(1150, 1250),
+     206: test_sensor( 5.5,    6),
+     208: test_sensor(  25,   50),
+     209: test_sensor(  25,   50),
+     210: test_sensor(  25,   50),
+     211: test_sensor(  25,   50),
 
      # internal atmosphere
-     301: test_RHTemp(),
-     302: test_RHTemp(),
-     303: test_sensor("total_pressure", 80,   84),
-     304: test_sensor("O2",             10,   25),
-     305: test_sensor("CO2",          1000, 2000),
-     306: test_sensor("light",         200,  250),
+     301: test_relative_humidity_and_temperature(),
+     302: test_relative_humidity_and_temperature(),
+     303: test_sensor(  80,   84),
+     304: test_sensor(  10,   25),
+     305: test_sensor(1000, 2000),
+     306: test_sensor( 200,  250),
 
      # external environment
-     401: test_RHTemp(),
-     402: test_sensor("total_pressure", 80,  84),
-     403: test_sensor("light",         200, 250)}
+     401: test_relative_humidity_and_temperature(),
+     402: test_sensor( 80,  84),
+     403: test_sensor(200, 250)}
 ```
 
 DO sensor is a special case (like RHTemp). It has no upper bound. Will work on it later.
 
-They are denoted by their SysID, this is advantageous because they are categorized by the environment in which they are in (which is described in the comments.) However, I might later add an alternative notation which just indexes by sensor type (which is what Noah primarily uses).
+If you want a handy way to find out which SysID corresponds to which kind of sensor, you can use the following:
+
+```python
+from API.conversions import sensor_type
+```
+
+This gives you access to the following dictionary:
+
+```python
+# returns the sensor type when given SysID
+sensor_type = {101: "electrical conductivity",
+               102: "pH",
+     	       103: "liquid temperature",
+     	       104: "dissolved oxygen",
+     	       105: "liquid level", 
+     	       106: "liquid level",
+     	       107: "liquid level",
+	       108: "liquid level",
+	       109: "liquid level",
+	       110: "flow meter",
+	       111: "flow meter",
+	       112: "liquid level",
+
+	       201: "soil temperature", 
+	       202: "soil temperature",
+	       203: "soil temperature",
+	       205: "electrical conductivity",
+	       206: "pH",
+	       208: "moisture",
+	       209: "moisture",
+	       210: "moisture",
+	       211: "moisture",
+
+	       301: "relative humidity and air temperature",
+	       302: "relative humidity and air temperature",
+	       303: "total pressure",
+	       304: "oxygen",
+	       305: "carbon dioxide",
+	       306: "photosynthetically active radiation",
+
+	       401: "relative humidity and air temperature",
+	       402: "total pressure",
+	       403: "photosynthetically active radiation"}
+```
+
+There is also another notation in use, which is easier for dealing with the individual sensors and not worrying about the algorithms. These dictionaries give the one-to-one relationship between the SysID and the senseID (as I will call it).
+
+```python
+from API.conversions import senseIDtoSysID, SysIDtosenseID
+```
+
+And they look like this:
+
+```python
+# returns the SysID when given senseID
+senseIDtoSysID = {'EC1':	  101,
+	   	  'EC2':	  205,
+
+	   	  'temp1':        103,
+	   	  'temp2':	  201,
+	   	  'temp3':	  202,
+	   	  'temp4':	  203,
+
+	   	  'DO':   	  104,
+
+	   	  'LL1': 	  105,
+	   	  'LL2': 	  106,
+	   	  'LL3': 	  107,
+	   	  'LL4': 	  108,
+	   	  'LL5': 	  109,
+	   	  'LL6': 	  112,
+
+	   	  'flow_meter1':  110,
+	   	  'flow_meter2':  111,
+
+	   	  'pH1':	  102,
+	   	  'pH2':	  206,
+
+	   	  'MO1':	  208,
+	   	  'MO2':	  209,
+	   	  'MO3':	  210,
+	   	  'MO4':	  211,
+
+	   	  'RHT1':	  301,
+	   	  'RHT2':	  302,
+	   	  'RHT3':	  401,
+
+	   	  'TP1':	  303,
+	   	  'TP2':	  402,
+
+	   	  'O2':	  	  304,
+
+	   	  'CO2':	  305,
+
+	   	  'PAR1':	  306,
+	   	  'PAR2': 	  403}
+
+# returns the senseID when given SysID
+sensor_type = {101: "electrical conductivity",
+               102: "pH",
+     	       103: "liquid temperature",
+     	       104: "dissolved oxygen",
+     	       105: "liquid level", 
+     	       106: "liquid level",
+     	       107: "liquid level",
+	       108: "liquid level",
+	       109: "liquid level",
+	       110: "flow meter",
+	       111: "flow meter",
+	       112: "liquid level",
+
+	       201: "soil temperature", 
+	       202: "soil temperature",
+	       203: "soil temperature",
+	       205: "electrical conductivity",
+	       206: "pH",
+	       208: "moisture",
+	       209: "moisture",
+	       210: "moisture",
+	       211: "moisture",
+
+	       301: "relative humidity and air temperature",
+	       302: "relative humidity and air temperature",
+	       303: "total pressure",
+	       304: "oxygen",
+	       305: "carbon dioxide",
+	       306: "photosynthetically active radiation",
+
+	       401: "relative humidity and air temperature",
+	       402: "total pressure",
+	       403: "photosynthetically active radiation"}
+```
 
 #### Methods
 
@@ -140,3 +271,5 @@ test_actuator.toggle()
 ```
 
 Switches the status of the actuator.
+
+If further clarification is required, the business school is just south of the Engineering Center.

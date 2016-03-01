@@ -29,8 +29,8 @@ S = {
      211: test_sensor(  25,   50),
 
      # internal atmosphere
-     301: test_RHTemp(),
-     302: test_RHTemp(),
+     301: test_relative_humidity_and_temperature(),
+     302: test_relative_humidity_and_temperature(),
      303: test_sensor(  80,   84),
      304: test_sensor(  10,   25),
      305: test_sensor(1000, 2000),

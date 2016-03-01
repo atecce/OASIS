@@ -38,7 +38,7 @@ class test_sensor:
 		# returns a value two standard deviations above the mean
 		return self.HSST["high"] + self.sigma
 
-class test_RHTemp:
+class test_relative_humidity_and_temperature:
 
 	""" This is a special case because multiple values are returned and because 
 	    the HSST's vary based on time of day. """
