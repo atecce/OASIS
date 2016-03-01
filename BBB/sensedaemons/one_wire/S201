@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensors by category
+from one_wire import temperature
+
+# declare sensor
+sensor = temperature('28-0000065f27cc')
+
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S201'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

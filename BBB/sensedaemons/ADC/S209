@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensor type
+from ADC import moisture
+
+# declare sensor
+sensor = moisture(0xA0)
+   
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S209'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensor type
+from ADC import liquid_level
+
+# declare sensor
+sensor = liquid_level(0xA0)
+   
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S106'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

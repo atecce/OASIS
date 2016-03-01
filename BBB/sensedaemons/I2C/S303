@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensors by category
+from I2C import total_pressure
+
+# declare sensor
+sensor = total_pressure(2)
+
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S303'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

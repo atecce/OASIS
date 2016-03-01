@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensors by category
+from I2C import electrical_conductivity
+
+# declare sensor
+sensor = electrical_conductivity(0x66)
+
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S101'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

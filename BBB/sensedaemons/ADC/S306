@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensor type
+from ADC import photosynthetically_active_radiation
+
+# declare sensor
+sensor = photosynthetically_active_radiation(0xF0)
+   
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S306'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)

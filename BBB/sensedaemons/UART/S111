@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+# need this to post to database
+import firebase
+	
+# import sensors by category
+from UART import flow_meter
+
+# declare sensor
+sensor = flow_meter(4)
+
+# take reading
+reading = sensor.read()
+
+# write to temporary file for API
+with sense as open('/tmp/S111'): sense.write(reading)
+
+# post to databases
+result = firebase.post('/data', reading)
