@@ -14,10 +14,7 @@ class test_sensor:
 	    the thresholds are crossed. For more information on how this works, see:
 	    https://en.wikipedia.org/wiki/Normal_distribution """
 
-	def __init__(self, table, HSST_low, HSST_high):
-
-		# table name
-		self.table = table
+	def __init__(self, HSST_low, HSST_high):
 
 		# set HSST's
 		self.HSST  = {"low": HSST_low, "high": HSST_high}
@@ -45,9 +42,6 @@ class test_RHTemp:
 
 	""" This is a special case because multiple values are returned and because 
 	    the HSST's vary based on time of day. """
-
-	# table name
-	table = "rh_and_air_temp"
 
 	# humidity
 	humidity_HSST = {"low": 50, "high": 70}
@@ -107,6 +101,7 @@ class test_actuator:
 		# all actuators start as "off"
 		self.status = "off"
 
+	# if you can't figure these out, business school is just south of the engineering center
 	def check_status(self): 
 
 		return self.status
