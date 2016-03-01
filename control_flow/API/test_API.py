@@ -7,6 +7,9 @@ import time
 # need this for current time
 import datetime
 
+# need this to convert SysID to senseID and for sensor types
+from conversions import SysIDtosenseID, sensor_type
+
 class test_sensor:
 
 	""" This is a random normal variable which will cross both sides of the HSST's.
@@ -14,7 +17,13 @@ class test_sensor:
 	    the thresholds are crossed. For more information on how this works, see:
 	    https://en.wikipedia.org/wiki/Normal_distribution """
 
-	def __init__(self, HSST_low, HSST_high):
+	def __init__(self, SysID, HSST_low, HSST_high):
+
+		# set senseID
+		self.senseID = SysIDtosenseID[SysID]
+
+		# set sensor type
+		self.sensor_type = sensor_type[SysID]
 
 		# set HSST's
 		self.HSST  = {"low": HSST_low, "high": HSST_high}
@@ -38,7 +47,7 @@ class test_sensor:
 		# returns a value two standard deviations above the mean
 		return self.HSST["high"] + self.sigma
 
-class test_relative_humidity_and_temperature:
+class test_relative_humidity_and_air_temperature:
 
 	""" This is a special case because multiple values are returned and because 
 	    the HSST's vary based on time of day. """
@@ -60,6 +69,14 @@ class test_relative_humidity_and_temperature:
 
 	air_temp_night_mu    = (air_temp_night_HSST["high"] + air_temp_night_HSST["low"]) / 2
 	air_temp_night_sigma = (air_temp_night_HSST["high"] - air_temp_night_HSST["low"]) / 2
+
+	def __init__(self, SysID):
+
+		# set senseID
+		self.senseID = SysIDtosenseID[SysID]
+		
+		# set sensor type
+		self.sensor_type = sensor_type[SysID]
 
 	def read(self):
 
@@ -110,3 +127,4 @@ class test_actuator:
 
 		if   self.status == "on":  self.status = "off"
 		elif self.status == "off": self.status = "on"
+

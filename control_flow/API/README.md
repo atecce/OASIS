@@ -58,13 +58,13 @@ S = {
 
 DO sensor is a special case (like RHTemp). It has no upper bound. Will work on it later.
 
-If you want a handy way to find out which SysID corresponds to which kind of sensor, you can use the following:
+If you want a handy way to find out which SysID corresponds to which kind of sensor, you can use the following attribute call:
 
 ```python
-from API.conversions import sensor_type
+test_sensor.sensor_type
 ```
 
-This gives you access to the following dictionary:
+The relationship looks like this:
 
 ```python
 # returns the sensor type when given SysID
@@ -105,13 +105,13 @@ sensor_type = {
 	403: "photosynthetically active radiation"}
 ```
 
-There is also another notation in use, which is easier for dealing with the individual sensors and not worrying about the algorithms. These dictionaries give the one-to-one relationship between the SysID and the senseID (as I will call it).
+There is also another notation in use, which is easier for dealing with the individual sensors and not worrying about the algorithms. You can access this alternative notation as an attribute of the class with this call.
 
 ```python
-from API.conversions import senseIDtoSysID, SysIDtosenseID
+test_sensor.senseID
 ```
 
-And they look like this:
+These dictionaries give the one-to-one relationship between the SysID and the senseID (as I call it):
 
 ```python
 # returns the SysID when given senseID
