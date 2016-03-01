@@ -9,14 +9,12 @@ class REST:
 	# url for website
 	url = "https://cumarsoasis.firebaseio.com/"
 
-	def __init__(self, url):
-
-		# set url for backend
-		self.url = url
-
-	def POST(self, entry, table):
-
-		print "curl -X POST -d '" + json.dumps(entry) + "' '" + url + table + "'"
+	def PUT(self, entry, table):
 
 		# wrap the bash command with python
-		os.system("curl -X POST -d '" + json.dumps(entry) + "' '" + url + table + "'")
+		os.system("curl -X PUT -d '" + json.dumps(entry) + "' '" + self.url + table + "'")
+
+	def PATCH(self, entry, table):
+
+		# wrap the bash command with python
+		os.system("curl -X PATCH -d '" + json.dumps(entry) + "' '" + self.url + table + "'")
