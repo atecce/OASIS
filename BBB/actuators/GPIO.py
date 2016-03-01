@@ -4,30 +4,30 @@ from itertools import chain
 # need this to wait
 import time
 
-class GPIO:
+# makes output more readable
+lookup_key = {45: {1: "off", 0: "on"},
+	      44: {1: "off", 0: "on"},
+	      26: {1: "off", 0: "on"},	
+	      87: {1: "off", 0: "on"},
+	      89: {1: "off", 0: "on"},
+	      10: {1: "off", 0: "on"},
+	      11: {1: "off", 0: "on"},
+	      62: {0: "off", 1: "on"},
+	      63: {0: "off", 1: "on"},
+	      23: {0: "off", 1: "on"},
+	      65: {0: "off", 1: "on"},
+	      27: {0: "off", 1: "on"},
+	      37: {0: "off", 1: "on"},
+	      33: {0: "off", 1: "on"},
+	      61: {0: "off", 1: "on"},
+	      86: {0: "off", 1: "on"},
+	      32: {0: "off", 1: "on"},
+	      36: {0: "off", 1: "on"},
+	      70: {0: "low", 1: "high"},
+	      71: {0: "low", 1: "high"},	
+	      51: {0: "off", 1: "on"}}	
 
-	# makes output more readable
-	lookup_key = {45: {1: "off", 0: "on"},
-		      44: {1: "off", 0: "on"},
-		      26: {1: "off", 0: "on"},	
-		      87: {1: "off", 0: "on"},
-		      89: {1: "off", 0: "on"},
-		      10: {1: "off", 0: "on"},
-		      11: {1: "off", 0: "on"},
-		      62: {0: "off", 1: "on"},
-		      63: {0: "off", 1: "on"},
-		      23: {0: "off", 1: "on"},
-		      65: {0: "off", 1: "on"},
-		      27: {0: "off", 1: "on"},
-		      37: {0: "off", 1: "on"},
-		      33: {0: "off", 1: "on"},
-		      61: {0: "off", 1: "on"},
-		      86: {0: "off", 1: "on"},
-		      32: {0: "off", 1: "on"},
-		      36: {0: "off", 1: "on"},
-		      70: {0: "low", 1: "high"},
-		      71: {0: "low", 1: "high"},	
-		      51: {0: "off", 1: "on"}}	
+class GPIO:
 
 	def __init__(self, table, pin):
 
