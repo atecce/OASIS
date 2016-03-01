@@ -52,7 +52,7 @@ class GPIO:
 		device.close()
 
 		# look up the state
-		state = self.lookup_key[self.pin][value]
+		state = lookup_key[self.pin][value]
 
 		return state
 
