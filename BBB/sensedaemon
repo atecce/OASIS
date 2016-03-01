@@ -1,61 +1,65 @@
 #!/bin/bash
 
+PWD=`pwd`
+
 # do this indefinitely
 while true; do
 
 	# append CO2 reading to csv
-	sudo read_sensor CO2 >> /home/atecce/OASIS/BBB/readings/S305.csv
+	sudo read_sensor CO2 >> $PWD/readings/S305.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append O2 reading to csv
-	sudo read_sensor O2 >> /home/atecce/OASIS/BBB/readings/S304.csv
+	sudo read_sensor O2 >> $PWD/readings/S304.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append EC reading to csv
-	sudo read_sensor EC2 >> /home/atecce/OASIS/BBB/readings/S101.csv
+	sudo read_sensor EC2 >> $PWD/readings/S101.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append pH reading to csv
-	sudo read_sensor pH1 >> /home/atecce/OASIS/BBB/readings/S102.csv
+	sudo read_sensor pH1 >> $PWD/readings/S102.csv
+
+	sleep 5
 
 	# append temp1 to csv
-	sudo read_sensor temp1 >> /home/atecce/OASIS/BBB/readings/S103.csv
+	sudo read_sensor temp1 >> $PWD/readings/S103.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append temp2 to csv
-	sudo read_sensor temp2 >> /home/atecce/OASIS/BBB/readings/S201.csv
+	sudo read_sensor temp2 >> $PWD/readings/S201.csv
 
 	# wait five seconds
 	sleep 5
 	
 	# append temp3 to csv
-	sudo read_sensor temp3 >> /home/atecce/OASIS/BBB/readings/S202.csv
+	sudo read_sensor temp3 >> $PWD/readings/S202.csv
 
 	# wait five seconds
 	sleep 5
 	
 	# append temp4 to csv
-	sudo read_sensor temp4 >> /home/atecce/OASIS/BBB/readings/S203.csv
+	sudo read_sensor temp4 >> $PWD/readings/S203.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append RHTemp2 to csv
-	sudo read_sensor RHT2 >> /home/atecce/OASIS/BBB/readings/S301.csv
+	sudo read_sensor RHT2 >> $PWD/readings/S301.csv
 
 	# wait five seconds
 	sleep 5
 
 	# append RHTemp3 to csv
-	sudo read_sensor RHT3 >> /home/atecce/OASIS/BBB/readings/S302.csv
+	sudo read_sensor RHT3 >> $PWD/readings/S302.csv
 
 	# wait five seconds
 	sleep 5
