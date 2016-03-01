@@ -160,41 +160,41 @@ senseIDtoSysID = {
 	'PAR2': 403}
 
 # returns the senseID when given SysID
-sensor_type = {
+SysIDtosenseID = {
 
-	101: "electrical conductivity",
-	102: "pH",
-	103: "liquid temperature",
-	104: "dissolved oxygen",
-	105: "liquid level", 
-	106: "liquid level",
-	107: "liquid level",
-	108: "liquid level",
-	109: "liquid level",
-	110: "flow meter",
-	111: "flow meter",
-	112: "liquid level",
+	101: 'EC1',
+	102: 'pH1',
+	103: 'temp1',
+	104: 'DO',
+	105: 'LL1',
+	106: 'LL2',
+	107: 'LL3',
+	108: 'LL4',
+	109: 'LL5',
+	110: 'flow_meter1',
+	111: 'flow_meter2',
+	112: 'LL6',
 
-	201: "soil temperature", 
-	202: "soil temperature",
-	203: "soil temperature",
-	205: "electrical conductivity",
-	206: "pH",
-	208: "moisture",
-	209: "moisture",
-	210: "moisture",
-	211: "moisture",
+	201: 'temp2',
+	202: 'temp3',
+	203: 'temp4',
+	205: 'EC2',
+	206: 'pH2',
+	208: 'MO1',
+	209: 'MO2',
+	210: 'MO3',
+	211: 'MO4',
 
-	301: "relative humidity and air temperature",
-	302: "relative humidity and air temperature",
-	303: "total pressure",
-	304: "oxygen",
-	305: "carbon dioxide",
-	306: "photosynthetically active radiation",
+	301: 'RHT1',
+	302: 'RHT2',
+	303: 'TP1',
+	304: 'O2',
+	305: 'CO2',
+	306: 'PAR1',
 
-	401: "relative humidity and air temperature",
-	402: "total pressure",
-	403: "photosynthetically active radiation"}
+	401: 'RHT3',
+	402: 'TP2',
+	403: 'PAR2'}
 ```
 
 #### Methods
