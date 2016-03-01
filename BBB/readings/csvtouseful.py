@@ -71,7 +71,7 @@ for SysID in SysIDs:
 			except ValueError: continue
 
 	# put readings in json format
-	sensor_readings = {"epoch": x, sensor_type: y}
+	sensor_readings = {"epoch": x, SysID: y}
 
 	# dump results to JSON file
 	with open('S'+str(SysID)+'.json', 'w') as jsonfile: json.dump(sensor_readings, jsonfile)
