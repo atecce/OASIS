@@ -5,7 +5,17 @@ angular.module('app.controllers', [])
 })
 
 .controller('registerCtrl', function($scope) {
-
+  var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+  ref.createUser({
+    // wot
+  }, function(error, userData) {
+    if (error) {
+      // error
+    }
+    else {
+      // no error
+    }
+  });
 })
 
 .controller('overviewCtrl', function($scope, $http) {
