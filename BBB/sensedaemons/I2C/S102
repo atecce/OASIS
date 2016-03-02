@@ -22,13 +22,13 @@ while True:
 	reading = sensor.read()
 
 	# write to temporary file for API
-	with open('/tmp/S102', 'w') as sense: sense.write(str(reading))
+	with open('/tmp/S102', 'w') as sense: sense.write(str(reading)+'\n')
 
 	# take time stamp
 	time_stamp = int(time.time())
 
 	# set up database
-	entry = {time_stamp: reading}
+	entry = {time_stamp: float(reading)}
 
 	# PATCH entry
 	result = firebase.PATCH(entry, "/data/sensors/liquid_tanks_and_plumbing/S102.json")
