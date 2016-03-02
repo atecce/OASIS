@@ -1,19 +1,34 @@
 #!/usr/bin/env python
 
+# need this for epoch
+import time
+
 # need this to post to database
-import firebase
+from REST import REST
+
+# set up firebase
+firebase = REST()
 	
 # import sensor type
 from ADC import moisture
 
 # declare sensor
 sensor = moisture(0xC0)
+
+# do this indefinitely
+while True:
    
-# take reading
-reading = sensor.read()
+	# take reading
+	reading = sensor.read()
 
-# write to temporary file for API
-with sense as open('/tmp/S210'): sense.write(reading)
+	# write to temporary file for API
+	with sense as open('/tmp/S210'): sense.write(reading)
 
-# post to databases
-result = firebase.post('/data', reading)
+	# take time stamp
+	epoch = int(time.time())
+
+	# set up database entry
+	entry = {epoch: reading}
+
+	# PATCH entry
+	result = firebase.PATCH("/data/sensors/growth_medium/S210.json", entry)
