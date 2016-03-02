@@ -1,7 +1,17 @@
 angular.module('app.controllers', [])
 
 .controller('loginCtrl', function($scope) {
-
+  var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+  ref.authWithPassword({
+    // wot
+  }, function(error, authData) {
+    if (error) {
+      // error
+    }
+    else {
+      // no error
+    }
+  });
 })
 
 .controller('registerCtrl', function($scope) {
