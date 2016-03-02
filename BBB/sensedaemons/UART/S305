@@ -10,7 +10,7 @@ from REST import REST
 firebase = REST()
 	
 # import sensors by category
-from UART import flow_meter
+from UART import carbon_dioxide
 
 # declare sensor
 sensor = carbon_dioxide(5)
