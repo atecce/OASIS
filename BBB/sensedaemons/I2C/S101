@@ -13,7 +13,7 @@ firebase = REST()
 from I2C import electrical_conductivity
 
 # declare sensor
-sensor = electrical_conductivity(0x66)
+sensor = electrical_conductivity(0x64)
 
 # do this indefinitely
 while True:
