@@ -1,7 +1,13 @@
 #!/usr/bin/env python
 
+# need this for epoch
+import time
+
 # need this to post to database
-import firebase
+from REST import REST
+	
+# set up firebase
+firebase = REST()
 	
 # import sensors by category
 from I2C import dissolved_oxygen
@@ -9,11 +15,20 @@ from I2C import dissolved_oxygen
 # declare sensor
 sensor = dissolved_oxygen(0x61)
 
-# take reading
-reading = sensor.read()
+# do this indefinitely
+while True:
+   
+	# take reading
+	reading = sensor.read()
 
-# write to temporary file for API
-with sense as open('/tmp/S104'): sense.write(reading)
+	# write to temporary file for API
+	with sense as open('/tmp/S104'): sense.write(reading)
 
-# post to databases
-result = firebase.post('/data', reading)
+	# take time stamp
+	time_stamp = int(time.time())
+
+	# set up database
+	entry = {time_stamp: reading}
+
+	# PATCH entry
+	result = firebase.PATCH("/data/sensors/liquid_tanks_and_plumbing/S104.json", entry)
