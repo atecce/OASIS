@@ -31,4 +31,4 @@ while True:
 	entry = {epoch: reading}
 
 	# PATCH entry
-	result = firebase.PATCH("/data/sensors/liquid_tanks_and_plumbing/S108.json", entry)
+	result = firebase.PATCH("data/sensors/liquid_tanks_and_plumbing/S108.json", entry)

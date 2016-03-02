@@ -31,4 +31,4 @@ while True:
 	entry = {time_stamp: reading}
 
 	# PATCH entry
-	result = firebase.PATCH("/data/sensors/growth_medium/S206.json", entry)
+	result = firebase.PATCH("data/sensors/growth_medium/S206.json", entry)
