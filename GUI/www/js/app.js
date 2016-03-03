@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'firebase', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
+var app = angular.module('app', ['ionic', 'firebase', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -15,10 +15,17 @@ angular.module('app', ['ionic', 'firebase', 'app.controllers', 'app.routes', 'ap
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      // StatusBar.styleDefault();
       $cordovaStatusBar.style(1);
     }
   });
 })
-// new factory to init our authentication
+
+app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/");
+    var tankRef = ref.child(sysID);
+
+    // return it as a synchronized object
+    return $firebaseObject(tankRef);
+  }}
+]);

@@ -13,7 +13,7 @@ firebase = REST()
 from I2C import electrical_conductivity
 
 # declare sensor
-sensor = electrical_conductivity(0x66)
+sensor = electrical_conductivity(0x64)
 
 # do this indefinitely
 while True:
@@ -28,7 +28,7 @@ while True:
 	time_stamp = int(time.time())
 
 	# set up database
-	entry = {time_stamp: reading}
+	entry = {time_stamp: float(reading)}
 
 	# PATCH entry
-	result = firebase.PATCH(entry, "/data/sensors/liquid_tanks_and_plumbing/S101.json")
+	result = firebase.PATCH(entry, "data/sensors/liquid_tanks_and_plumbing/S101.json")

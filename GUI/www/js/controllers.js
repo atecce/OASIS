@@ -108,9 +108,9 @@ angular.module('app.controllers', [])
       $scope.passMismatch = true;
       $scope.$digest();
     }
-
   };
 })
+
 
 .controller('tanksCtrl', function($scope, $http) {
   // XMLHttp Request to grab JSON file.
@@ -156,13 +156,67 @@ angular.module('app.controllers', [])
           // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
           // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
           {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
+
+.controller('overviewCtrl', ["$scope", "Tanks", function($scope, Tanks) {
+  // Tanks('S103').$bindTo($scope, "data");
+  var readings = Tanks('S103');
+  // var date = new Date(readings.data[0][1] * 1000).getHours();
+  console.log(readings);
+  // console.log(Object.keys(readings)[0]);
+
+  // for (var key in readings) {
+  //   console.log("Key: " + key);
+  //   console.log("Value: " + readings[key]);
+  // }
+
+  var chart = c3.generate({
+    bindto: '#chart',
+    point: { r: 0 },
+    tooltip: { show: false },
+    data: {
+      // json: {
+        // readings
+      // }
+      columns: [
+        [5, 6, 7],
+        // readings,
+        // readings
+      ],
+
+      rows: [
+        readings
+      ]
+      // x: readings.data[0][0], // epoch
+      // y: readings.data[1][0]  // CO2
+    },
+    axis: {
+      x: {
+        label: 'Date-Time',
+        tick: { count: 5 }
+      },
+      y: {
+        label: 'CO2'
+      }
+    },
+    grid: {
+      y: {
+        lines: [
+          { value: 0.0, text: 'Dangerous', axis: 'y', position: 'end' },
+          { value: 0.1, text: 'Safe', axis: 'y', position: 'end' },
+          { value: 0.2, text: 'Dangerous', axis: 'y', position: 'end' },
+
         ]
-      });
-      chart.legend.hide();
-    }, function errorCallback(response) {
-      console.log("Error loading JSON data.")
-    });
-})
+      }
+    },
+    regions: [
+      // {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
+      // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
+      // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
+      {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
+    ]
+  });
+  chart.legend.hide();
+}])
 
 .controller('growthCtrl', function($scope) {
 

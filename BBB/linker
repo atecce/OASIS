@@ -1,6 +1,0 @@
-#!/bin/bash
-
-PWD=`pwd`
-
-sudo ln -s $PWD/read_sensor  /usr/local/bin/read_sensor
-sudo ln -s $PWD/check_status /usr/local/bin/check_status
