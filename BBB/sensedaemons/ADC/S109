@@ -22,7 +22,7 @@ while True:
 	reading = sensor.read()
 
 	# write to temporary file for API
-	with sense as open('/tmp/S109'): sense.write(reading)
+	with open('/tmp/S109', 'w') as sense : sense.write(str(reading))
 
 	# take time stamp
 	epoch = int(time.time())
@@ -31,4 +31,4 @@ while True:
 	entry = {epoch: reading}
 
 	# PATCH entry
-	result = firebase.PATCH("/data/sensors/liquid_tanks_and_plumbing/S109.json", entry)
+	result = firebase.PATCH(entry, "/data/sensors/liquid_tanks_and_plumbing/S109.json")
