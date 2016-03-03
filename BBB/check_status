@@ -7,7 +7,7 @@ from itertools import chain
 import time
 
 # need this for actuators
-from actuators.actuators import F, V, M, P
+from API.actuators import F, V, M, P
 
 print
 
