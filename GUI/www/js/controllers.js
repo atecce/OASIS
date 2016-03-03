@@ -6,6 +6,11 @@ angular.module('app.controllers', [])
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
     $scope.isloggedIn = false;
+    if($scope.password == null){
+      console.log("Enter a password");
+      $scope.loginError = true;
+      $scope.error_password = true;
+    }
     AuthRef.authWithPassword({
       email      : $scope.email,
       password   : $scope.password
@@ -13,9 +18,36 @@ angular.module('app.controllers', [])
       if (error) {
         $scope.loginError = true;
         $scope.$digest();
-        console.log('Cannot log in: ', error);
+        switch(error.code) {
+          case "INVALID_EMAIL":
+            $scope.error_user = false;
+            $scope.error_password = false;
+            $scope.error_email = true;
+            $scope.$digest();
+            console.log("Bad email");
+            break;
+          case "INVALID_PASSWORD":
+            $scope.error_email = false;
+            $scope.error_user = false;
+            $scope.error_password = true;
+            $scope.$digest();
+            console.log("Bad password");
+            break;
+          case "INVALID_USER":
+            $scope.error_email = false;
+            $scope.error_password = false;
+            $scope.error_user = true;
+            $scope.$digest();
+            console.log("Bad User");
+            break;
+          default:
+            console.log("There was an error.")
+        }
+
+        // console.log('Cannot log in: ', error);
       }
       else {
+        $scope.loginError = false;
         $scope.logged = true;
         $scope.isloggedIn = true;
         $scope.$digest();

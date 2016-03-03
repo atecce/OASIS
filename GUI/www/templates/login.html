@@ -28,8 +28,14 @@
           </div>
         </div>
         <div ng-show="loginError" class="bar bar-footer bar-assertive">
-          <div class="title">
-            Invalid Email / Password!
+          <div ng-show="error_user" class="title">
+            Email address not found! Please register.
+          </div>
+          <div ng-show="error_password" class="title">
+            Invalid Password! Did you forget it?
+          </div>
+          <div ng-show="error_email" class="title">
+            Please enter a valid email address!
           </div>
         </div>
       </div>
