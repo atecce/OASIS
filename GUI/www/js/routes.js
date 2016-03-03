@@ -19,32 +19,32 @@ angular.module('app.routes', [])
     controller: 'registerCtrl'
   })
 
-  .state('tabsController.overview', {
-    url: '/overview',
+  .state('tabsController.tanks', {
+    url: '/tanks',
     views: {
       'tab1': {
-        templateUrl: 'templates/overview.html',
-        controller: 'overviewCtrl'
+        templateUrl: 'templates/tanks.html',
+        controller: 'tanksCtrl'
       }
     }
   })
 
-  .state('tabsController.sensors', {
-    url: '/sensors',
+  .state('tabsController.growth', {
+    url: '/growth',
     views: {
       'tab2': {
-        templateUrl: 'templates/sensors.html',
-        controller: 'sensorsCtrl'
+        templateUrl: 'templates/growth.html',
+        controller: 'growthCtrl'
       }
     }
   })
 
-  .state('tabsController.actuators', {
-    url: '/actuators',
+  .state('tabsController.atmosphere', {
+    url: '/atmosphere',
     views: {
       'tab3': {
-        templateUrl: 'templates/actuators.html',
-        controller: 'actuatorsCtrl'
+        templateUrl: 'templates/atmosphere.html',
+        controller: 'atmosphereCtrl'
       }
     }
   })
@@ -74,6 +74,6 @@ angular.module('app.routes', [])
     abstract: true
   })
 
-$urlRouterProvider.otherwise('/main/overview')
+$urlRouterProvider.otherwise('/main/tanks')
 
 });

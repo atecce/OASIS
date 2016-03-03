@@ -1,5 +1,5 @@
 <ion-view title="Account">
-    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
+    <ion-content overflow-scroll="true" padding="true" class="padding has-header scroll-bg">
 
       <div ng-controller="loginCtrl">
         <div class="list">
@@ -16,17 +16,36 @@
               Login
             </div>
           </button>
+          <button ng-show="!logged" ng-hide="logged" id="loginButton" class="button button-outline button-positive" ng-click="forgot()">
+            <div ng-model="divText">
+              Forgot Password?
+            </div>
+          </button>
         </div>
         <div ng-show="logged" class="bar bar-footer bar-balanced">
-          <div class="title">
-            Logged In!
+          <div ng-show="loggedSuccess" class="title">
+            Logged in!
+          </div>
+          <div ng-show="loggedForgot" class="title">
+            Email containing new password sent!
           </div>
         </div>
-
-
-
+        <div ng-show="loginError" class="bar bar-footer bar-assertive">
+          <div ng-show="error_user" class="title">
+            Email address not found! Please register.
+          </div>
+          <div ng-show="error_password" class="title">
+            Invalid Password! Did you forget it?
+          </div>
+          <div ng-show="error_email" class="title">
+            Please enter a valid email address!
+          </div>
+        </div>
       </div>
       <div ng-controller="registerCtrl">
+
+
+      <div ng-show="showRegister">
         <div class="list" ng-show="!registered">
           <label class="item item-input">
             <input ng-model="email" type="text" placeholder="New Email">
@@ -39,7 +58,7 @@
           </label>
           <button ng-click="register()" class="button button-full button-calm">Register</button>
         </div>
-        <div ng-show="registered" class="bar bar-footer bar-balanced">
+        <div ng-show="registeredBar" class="bar bar-footer bar-balanced">
           <div class="title">
             Registered! Now please login.
           </div>
@@ -49,7 +68,19 @@
             Passwords do not match!
           </div>
         </div>
+        <div ng-show="regError" class="bar bar-footer bar-assertive">
+          <div class="title">
+            Invalid Email / Password! Account not created.
+          </div>
+        </div>
+
       </div>
+      <button ng-show="!showRegister"  class="button button-outline button-balanced" ng-click="registerOpen()">
+        <div ng-model="divText">
+          Register
+        </div>
+      </button>
+    </div>
       <!-- END CONTROLLER -->
     </ion-content>
 </ion-view>

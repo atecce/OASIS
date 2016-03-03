@@ -5,17 +5,77 @@ angular.module('app.controllers', [])
 
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
+    $scope.isloggedIn = false;
+    if($scope.password == null){
+      console.log("Enter a password");
+      $scope.loginError = true;
+      $scope.error_password = true;
+    }
     AuthRef.authWithPassword({
       email      : $scope.email,
       password   : $scope.password
     }, function(error, authData) {
       if (error) {
-        console.log('Not Logged In', error);
+        $scope.loginError = true;
+        $scope.$digest();
+        switch(error.code) {
+          case "INVALID_EMAIL":
+            $scope.error_user = false;
+            $scope.error_password = false;
+            $scope.error_email = true;
+            $scope.$digest();
+            console.log("Bad email");
+            break;
+          case "INVALID_PASSWORD":
+            $scope.error_email = false;
+            $scope.error_user = false;
+            $scope.error_password = true;
+            $scope.$digest();
+            console.log("Bad password");
+            break;
+          case "INVALID_USER":
+            $scope.error_email = false;
+            $scope.error_password = false;
+            $scope.error_user = true;
+            $scope.$digest();
+            console.log("Bad User");
+            break;
+          default:
+            console.log("There was an error.")
+        }
+
+        // console.log('Cannot log in: ', error);
       }
       else {
+        $scope.loginError = false;
         $scope.logged = true;
+        $scope.loggedSuccess = true;
+        $scope.isloggedIn = true;
         $scope.$digest();
         console.log("Successfully logged in user:" + authData.uid);
+      }
+    });
+  };
+
+  $scope.forgot = function(){
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    AuthRef.resetPassword({
+      email: $scope.email
+    }, function(error){
+      if(error){
+        switch (error.code) {
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          default:
+            console.log("Error resetting password:", error);
+    }
+      } else {
+        $scope.logged = true;
+        $scope.loggedForgot = true;
+        setTimeout(function(){$scope.logged = false;$scope.$digest();},3000);
+        $scope.$digest();
+        console.log("Success!");
       }
     });
   };
@@ -32,10 +92,15 @@ angular.module('app.controllers', [])
       }, function(error, authData){
         if(error){
           console.log("Account not Created",error);
+          $scope.regError = true;
+          $scope.$digest();
         }
         else{
           console.log("Account Created!");
+          $scope.regError = false;
           $scope.registered = true;
+          $scope.registeredBar = true;
+          setTimeout(function(){$scope.registeredBar = false;$scope.$digest();}, 3000);
           $scope.$digest();
         }
       });
@@ -46,10 +111,14 @@ angular.module('app.controllers', [])
       $scope.$digest();
     }
   };
+  $scope.registerOpen = function(){
+    $scope.showRegister = true;
+
+  };
 })
 
-.controller('overviewCtrl', ["$scope", "Tanks", function($scope, Tanks) {
-  // Tanks('S103').$bindTo($scope, "data");
+.controller('tanksCtrl', ["$scope", "Tanks", function($scope, Tanks) {
+  Tanks('S103').$bindTo($scope, "data");
   var readings = Tanks('S103');
   // var date = new Date(readings.data[0][1] * 1000).getHours();
   console.log(readings);
@@ -108,11 +177,11 @@ angular.module('app.controllers', [])
   chart.legend.hide();
 }])
 
-.controller('sensorsCtrl', function($scope) {
+.controller('growthCtrl', function($scope) {
 
 })
 
-.controller('actuatorsCtrl', function($scope) {
+.controller('atmosphereCtrl', function($scope) {
 
 })
 
