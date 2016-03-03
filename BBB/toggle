@@ -3,9 +3,6 @@
 # need this for command line arguments
 import sys
 
-# need this to check status at end
-import os
-
 def main(argv):
 
 	# take in actuator abbreviation
