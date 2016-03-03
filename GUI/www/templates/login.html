@@ -16,6 +16,11 @@
               Login
             </div>
           </button>
+          <button ng-show="!logged" ng-hide="logged" id="loginButton" class="button button-outline button-positive" ng-click="forgot()">
+            <div ng-model="divText">
+              Forgot Password?
+            </div>
+          </button>
         </div>
         <div ng-show="logged" class="bar bar-footer bar-balanced">
           <div class="title">
@@ -54,7 +59,7 @@
         </div>
         <div ng-show="regError" class="bar bar-footer bar-assertive">
           <div class="title">
-            Invalid Email / Password! Account not created. 
+            Invalid Email / Password! Account not created.
           </div>
         </div>
       </div>

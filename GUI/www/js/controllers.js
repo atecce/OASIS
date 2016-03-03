@@ -24,6 +24,25 @@ angular.module('app.controllers', [])
     });
   };
 
+  $scope.forgot = function(){
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    AuthRef.resetPassword({
+      email: $scope.email
+    }, function(error){
+      if(error){
+        switch (error.code) {
+          case "INVALID_USER":
+            console.log("The specified user account does not exist.");
+            break;
+          default:
+            console.log("Error resetting password:", error);
+    }
+      } else {
+        console.log("Success!");
+      }
+    });
+  };
+
 })
 
 .controller('registerCtrl', function($scope) {
