@@ -22,7 +22,7 @@ while True:
 	reading = sensor.read()
 
 	# write to temporary file for API
-	with open('/tmp/S306', 'w') as sense: sense.write(str(reading))
+	with open('/tmp/S306', 'w') as sense: sense.write(str(reading)+'\n')
 
 	# take time stamp
 	epoch = int(time.time())
