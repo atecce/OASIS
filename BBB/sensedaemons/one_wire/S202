@@ -21,6 +21,9 @@ while True:
 	# take reading
 	reading = sensor.read()
 
+	# throw out junk readings
+	if reading < 0: continue
+
 	# write to temporary file for API
 	with open('/tmp/S202', 'w') as sense: sense.write(str(reading)+'\n')
 
