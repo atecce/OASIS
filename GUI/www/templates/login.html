@@ -23,8 +23,11 @@
           </button>
         </div>
         <div ng-show="logged" class="bar bar-footer bar-balanced">
-          <div class="title">
-            Logged In!
+          <div ng-show="loggedSuccess" class="title">
+            Logged in!
+          </div>
+          <div ng-show="loggedForgot" class="title">
+            Email containing new password sent!
           </div>
         </div>
         <div ng-show="loginError" class="bar bar-footer bar-assertive">

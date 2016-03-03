@@ -49,6 +49,7 @@ angular.module('app.controllers', [])
       else {
         $scope.loginError = false;
         $scope.logged = true;
+        $scope.loggedSuccess = true;
         $scope.isloggedIn = true;
         $scope.$digest();
         console.log("Successfully logged in user:" + authData.uid);
@@ -70,6 +71,10 @@ angular.module('app.controllers', [])
             console.log("Error resetting password:", error);
     }
       } else {
+        $scope.logged = true;
+        $scope.loggedForgot = true;
+        setTimeout(function(){$scope.logged = false;$scope.$digest();},3000);
+        $scope.$digest();
         console.log("Success!");
       }
     });
