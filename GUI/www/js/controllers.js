@@ -23,7 +23,30 @@ angular.module('app.controllers', [])
 })
 
 .controller('registerCtrl', function($scope) {
+  $scope.register = function() {
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    if($scope.password === $scope.passwordConfirm){
+      AuthRef.createUser({
+        email: $scope.email,
+        password: $scope.passwordConfirm
+      }, function(error, authData){
+        if(error){
+          console.log("Account not Created",error);
+        }
+        else{
+          console.log("Account Created!");
+          $scope.registered = true;
+          $scope.$digest();
+        }
+      });
+    }
+    else{
+      console.log("passwords do not match");
+      $scope.passMismatch = true;
+      $scope.$digest();
+    }
 
+  };
 })
 
 .controller('overviewCtrl', function($scope, $http) {

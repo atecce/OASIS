@@ -1,5 +1,55 @@
-<ion-view title="Login">
-    <ion-content overflow-scroll="true" padding="true" class="has-header has-footer">
-        
+<ion-view title="Account">
+    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
+
+      <div ng-controller="loginCtrl">
+        <div class="list">
+          <label ng-show="!logged" ng-hide="logged" class="item item-input">
+            <input ng-model="email" type="text" placeholder="Email">
+          </label>
+
+          <label ng-show="!logged" ng-hide="logged" class="item item-input">
+            <input ng-model="password" type="password" placeholder="Password">
+          </label>
+
+          <button ng-show="!logged" ng-hide="logged" id="loginButton" class="button button-full button-positive" ng-click="login()">
+            <div ng-model="divText">
+              Login
+            </div>
+          </button>
+        </div>
+        <div ng-show="logged" class="bar bar-footer bar-balanced">
+          <div class="title">
+            Logged In!
+          </div>
+        </div>
+
+
+
+      </div>
+      <div ng-controller="registerCtrl">
+        <div class="list" ng-show="!registered">
+          <label class="item item-input">
+            <input ng-model="email" type="text" placeholder="New Email">
+          </label>
+          <label class="item item-input">
+            <input ng-model="password" type="password" placeholder="Password">
+          </label>
+          <label class="item item-input">
+            <input ng-model="passwordConfirm" type="password" placeholder="Confirm Password">
+          </label>
+          <button ng-click="register()" class="button button-full button-calm">Register</button>
+        </div>
+        <div ng-show="registered" class="bar bar-footer bar-balanced">
+          <div class="title">
+            Registered! Now please login.
+          </div>
+        </div>
+        <div ng-show="passMismatch" class="bar bar-footer bar-assertive">
+          <div class="title">
+            Passwords do not match!
+          </div>
+        </div>
+      </div>
+      <!-- END CONTROLLER -->
     </ion-content>
 </ion-view>

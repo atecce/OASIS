@@ -7,11 +7,11 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
-  })
+  // .state('login', {
+  //   url: '/login',
+  //   templateUrl: 'templates/login.html',
+  //   controller: 'loginCtrl'
+  // })
 
   .state('register', {
     url: '/register',
@@ -55,6 +55,15 @@ angular.module('app.routes', [])
       'tab4': {
         templateUrl: 'templates/settings.html',
         controller: 'settingsCtrl'
+      }
+    }
+  })
+  .state('tabsController.login', {
+    url: '/login',
+    views: {
+      'tab5' : {
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
       }
     }
   })
