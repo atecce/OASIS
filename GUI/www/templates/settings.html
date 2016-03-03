@@ -7,5 +7,34 @@
           <i class="icon ion-ios-arrow-forward"></i>
         </a>
       </div>
+      <div ng-controller="loginCtrl" class="list">
+
+        <label ng-show="!logged" ng-hide="logged" class="item item-input">
+          <input ng-model="email" type="text" placeholder="Email">
+        </label>
+
+        <label ng-show="!logged" ng-hide="logged" class="item item-input">
+          <input ng-model="password" type="password" placeholder="Password">
+        </label>
+
+        <button ng-show="!logged" ng-hide="logged" id="loginButton" class="button button-full button-positive" ng-click="login()">
+          <div ng-model="divText">
+            Login
+          </div>
+        </button>
+
+        <div ng-show="logged" ng-hide="!logged" ng-controller="loginCtrl" class="bar bar-balanced">
+          <div class="title">
+            Logged In!
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+      <!-- END CONTROLLER -->
     </ion-content>
 </ion-view>

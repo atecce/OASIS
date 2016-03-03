@@ -22,7 +22,3 @@ angular.module('app', ['ionic', 'firebase', 'app.controllers', 'app.routes', 'ap
   });
 })
 // new factory to init our authentication
-.factory("Auth", function($firebaseAuth){
-  var usersRef = new Firebase("https://cumarsoasis.firebaseio.com");
-  return $firebaseAuth(usersRef);
-})

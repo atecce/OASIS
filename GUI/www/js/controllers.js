@@ -1,31 +1,29 @@
 angular.module('app.controllers', [])
 
 .controller('loginCtrl', function($scope) {
-  var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
-  ref.authWithPassword({
-    // wot
-  }, function(error, authData) {
-    if (error) {
-      // error
-    }
-    else {
-      // no error
-    }
-  });
+  $scope.login = function(){
+
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    $scope.logged = false;
+    AuthRef.authWithPassword({
+      email      : $scope.email,
+      password   : $scope.password
+    }, function(error, authData) {
+      if (error) {
+        console.log('Not Logged In', error);
+      }
+      else {
+        $scope.logged = true;
+        $scope.$digest();
+        console.log("Successfully logged in user:" + authData.uid);
+      }
+    });
+  };
+
 })
 
 .controller('registerCtrl', function($scope) {
-  var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
-  ref.createUser({
-    // wot
-  }, function(error, userData) {
-    if (error) {
-      // error
-    }
-    else {
-      // no error
-    }
-  });
+
 })
 
 .controller('overviewCtrl', function($scope, $http) {
