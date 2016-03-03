@@ -110,3 +110,38 @@ sensor_type = {101: "electrical conductivity",
 	       401: "relative humidity and air temperature",
 	       402: "total pressure",
 	       403: "photosynthetically active radiation"}
+
+# returns the data communication type when given the SysID
+data_comm_lookup = {101: "I2C",
+		    102: "I2C",
+		    103: "one_wire",
+		    104: "I2C",
+		    105: "ADC",
+		    106: "ADC",
+		    107: "ADC",
+		    108: "ADC",
+		    109: "ADC",
+		    110: "UART",
+		    111: "UART",
+		    112: "ADC",
+
+		    201: "one_wire",
+		    202: "one_wire",
+		    203: "one_wire",
+		    205: "I2C",
+		    206: "I2C",
+		    208: "ADC",
+		    209: "ADC",
+		    210: "ADC",
+		    211: "ADC",
+
+		    301: "one_wire",
+		    302: "one_wire",
+		    303: "I2C",
+		    304: "ADC",
+		    305: "UART",
+		    306: "ADC",
+
+		    401: "one_wire",
+		    402: "I2C",
+		    403: "ADC"}
