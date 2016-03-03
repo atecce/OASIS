@@ -15,17 +15,15 @@ app.run(function($ionicPlatform) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      // StatusBar.styleDefault();
       $cordovaStatusBar.style(1);
     }
   });
 })
 
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
-  return function(sensor) {
+  return function(sysID) {
     var ref = new Firebase("https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/");
-    var tankRef = ref.child(sensor);
+    var tankRef = ref.child(sysID);
 
     // return it as a synchronized object
     return $firebaseObject(tankRef);
