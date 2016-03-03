@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+# need this for command line arguments and for the path
+import sys
+
+# need this to use nohup
+import os
+
+data_comm_lookup = {101: "I2C",
+		    102: "I2C",
+		    103: "one_wire",
+		    104: "I2C",
+		    105: "ADC",
+		    106: "ADC",
+		    107: "ADC",
+		    108: "ADC",
+		    109: "ADC",
+		    110: "UART",
+		    111: "UART",
+		    112: "ADC",
+
+		    201: "one_wire",
+		    202: "one_wire",
+		    203: "one_wire",
+		    205: "I2C",
+		    206: "I2C",
+		    208: "ADC",
+		    209: "ADC",
+		    210: "ADC",
+		    211: "ADC",
+
+		    301: "one_wire",
+		    302: "one_wire",
+		    303: "I2C",
+		    304: "ADC",
+		    305: "UART",
+		    306: "ADC",
+
+		    401: "one_wire",
+		    402: "I2C",
+		    403: "ADC"}
+
+def main(argv):
+
+	# read in senseID
+	SysID = int(argv[1])
+
+	# check if senseID is valid
+	if SysID in data_comm_lookup:
+
+		# set data communication type
+		data_comm_type = data_comm_lookup[SysID]
+
+		# display comments of file
+		os.system("sudo nohup sensedaemons/" + data_comm_type + "/" + "S" + str(SysID) + " > /dev/null 2>sensedaemons/" + data_comm_type + "/errorlogs/S" + str(SysID) + " &")
+
+	# catch error (probably needs work)
+	else: print "Invalid sensor name"
+
+if __name__ == "__main__": main(sys.argv)

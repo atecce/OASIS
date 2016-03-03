@@ -8,8 +8,8 @@
 # set current path to working directory
 PWD=`pwd`
 
-# ignore .py files
-GLOBIGNORE="*.py"
+# ignore .py and .pyc files
+GLOBIGNORE="*.py*"
 
 # for each data communication type
 for data_comm in $PWD/sensedaemons/*; do
@@ -17,14 +17,23 @@ for data_comm in $PWD/sensedaemons/*; do
 	# for each sensor
 	for sensor in $data_comm/*; do
 
+
+		# ignore python extensions
 		if [ "$sensor" == "$data_comm/$GLOBIGNORE" ]; then
 
 			continue;
 
 		fi
 
-		# run daemon
-		sudo nohup $sensor > /dev/null 2>$data_comm/errorlog.txt &
+		# make sure it's a file
+		if [ -f $sensor ]; then
 
+			# set sensor name
+			SENSOR_NAME=$(basename $sensor)
+
+			# run daemon
+			sudo nohup $sensor > /dev/null 2>$data_comm/errorlogs/$SENSOR_NAME.txt &
+
+		fi
 	done
 done
