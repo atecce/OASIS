@@ -9,6 +9,8 @@ import os
 # need this to look up data communication types
 from API.conversions import data_comm_lookup
 
+path_name = "/home/atecce/MarsOASIS/BBB/sensedaemons/"
+
 def main(argv):
 
 	# read in senseID
@@ -21,7 +23,7 @@ def main(argv):
 		data_comm_type = data_comm_lookup[SysID]
 
 		# display comments of file
-		os.system("sudo nohup sensedaemons/" + data_comm_type + "/S" + str(SysID) + " > /dev/null 2>sensedaemons/" + data_comm_type + "/errorlogs/S" + str(SysID) + ".txt &")
+		os.system("sudo nohup " + path_name + data_comm_type + "/S" + str(SysID) + " > /dev/null 2>" + path_name + data_comm_type + "/errorlogs/S" + str(SysID) + ".txt &")
 
 	# catch error (probably needs work)
 	else: print "Invalid sensor name"
