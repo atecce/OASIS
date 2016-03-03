@@ -99,6 +99,8 @@ angular.module('app.controllers', [])
           console.log("Account Created!");
           $scope.regError = false;
           $scope.registered = true;
+          $scope.registeredBar = true;
+          setTimeout(function(){$scope.registeredBar = false;$scope.$digest();}, 3000);
           $scope.$digest();
         }
       });
@@ -111,6 +113,7 @@ angular.module('app.controllers', [])
   };
   $scope.registerOpen = function(){
     $scope.showRegister = true;
+
   };
 })
 
