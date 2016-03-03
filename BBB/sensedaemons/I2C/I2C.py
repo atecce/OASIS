@@ -158,8 +158,8 @@ class electrical_conductivity(I2C_sensor):
 		# split results by comma
 		values = results_string.split(',')
 
-		# return first value
-		return values[1]
+		# return first value as float
+		return float(values[0])
 
 	def calibrate_dry(self):
 

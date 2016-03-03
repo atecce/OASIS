@@ -28,7 +28,7 @@ while True:
 	time_stamp = int(time.time())
 
 	# set up database
-	entry = {time_stamp: float(reading)}
+	entry = {time_stamp: reading}
 
 	# PATCH entry
 	result = firebase.PATCH(entry, "data/sensors/liquid_tanks_and_plumbing/S101.json")
