@@ -1,9 +1,10 @@
 # CSCI 3308 Project - MarsOASIS
-###### Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle Giacomini
+###### Systems software: Alessandro Tecce 
+###### GUI: Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle Giacomini
 ___
 
 #### Description:
-We are building a GUI for iOS and Android which monitors and controls a life-support system prototype that is funded by NASA to research making a hospitable artificial environment on Mars. The final product should display sensor data to any user who is curious about how the project is going and also allow the systems engineers to check the status of the relevant data, perform tests, calibrate the sensors, toggle the actuators, etc. through an interface which does not require a CS background and allows greater specialization amongst the team working on it.
+We are writing tht systems software and building a GUI for iOS and Android which monitors and controls a plant life-support system prototype that is funded by NASA to research making a hospitable artificial environment on Mars. The final product should display sensor data to any user who is curious about how the project is going and also allow the systems engineers to check the status of the relevant data, perform tests, calibrate the sensors, toggle the actuators, etc. through an interface which does not require a CS background and allows greater specialization amongst the team working on it.
 
 #### Vision statement:
 Between Blue Origin's successful landing of a booster on a sub-orbital launch and SpaceX's even more impressive landing of the Falcon 9's rocket booster on a mission that launched 11 satellites, an incredibly impressive amount of progress is being made on the space transportation problem. Back-of-the-envelope calculations place SpaceX's feat in particular at reducing the variable cost of space transport _by a factor of three-hundred._
