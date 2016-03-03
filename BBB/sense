@@ -12,7 +12,7 @@ from itertools import chain
 # import sensors
 from API.sensors import S
 
-# returns the SysID when given senseID
+# need this for conversions from senseID and data communication type lookup
 from API.conversions import senseIDtoSysID
 
 def main(argv):
@@ -28,8 +28,8 @@ def main(argv):
 			# set SysID
 			SysID = senseIDtoSysID[senseID]
 
-			# display comments of file
-			os.system("cat /tmp/S" + str(SysID))
+			# display reading
+			print S[SysID].read()
 
 		# catch error (probably needs work)
 		else: print "Invalid sensor name"
