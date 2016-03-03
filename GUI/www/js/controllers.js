@@ -49,7 +49,7 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('overviewCtrl', function($scope, $http) {
+.controller('tanksCtrl', function($scope, $http) {
   // XMLHttp Request to grab JSON file.
   var readings;
   $http({ method: 'GET', url: 'data/S305.json' }).then(function successCallback(response) {
@@ -101,11 +101,11 @@ angular.module('app.controllers', [])
     });
 })
 
-.controller('sensorsCtrl', function($scope) {
+.controller('growthCtrl', function($scope) {
 
 })
 
-.controller('actuatorsCtrl', function($scope) {
+.controller('atmosphereCtrl', function($scope) {
 
 })
 
