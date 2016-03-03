@@ -42,8 +42,10 @@
           </div>
         </div>
       </div>
-
       <div ng-controller="registerCtrl">
+
+
+      <div ng-show="showRegister">
         <div class="list" ng-show="!registered">
           <label class="item item-input">
             <input ng-model="email" type="text" placeholder="New Email">
@@ -71,7 +73,14 @@
             Invalid Email / Password! Account not created.
           </div>
         </div>
+
       </div>
+      <button ng-show="!showRegister"  class="button button-outline button-balanced" ng-click="registerOpen()">
+        <div ng-model="divText">
+          Register
+        </div>
+      </button>
+    </div>
       <!-- END CONTROLLER -->
     </ion-content>
 </ion-view>

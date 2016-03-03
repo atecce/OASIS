@@ -109,6 +109,9 @@ angular.module('app.controllers', [])
       $scope.$digest();
     }
   };
+  $scope.registerOpen = function(){
+    $scope.showRegister = true;
+  };
 })
 
 .controller('tanksCtrl', ["$scope", "Tanks", function($scope, Tanks) {
