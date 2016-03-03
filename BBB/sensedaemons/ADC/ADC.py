@@ -172,8 +172,14 @@ class oxygen(ADC_sensor):
 		# convert to mV
 		analogValmV = 1000*(analogVal/gainVal)
 
-		# analog value in mV 
-		return analogValmV
+		# considering slope of linear line in the graph related to low range of sensor operation
+		slope = (9.0-0.0)/(20.0-0.0)
+
+		# y = mx => x = y/m
+		O2Percent = (analogValmV)/slope
+
+		# return to O2 percentage
+		return O2Percent
 
 class photosynthetically_active_radiation(ADC_sensor):
 
@@ -197,3 +203,5 @@ class photosynthetically_active_radiation(ADC_sensor):
 		parValue = 1000*0.5*analogVal
 
 		return parValue
+
+
