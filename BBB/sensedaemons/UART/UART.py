@@ -39,8 +39,8 @@ class carbon_dioxide(UART_sensor):
 		# this was commented out. why was it ultimately unnecessary to initialize the serial class?
 		#serial.begin(9600)
 
-		# why is this delay necessary?
-		time.sleep(2.5)
+		# wait
+		time.sleep(1)
 
 		# wait for some buffer to be non empty?
 		while(ser.inWaiting() == 0):
@@ -48,8 +48,8 @@ class carbon_dioxide(UART_sensor):
 			# write one byte at a time? why are we writing? a request?
 			ser.write(d)
 
-			# why is this delay necessary?
-			time.sleep(2.5)
+			# wait
+			time.sleep(1)
 
 		# read in some buffer?
 		A = ser.read(ser.inWaiting())
@@ -57,7 +57,8 @@ class carbon_dioxide(UART_sensor):
 		# third bit times 2^8 (a byte) + fourth bit divided by 10^4
 		percent = (ord(A[3])*256 + ord(A[4]))/10000.0
 
-		# never closes serial port, potential problems with that
+		# close serial port
+		ser.close()
 
 		# return percentage
 		return percent
