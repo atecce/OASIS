@@ -5,15 +5,19 @@ angular.module('app.controllers', [])
 
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
+    $scope.isloggedIn = false;
     AuthRef.authWithPassword({
       email      : $scope.email,
       password   : $scope.password
     }, function(error, authData) {
       if (error) {
-        console.log('Not Logged In', error);
+        $scope.loginError = true;
+        $scope.$digest();
+        console.log('Cannot log in: ', error);
       }
       else {
         $scope.logged = true;
+        $scope.isloggedIn = true;
         $scope.$digest();
         console.log("Successfully logged in user:" + authData.uid);
       }
@@ -32,9 +36,12 @@ angular.module('app.controllers', [])
       }, function(error, authData){
         if(error){
           console.log("Account not Created",error);
+          $scope.regError = true;
+          $scope.$digest();
         }
         else{
           console.log("Account Created!");
+          $scope.regError = false;
           $scope.registered = true;
           $scope.$digest();
         }

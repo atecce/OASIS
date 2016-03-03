@@ -1,5 +1,5 @@
 <ion-view title="Account">
-    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
+    <ion-content overflow-scroll="true" padding="true" class="padding has-header scroll-bg">
 
       <div ng-controller="loginCtrl">
         <div class="list">
@@ -22,10 +22,13 @@
             Logged In!
           </div>
         </div>
-
-
-
+        <div ng-show="loginError" class="bar bar-footer bar-assertive">
+          <div class="title">
+            Invalid Email / Password!
+          </div>
+        </div>
       </div>
+
       <div ng-controller="registerCtrl">
         <div class="list" ng-show="!registered">
           <label class="item item-input">
@@ -47,6 +50,11 @@
         <div ng-show="passMismatch" class="bar bar-footer bar-assertive">
           <div class="title">
             Passwords do not match!
+          </div>
+        </div>
+        <div ng-show="regError" class="bar bar-footer bar-assertive">
+          <div class="title">
+            Invalid Email / Password! Account not created. 
           </div>
         </div>
       </div>
