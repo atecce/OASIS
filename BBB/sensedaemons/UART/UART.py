@@ -33,25 +33,25 @@ class carbon_dioxide(UART_sensor):
 		# what does struct do? why 7B? what's the asterisk do?
 		d = struct.pack("7B", *data)
 
-		# is this a port to a terminal somewhere? why?
+		# initalize serial port
 		ser = serial.Serial(port = "/dev/ttyO" + str(self.tty), baudrate = self.baudrate)
-
-		# this was commented out. why was it ultimately unnecessary to initialize the serial class?
-		#serial.begin(9600)
 
 		# wait
 		time.sleep(1)
 
-		# wait for some buffer to be non empty?
+		# open the serial port
+		ser.open()
+
+		# while serial buffer is empty
 		while(ser.inWaiting() == 0):
 
-			# write one byte at a time? why are we writing? a request?
+			# write data
 			ser.write(d)
 
 			# wait
 			time.sleep(1)
 
-		# read in some buffer?
+		# read in remaining characters in buffer
 		A = ser.read(ser.inWaiting())
 
 		# third bit times 2^8 (a byte) + fourth bit divided by 10^4
