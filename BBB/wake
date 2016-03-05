@@ -7,25 +7,34 @@ import sys
 import os
 
 # need this to look up data communication types
-from API.conversions import data_comm_lookup
+from API.conversions import data_comm_lookup, senseIDtoSysID
 
+# set path name
 path_name = "/home/atecce/MarsOASIS/BBB/sensedaemons/"
 
 def main(argv):
 
-	# read in senseID
-	SysID = int(argv[1])
+	# read in ID
+	ID = argv[1]
 
-	# check if senseID is valid
-	if SysID in data_comm_lookup:
+	# check for senseID notation
+	if ID in senseIDtoSysID: SysID = senseIDtoSysID[ID]
 
-		# set data communication type
-		data_comm_type = data_comm_lookup[SysID]
-
-		# display comments of file
-		os.system("sudo nohup " + path_name + data_comm_type + "/S" + str(SysID) + " > /dev/null 2>" + path_name + data_comm_type + "/errorlogs/S" + str(SysID) + ".txt &")
+	# check for SysID notation
+	elif int(ID) in data_comm_lookup: SysID = int(ID)
 
 	# catch error (probably needs work)
-	else: print "Invalid sensor name"
+	else: 
+		
+		print "Invalid sensor identification"
+
+		# exit with status 1
+		sys.exit(1)
+
+	# set data communication type
+	data_comm_type = data_comm_lookup[SysID]
+
+	# display comments of file
+	os.system("sudo nohup " + path_name + data_comm_type + "/S" + str(SysID) + " > /dev/null 2>" + path_name + data_comm_type + "/errorlogs/S" + str(SysID) + ".txt &")
 
 if __name__ == "__main__": main(sys.argv)
