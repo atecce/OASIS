@@ -1,7 +1,9 @@
 <ion-view title="Tanks">
   <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
-    <!-- <h3 class="title">Welcome, user.</h3> -->
-    <div style="color: white;"> {{ data | json }} </div>
-    <div id="chart"></div>
+    <!-- <div style="color: white;"> {{ data | json }} </div> -->
+    <div zingchart id="chart-1" zc-json="myJson" zc-width="100%" zc-height="300px"></div>
+    <div id="controls">
+      <button ng-click="fetchData()">Fetch</button>
+    </div>
   </ion-content>
 </ion-view>
