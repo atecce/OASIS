@@ -4,7 +4,7 @@
 import os
 
 # need this for necessary actuators
-from actuators.actuators import M, P
+from API.actuators import M, P
 
 # necessary fans
 fans = M[6], M[7]
