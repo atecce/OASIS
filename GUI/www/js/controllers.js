@@ -117,65 +117,115 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('tanksCtrl', ["$scope", "Tanks", function($scope, Tanks) {
-  Tanks('S103').$bindTo($scope, "data");
-  var readings = Tanks('S103');
-  // var date = new Date(readings.data[0][1] * 1000).getHours();
-  console.log(readings);
-  // console.log(Object.keys(readings)[0]);
+.controller('tanksCtrl', function($scope, $interval, $http) {
+  $scope.fetchData = function() {
+    console.log("*** Fetching Data... ***");
+    $http({
+      method: 'GET',
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/S103.json'
+    }).then(function successCallback(response) {
+      console.log("Response from Firebase:"); console.log(response.data);
+      $scope.data = response.data;
+      $scope.keyArray = [];
+      $scope.dataArray = [];
 
-  // for (var key in readings) {
-  //   console.log("Key: " + key);
-  //   console.log("Value: " + readings[key]);
-  // }
+      for (var time in $scope.data) {
+        $scope.keyArray.push(time);
+        $scope.dataArray.push($scope.data[time]);
+        console.log(time + " is " + $scope.data[time]);
+      }
 
-  var chart = c3.generate({
-    bindto: '#chart',
-    point: { r: 0 },
-    tooltip: { show: false },
-    data: {
-      // json: {
-        // readings
-      // }
-      columns: [
-        [5, 6, 7],
-        // readings,
-        // readings
-      ],
+      $scope.myJson.scaleX.values = $scope.keyArray;
+      $scope.myJson.series[0].values = $scope.dataArray;
+    }, function errorCallback(response) {
+      console.log("error recieving data");
+    });
+  }
 
-      rows: [
-        readings
-      ]
-      // x: readings.data[0][0], // epoch
-      // y: readings.data[1][0]  // CO2
-    },
-    axis: {
-      x: {
-        label: 'Date-Time',
-        tick: { count: 5 }
+  // $interval($scope.fetchData, 3000);
+
+  $scope.myJson = {
+    backgroundColor: "#434343",
+    globals: { shadow: false, fontFamily: "Helvetica" },
+    type: "area",
+
+    legend: {
+      layout: "x4",
+      backgroundColor: "transparent",
+      borderColor: "transparent",
+      marker: {
+        borderRadius: "50px",
+        borderColor: "transparent"
       },
-      y: {
-        label: 'CO2'
+      item: {
+        fontColor: "white"
       }
     },
-    grid: {
-      y: {
-        lines: [
-          { value: 0.0, text: 'Dangerous', axis: 'y', position: 'end' },
-          { value: 0.1, text: 'Safe', axis: 'y', position: 'end' },
-          { value: 0.2, text: 'Dangerous', axis: 'y', position: 'end' },
-        ]
+    scaleX: {
+      maxItems: 8,
+      transform: {
+          type: 'date'
+      },
+      zooming: true,
+      values: $scope.keyArray,
+      lineColor: "white",
+      lineWidth: "1px",
+      tick: {
+          lineColor: "white",
+          lineWidth: "1px"
+      },
+      item: {
+          fontColor: "white"
+      },
+      guide: {
+          visible: false
       }
     },
-    regions: [
-      // {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
-      // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
-      // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
-      {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
-    ]
-  });
-  chart.legend.hide();
-}])
+    scaleY: {
+      lineColor: "white",
+      lineWidth: "1px",
+      tick: {
+          lineColor: "white",
+          lineWidth: "1px"
+      },
+      guide: {
+          lineStyle: "solid",
+          lineColor: "#626262"
+      },
+      item: {
+          fontColor: "white"
+      },
+    },
+    tooltip: {
+      visible: false
+    },
+    crosshairX: {
+      scaleLabel: {
+        backgroundColor: "#fff",
+        fontColor: "black"
+      },
+      plotLabel: {
+        backgroundColor: "#434343",
+        fontColor: "#FFF",
+        _text: "Number of hits : %v"
+      }
+    },
+    plot: {
+      lineWidth: "2px",
+      aspect: "spline",
+      marker: {
+        visible: false
+      }
+    },
+    series: [{
+      text: "S103",
+      values: $scope.dataArray,
+      backgroundColor1: "#1D8CD9",
+      backgroundColor2: "#1D8CD9",
+      lineColor: "#1D8CD9"
+    }]
+  };
+})
 
 .controller('growthCtrl', function($scope) {
 
