@@ -3,6 +3,9 @@
 # need this for epoch
 import time
 
+# need this for clean command
+import os
+
 # need this to post to database
 from REST import REST
 	
@@ -14,6 +17,9 @@ from one_wire import temperature
 
 # declare sensor
 sensor = temperature('28-00000673a8a7')
+
+# start counter
+count = int()
 
 # do this indefinitely
 while True:
@@ -35,3 +41,8 @@ while True:
 
 	# PATCH entry
 	result = firebase.PATCH(entry, "data/sensors/liquid_tanks_and_plumbing/S103.json")
+
+	if count % 10000 == 0: os.system("clean 10")
+
+	# increment count
+	count += 1
