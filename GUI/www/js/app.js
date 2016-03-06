@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'firebase', 'zingchart-angularjs', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
+var app = angular.module('app', ['ionic', 'firebase', 'chart.js', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,3 +29,20 @@ app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
     return $firebaseObject(tankRef);
   }}
 ]);
+
+app.config(['ChartJsProvider', function (ChartJsProvider) {
+  // Configure all charts
+  ChartJsProvider.setOptions({
+    // colours: ['#FF5252', '#FF8A80'],
+    // animation: false,
+    // responsive: true,
+    // pointDot : false,
+    // showTooltips: false,
+    // datasetStrokeWidth: 0.01,
+    // bezierCurve : false,
+    // showScale: true,
+    // scaleOverride: false,
+    // scaleShowGridLines : false,
+    // scaleShowLabels: false,
+  });
+}])

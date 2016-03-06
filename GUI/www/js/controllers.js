@@ -117,114 +117,52 @@ angular.module('app.controllers', [])
   };
 })
 
-.controller('tanksCtrl', function($scope, $interval, $http) {
-  $scope.fetchData = function() {
+.controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
+  // * Graph Configuration
+  $scope.chartData = [{ data: [] }];
+
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx).Scatter($scope.chartData, {
+		// bezierCurve: true,
+    emptyDataMessage: "Retrieving data . . .",
+		scaleShowHorizontalLines: true,
+		scaleShowLabels: true,
+		scaleType: "date",
+    animation: false,
+    responsive: true,
+    pointDot : false,
+    showTooltips: false,
+    datasetStrokeWidth: 1,
+    bezierCurve : false,
+    showScale: true,
+    scaleOverride: false,
+    scaleShowGridLines : false
+	});
+  // console.log($scope.chartData);
+
+  // * Data Fetch
+  var fetchData = function() {
     console.log("*** Fetching Data... ***");
     $http({
       method: 'GET',
-      url: 'https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/S103.json'
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/internal_atmosphere/S305.json'
     }).then(function successCallback(response) {
-      console.log("Response from Firebase:"); console.log(response.data);
-      $scope.data = response.data;
-      $scope.keyArray = [];
-      $scope.dataArray = [];
+      // console.log("Response from Firebase:"); console.log(response.data);
 
-      for (var time in $scope.data) {
-        $scope.keyArray.push(time);
-        $scope.dataArray.push($scope.data[time]);
-        console.log(time + " is " + $scope.data[time]);
+      for (var time in response.data) {
+        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
       }
-
-      $scope.myJson.scaleX.values = $scope.keyArray;
-      $scope.myJson.series[0].values = $scope.dataArray;
+      chart.update();
     }, function errorCallback(response) {
-      console.log("error recieving data");
+      console.log("Error: " + response);
     });
   }
 
-  // $interval($scope.fetchData, 3000);
+  // Fetch data on view render.
+  fetchData();
 
-  $scope.myJson = {
-    backgroundColor: "#434343",
-    globals: { shadow: false, fontFamily: "Helvetica" },
-    type: "area",
-
-    legend: {
-      layout: "x4",
-      backgroundColor: "transparent",
-      borderColor: "transparent",
-      marker: {
-        borderRadius: "50px",
-        borderColor: "transparent"
-      },
-      item: {
-        fontColor: "white"
-      }
-    },
-    scaleX: {
-      maxItems: 8,
-      transform: {
-          type: 'date'
-      },
-      zooming: true,
-      values: $scope.keyArray,
-      lineColor: "white",
-      lineWidth: "1px",
-      tick: {
-          lineColor: "white",
-          lineWidth: "1px"
-      },
-      item: {
-          fontColor: "white"
-      },
-      guide: {
-          visible: false
-      }
-    },
-    scaleY: {
-      lineColor: "white",
-      lineWidth: "1px",
-      tick: {
-          lineColor: "white",
-          lineWidth: "1px"
-      },
-      guide: {
-          lineStyle: "solid",
-          lineColor: "#626262"
-      },
-      item: {
-          fontColor: "white"
-      },
-    },
-    tooltip: {
-      visible: false
-    },
-    crosshairX: {
-      scaleLabel: {
-        backgroundColor: "#fff",
-        fontColor: "black"
-      },
-      plotLabel: {
-        backgroundColor: "#434343",
-        fontColor: "#FFF",
-        _text: "Number of hits : %v"
-      }
-    },
-    plot: {
-      lineWidth: "2px",
-      aspect: "spline",
-      marker: {
-        visible: false
-      }
-    },
-    series: [{
-      text: "S103",
-      values: $scope.dataArray,
-      backgroundColor1: "#1D8CD9",
-      backgroundColor2: "#1D8CD9",
-      lineColor: "#1D8CD9"
-    }]
-  };
+  // Continuous data fetch every 30 seconds.
+  $interval(function () { fetchData(); }, 30000);
 })
 
 .controller('growthCtrl', function($scope) {
