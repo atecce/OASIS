@@ -34,7 +34,7 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
   // Configure all charts
   ChartJsProvider.setOptions({
     // colours: ['#FF5252', '#FF8A80'],
-    animation: true,
+    animation: false,
     responsive: true,
     pointDot : false,
     scaleShowGridLines : false,

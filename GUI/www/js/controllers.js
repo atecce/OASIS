@@ -138,7 +138,6 @@ angular.module('app.controllers', [])
 
       // Loading new data into chart!
       $scope.chartData = [ $scope.sensorVal ];
-      $scope.labels = $scope.time;
     }, function errorCallback(response) {
       console.log("Error: " + response);
     });
