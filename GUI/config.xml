@@ -15,10 +15,9 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="ShowSplashScreenSpinner" value="false" />
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="SplashScreenDelay" value="1000"/>
-  <preference name="FadeSplashScreen" value="false" />
-
+  <preference name="FadeSplashScreen" value="true"/>
   <link rel="shortcut icon" href="img/favicon.ico"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -42,8 +41,6 @@
     <icon src="resources/ios/icon/icon-small@3x.png" width="87" height="87"/>
     <splash src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
     <splash src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
-    <splash src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
-    <splash src="resources/ios/splash/Default-Landscape-736h.png" width="2208" height="1242"/>
     <splash src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
     <splash src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" height="768"/>
     <splash src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
