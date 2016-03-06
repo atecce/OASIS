@@ -2,13 +2,16 @@
 <widget id="com.mars.oasis" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>MarsOASIS</name>
   <description>
-        An application that serves as a GUI + Control Surface for the MarsOASIS project.
-    </description>
+    An application that serves as a GUI + Control Surface for the MarsOASIS project.
+  </description>
   <author email="info@example.com" href="http://example.com/">
-      Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle Giacomini
-    </author>
+    Alessandro Tecce, Prayash Thapa, Conor Amanatullah, Trevor Gould, Kyle Giacomini
+  </author>
+
   <content src="index.html"/>
   <access origin="*"/>
+
+  <!-- Preferences -->
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -16,12 +19,16 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="SplashScreenDelay" value="1000"/>
+  <preference name="SplashScreenDelay" value="4000"/>
   <preference name="FadeSplashScreen" value="true"/>
   <link rel="shortcut icon" href="img/favicon.ico"/>
+
+  <!-- Plugins -->
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
+  <!-- iOS Resources -->
   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
@@ -48,5 +55,4 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   </platform>
-  <icon src="resources/ios/icon/icon-small@3x.png"/>
 </widget>

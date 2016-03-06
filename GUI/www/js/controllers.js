@@ -118,26 +118,41 @@ angular.module('app.controllers', [])
 })
 
 .controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
+  // * Graph Configuration
+  $scope.chartData = [{ data: [] }];
+
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx).Scatter($scope.chartData, {
+		// bezierCurve: true,
+    emptyDataMessage: "Retrieving data . . .",
+		scaleShowHorizontalLines: true,
+		scaleShowLabels: true,
+		scaleType: "date",
+    animation: false,
+    responsive: true,
+    pointDot : false,
+    showTooltips: false,
+    datasetStrokeWidth: 1,
+    bezierCurve : false,
+    showScale: true,
+    scaleOverride: false,
+    scaleShowGridLines : false
+	});
+  // console.log($scope.chartData);
+
+  // * Data Fetch
   var fetchData = function() {
     console.log("*** Fetching Data... ***");
     $http({
       method: 'GET',
       url: 'https://cumarsoasis.firebaseio.com/data/sensors/internal_atmosphere/S305.json'
     }).then(function successCallback(response) {
-      console.log("Response from Firebase:"); console.log(response.data);
-      $scope.data = response.data;
+      // console.log("Response from Firebase:"); console.log(response.data);
 
-      // Store chart data into 2 arrays, x (time) & y (sensorVal) axes.
-      $scope.time = []; $scope.sensorVal = [];
-      for (var time in $scope.data) {
-        var myDate = new Date(time * 1000);
-        $scope.time.push(' ');
-        $scope.sensorVal.push($scope.data[time]);
-        // console.log(time + " is " + $scope.data[time]);
+      for (var time in response.data) {
+        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
       }
-
-      // Loading new data into chart!
-      $scope.chartData = [ $scope.sensorVal ];
+      chart.update();
     }, function errorCallback(response) {
       console.log("Error: " + response);
     });
@@ -146,15 +161,8 @@ angular.module('app.controllers', [])
   // Fetch data on view render.
   fetchData();
 
-  // Continuous data fetch every 4 seconds.
-  $interval(function () { fetchData(); }, 4000);
-
-  $scope.labels = ["Today", "Tomorrow"];
-  $scope.series = ['Series A', 'Series B'];
-  $scope.chartData = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
+  // Continuous data fetch every 30 seconds.
+  $interval(function () { fetchData(); }, 30000);
 })
 
 .controller('growthCtrl', function($scope) {

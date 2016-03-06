@@ -34,13 +34,15 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
   // Configure all charts
   ChartJsProvider.setOptions({
     // colours: ['#FF5252', '#FF8A80'],
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    scaleShowGridLines : false,
-    showTooltips: false,
-    datasetStrokeWidth: 0.01,
-    bezierCurve : false
+    // animation: false,
+    // responsive: true,
+    // pointDot : false,
+    // showTooltips: false,
+    // datasetStrokeWidth: 0.01,
+    // bezierCurve : false,
+    // showScale: true,
+    // scaleOverride: false,
+    // scaleShowGridLines : false,
     // scaleShowLabels: false,
   });
 }])
