@@ -46,7 +46,7 @@ def main(argv):
 		if   SysID == 102: sensor = pH(0x65)
 		elif SysID == 206: sensor = pH(0x63)
 
-	elif library == "temperature":
+	elif library == "liquid temperature" or "soil temperature":
 
 		from API.one_wire import temperature
 
