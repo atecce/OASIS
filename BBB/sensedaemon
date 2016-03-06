@@ -20,27 +20,35 @@ def main(argv):
 	# set system ID
 	SysID = int(argv[1])
 
+	# choose subsystem based on leading digit
+	subsystem = str()
+
+	if   SysID / 100 == 1: subsystem = "liquid_tanks_and_plumbing"
+	elif SysID / 100 == 2: subsystem = "growth_medium"
+	elif SysID / 100 == 3: subsystem = "internal_atmosphere"
+	elif SysID / 100 == 4: subsystem = "external_environment"
+
 	# get library to import
 	library = sensor_type[SysID]
 
 	# set sensor by sensor type
 	if library == "electrical conductivity": 
 		
-		from I2C import electrical_conductivity
+		from API.I2C import electrical_conductivity
 
 		if   SysID == 101: sensor = electrical_conductivity(0x64)
 		elif SysID == 205: sensor = electrical_conductivity(0x66)
 
 	elif library == "pH":
 
-		from I2C import pH
+		from API.I2C import pH
 
 		if   SysID == 102: sensor = pH(0x65)
 		elif SysID == 206: sensor = pH(0x63)
 
 	elif library == "temperature":
 
-		from one_wire import temperature
+		from API.one_wire import temperature
 
 		if   SysID == 103: sensor = temperature("28-00000673a8a7")
 		elif SysID == 201: sensor = temperature("28-0000065f27cc")
@@ -49,13 +57,13 @@ def main(argv):
 
 	elif library == "dissolved oxygen":
 
-		from I2C import dissolved_oxygen
+		from API.I2C import dissolved_oxygen
 
 		if SysID == 104: sensor = dissolved_oxygen(0x61)
 
 	elif library == "liquid level":
 
-		from ADC import liquid_level
+		from API.ADC import liquid_level
 
 		if   SysID == 105: sensor = liquid_level(0x80)
 		elif SysID == 106: sensor = liquid_level(0xA0)
@@ -66,23 +74,23 @@ def main(argv):
 
 	elif library == "flow meter":
 
-		from UART import flow_meter
+		from API.UART import flow_meter
 
 		if   SysID == 110: sensor = flow_meter(1)
 		elif SysID == 111: sensor = flow_meter(4)
 
 	elif library == "moisture":
 
-		from ADC import moisture
+		from API.ADC import moisture
 
-		elif SysID == 208: sensor = moisture(0x80)
+		if   SysID == 208: sensor = moisture(0x80)
 		elif SysID == 209: sensor = moisture(0xA0)
 		elif SysID == 210: sensor = moisture(0xC0)
 		elif SysID == 211: sensor = moisture(0xE0)
 
 	elif library == "relative humidity and air temperature":
 
-		from one_wire import relative_humidity_and_air_temperature
+		from API.one_wire import relative_humidity_and_air_temperature
 
 		if   SysID == 301: sensor = relative_humidity_and_air_temperature("P8_8")
 		elif SysID == 302: sensor = relative_humidity_and_air_temperature("P8_9")
@@ -90,26 +98,26 @@ def main(argv):
 
 	elif library == "total pressure":
 
-		from I2C import total_pressure
+		from API.I2C import total_pressure
 
 		if   SysID == 303: sensor = total_pressure(2)
 		elif SysID == 402: sensor = total_pressure(1)
 
 	elif library == "oxygen":
 
-		from ADC import oxygen
+		from API.ADC import oxygen
 
 		if SysID == 304: sensor = oxygen()
 
 	elif library == "carbon dioxide":
 
-		from UART import carbon_dioxide
+		from API.UART import carbon_dioxide
 
 		if SysID == 305: sensor = carbon_dioxide(5)
 
 	elif library == "photosynthetically active radiation":
 
-		from ADC import photosynthetically_active_radiation
+		from API.ADC import photosynthetically_active_radiation
 
 		if   SysID == 306: sensor = photosynthetically_active_radiation(0xF0)
 		elif SysID == 403: sensor = photosynthetically_active_radiation(0xD0)
