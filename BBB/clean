@@ -4,7 +4,7 @@
 import sys
 
 # need this for REST API
-from REST import REST
+from API.REST import REST
 
 # need this for sorted dictionary
 import collections
