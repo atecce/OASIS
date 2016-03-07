@@ -16,7 +16,7 @@ import numpy as np
 from itertools import chain
 
 # set up REST backend 
-firebase = REST()
+firebase = REST("https://cumarsoasis.firebaseio.com/")
 
 # chain temperature SysIDs
 SysIDs = chain(range(103, 104), range(201, 204))

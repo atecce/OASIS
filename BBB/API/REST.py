@@ -6,8 +6,10 @@ import json
 
 class REST:
 
-	# url for website
-	url = "https://cumarsoasis.firebaseio.com/"
+	def __init__(self):
+
+		# url for website
+		url = self.url
 
 	def GET(self, table):
 

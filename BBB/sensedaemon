@@ -13,7 +13,7 @@ from API.REST import REST
 from API.conversions import sensor_type
 	
 # set up firebase
-firebase = REST()
+firebase = REST("https://cumarsoasis.firebaseio.com/")
 
 def main(argv):
 
