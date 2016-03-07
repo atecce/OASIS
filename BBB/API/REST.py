@@ -6,10 +6,10 @@ import json
 
 class REST:
 
-	def __init__(self):
+	def __init__(self, url):
 
 		# url for website
-		url = self.url
+		self.url = url
 
 	def GET(self, table):
 
