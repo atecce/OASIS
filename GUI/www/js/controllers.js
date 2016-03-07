@@ -181,4 +181,10 @@ angular.module('app.controllers', [])
   // $scope.testToggle = false;
   // USE TRUE OR FALSE
   // Pull from DB actuator states
+  $rootScope = $scope;
+  var init = function ($rootScope) {
+
+  }
+
+  init();
 })
