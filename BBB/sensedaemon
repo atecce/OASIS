@@ -46,7 +46,7 @@ def main(argv):
 		if   SysID == 102: sensor = pH(0x65)
 		elif SysID == 206: sensor = pH(0x63)
 
-	elif library == "liquid temperature" or "soil temperature":
+	elif library == "liquid temperature" or library == "soil temperature":
 
 		from API.one_wire import temperature
 
@@ -113,7 +113,9 @@ def main(argv):
 
 		from API.UART import carbon_dioxide
 
-		if SysID == 305: sensor = carbon_dioxide(5)
+		if SysID == 305: 
+			
+			sensor = carbon_dioxide(5)
 
 	elif library == "photosynthetically active radiation":
 
