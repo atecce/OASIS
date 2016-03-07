@@ -180,5 +180,12 @@ angular.module('app.controllers', [])
 .controller('actuatorCtrl', function($scope) {
   // $scope.testToggle = false;
   // USE TRUE OR FALSE
-  // Pull from DB actuator states
+
+  // var init = function ($scope) {
+  //   // Set up new firebase instance
+  //   var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+  //   console.log("Hello!")
+  // }
+  // //Run the init!
+  // init($scope);
 })

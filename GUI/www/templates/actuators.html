@@ -6,9 +6,9 @@
           Filter
         </li>
         <li class="item item-toggle">
-          Actuator 1
+          UV Filter
           <label class="toggle">
-            <input type="checkbox" ng-model="toggle1">
+            <input type="checkbox" ng-model="toggleUv">
             <div class="track">
               <div class="handle">
               </div>
@@ -20,9 +20,9 @@
           Valves
         </li>
         <li class="item item-toggle">
-          Actuator 1
+          C02 Solenoid
           <label class="toggle">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="toggleC02">
             <div class="track">
               <div class="handle">
               </div>
@@ -30,9 +30,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 2
+          N2 Solenoid
           <label class="toggle">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="toggleN2">
             <div class="track">
               <div class="handle">
               </div>
@@ -44,9 +44,9 @@
           Pumps
         </li>
         <li class="item item-toggle">
-          Actuator 1
+          Main Pump
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpMain">
             <div class="track">
               <div class="handle">
               </div>
@@ -54,9 +54,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 2
+          Condensate Pump
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpCond">
             <div class="track">
               <div class="handle">
               </div>
@@ -64,9 +64,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 3
+          Nutrient 1 Dosing
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpNut1">
             <div class="track">
               <div class="handle">
               </div>
@@ -74,9 +74,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 4
+          Nutrient 2 Dosing
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpNut2">
             <div class="track">
               <div class="handle">
               </div>
@@ -84,9 +84,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 5
+          pH Dosing
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpPh">
             <div class="track">
               <div class="handle">
               </div>
@@ -94,9 +94,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 6
+          Nutrient 1 Circulation
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpNut1Circ">
             <div class="track">
               <div class="handle">
               </div>
@@ -104,9 +104,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 7
+          Air Bubbler
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpAir">
             <div class="track">
               <div class="handle">
               </div>
@@ -114,9 +114,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 8
+          Filter Pump
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpFilter">
             <div class="track">
               <div class="handle">
               </div>
@@ -124,9 +124,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 9
+          Nutrient 2 Circulation
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpNut2Circ">
             <div class="track">
               <div class="handle">
               </div>
@@ -134,9 +134,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 10
+          Humidifier Pump
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpHumid">
             <div class="track">
               <div class="handle">
               </div>
@@ -144,9 +144,9 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 11
+          Main Tank Circulation
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpTankMainCirc">
             <div class="track">
               <div class="handle">
               </div>
@@ -154,9 +154,73 @@
           </label>
         </li>
         <li class="item item-toggle">
-          Actuator 12
+          Dehumidifier
           <label class="toggle toggle-assertive">
-            <input type="checkbox">
+            <input type="checkbox" ng-model="togglePumpDeHumid">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <!-- ======================Misc========================= -->
+        <li class="item item-dark">
+          Miscellaneous
+        </li>
+        <li class="item item-toggle">
+          Heater
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleHeater">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Chiller
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleChiller">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Fan 1
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleFan1">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Fan 2
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleFan2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          O2 Concentrator
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleConcenO2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          LED
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleLed">
             <div class="track">
               <div class="handle">
               </div>
