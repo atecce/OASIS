@@ -55,7 +55,10 @@ for index in range(1, len(segments)+1):
 	with open("CO2_" + str(index)+ ".csv", 'w') as datafile:
 
 		# write headers
-		datafile.write("epochs, readings\n")
+		datafile.write("epoch, reading, ,epoch, ln(reading)\n")
 
 		# write each entry
-		for entry in segments[index-1]: datafile.write(str(epochs[entry])+', ' + str(readings[entry])+'\n')
+		for entry in segments[index-1]: 
+			
+			datafile.write(str(epochs[entry]-epochs[segments[index-1][0]])+', ' + str(readings[entry])+',,')
+			datafile.write(str(epochs[entry]-epochs[segments[index-1][0]])+', ' + str(math.log(readings[entry]))+'\n')
