@@ -181,11 +181,11 @@ angular.module('app.controllers', [])
   // $scope.testToggle = false;
   // USE TRUE OR FALSE
 
-  // var init = function ($scope) {
-  //   // Set up new firebase instance
-  //   var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
-  //   console.log("Hello!")
-  // }
-  // //Run the init!
-  // init($scope);
+  var init = function ($scope) {
+    // for testing purposes, set a few actuators to true
+    // Pull from DB actuator states
+    $scope.toggle1 = true;
+  }
+
+  init($scope);
 })
