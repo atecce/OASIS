@@ -34,3 +34,7 @@ class REST:
 
 		# wrap the bash command with python
 		os.system("curl -X PATCH -d '" + json.dumps(entry) + "' '" + self.url + table + "'")
+
+	def DELETE(self, entry):
+
+		os.system("curl -X DELETE '" + self.url + entry + "'")
