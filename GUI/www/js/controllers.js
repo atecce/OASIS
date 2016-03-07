@@ -178,14 +178,5 @@ angular.module('app.controllers', [])
 })
 
 .controller('actuatorCtrl', function($scope) {
-  // $scope.testToggle = false;
-  // USE TRUE OR FALSE
-
-  var init = function ($scope) {
-    // for testing purposes, set a few actuators to true
-    // Pull from DB actuator states
-    $scope.toggle1 = true;
-  }
-
-  init($scope);
+  
 })
