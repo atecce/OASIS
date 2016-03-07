@@ -67,6 +67,15 @@ angular.module('app.routes', [])
       }
     }
   })
+  .state('tabsController.actuators', {
+    url: '/actuators',
+    views: {
+      'tab6' : {
+        templateUrl: 'templates/actuators.html',
+        controller: 'actuatorCtrl'
+      }
+    }
+  })
 
   .state('tabsController', {
     url: '/main',
