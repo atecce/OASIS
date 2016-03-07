@@ -178,5 +178,17 @@ angular.module('app.controllers', [])
 })
 
 .controller('actuatorCtrl', function($scope) {
-  
+  var init = function($scope) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+    var authRef = ref.getAuth();
+    if(authRef !== null){
+      console.log("Logged user ",authRef.uid);
+    }
+    else{
+      console.log("Not Logged In")
+    }
+
+  }
+
+  init($scope);
 })
