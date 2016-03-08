@@ -15,7 +15,7 @@ print
 print "Filter:"
 print
 
-print "\t"+F[1].table, "is", F[1].check_status()
+print "\t"+F[1].name, "is", F[1].check_status()
 print
 
 # valves
@@ -24,7 +24,7 @@ print
 
 for SysID in range(3, 5):
 
-	print "\t"+V[SysID].table, "is", V[SysID].check_status()
+	print "\t"+V[SysID].name, "is", V[SysID].check_status()
 
 print
 
@@ -34,7 +34,7 @@ print
 
 for SysID in chain(range(1, 3), range(6, 9), range(18, 19)):
 
-	print "\t"+M[SysID].table, "is", M[SysID].check_status()
+	print "\t"+M[SysID].name, "is", M[SysID].check_status()
 
 print
 
@@ -44,6 +44,6 @@ print
 
 for SysID in range(1, 13):
 
-	print "\t"+P[SysID].table, "is", P[SysID].check_status()
+	print "\t"+P[SysID].name, "is", P[SysID].check_status()
 
 print
