@@ -1,7 +1,10 @@
 <ion-view title="Actuators">
     <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg"  ng-controller="actuatorCtrl">
       <div class="bar bar-header bar-assertive" ng-show="error" ng-click="saysLogged()">
-        <h1 class="title">You must be logged in to view this tab.</h1>
+        <h1 class="title">Tap when you are logged in.</h1>
+      </div>
+      <div class="bar bar-footer bar-assertive" ng-show="accessErr" ng-click="saysLogged()">
+        <h1 class="title">Access Denied! Or not logged in!</h1>
       </div>
       <ul class="list" ng-show="!error">
         <!-- ======================FILTER========================= -->
