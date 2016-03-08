@@ -1,10 +1,3 @@
-#!/usr/bin/env python
+#!/bin/bash
 
-# need this for wake script
-import os
-
-# need this for SysIDs
-from API.SysIDs import SysIDs
-
-# wake up
-for SysID in SysIDs: os.system("wake " + str(SysID))
+sudo nohup /home/atecce/MarsOASIS/BBB/focus > /tmp/errorlogs/general 2>&1 &
