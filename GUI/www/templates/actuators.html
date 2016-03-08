@@ -1,14 +1,17 @@
 <ion-view title="Actuators" ng-controller="actuatorCtrl">
     <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
+      <div class="bar bar-header bar-assertive" ng-show="error">
+        <h1 class="title">Please Login!</h1>
+      </div>
       <ul class="list">
         <!-- ======================FILTER========================= -->
-        <li class="item item-dark">
+        <li class="item item-positive">
           Filter
         </li>
         <li class="item item-toggle">
           UV Filter
           <label class="toggle">
-            <input type="checkbox" ng-model="toggleUv">
+            <input type="checkbox" ng-model="toggleUv" ng-change="update($scope,'toggleUv',toggleUv)" name="toggleUv">
             <div class="track">
               <div class="handle">
               </div>
@@ -16,7 +19,7 @@
           </label>
         </li>
         <!-- ======================VALVES========================= -->
-        <li class="item item-dark">
+        <li class="item item-positive">
           Valves
         </li>
         <li class="item item-toggle">
@@ -40,7 +43,7 @@
           </label>
         </li>
         <!-- ======================PUMPS========================= -->
-        <li class="item item-dark">
+        <li class="item item-positive">
           Pumps
         </li>
         <li class="item item-toggle">
@@ -164,7 +167,7 @@
           </label>
         </li>
         <!-- ======================Misc========================= -->
-        <li class="item item-dark">
+        <li class="item item-Positive">
           Miscellaneous
         </li>
         <li class="item item-toggle">
