@@ -92,13 +92,13 @@ class flow_meter(UART_sensor):
 		# amber = one rotation of meter blades
 		ser.write("L1\r")
 
-		# why is this delay necessary?
+		# wait
 		time.sleep(1)
 
 		# write model number TurboFlow 226000
 		ser.write("T1\r")
 
-		# why is this delay neccesary?
+		# wait
 		time.sleep(1)
 
 		# return num of chars in receive buffer
@@ -107,14 +107,14 @@ class flow_meter(UART_sensor):
 		# read Turboflow
 		model_num = ser.read(num)
 
-		# why is this delay necessary?
+		# wait
 		time.sleep(1)
 
 		# what are we writing?
 		ser.write("R\r")
 
-		# why is this delay necessary?
-		time.sleep(2)
+		# wait
+		time.sleep(1)
 
 		# return num of chars in receive buffer
 		num = ser.inWaiting()
