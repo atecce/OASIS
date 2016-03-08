@@ -11,7 +11,7 @@ import sys
 import os
 
 # need this to look up data communication types
-from API.conversions import senseIDtoSysID
+from API.conversions import SysIDtosenseID, senseIDtoSysID
 
 # set path name
 path_name = "/home/atecce/MarsOASIS/BBB/sensedaemon"
@@ -22,10 +22,16 @@ def main(argv):
 	ID = argv[1]
 
 	# check for senseID notation
-	if ID in senseIDtoSysID: SysID = senseIDtoSysID[ID]
+	if ID in senseIDtoSysID: 
+		
+		SysID   = senseIDtoSysID[ID]
+		senseID = ID
 
 	# check for SysID notation
-	elif int(ID) in senseIDtoSysID.values(): SysID = int(ID)
+	elif int(ID) in SysIDtosenseID: 
+		
+		SysID   = int(ID)
+		senseID = SysIDtosenseID[SysID]
 
 	# catch error (probably needs work)
 	else: 
@@ -36,6 +42,6 @@ def main(argv):
 		sys.exit(1)
 
 	# turn on sensor as a daemon
-	os.system("sudo nohup " + path_name + " " + str(SysID) + " > /tmp/errorlogs/S" + str(SysID) + " 2>&1 &")
+	os.system("sudo nohup " + path_name + " " + senseID + " > /tmp/errorlogs/S" + str(SysID) + " 2>&1 &")
 
 if __name__ == "__main__": main(sys.argv)

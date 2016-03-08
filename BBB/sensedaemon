@@ -10,7 +10,7 @@ import time
 from API.REST import REST
 
 # need this to know which class to import
-from API.conversions import sensor_type
+from API.conversions import sensor_type, senseIDtoSysID
 	
 # set up firebase databases
 softwaredev = REST("https://cumarsoasis.firebaseio.com/")
@@ -18,8 +18,8 @@ independent = REST("https://marsoasis.firebaseio.com/")
 
 def main(argv):
 
-	# set system ID
-	SysID = int(argv[1])
+	# get SysID
+	SysID = senseIDtoSysID[argv[1]]
 
 	# choose subsystem based on leading digit
 	subsystem = str()
