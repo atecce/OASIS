@@ -12,8 +12,9 @@ from API.REST import REST
 # need this to know which class to import
 from API.conversions import sensor_type
 	
-# set up firebase
-firebase = REST("https://cumarsoasis.firebaseio.com/")
+# set up firebase databases
+softwaredev = REST("https://cumarsoasis.firebaseio.com/")
+independent = REST("https://marsoasis.firebaseio.com/")
 
 def main(argv):
 
@@ -138,6 +139,6 @@ def main(argv):
 		entry = {time_stamp: reading}
 
 		# PATCH entry
-		result = firebase.PATCH(entry, "data/sensors/" + subsystem + "/S" + str(SysID) + ".json")
+		result = softwaredev.PATCH(entry, "data/sensors/" + subsystem + "/S" + str(SysID) + ".json")
 
 if __name__ == "__main__": main(sys.argv)
