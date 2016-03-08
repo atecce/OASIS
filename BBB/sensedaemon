@@ -136,7 +136,7 @@ def main(argv):
 		time_stamp = int(time.time())
 
 		# set up database
-		entry = {time_stamp: reading}
+		entry = {time_stamp: float(reading)}
 
 		# PATCH entry
 		result = softwaredev.PATCH(entry, "data/sensors/" + subsystem + "/S" + str(SysID) + ".json")
