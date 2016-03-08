@@ -14,8 +14,9 @@ app.run(function($ionicPlatform) {
 
     //Log out user session on load
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+
     AuthRef.unauth();
-    console.log("No user logged in");
+
 
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -24,6 +25,7 @@ app.run(function($ionicPlatform) {
       $cordovaStatusBar.style(1);
     }
   });
+  
 })
 
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {

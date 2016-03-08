@@ -1,9 +1,9 @@
-<ion-view title="Actuators" ng-controller="actuatorCtrl">
-    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
-      <div class="bar bar-header bar-assertive" ng-show="error">
-        <h1 class="title">Please Login!</h1>
+<ion-view title="Actuators">
+    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg"  ng-controller="actuatorCtrl">
+      <div class="bar bar-header bar-assertive" ng-show="error" ng-click="saysLogged()">
+        <h1 class="title">You must be logged in to view this tab.</h1>
       </div>
-      <ul class="list">
+      <ul class="list" ng-show="!error">
         <!-- ======================FILTER========================= -->
         <li class="item item-positive">
           Filter

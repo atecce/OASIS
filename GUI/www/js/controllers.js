@@ -186,6 +186,23 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('actuatorCtrl', function($scope) {
+.controller('actuatorCtrl', function($scope,$state) {
+  // need initialize function for initial state
+  $scope.saysLogged = function(){
+    init($scope);
+  }
 
+  var init = function($scope){
+    var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    var user = userRef.getAuth();
+    if(user === null){
+      $scope.error = true;
+    }
+    else {
+      $scope.error = false;
+      console.log("Session User: ",user.uid);
+      // Pull states here
+    }
+  };
+  init($scope);
 })
