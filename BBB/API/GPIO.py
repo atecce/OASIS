@@ -1,11 +1,11 @@
 # need this to chain SysID's together
 from itertools import chain
 
-# need this to wait
+# need this for time stamps
 import time
 
 # need this to update database
-import REST
+from REST import REST
 
 # makes output more readable
 lookup_key = {45: {1: "off", 0: "on"},
@@ -88,5 +88,8 @@ class GPIO:
 		# close the device
 		device.close()
 
+		# set database entry
+		entry = {int(time.time()): self.check_status()}
+
 		# post state to databases
-		self.softwaredev.PATCH(self.check_status(), "data/actuators/" + self.table + ".json")
+		self.softwaredev.PATCH(entry, "data/actuators/" + self.name + ".json")
