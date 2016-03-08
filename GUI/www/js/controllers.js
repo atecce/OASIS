@@ -178,13 +178,16 @@ angular.module('app.controllers', [])
 })
 
 .controller('actuatorCtrl', function($scope) {
-  // $scope.testToggle = false;
-  // USE TRUE OR FALSE
+  var init = function($scope) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+    var authRef = ref.getAuth();
+    if(authRef !== null){
+      console.log("Logged user ",authRef.uid);
+    }
+    else{
+      console.log("Not Logged In")
+    }
 
-  var init = function ($scope) {
-    // for testing purposes, set a few actuators to true
-    // Pull from DB actuator states
-    $scope.toggle1 = true;
   }
 
   init($scope);
