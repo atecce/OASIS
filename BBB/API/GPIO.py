@@ -4,6 +4,9 @@ from itertools import chain
 # need this to wait
 import time
 
+# need this to update database
+import REST
+
 # makes output more readable
 lookup_key = {45: {1: "off", 0: "on"},
 	      44: {1: "off", 0: "on"},
@@ -29,10 +32,14 @@ lookup_key = {45: {1: "off", 0: "on"},
 
 class GPIO:
 
-	def __init__(self, table, pin):
+	# set up databases
+	independent = REST("https://marsoasis.firebaseio.com/")
+	softwaredev = REST("https://cumarsoasis.firebaseio.com/")
+
+	def __init__(self, name, pin):
 
 		# assign table
-		self.table = table
+		self.name = name
 
 		# assign pin
 		self.pin = pin
@@ -80,3 +87,6 @@ class GPIO:
 
 		# close the device
 		device.close()
+
+		# post state to databases
+		self.softwaredev.PATCH(self.check_status(), "data/actuators/" + self.table + ".json")
