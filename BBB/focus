@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+# need this to monitor processes
+import psutil
+
+# for each pid
+for pid in psutil.pids(): 
+
+	try:
+	
+		print psutil.Process(pid).name()
+
+	except psutil.ZombieProcess:
+
+		print "Zombie"
