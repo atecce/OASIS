@@ -2,7 +2,6 @@ angular.module('app.controllers', [])
 
 .controller('loginCtrl', function($scope) {
   $scope.login = function(){
-
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
     $scope.isloggedIn = false;
@@ -51,12 +50,17 @@ angular.module('app.controllers', [])
         $scope.logged = true;
         $scope.loggedSuccess = true;
         $scope.isloggedIn = true;
+        setTimeout(function(){
+          $scope.loggedSuccess = false;
+
+          $scope.$digest();
+        },3000);
+
         $scope.$digest();
         console.log("Successfully logged in user:" + authData.uid);
       }
     });
   };
-
   $scope.forgot = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     AuthRef.resetPassword({
@@ -79,7 +83,12 @@ angular.module('app.controllers', [])
       }
     });
   };
-
+  $scope.logout = function(){
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    console.log("Successfully Logged out user: ",AuthRef.getAuth().uid);
+    $scope.logged = false;
+    AuthRef.unauth();
+  };
 })
 
 .controller('registerCtrl', function($scope) {
@@ -179,40 +188,4 @@ angular.module('app.controllers', [])
 
 .controller('actuatorCtrl', function($scope) {
 
-  $scope.update = function($rootScope, actuatorName, actuator){
-
-    $scope.error = true;
-    try {
-      console.log("Hello ",user.uid);
-    }
-    catch(err){
-
-      console.log("error!");
-      $scope.error = true;
-
-      setTimeout(function(){
-        $scope.error = false;
-        $scope.$digest();
-      }, 3000);
-
-
-    }
-
-    console.log("User: ",user.uid,"toggled actuator: ",actuatorName);
-    console.log(actuator)
-  };
-  var init = function($scope) {
-
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
-    var authRef = ref.getAuth();
-    if(authRef !== null){
-      console.log("Logged user ",authRef.uid);
-    }
-    else{
-      console.log("Not Logged In")
-    }
-    return authRef;
-
-  };
-  var user = init($scope);
 })

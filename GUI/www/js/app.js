@@ -11,6 +11,12 @@ app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+
+    //Log out user session on load
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    AuthRef.unauth();
+    console.log("No user logged in");
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
