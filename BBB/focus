@@ -20,14 +20,23 @@ while True:
 
 		try: 
 
+			# declare process
+			process = psutil.Process(pid)
+
 			# for each sensor
 			for sensor in awake:
 			
 				# check if it's awake
-				if sensor in psutil.Process(pid).name(): sensor[awake] = True
+				if sensor in process.cmdline(): awake[sensor] = True
 
 		# catch Zombies
 		except psutil.ZombieProcess: continue
+
+		# catch processes that have died
+		except psutil.NoSuchProcess: continue
+
+		# catch processes where access is denied
+		except psutil.AccessDenied: continue
 
 	# for each sensor
 	for sensor in awake: 
