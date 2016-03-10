@@ -127,7 +127,10 @@ def main(argv):
 	while True:
 	   
 		# take reading
-		reading = sensor.read()
+		reading = float(sensor.read())
+
+		# readings less than zero are not valid
+		if reading < 0: continue
 
 		# write to temporary file for API
 		with open("/tmp/S" + str(SysID), 'w') as sense: sense.write(str(reading)+'\n')
@@ -136,7 +139,7 @@ def main(argv):
 		time_stamp = int(time.time())
 
 		# set up database
-		entry = {time_stamp: float(reading)}
+		entry = {time_stamp: reading}
 
 		# PATCH entry
 		result = softwaredev.PATCH(entry, "data/sensors/" + subsystem + "/S" + str(SysID) + ".json")
