@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+
+# need this to wait
+import time
+
+# need this for REST API
+from API.REST import REST
+
+# need this for conversions
+from API.conversions import senseIDtoSysID
+
+# need this for sorted dictionary
+import collections
+
+# set up REST backend 
+firebase = REST("https://cumarsoasis.firebaseio.com/")
+
+# initialize sensors as not awake
+awake = {'EC1': bool(), 'pH1': bool(), 'temp1': bool(), 'temp2': bool(), 'temp3': bool(), 'temp4': bool(), 'CO2': bool(), 'TP1': bool(), 'TP2': bool()}
+
+# do this indefinitely
+while True:
+
+	# for each temperature sensor
+	for senseID in awake:
+
+		# set SysID
+		SysID = senseIDtoSysID[senseID]
+
+		# hacky, accounts for different subsystems
+		if   100 <= SysID < 200: table = "data/sensors/liquid_tanks_and_plumbing/S" + str(SysID) + ".json"
+		elif 200 <= SysID < 300: table = "data/sensors/growth_medium/S" + str(SysID) + ".json"
+		elif 300 <= SysID < 400: table = "data/sensors/internal_atmosphere/S" + str(SysID) + ".json"
+		elif 400 <= SysID < 500: table = "data/sensors/external_environment/S" + str(SysID) + ".json"
+
+		# get data
+		data = firebase.GET(table)
+
+		# convert keys to integers
+		data = {int(k): v for k, v in data.items() if v >= 0}
+
+		# sort data by key
+		data = collections.OrderedDict(sorted(data.items()))
+
+		# split into epochs and readings
+		epochs   = data.keys()
+		readings = data.values()
+
+		# record latest time
+		latest_time = epochs[-1]
+
+		# set cutoff point at an hour before the latest time
+		cutoff = latest_time-3600
+
+		# initialize cleaned data
+		cleaned = dict()
+
+		# for each time
+		for epoch in epochs:
+
+			# only include entries in the last hour
+			if epoch > cutoff: cleaned[epoch] = data[epoch]
+
+		# post data
+		firebase.PUT(cleaned, table)
+
+		# wait ten minutes
+		time.sleep(600)
