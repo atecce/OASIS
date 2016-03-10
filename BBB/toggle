@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+# need this for command line arguments
+import sys
+
+def main(argv):
+
+	# take in actuator abbreviation
+	actuator = argv[1]
+
+	# get subcomponent
+	subcomponent = actuator[0]
+
+	# get component ID
+	componentID = int(actuator[1:])
+
+	# filter
+	if subcomponent == 'F': 
+		
+		# import filter
+		from API.actuators import F
+
+		# toggle
+		F[componentID].toggle()
+
+	# valves
+	elif subcomponent == 'V': 
+		
+		# import valves
+		from API.actuators import V
+
+		# toggle
+		V[componentID].toggle()
+
+	# miscellaneous components
+	elif subcomponent == 'M': 
+		
+		# import miscellaneous components
+		from API.actuators import M
+
+		# toggle
+		M[componentID].toggle()
+
+	# pumps
+	elif subcomponent == 'P': 
+		
+		# import pumps
+		from API.actuators import P
+
+		# toggle
+		P[componentID].toggle()
+
+if __name__ == "__main__": main(sys.argv)

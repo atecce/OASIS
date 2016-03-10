@@ -1,60 +1,47 @@
 #!/usr/bin/env python
 
+# make sure you run this with root privileges already established
+# otherwise prompts for your password will constantly be written and the system will crash from a memory overload
+# a hacky way to do it is to type "sudo ls"
+
 # need this for command line arguments and for the path
 import sys
 
 # need this to use nohup
 import os
 
-data_comm_lookup = {101: "I2C",
-		    102: "I2C",
-		    103: "one_wire",
-		    104: "I2C",
-		    105: "ADC",
-		    106: "ADC",
-		    107: "ADC",
-		    108: "ADC",
-		    109: "ADC",
-		    110: "UART",
-		    111: "UART",
-		    112: "ADC",
+# need this to look up data communication types
+from API.conversions import SysIDtosenseID, senseIDtoSysID
 
-		    201: "one_wire",
-		    202: "one_wire",
-		    203: "one_wire",
-		    205: "I2C",
-		    206: "I2C",
-		    208: "ADC",
-		    209: "ADC",
-		    210: "ADC",
-		    211: "ADC",
-
-		    301: "one_wire",
-		    302: "one_wire",
-		    303: "I2C",
-		    304: "ADC",
-		    305: "UART",
-		    306: "ADC",
-
-		    401: "one_wire",
-		    402: "I2C",
-		    403: "ADC"}
+# set path name
+path_name = "/home/atecce/MarsOASIS/BBB/sensedaemon"
 
 def main(argv):
 
-	# read in senseID
-	SysID = int(argv[1])
+	# read in ID
+	ID = argv[1]
 
-	# check if senseID is valid
-	if SysID in data_comm_lookup:
+	# check for senseID notation
+	if ID in senseIDtoSysID: 
+		
+		SysID   = senseIDtoSysID[ID]
+		senseID = ID
 
-		# set data communication type
-		data_comm_type = data_comm_lookup[SysID]
-
-		# display comments of file
-		os.system("sudo nohup sensedaemons/" + data_comm_type + "/" + "S" + str(SysID) + " > /dev/null 2>sensedaemons/" + data_comm_type + "/errorlogs/S" + str(SysID) + " &")
+	# check for SysID notation
+	elif int(ID) in SysIDtosenseID: 
+		
+		SysID   = int(ID)
+		senseID = SysIDtosenseID[SysID]
 
 	# catch error (probably needs work)
-	else: print "Invalid sensor name"
+	else: 
+		
+		print "Invalid sensor identification"
+
+		# exit with status 1
+		sys.exit(1)
+
+	# turn on sensor as a daemon
+	os.system("sudo nohup " + path_name + " " + senseID + " > /tmp/errorlogs/S" + str(SysID) + " 2>&1 &")
 
 if __name__ == "__main__": main(sys.argv)

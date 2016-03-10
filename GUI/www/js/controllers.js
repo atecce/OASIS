@@ -2,7 +2,6 @@ angular.module('app.controllers', [])
 
 .controller('loginCtrl', function($scope) {
   $scope.login = function(){
-
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
     $scope.isloggedIn = false;
@@ -51,12 +50,17 @@ angular.module('app.controllers', [])
         $scope.logged = true;
         $scope.loggedSuccess = true;
         $scope.isloggedIn = true;
+        setTimeout(function(){
+          $scope.loggedSuccess = false;
+
+          $scope.$digest();
+        },3000);
+
         $scope.$digest();
         console.log("Successfully logged in user:" + authData.uid);
       }
     });
   };
-
   $scope.forgot = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     AuthRef.resetPassword({
@@ -79,7 +83,12 @@ angular.module('app.controllers', [])
       }
     });
   };
-
+  $scope.logout = function(){
+    var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    console.log("Successfully Logged out user: ",AuthRef.getAuth().uid);
+    $scope.logged = false;
+    AuthRef.unauth();
+  };
 })
 
 .controller('registerCtrl', function($scope) {
@@ -99,6 +108,8 @@ angular.module('app.controllers', [])
           console.log("Account Created!");
           $scope.regError = false;
           $scope.registered = true;
+          $scope.registeredBar = true;
+          setTimeout(function(){$scope.registeredBar = false;$scope.$digest();}, 3000);
           $scope.$digest();
         }
       });
@@ -109,68 +120,59 @@ angular.module('app.controllers', [])
       $scope.$digest();
     }
   };
+  $scope.registerOpen = function(){
+    $scope.showRegister = true;
+
+  };
 })
 
-.controller('tanksCtrl', ["$scope", "Tanks", function($scope, Tanks) {
-  Tanks('S103').$bindTo($scope, "data");
-  var readings = Tanks('S103');
-  // var date = new Date(readings.data[0][1] * 1000).getHours();
-  console.log(readings);
-  // console.log(Object.keys(readings)[0]);
+.controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
+  // * Graph Configuration
+  $scope.chartData = [{ data: [] }];
 
-  // for (var key in readings) {
-  //   console.log("Key: " + key);
-  //   console.log("Value: " + readings[key]);
-  // }
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx).Scatter($scope.chartData, {
+		// bezierCurve: true,
+    emptyDataMessage: "Retrieving data . . .",
+		scaleShowHorizontalLines: true,
+		scaleShowLabels: true,
+		scaleType: "date",
+    animation: false,
+    responsive: true,
+    pointDot : false,
+    showTooltips: false,
+    datasetStrokeWidth: 1,
+    bezierCurve : false,
+    showScale: true,
+    scaleOverride: false,
+    scaleShowGridLines : false
+	});
+  // console.log($scope.chartData);
 
-  var chart = c3.generate({
-    bindto: '#chart',
-    point: { r: 0 },
-    tooltip: { show: false },
-    data: {
-      // json: {
-        // readings
-      // }
-      columns: [
-        [5, 6, 7],
-        // readings,
-        // readings
-      ],
+  // * Data Fetch
+  var fetchData = function() {
+    console.log("*** Fetching Data... ***");
+    $http({
+      method: 'GET',
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/internal_atmosphere/S305.json'
+    }).then(function successCallback(response) {
+      // console.log("Response from Firebase:"); console.log(response.data);
 
-      rows: [
-        readings
-      ]
-      // x: readings.data[0][0], // epoch
-      // y: readings.data[1][0]  // CO2
-    },
-    axis: {
-      x: {
-        label: 'Date-Time',
-        tick: { count: 5 }
-      },
-      y: {
-        label: 'CO2'
+      for (var time in response.data) {
+        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
       }
-    },
-    grid: {
-      y: {
-        lines: [
-          { value: 0.0, text: 'Dangerous', axis: 'y', position: 'end' },
-          { value: 0.1, text: 'Safe', axis: 'y', position: 'end' },
-          { value: 0.2, text: 'Dangerous', axis: 'y', position: 'end' },
+      chart.update();
+    }, function errorCallback(response) {
+      console.log("Error: " + response);
+    });
+  }
 
-        ]
-      }
-    },
-    regions: [
-      // {axis: 'y', start: 0.3, end: 0.4, class: 'regionDangerous'},
-      // {axis: 'y', start: 0.2, end: 0.3, class: 'regionSafe'},
-      // {axis: 'y', start: 0, end: 0.1, class: 'regionDangerous'},
-      {axis: 'y', start: 0.1, end: 0.2, class: 'regionSafe'}
-    ]
-  });
-  chart.legend.hide();
-}])
+  // Fetch data on view render.
+  fetchData();
+
+  // Continuous data fetch every 30 seconds.
+  $interval(function () { fetchData(); }, 30000);
+})
 
 .controller('growthCtrl', function($scope) {
 
@@ -182,4 +184,41 @@ angular.module('app.controllers', [])
 
 .controller('settingsCtrl', function($scope) {
 
+})
+
+.controller('actuatorCtrl', function($scope,$state) {
+  // need initialize function for initial state
+  $scope.saysLogged = function(){
+    var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    var user = userRef.getAuth();
+    if(user === null){
+      $scope.error = true;
+      $scope.accessErr = true;
+      setTimeout(function(){
+        $scope.accessErr = false;
+        $scope.$digest();
+      },3000);
+    }
+    else {
+      $scope.error = false;
+      $scope.accessErr = false;
+      console.log("Session User: ",user.uid);
+      // Pull states here
+    }
+    //init($scope);
+  }
+
+  var init = function($scope){
+    var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
+    var user = userRef.getAuth();
+    if(user === null){
+      $scope.error = true;
+    }
+    else {
+      $scope.error = false;
+      console.log("Session User: ",user.uid);
+      // Pull states here
+    }
+  };
+  init($scope);
 })

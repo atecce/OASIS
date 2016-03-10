@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+
+# need this for command line arguments
+import sys
+
+# need this for REST API
+from REST import REST
+
+# need this for sorted dictionary
+import collections
+
+# need this for moving average
+import numpy as np
+
+# need this to chain SysIDs
+from itertools import chain
+
+# set up REST backend 
+firebase = REST("https://cumarsoasis.firebaseio.com/")
+
+table = "data/sensors/internal_atmosphere/S305.json"
+
+# get data
+data = firebase.GET(table)
+
+# clean data
+data = {int(k): v for k, v in data.items() if v >= 0}
+
+# sort data by key
+data = collections.OrderedDict(sorted(data.items()))
+
+cleaned = dict()
+
+for epoch in data:
+
+	if data[epoch] > 3: 
+		
+		entry = "data/sensors/internal_atmosphere/S305/" + str(epoch) + ".json"
+		print entry
