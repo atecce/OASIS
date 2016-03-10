@@ -128,6 +128,81 @@ angular.module('app.controllers', [])
 
 .controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
   // * Graph Configuration
+  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+
+	var ctx = document.getElementById("chart").getContext("2d");
+	var chart = new Chart(ctx).Scatter($scope.chartData, {
+		// bezierCurve: true,
+    emptyDataMessage: "Retrieving data . . .",
+		scaleShowHorizontalLines: true,
+		scaleShowLabels: true,
+		scaleType: "date",
+    animation: false,
+    responsive: true,
+    pointDot : false,
+    showTooltips: false,
+    datasetStrokeWidth: 1,
+    bezierCurve : false,
+    showScale: true,
+    scaleOverride: false,
+    scaleShowGridLines : false
+	});
+  // console.log($scope.chartData);
+
+  // * Data Fetch
+  var fetchData = function() {
+    console.log("*** Fetching CO2 Data... ***");
+    $http({
+      method: 'GET',
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/S101.json'
+    }).then(function successCallback(response) {
+      // console.log("Response from Firebase:"); console.log(response.data);
+
+      var lengthOfData = Object.keys(response.data).length;
+      var index = 0;
+      for (var time in response.data) {
+        if (index >= lengthOfData - 3600) chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
+        index++;
+      }
+
+      chart.update();
+
+      fetchPhData();
+    }, function errorCallback(response) {
+      console.log("Error: " + response);
+    });
+  }
+
+  var fetchPhData = function() {
+    console.log("*** Fetching pH Data... ***");
+    $http({
+      method: 'GET',
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/S102.json'
+    }).then(function successCallback(response) {
+      // console.log("Response from Firebase:"); console.log(response.data);
+
+      var lengthOfData = Object.keys(response.data).length;
+      var index = 0;
+      for (var time in response.data) {
+        if (index >= lengthOfData - 3600) chart.datasets[1].addPoint(new Date(time * 1000), response.data[time]);
+        index++;
+      }
+
+      chart.update();
+    }, function errorCallback(response) {
+      console.log("Error: " + response);
+    });
+  }
+
+  // Fetch data on view render.
+  fetchData();
+
+  // Continuous data fetch every 30 seconds.
+  // $interval(function () { fetchData(); }, 30000);
+})
+
+.controller('growthCtrl', function($scope, $interval, $timeout, $http) {
+  // * Graph Configuration
   $scope.chartData = [{ data: [] }];
 
 	var ctx = document.getElementById("chart").getContext("2d");
@@ -154,6 +229,56 @@ angular.module('app.controllers', [])
     console.log("*** Fetching Data... ***");
     $http({
       method: 'GET',
+      url: 'https://cumarsoasis.firebaseio.com/data/sensors/growth_medium/S201.json'
+    }).then(function successCallback(response) {
+      // console.log("Response from Firebase:"); console.log(response.data);
+      var lengthOfData = Object.keys(response.data).length;
+      var index = 0;
+      for (var time in response.data) {
+        if (index >= lengthOfData - 3600) chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
+        index++;
+      }
+      chart.update();
+    }, function errorCallback(response) {
+      console.log("Error: " + response);
+    });
+  }
+
+  // Fetch data on view render.
+  fetchData();
+
+  // Continuous data fetch every 30 seconds.
+  // $interval(function () { fetchData(); }, 30000);
+})
+
+.controller('atmosphereCtrl', function($scope, $interval, $timeout, $http) {
+  // * Graph Configuration
+  $scope.chartData = [{ data: [] }];
+
+  var ctx = document.getElementById("chart").getContext("2d");
+  var chart = new Chart(ctx).Scatter($scope.chartData, {
+    // bezierCurve: true,
+    emptyDataMessage: "Retrieving data . . .",
+    scaleShowHorizontalLines: true,
+    scaleShowLabels: true,
+    scaleType: "date",
+    animation: false,
+    responsive: true,
+    pointDot : false,
+    showTooltips: false,
+    datasetStrokeWidth: 1,
+    bezierCurve : false,
+    showScale: true,
+    scaleOverride: false,
+    scaleShowGridLines : false
+  });
+  // console.log($scope.chartData);
+
+  // * Data Fetch
+  var fetchData = function() {
+    console.log("*** Fetching Data... ***");
+    $http({
+      method: 'GET',
       url: 'https://cumarsoasis.firebaseio.com/data/sensors/internal_atmosphere/S305.json'
     }).then(function successCallback(response) {
       // console.log("Response from Firebase:"); console.log(response.data);
@@ -171,22 +296,14 @@ angular.module('app.controllers', [])
   fetchData();
 
   // Continuous data fetch every 30 seconds.
-  $interval(function () { fetchData(); }, 30000);
-})
-
-.controller('growthCtrl', function($scope) {
-
-})
-
-.controller('atmosphereCtrl', function($scope) {
-
+  // $interval(function () { fetchData(); }, 30000);
 })
 
 .controller('settingsCtrl', function($scope) {
 
 })
 
-.controller('actuatorCtrl', function($scope,$state) {
+.controller('actuatorCtrl', function($scope, $interval, $timeout, $http, $state) {
   // need initialize function for initial state
   $scope.saysLogged = function(){
     var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
