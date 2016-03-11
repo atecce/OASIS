@@ -7,12 +7,12 @@ import time
 from API.actuators import V
 
 # do this indefinitely
-while True:
+#while True:
 
-	# duty cycle
-	V[3].toggle()
-	time.sleep(.5)
-	V[3].toggle()
+# duty cycle
+V[3].toggle()
+time.sleep(.5)
+V[3].toggle()
 
-	# wait thirty minutes
-	time.sleep(1800)
+# wait thirty minutes
+#	time.sleep(1800)
