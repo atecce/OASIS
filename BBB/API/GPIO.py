@@ -88,8 +88,4 @@ class GPIO:
 		# close the device
 		device.close()
 
-		# set database entry
-		entry = {int(time.time()): self.check_status()}
-
-		# post state to databases
-		self.softwaredev.PATCH(entry, "data/actuators/" + self.name + ".json")
+		print self.check_status()
