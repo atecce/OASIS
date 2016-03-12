@@ -27,11 +27,8 @@ while True:
 		# set SysID
 		SysID = senseIDtoSysID[senseID]
 
-		# hacky, accounts for different subsystems
-		if   100 <= SysID < 200: table = "data/sensors/liquid_tanks_and_plumbing/S" + str(SysID) + ".json"
-		elif 200 <= SysID < 300: table = "data/sensors/growth_medium/S" + str(SysID) + ".json"
-		elif 300 <= SysID < 400: table = "data/sensors/internal_atmosphere/S" + str(SysID) + ".json"
-		elif 400 <= SysID < 500: table = "data/sensors/external_environment/S" + str(SysID) + ".json"
+		# set historical table
+		table = "sensors/historical/S" + str(SysID) + ".json"
 
 		# get data
 		data = firebase.GET(table)
@@ -49,8 +46,8 @@ while True:
 		# record latest time
 		latest_time = epochs[-1]
 
-		# set cutoff point at an hour before the latest time
-		cutoff = latest_time-3600
+		# set cutoff point at a minute before the latest time
+		cutoff = latest_time-60
 
 		# initialize cleaned data
 		cleaned = dict()
@@ -61,8 +58,11 @@ while True:
 			# only include entries in the last hour
 			if epoch > cutoff: cleaned[epoch] = data[epoch]
 
+		# set minute table
+		table = "sensors/minute/S" + str(SysID) + ".json"
+
 		# post data
 		firebase.PUT(cleaned, table)
 
-		# wait ten minutes
-		time.sleep(600)
+		# wait thirty seconds
+		time.sleep(30)
