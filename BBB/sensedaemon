@@ -24,11 +24,6 @@ def main(argv):
 	# choose subsystem based on leading digit
 	subsystem = str()
 
-	if   SysID / 100 == 1: subsystem = "liquid_tanks_and_plumbing"
-	elif SysID / 100 == 2: subsystem = "growth_medium"
-	elif SysID / 100 == 3: subsystem = "internal_atmosphere"
-	elif SysID / 100 == 4: subsystem = "external_environment"
-
 	# get library to import
 	library = sensor_type[SysID]
 
@@ -142,6 +137,6 @@ def main(argv):
 		entry = {time_stamp: reading}
 
 		# PATCH entry
-		result = softwaredev.PATCH(entry, "data/sensors/" + subsystem + "/S" + str(SysID) + ".json")
+		result = softwaredev.PATCH(entry, "sensors/historical/S" + str(SysID) + ".json")
 
 if __name__ == "__main__": main(sys.argv)
