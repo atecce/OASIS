@@ -1,14 +1,13 @@
-#!/usr/bin/env python
-
-# make sure you run this with root privileges already established
-# otherwise prompts for your password will constantly be written and the system will crash from a memory overload
-# a hacky way to do it is to type "sudo ls"
-
-# need this for command line
-import os
+#!/bin/bash
 
 # initialize error logs
-if not os.path.isdir("/tmp/errorlogs/"): os.mkdir("/tmp/errorlogs/")
+mkdir -p /tmp/errorlogs
+
+# start actuators
+initiate
 
 # wake up
-os.system("sudo nohup /home/atecce/MarsOASIS/BBB/focus > /tmp/errorlogs/general 2>&1 &")
+nohup /home/atecce/MarsOASIS/BBB/focus > /tmp/errorlogs/general 2>&1 &
+
+# keep it clean
+nohup /home/atecce/MarsOASIS/BBB/clean > /tmp/errorlogs/general 2>&1 &
