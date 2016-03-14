@@ -25,12 +25,12 @@ app.run(function($ionicPlatform) {
       $cordovaStatusBar.style(1);
     }
   });
-  
+
 })
 
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/data/sensors/liquid_tanks_and_plumbing/");
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/S101");
     var tankRef = ref.child(sysID);
 
     // return it as a synchronized object
@@ -47,7 +47,7 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
     // pointDot : false,
     // showTooltips: false,
     // datasetStrokeWidth: 0.01,
-    // bezierCurve : false,
+    bezierCurve : true,
     // showScale: true,
     // scaleOverride: false,
     // scaleShowGridLines : false,
