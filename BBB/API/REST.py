@@ -14,13 +14,13 @@ class REST:
 	def GET(self, table):
 
 		# wrap the bash command with python
-		os.system("curl '" + self.url + table + "' > data.json")
+		os.system("curl '" + self.url + table + "' > /tmp/data.json")
 
 		# load json file
-		with open('data.json') as data_file: data = json.load(data_file)
+		with open('/tmp/data.json') as data_file: data = json.load(data_file)
 
 		# clean up
-		os.system("rm data.json")
+		os.system("rm /tmp/data.json")
 
 		# return dictionary
 		return data
