@@ -64,5 +64,5 @@ while True:
 		# post data
 		firebase.PUT(cleaned, table)
 
-		# wait thirty seconds
-		time.sleep(30)
+	# wait thirty seconds
+	time.sleep(30)
