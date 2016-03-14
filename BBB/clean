@@ -21,6 +21,9 @@ awake = {'EC1': bool(), 'pH1': bool(), 'temp1': bool(), 'temp2': bool(), 'temp3'
 # do this indefinitely
 while True:
 
+	# wait thirty seconds
+	time.sleep(30)
+
 	# for each temperature sensor
 	for senseID in awake:
 
@@ -63,6 +66,3 @@ while True:
 
 		# post data
 		firebase.PUT(cleaned, table)
-
-	# wait thirty seconds
-	time.sleep(30)
