@@ -40,3 +40,6 @@ while True:
 
 		# if the sensor isn't awake, wake it
 		if not awake[sensor]: os.system("wake " + sensor)
+
+	# keep the right time
+	os.system("ntpdate -b -s -u pool.ntp.org")
