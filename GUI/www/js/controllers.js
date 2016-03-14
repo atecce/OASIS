@@ -1,5 +1,7 @@
 angular.module('app.controllers', [])
 
+// * Login
+// ************************************************************************************
 .controller('loginCtrl', function($scope) {
   $scope.login = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
@@ -126,6 +128,8 @@ angular.module('app.controllers', [])
   };
 })
 
+// * Tanks
+// ************************************************************************************
 .controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
@@ -201,6 +205,8 @@ angular.module('app.controllers', [])
   // $interval(function () { fetchData(); }, 30000);
 })
 
+// * Growth
+// ************************************************************************************
 .controller('growthCtrl', function($scope, $interval, $timeout, $http) {
   // * Graph Configuration
   $scope.chartData = [{ data: [] }];
@@ -226,7 +232,7 @@ angular.module('app.controllers', [])
 
   // * Data Fetch
   var fetchData = function() {
-    console.log("*** Fetching Data... ***");
+    console.log("*** Fetching Temp. Data... ***");
     $http({
       method: 'GET',
       url: 'https://cumarsoasis.firebaseio.com/data/sensors/growth_medium/S201.json'
@@ -251,6 +257,8 @@ angular.module('app.controllers', [])
   // $interval(function () { fetchData(); }, 30000);
 })
 
+// * Atmosphere
+// ************************************************************************************
 .controller('atmosphereCtrl', function($scope, $interval, $timeout, $http) {
   // * Graph Configuration
   $scope.chartData = [{ data: [] }];
@@ -276,7 +284,7 @@ angular.module('app.controllers', [])
 
   // * Data Fetch
   var fetchData = function() {
-    console.log("*** Fetching Data... ***");
+    console.log("*** Fetching CO2 Data... ***");
     $http({
       method: 'GET',
       url: 'https://cumarsoasis.firebaseio.com/data/sensors/internal_atmosphere/S305.json'
@@ -299,10 +307,14 @@ angular.module('app.controllers', [])
   // $interval(function () { fetchData(); }, 30000);
 })
 
+// * Settings
+// ************************************************************************************
 .controller('settingsCtrl', function($scope) {
 
 })
 
+// * Actuators
+// ************************************************************************************
 .controller('actuatorCtrl', function($scope, $interval, $timeout, $http, $state) {
   // need initialize function for initial state
   $scope.saysLogged = function(){
