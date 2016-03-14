@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo nohup /home/atecce/MarsOASIS/BBB/clean > /tmp/errorlogs/general 2>&1 &

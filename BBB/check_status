@@ -3,9 +3,6 @@
 # need this to chain SysID's together
 from itertools import chain
 
-# need this to wait
-import time
-
 # need this for actuators
 from API.actuators import F, V, M, P
 
