@@ -20,7 +20,7 @@ class sensor:
 		with open('/tmp/S'+self.SysID) as sense_file:
 
 			# split the string by characters and convert them all to floats
-			return sense_file.read().rstrip()
+			return float(sense_file.read().rstrip())
 
 # chain SysID's together
 SysIDs = chain(range(101, 113), range(201, 204), range(205, 207), range(208, 212), range(301, 307), range(401, 404))
