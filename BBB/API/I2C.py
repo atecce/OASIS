@@ -24,12 +24,11 @@ class I2C_sensor:
 	def read(self):
 
 		# request reading
+		time.sleep(3)
 		self.bus.write_byte(self.address, self.register)
-		time.sleep(2.5)
-
-		# read response
+		time.sleep(3)
 		results = self.bus.read_i2c_block_data(self.address, self.register)
-		time.sleep(2.5)
+		time.sleep(3)
 
 		# iterate through index and item
 		for index, item in enumerate(results):
@@ -270,3 +269,4 @@ class total_pressure(I2C_sensor):
 		time.sleep(5)
 
 		return reading
+
