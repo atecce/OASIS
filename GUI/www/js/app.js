@@ -47,3 +47,13 @@ app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
     return $firebaseObject(growthRef);
   }}
 ]);
+
+app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+    var atmosphereRef = ref.child(sysID);
+
+    // return it as a synchronized object
+    return $firebaseObject(atmosphereRef);
+  }}
+]);
