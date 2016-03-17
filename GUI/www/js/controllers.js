@@ -1,3 +1,4 @@
+var debug = false;
 angular.module('app.controllers', [])
 
 // * Login
@@ -134,36 +135,19 @@ angular.module('app.controllers', [])
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
 	var ctx = document.getElementById("tanksChart").getContext("2d");
-	var tanksChart = new Chart(ctx).Scatter($scope.chartData, {
-		bezierCurve: true,
-    bezierCurveTension: 0.2,
-    emptyDataMessage: "Retrieving data . . .",
-		scaleShowHorizontalLines: true,
-		scaleShowLabels: true,
-		scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-	});
-  // console.log($scope.chartData);
+	var tanksChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
   var tanksObj = Tanks('S102');
   tanksObj.$bindTo($scope, 'tankData');
-  tanksObj.$watch(function() { console.log('Detected changes.'); fetchData(); });
+  tanksObj.$watch(function() { console.log('Fetching data in Tanks.'); fetchData(); });
   var fetchData = function() {
     // Enumerating through the JSON data.
     angular.forEach($scope.tankData, function(sensorValue, time) {
       // Firebase appends two useless pieces of data at the end of the JSON file..
       // We need to guard against those or else the graph shits itself.
       if (typeof sensorValue === 'number') {
-        console.log(new Date(time * 1000), sensorValue);
+        if (debug) console.log(new Date(time * 1000), sensorValue);
         tanksChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
         tanksChart.update();
       }
@@ -179,36 +163,23 @@ angular.module('app.controllers', [])
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
 	var ctx = document.getElementById("growthChart").getContext("2d");
-	var growthChart = new Chart(ctx).Scatter($scope.chartData, {
-		bezierCurve: true,
-    bezierCurveTension: 0.2,
-    emptyDataMessage: "Retrieving data . . .",
-		scaleShowHorizontalLines: true,
-		scaleShowLabels: true,
-		scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-	});
-  // console.log($scope.chartData);
+	var growthChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
-  Growth('S201').$bindTo($scope, 'growthData');
-  setTimeout(function() {
+  var growthObj = Growth('S201');
+  growthObj.$bindTo($scope, 'growthData');
+  growthObj.$watch(function() { console.log('Fetching data in Growth.'); fetchData(); });
+  var fetchData = function() {
     angular.forEach($scope.growthData, function(sensorValue, time) {
       if (typeof sensorValue === 'number') {
-        console.log(new Date(time * 1000), sensorValue);
+        if (debug) console.log(new Date(time * 1000), sensorValue);
         growthChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
         growthChart.update();
       }
     });
-  }, 1000);
+  }
+
+  setTimeout(fetchData, 1000);
 })
 
 // * Atmosphere
@@ -217,39 +188,26 @@ angular.module('app.controllers', [])
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
 	var ctx = document.getElementById("atmosphereChart").getContext("2d");
-	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, {
-		bezierCurve: true,
-    bezierCurveTension: 0.2,
-    emptyDataMessage: "Retrieving data . . .",
-		scaleShowHorizontalLines: true,
-		scaleShowLabels: true,
-		scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-	});
-  // console.log($scope.chartData);
+	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
-  Atmosphere('S305').$bindTo($scope, 'atmosphereData');
-  setTimeout(function() {
+  var atmosphereObj = Atmosphere('S305');
+  atmosphereObj.$bindTo($scope, 'atmosphereData');
+  atmosphereObj.$watch(function() { console.log('Fetching data in Atmosphere.'); fetchData(); });
+  var fetchData = function() {
     // Enumerating through the JSON data.
     angular.forEach($scope.atmosphereData, function(sensorValue, time) {
       // Firebase appends two useless pieces of data at the end of the JSON file..
       // We need to guard against those or else the graph shits itself.
       if (typeof sensorValue === 'number') {
-        console.log(new Date(time * 1000), sensorValue);
+        if (debug) console.log(new Date(time * 1000), sensorValue);
         atmosphereChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
         atmosphereChart.update();
       }
     });
-  }, 2000);
+  }
+
+  setTimeout(fetchData, 2000);
 })
 
 // * Settings

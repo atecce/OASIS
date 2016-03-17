@@ -1,4 +1,5 @@
-// Ionic Starter App
+// * Startup
+// ************************************************************************************
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -14,20 +15,15 @@ app.run(function($ionicPlatform) {
 
     //Log out user session on load
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
-
     AuthRef.unauth();
 
-
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      $cordovaStatusBar.style(1);
-    }
+    if(window.cordova && window.cordova.plugins.Keyboard) cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    if(window.StatusBar) $cordovaStatusBar.style(1);
   });
-
 })
 
+// * Tanks
+// ************************************************************************************
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
     var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
@@ -38,6 +34,8 @@ app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   }}
 ]);
 
+// * Growth
+// ************************************************************************************
 app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
     var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
@@ -48,6 +46,8 @@ app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
   }}
 ]);
 
+// * Atmosphere
+// ************************************************************************************
 app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
     var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
@@ -57,3 +57,22 @@ app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
     return $firebaseObject(atmosphereRef);
   }}
 ]);
+
+// * Global Chart Settings
+var chartSettings = {
+  bezierCurve: true,
+  bezierCurveTension: 0.2,
+  emptyDataMessage: "Retrieving data . . .",
+  scaleShowHorizontalLines: true,
+  scaleShowLabels: true,
+  scaleType: "date",
+  animation: false,
+  responsive: true,
+  pointDot : false,
+  showTooltips: false,
+  datasetStrokeWidth: 1,
+  bezierCurve : false,
+  showScale: true,
+  scaleOverride: false,
+  scaleShowGridLines : false
+}
