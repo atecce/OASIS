@@ -47,22 +47,27 @@ while True:
 		readings = data.values()
 
 		# record latest time
-		latest_time = epochs[-1]
+		latest_time = int(time.time())
 
-		# set cutoff point at a minute before the latest time
-		cutoff = latest_time-60
+		# set cutoff points
+		minute_cutoff = latest_time - 60
+		hour_cutoff   = latest_time - 3600
 
-		# initialize cleaned data
-		cleaned = dict()
+		# initialize data windows
+		minute = dict()
+		hour   = dict()
 
 		# for each time
 		for epoch in epochs:
 
-			# only include entries in the last hour
-			if epoch > cutoff: cleaned[epoch] = data[epoch]
+			# filter out entries
+			if epoch > minute_cutoff: minute[epoch] = data[epoch]
+			if epoch > hour_cutoff:   hour[epoch]   = data[epoch]
 
-		# set minute table
-		table = "sensors/minute/S" + str(SysID) + ".json"
+		# set tables
+		minute_table = "sensors/minute/S" + str(SysID) + ".json"
+		hour_table   = "sensors/hour/S"   + str(SysID) + ".json"
 
 		# post data
-		firebase.PUT(cleaned, table)
+		firebase.PUT(minute, minute_table)
+		firebase.PUT(hour,   hour_table)
