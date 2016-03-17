@@ -1,4 +1,5 @@
-// Ionic Starter App
+// * Startup
+// ************************************************************************************
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -14,23 +15,18 @@ app.run(function($ionicPlatform) {
 
     //Log out user session on load
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
-
     AuthRef.unauth();
 
-
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      $cordovaStatusBar.style(1);
-    }
+    if(window.cordova && window.cordova.plugins.Keyboard) cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    if(window.StatusBar) $cordovaStatusBar.style(1);
   });
-
 })
 
+// * Tanks
+// ************************************************************************************
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/S101");
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
     var tankRef = ref.child(sysID);
 
     // return it as a synchronized object
@@ -38,19 +34,45 @@ app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   }}
 ]);
 
-app.config(['ChartJsProvider', function (ChartJsProvider) {
-  // Configure all charts
-  ChartJsProvider.setOptions({
-    // colours: ['#FF5252', '#FF8A80'],
-    // animation: false,
-    // responsive: true,
-    // pointDot : false,
-    // showTooltips: false,
-    // datasetStrokeWidth: 0.01,
-    bezierCurve : true,
-    // showScale: true,
-    // scaleOverride: false,
-    // scaleShowGridLines : false,
-    // scaleShowLabels: false,
-  });
-}])
+// * Growth
+// ************************************************************************************
+app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+    var growthRef = ref.child(sysID);
+
+    // return it as a synchronized object
+    return $firebaseObject(growthRef);
+  }}
+]);
+
+// * Atmosphere
+// ************************************************************************************
+app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+    var atmosphereRef = ref.child(sysID);
+
+    // return it as a synchronized object
+    return $firebaseObject(atmosphereRef);
+  }}
+]);
+
+// * Global Chart Settings
+var chartSettings = {
+  bezierCurve: true,
+  bezierCurveTension: 0.2,
+  emptyDataMessage: "Retrieving data . . .",
+  scaleShowHorizontalLines: true,
+  scaleShowLabels: true,
+  scaleType: "date",
+  animation: false,
+  responsive: true,
+  pointDot : false,
+  showTooltips: false,
+  datasetStrokeWidth: 1,
+  bezierCurve : false,
+  showScale: true,
+  scaleOverride: false,
+  scaleShowGridLines : false
+}

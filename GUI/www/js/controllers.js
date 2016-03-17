@@ -1,3 +1,4 @@
+var debug = false;
 angular.module('app.controllers', [])
 
 // * Login
@@ -130,175 +131,83 @@ angular.module('app.controllers', [])
 
 // * Tanks
 // ************************************************************************************
-.controller('tanksCtrl', function($scope, $interval, $timeout, $http) {
+.controller('tanksCtrl', function($scope, Tanks) {
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
-
-	var ctx = document.getElementById("chart").getContext("2d");
-	var chart = new Chart(ctx).Scatter($scope.chartData, {
-		bezierCurve: true,
-    bezierCurveTension: 0.2,
-    emptyDataMessage: "Retrieving data . . .",
-		scaleShowHorizontalLines: true,
-		scaleShowLabels: true,
-		scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-	});
-  // console.log($scope.chartData);
+	var ctx = document.getElementById("tanksChart").getContext("2d");
+	var tanksChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
+  var tanksObj = Tanks('S102');
+  tanksObj.$bindTo($scope, 'tankData');
+  tanksObj.$watch(function() { console.log('Fetching data in Tanks.'); fetchData(); });
   var fetchData = function() {
-    console.log("*** Fetching CO2 Data... ***");
-    $http({
-      method: 'GET',
-      url: 'https://cumarsoasis.firebaseio.com/sensors/minute/S101.json'
-    }).then(function successCallback(response) {
-      // console.log("Response from Firebase:"); console.log(response.data);
-
-      for (var time in response.data) {
-        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
+    // Enumerating through the JSON data.
+    angular.forEach($scope.tankData, function(sensorValue, time) {
+      // Firebase appends two useless pieces of data at the end of the JSON file..
+      // We need to guard against those or else the graph shits itself.
+      if (typeof sensorValue === 'number') {
+        if (debug) console.log(new Date(time * 1000), sensorValue);
+        tanksChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
+        tanksChart.update();
       }
-
-      chart.update();
-
-      fetchPhData();
-    }, function errorCallback(response) {
-      console.log("Error: " + response);
     });
   }
 
-  var fetchPhData = function() {
-    console.log("*** Fetching pH Data... ***");
-    $http({
-      method: 'GET',
-      url: 'https://cumarsoasis.firebaseio.com/sensors/minute/S102.json'
-    }).then(function successCallback(response) {
-      // console.log("Response from Firebase:"); console.log(response.data);
-
-      for (var time in response.data) {
-        // chart.datasets[1].addPoint(new Date(time * 1000), response.data[time]);
-      }
-
-      chart.update();
-    }, function errorCallback(response) {
-      console.log("Error: " + response);
-    });
-  }
-
-  // Fetch data on view render.
-  fetchData();
-
-  // Continuous data fetch every 30 seconds.
-  // $interval(function () { fetchData(); }, 30000);
+  setTimeout(fetchData, 1000);
 })
 
 // * Growth
 // ************************************************************************************
-.controller('growthCtrl', function($scope, $interval, $timeout, $http) {
+.controller('growthCtrl', function($scope, Growth) {
   // * Graph Configuration
-  $scope.chartData = [{ data: [] }];
-
-	var ctx = document.getElementById("chart").getContext("2d");
-	var chart = new Chart(ctx).Scatter($scope.chartData, {
-		// bezierCurve: true,
-    emptyDataMessage: "Retrieving data . . .",
-		scaleShowHorizontalLines: true,
-		scaleShowLabels: true,
-		scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-	});
-  // console.log($scope.chartData);
+  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+	var ctx = document.getElementById("growthChart").getContext("2d");
+	var growthChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
+  var growthObj = Growth('S201');
+  growthObj.$bindTo($scope, 'growthData');
+  growthObj.$watch(function() { console.log('Fetching data in Growth.'); fetchData(); });
   var fetchData = function() {
-    console.log("*** Fetching Temp. Data... ***");
-    $http({
-      method: 'GET',
-      url: 'https://cumarsoasis.firebaseio.com/sensors/minute/S201.json'
-    }).then(function successCallback(response) {
-      // console.log("Response from Firebase:"); console.log(response.data);
-
-      for (var time in response.data) {
-        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
+    angular.forEach($scope.growthData, function(sensorValue, time) {
+      if (typeof sensorValue === 'number') {
+        if (debug) console.log(new Date(time * 1000), sensorValue);
+        growthChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
+        growthChart.update();
       }
-      chart.update();
-    }, function errorCallback(response) {
-      console.log("Error: " + response);
     });
   }
 
-  // Fetch data on view render.
-  fetchData();
-
-  // Continuous data fetch every 30 seconds.
-  // $interval(function () { fetchData(); }, 30000);
+  setTimeout(fetchData, 1000);
 })
 
 // * Atmosphere
 // ************************************************************************************
-.controller('atmosphereCtrl', function($scope, $interval, $timeout, $http) {
+.controller('atmosphereCtrl', function($scope, Atmosphere) {
   // * Graph Configuration
-  $scope.chartData = [{ data: [] }];
-
-  var ctx = document.getElementById("chart").getContext("2d");
-  var chart = new Chart(ctx).Scatter($scope.chartData, {
-    // bezierCurve: true,
-    emptyDataMessage: "Retrieving data . . .",
-    scaleShowHorizontalLines: true,
-    scaleShowLabels: true,
-    scaleType: "date",
-    animation: false,
-    responsive: true,
-    pointDot : false,
-    showTooltips: false,
-    datasetStrokeWidth: 1,
-    bezierCurve : false,
-    showScale: true,
-    scaleOverride: false,
-    scaleShowGridLines : false
-  });
-  // console.log($scope.chartData);
+  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+	var ctx = document.getElementById("atmosphereChart").getContext("2d");
+	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
 
   // * Data Fetch
+  var atmosphereObj = Atmosphere('S305');
+  atmosphereObj.$bindTo($scope, 'atmosphereData');
+  atmosphereObj.$watch(function() { console.log('Fetching data in Atmosphere.'); fetchData(); });
   var fetchData = function() {
-    console.log("*** Fetching CO2 Data... ***");
-    $http({
-      method: 'GET',
-      url: 'https://cumarsoasis.firebaseio.com/sensors/minute/S305.json'
-    }).then(function successCallback(response) {
-      // console.log("Response from Firebase:"); console.log(response.data);
-
-      for (var time in response.data) {
-        chart.datasets[0].addPoint(new Date(time * 1000), response.data[time]);
+    // Enumerating through the JSON data.
+    angular.forEach($scope.atmosphereData, function(sensorValue, time) {
+      // Firebase appends two useless pieces of data at the end of the JSON file..
+      // We need to guard against those or else the graph shits itself.
+      if (typeof sensorValue === 'number') {
+        if (debug) console.log(new Date(time * 1000), sensorValue);
+        atmosphereChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
+        atmosphereChart.update();
       }
-      chart.update();
-      return;
-    }, function errorCallback(response) {
-      console.log("Error: " + response);
     });
   }
 
-  // Fetch data on view render.
-  fetchData();
-
-  // Continuous data fetch every 30 seconds.
-  // $interval(function () { fetchData(); }, 30000);
+  setTimeout(fetchData, 2000);
 })
 
 // * Settings
