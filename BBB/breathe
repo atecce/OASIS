@@ -12,6 +12,9 @@ from API.sensors import S
 # do this indefinitely
 while True:
 
+	# wait 30 seconds
+	time.sleep(30)
+
 	# take CO2 reading
 	reading = S[305].read()
 
