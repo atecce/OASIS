@@ -30,7 +30,7 @@ app.run(function($ionicPlatform) {
 
 app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/S101");
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
     var tankRef = ref.child(sysID);
 
     // return it as a synchronized object
@@ -38,19 +38,12 @@ app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
   }}
 ]);
 
-app.config(['ChartJsProvider', function (ChartJsProvider) {
-  // Configure all charts
-  ChartJsProvider.setOptions({
-    // colours: ['#FF5252', '#FF8A80'],
-    // animation: false,
-    // responsive: true,
-    // pointDot : false,
-    // showTooltips: false,
-    // datasetStrokeWidth: 0.01,
-    bezierCurve : true,
-    // showScale: true,
-    // scaleOverride: false,
-    // scaleShowGridLines : false,
-    // scaleShowLabels: false,
-  });
-}])
+app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID) {
+    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+    var growthRef = ref.child(sysID);
+
+    // return it as a synchronized object
+    return $firebaseObject(growthRef);
+  }}
+]);
