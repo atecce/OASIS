@@ -309,39 +309,66 @@ angular.module('app.controllers', [])
 
 // * Actuators
 // ************************************************************************************
-.controller('actuatorCtrl', function($scope, $interval, $timeout, $http, $state) {
-  // need initialize function for initial state
-  $scope.saysLogged = function(){
-    var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
-    var user = userRef.getAuth();
-    if(user === null){
-      $scope.error = true;
-      $scope.accessErr = true;
-      setTimeout(function(){
-        $scope.accessErr = false;
-        $scope.$digest();
-      },3000);
+.controller('actuatorCtrl', function($scope,$firebaseObject, Actuators) {
+
+  //Pull states from database
+  $rootScope = $scope
+
+  $scope.load = function($rootScope){
+    //I hope I find a way to simplify all of this...lol
+    var air_bubbler = Actuators.liquid_tanks_and_plumbing.air_bubbler;
+    var chiller = Actuators.liquid_tanks_and_plumbing.chiller;
+    var condensate_pump = Actuators.liquid_tanks_and_plumbing.condensate_pump;
+    var filter_pump = Actuators.liquid_tanks_and_plumbing.filter_pump;
+    var heater = Actuators.liquid_tanks_and_plumbing.heater;
+    var main_tank_circ = Actuators.liquid_tanks_and_plumbing.main_tank_circulation;
+    var nutrient_1_circ = Actuators.liquid_tanks_and_plumbing.nutrient_1_circulation;
+    var nutrient_1_dosing = Actuators.liquid_tanks_and_plumbing.nutrient_1_dosing;
+    var nutrient_2_circ = Actuators.liquid_tanks_and_plumbing.nutrient_2_circulation;
+    var nutrient_2_dosing = Actuators.liquid_tanks_and_plumbing.nutrient_2_dosing;
+    var pH_dosing = Actuators.liquid_tanks_and_plumbing.pH_dosing;
+    var UV_filter = Actuators.liquid_tanks_and_plumbing.UV_filter;
+
+    console.log("Successfully Retrieved Actuator Status");
+
+    if(air_bubbler){
+      $scope.airBubblerState=true;
     }
-    else {
-      $scope.error = false;
-      $scope.accessErr = false;
-      console.log("Session User: ",user.uid);
-      // Pull states here
+    if(chiller){
+      $scope.chillerState=true;
     }
-    //init($scope);
+    if(condensate_pump){
+      $scope.condensatePumpState=true;
+    }
+    if(filter_pump){
+      $scope.filterPumpState = true;
+    }
+    if(main_tank_circ){
+      $scope.mainTankCirculationState = true;
+    }
+    if(nutrient_1_circ){
+      $scope.nutrient1Circulation = true;
+    }
+    if(nutrient_1_dosing){
+      $scope.nutrient1Dosing = true;
+    }
+    if(nutrient_2_circ){
+      $scope.nutrient2Circulation = true;
+    }
+    if(nutrient_2_dosing){
+      $scope.nutrient2Dosing = true;
+    }
+    if(pH_dosing){
+      $scope.pHdosing = true;
+    }
+    if(UV_filter){
+      $scope.UVfilter = true;
+    }
+
+
+
   }
 
-  var init = function($scope){
-    var userRef = new Firebase("https://cumarsoasis.firebaseio.com/");
-    var user = userRef.getAuth();
-    if(user === null){
-      $scope.error = true;
-    }
-    else {
-      $scope.error = false;
-      console.log("Session User: ",user.uid);
-      // Pull states here
-    }
-  };
-  init($scope);
+
+
 })
