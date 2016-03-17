@@ -19,8 +19,14 @@ class sensor:
 		# open temp file corresponding to sensor stream
 		with open('/tmp/S'+self.SysID) as sense_file:
 
-			# split the string by characters and convert them all to floats
-			return sense_file.read().rstrip()
+			try:
+
+				# split the string by characters and convert them all to floats
+				return float(sense_file.read().rstrip())
+
+			except ValueError:
+
+				return "Reading Failure."
 
 # chain SysID's together
 SysIDs = chain(range(101, 113), range(201, 204), range(205, 207), range(208, 212), range(301, 307), range(401, 404))

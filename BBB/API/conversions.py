@@ -1,3 +1,6 @@
+# need this to chain SysIDs together
+from itertools import chain
+
 # returns the SysID when given senseID
 senseIDtoSysID = {'EC1':	  101,
 	   	  'EC2':	  205,
@@ -145,3 +148,29 @@ data_comm_lookup = {101: "I2C",
 		    401: "one_wire",
 		    402: "I2C",
 		    403: "ADC"}
+
+# maps actuator to subsystem
+subsystem = {"UV filter":              "liquid tanks and plumbing",
+	     "CO2 solenoid":           "internal atmosphere",
+	     "N2 solenoid":            "internal atmosphere",
+	     "heater":                 "liquid tanks and plumbing",
+	     "chiller":                "liquid tanks and plumbing",
+	     "fan 1":                  "internal atmosphere",
+	     "fan 2":                  "internal atmosphere",
+	     "O2 concentrator":        "internal atmosphere",
+	     "LED":		       "internal atmosphere",
+	     "main pump": 	       "growth medium",
+	     "condensate pump":        "liquid tanks and plumbing",
+	     "nutrient 1 dosing":      "liquid tanks and plumbing",
+	     "nutrient 2 dosing":      "liquid tanks and plumbing",
+	     "pH dosing": 	       "liquid tanks and plumbing",
+	     "nutrient 1 circulation": "liquid tanks and plumbing",
+	     "air bubbler":	       "liquid tanks and plumbing",
+	     "filter pump":	       "liquid tanks and plumbing",
+	     "nutrient 2 circulation": "liquid tanks and plumbing",
+	     "humidifier pump":	       "internal atmosphere",
+	     "main tank circulation":  "liquid tanks and plumbing",
+	     "dehumidifier":	       "internal atmosphere"}
+
+# chain SysIDs together
+SysIDs = chain(range(101, 113), range(201, 204), range(205, 207), range(208, 212), range(301, 307), range(401, 404))

@@ -6,9 +6,6 @@ import os
 # need this to monitor processes
 import psutil
 
-# initialize error logs
-if not os.path.isdir("/tmp/errorlogs/"): os.mkdir("/tmp/errorlogs/")
-
 # do this indefinitely
 while True:
 
@@ -43,3 +40,6 @@ while True:
 
 		# if the sensor isn't awake, wake it
 		if not awake[sensor]: os.system("wake " + sensor)
+
+	# keep the right time
+	os.system("ntpdate -b -s -u pool.ntp.org")
