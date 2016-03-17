@@ -218,7 +218,7 @@ angular.module('app.controllers', [])
 
 // * Actuators
 // ************************************************************************************
-.controller('actuatorCtrl', function($scope,$firebaseObject, Actuators) {
+.controller('actuatorCtrl', function($scope,$ionicModal,$firebaseObject, Actuators) {
 
   //Pull states from database
   $rootScope = $scope
@@ -273,11 +273,11 @@ angular.module('app.controllers', [])
     if(UV_filter){
       $scope.UVfilter = true;
     }
-
-
+  }
+  $scope.touch = function($rootScope,$ionicModal){
+    //prompt user to login when they touch the thingy
 
   }
-
 
 
 })
