@@ -48,6 +48,7 @@ angular.module('app.controllers', [])
 
         // console.log('Cannot log in: ', error);
       }
+
       else {
         $scope.loginError = false;
         $scope.logged = true;
@@ -291,7 +292,8 @@ angular.module('app.controllers', [])
     }
     else if (loggedIn.status){
       // do nothing
-      console.log("already logged in lmao");
+      console.log("logged in ayy lmao");
+
     }
 
 
