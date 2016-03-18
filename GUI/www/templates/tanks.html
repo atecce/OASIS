@@ -1,6 +1,6 @@
 <ion-view title="Tanks">
   <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
-    
+
     <!-- <div style="color: white;"> {{ tankData | json }} </div> -->
     <canvas id="tanksChart" height="70" width="100" ></canvas>
 
@@ -12,7 +12,7 @@
     </button>
     <div ng-show="loaded">
       <ul class="list">
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Air Bubbler
           <label class="toggle toggle-positive">
             <input id="state"  type="checkbox" ng-model="airBubblerState" ng-click="id ='airBubblerState';openLogin()">
@@ -21,7 +21,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Chiller
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="chillerState">
@@ -30,7 +30,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Condensate Pump
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="condensatePumpState">
@@ -39,7 +39,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Filter Pump
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="filterPumpState">
@@ -48,7 +48,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Heater
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="heaterState">
@@ -57,7 +57,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Main Tank Circulation
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="mainTankCirculationState">
@@ -66,7 +66,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Nutrient 1 Circulation
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="nutrient1Circulation">
@@ -75,7 +75,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle" ng-model="nutrient1Dosing">
+        <li class="item item-toggle item-dark" ng-model="nutrient1Dosing">
           Nutrient 1 Dosing
           <label class="toggle toggle-positive">
             <input type="checkbox">
@@ -84,7 +84,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Nutrient 2 Circulation
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="nutrient2Circulation">
@@ -93,7 +93,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           Nutrient 2 Dosing
           <label class="toggle toggle-positive">
             <input type="checkbox"ng-model="nutrient2Dosing">
@@ -102,7 +102,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           pH Dosing
           <label class="toggle toggle-positive">
             <input type="checkbox"ng-model="pHdosing">
@@ -111,7 +111,7 @@
             </div>
           </label>
         </li>
-        <li class="item item-toggle">
+        <li class="item item-toggle item-dark">
           UV Filter
           <label class="toggle toggle-positive">
             <input type="checkbox" ng-model="UVfilter">

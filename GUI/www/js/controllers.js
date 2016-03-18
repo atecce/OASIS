@@ -3,7 +3,7 @@ angular.module('app.controllers', [])
 
 // * Login
 // ************************************************************************************
-.controller('loginCtrl', function($scope) {
+.controller('loginCtrl', function(loggedIn,$scope) {
   $scope.login = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
@@ -55,7 +55,8 @@ angular.module('app.controllers', [])
         $scope.isloggedIn = true;
         setTimeout(function(){
           $scope.loggedSuccess = false;
-
+          loggedIn.status = 1;
+          console.log(loggedIn.status);
           $scope.$digest();
         },3000);
 
@@ -218,7 +219,7 @@ angular.module('app.controllers', [])
 
 // * Actuators
 // ************************************************************************************
-.controller('actuatorCtrl', function($scope,$ionicModal,$firebaseObject, Actuators) {
+.controller('actuatorCtrl', function($scope,$ionicModal,$firebaseObject, Actuators, loggedIn) {
 
   //Pull states from database
   $rootScope = $scope
@@ -283,8 +284,16 @@ angular.module('app.controllers', [])
   $scope.openLogin = function(){
     //prompt user to login when they touch the thingy
     // var state = $scope.id;
-    console.log($scope.id);
-    $scope.modal.show();
+    if(!loggedIn.status){
+      console.log(loggedIn.status);
+      $scope.modal.show();
+
+    }
+    else if (loggedIn.status){
+      // do nothing
+      console.log("already logged in lmao");
+    }
+
 
   }
   $scope.closeModal = function(){

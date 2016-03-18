@@ -7,8 +7,10 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('app', ['ionic', 'firebase', 'chart.js', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
-
-app.run(function($ionicPlatform) {
+app.value('loggedIn', {
+  status:0
+});
+app.run(function($ionicPlatform, loggedIn) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -16,6 +18,7 @@ app.run(function($ionicPlatform) {
     //Log out user session on load
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     AuthRef.unauth();
+    loggedIn[status] = 0;
 
     if(window.cordova && window.cordova.plugins.Keyboard) cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     if(window.StatusBar) $cordovaStatusBar.style(1);
