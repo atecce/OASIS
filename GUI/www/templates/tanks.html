@@ -1,6 +1,6 @@
 <ion-view title="Tanks">
   <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
-
+    
     <!-- <div style="color: white;"> {{ tankData | json }} </div> -->
     <canvas id="tanksChart" height="70" width="100" ></canvas>
 
@@ -15,7 +15,7 @@
         <li class="item item-toggle">
           Air Bubbler
           <label class="toggle toggle-positive">
-            <input type="checkbox" ng-model="airBubblerState" ng-click="touch()">
+            <input id="state"  type="checkbox" ng-model="airBubblerState" ng-click="id ='airBubblerState';openLogin()">
             <div class="track" >
               <div class="handle"></div>
             </div>

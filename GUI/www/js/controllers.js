@@ -274,9 +274,21 @@ angular.module('app.controllers', [])
       $scope.UVfilter = true;
     }
   }
-  $scope.touch = function($rootScope,$ionicModal){
+  $ionicModal.fromTemplateUrl('templates/loginModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })
+  $scope.openLogin = function(){
     //prompt user to login when they touch the thingy
+    // var state = $scope.id;
+    console.log($scope.id);
+    $scope.modal.show();
 
+  }
+  $scope.closeModal = function(){
+    $scope.modal.hide();
   }
 
 
