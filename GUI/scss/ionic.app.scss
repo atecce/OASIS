@@ -17,12 +17,42 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-$big-bg: '../img/bg.jpg';
-$dark: #1e1e1e !default;
+$big-bg: 													'../img/bg.jpg';
+$dark: 														#1e1e1e !default;
+$assertive:                       #DC5978 !default;
 
 @import "themes/dark.scss";
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+@font-face {
+	font-family: 'Conv_Gotham-Black';
+	src: url('fonts/Gotham-Black.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_Gotham-Bold';
+	src: url('fonts/Gotham-Bold.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_Gotham-Book';
+	src: url('fonts/Gotham-Book.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_Gotham-Medium';
+	src: url('fonts/Gotham-Medium.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+  font-family: 'Conv_Gotham-Book' !important;
+}
 
 .scroll-bg {
   // background: url($big-bg) no-repeat center center fixed;
@@ -42,24 +72,28 @@ $dark: #1e1e1e !default;
   border-bottom: none;
 }
 
-#chart {
-  .c3-axis {
-    fill: white;
-  }
+.header-item {
+  padding: 3vh !important;
+  height: 10vh !important;
+  text-align: left !important;
+  font-family: "Conv_Gotham-Bold" !important;
+  font-size: 2em !important;
+  border-bottom: 1px #6E6E6E solid !important;
+}
 
-  .c3 path {
-    stroke: white;
-  }
+.bar-header {
+  height: 12.5vh !important;
+  padding: 1em 0 !important;
+  background: #1E1E1E !important;
+}
 
-  svg {
-    fill: white;
-  }
+#tanksChart, #growthChart, #atmosphereChart {
+  padding: 5vh 0 0 0 !important;
+  display: block !important;
+  margin: 0 auto !important;
+  width: 95% !important;
+}
 
-  .regionDangerous {
-    fill: red;
-  }
-
-  .regionSafe {
-    fill: white;
-  }
+.tab-item-active, .activated {
+  border-width: 1px 0 0 0 !important;
 }

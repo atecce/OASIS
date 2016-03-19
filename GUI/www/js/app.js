@@ -61,21 +61,59 @@ app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
   }}
 ]);
 
-// * Global Chart Settings
-var chartSettings = {
-  bezierCurve: true,
-  bezierCurveTension: 0.2,
-  emptyDataMessage: "Retrieving data . . .",
+// * Tank Chart Settings 92d050
+var tankChartConfig = {
+  bezierCurve: false,
+  emptyDataMessage: ". . .",
   scaleShowHorizontalLines: true,
   scaleShowLabels: true,
+  scaleFontStyle: "normal",
   scaleType: "date",
   animation: false,
   responsive: true,
   pointDot : false,
   showTooltips: false,
   datasetStrokeWidth: 1,
-  bezierCurve : false,
   showScale: true,
   scaleOverride: false,
-  scaleShowGridLines : false
+  scaleShowGridLines : false,
+  datasetStrokeColor: '#DC5978'
+}
+
+// * Growth Chart Settings
+var growthChartConfig = {
+  bezierCurve: false,
+  emptyDataMessage: ". . .",
+  scaleShowHorizontalLines: true,
+  scaleShowLabels: true,
+  scaleFontStyle: "normal",
+  scaleType: "date",
+  animation: false,
+  responsive: true,
+  pointDot : false,
+  showTooltips: false,
+  datasetStrokeWidth: 1,
+  showScale: true,
+  scaleOverride: false,
+  scaleShowGridLines : false,
+  datasetStrokeColor: '#92d050'
+}
+
+// * Atmosphere Chart Settings
+var atmChartConfig = {
+  bezierCurve: false,
+  emptyDataMessage: ". . .",
+  scaleShowHorizontalLines: true,
+  scaleShowLabels: true,
+  scaleFontStyle: "normal",
+  scaleType: "date",
+  animation: false,
+  responsive: true,
+  pointDot : false,
+  showTooltips: false,
+  datasetStrokeWidth: 1,
+  showScale: true,
+  scaleOverride: false,
+  scaleShowGridLines : false,
+  datasetStrokeColor: '#387ef5'
 }

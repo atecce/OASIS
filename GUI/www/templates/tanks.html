@@ -1,11 +1,13 @@
 <ion-view title="Tanks">
-  <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
+  <ion-nav-bar class="bar-stable bar-dark"></ion-nav-bar>
 
-    <!-- <div style="color: white;"> {{ tankData | json }} </div> -->
-    <canvas id="tanksChart" height="70" width="100" ></canvas>
+  <ion-content overflow-scroll="true" padding="true" class="scroll-bg">
+    <!-- <ion-header-bar align-title="left" class="bar-positive"> -->
+  <!-- <div style="color: white;"> {{ tankData | json }} </div> -->
+  <canvas id="tanksChart" height="100" width="100" ></canvas>
 
   <div ng-controller="actuatorCtrl">
-    <button class="button button-full button-positive" ng-click="loaded = true; load($scope);" ng-hide="loaded">
+    <button class="button button-full button-assertive" ng-click="loaded = true; load($scope);" ng-hide="loaded">
       <div ng-model="divText">
         Show Actuators
       </div>
