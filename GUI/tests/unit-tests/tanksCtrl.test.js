@@ -1,14 +1,13 @@
-describe('Controller: tanksCtrl', function() {
+describe('tanksCtrl', function() {
   var scope, ctrl;
 
   // * LOAD
-  beforeEach(module('app.controllers'));
-  // beforeEach(module('app.controllers'));
+  beforeEach(module('app'));
 
   // * Initialize controller and a mock scope.
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    $controller('tanksCtrl', { $scope: scope });
+    ctrl = $controller('tanksCtrl', { $scope: scope });
   }));
 
   // * TESTS
@@ -16,7 +15,7 @@ describe('Controller: tanksCtrl', function() {
     expect(true).toBe(true);
   });
 
-  // it('should have a $scope variable', function() {
-  //   expect(scope).toBeDefined();
-  // });
+  it('should have a $scope variable', function() {
+    expect(scope).toBeDefined();
+  });
 });
