@@ -1,21 +1,23 @@
 describe('tanksCtrl', function() {
   var scope, ctrl;
 
-  // * LOAD
-  beforeEach(module('app'));
+  // * INITIALIZE controller and a mock scope.
+  beforeEach(function() {
+    module('app');
+    inject(function($rootScope, $controller) {
+      scope = $rootScope.$new();
+      ctrl = $controller('tanksCtrl', { $scope: scope });
+    });
+  });
 
-  // * Initialize controller and a mock scope.
-  beforeEach(inject(function($rootScope, $controller) {
-    scope = $rootScope.$new();
-    ctrl = $controller('tanksCtrl', { $scope: scope });
-  }));
 
   // * TESTS
+  it('should have a $scope variable', function() {
+    expect(scope).toBeDefined();
+  });
+
   it('should return true', function() {
     expect(true).toBe(true);
   });
 
-  it('should have a $scope variable', function() {
-    expect(scope).toBeDefined();
-  });
 });
