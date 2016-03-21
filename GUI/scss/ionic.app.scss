@@ -64,21 +64,21 @@ $assertive:                       #DC5978 !default;
   border-style: none;
 }
 
-.title {
-  color: white;
-}
-
 .tabs-striped .tabs {
   border-bottom: none;
 }
 
-.header-item {
+.title {
+	color: white;
   padding: 3vh !important;
   height: 10vh !important;
-  text-align: left !important;
   font-family: "Conv_Gotham-Bold" !important;
-  font-size: 2em !important;
+  font-size: 1.5em !important;
   border-bottom: 1px #6E6E6E solid !important;
+}
+
+.logo {
+	float: right;
 }
 
 .bar-header {
