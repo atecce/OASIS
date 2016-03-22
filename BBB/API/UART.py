@@ -130,3 +130,7 @@ class flow_meter(UART_sensor):
 
 		# flow rate [total vol] [LPM] [LPH]
 		return single_flow_reading
+
+class moisture(UART_sensor): pass
+class photosynthetically_active_radiation(UART_sensor): pass
+class relative_humidity_and_temperature(UART_sensor): pass

@@ -83,6 +83,11 @@ angular.module('app.routes', [])
     abstract: true
   })
 
+  .state('loginModal', {
+    url:'/templates/loginModal.html',
+    templateUrl: 'templates/loginModal.html'
+  })
+
 $urlRouterProvider.otherwise('/main/tanks')
 
 });

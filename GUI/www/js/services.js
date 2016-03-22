@@ -8,3 +8,8 @@ angular.module('app.services', [])
   var data = $firebaseObject(ref.child('actuators').child('current'));
   return data;
 })
+
+.factory('Authentication', function($firebaseObject){
+  var ref = new Firebase("https://cumarsoasis.firebaseio.com/");
+  
+})

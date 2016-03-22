@@ -3,7 +3,7 @@ angular.module('app.controllers', [])
 
 // * Login
 // ************************************************************************************
-.controller('loginCtrl', function($scope) {
+.controller('loginCtrl', function(loggedIn,$scope) {
   $scope.login = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
@@ -48,6 +48,7 @@ angular.module('app.controllers', [])
 
         // console.log('Cannot log in: ', error);
       }
+
       else {
         $scope.loginError = false;
         $scope.logged = true;
@@ -55,7 +56,8 @@ angular.module('app.controllers', [])
         $scope.isloggedIn = true;
         setTimeout(function(){
           $scope.loggedSuccess = false;
-
+          loggedIn.status = 1;
+          console.log(loggedIn.status);
           $scope.$digest();
         },3000);
 
@@ -94,6 +96,8 @@ angular.module('app.controllers', [])
   };
 })
 
+// * Register
+// ************************************************************************************
 .controller('registerCtrl', function($scope) {
   $scope.register = function() {
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
@@ -133,9 +137,9 @@ angular.module('app.controllers', [])
 // ************************************************************************************
 .controller('tanksCtrl', function($scope, Tanks) {
   // * Graph Configuration
-  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+  $scope.chartData = [{ data: [] }, { strokeColor: '#DC5978', data: [] }];
 	var ctx = document.getElementById("tanksChart").getContext("2d");
-	var tanksChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
+	var tanksChart = new Chart(ctx).Scatter($scope.chartData, tankChartConfig);
 
   // * Data Fetch
   var tanksObj = Tanks('S102');
@@ -154,16 +158,16 @@ angular.module('app.controllers', [])
     });
   }
 
-  setTimeout(fetchData, 1000);
+  setTimeout(fetchData, 2000);
 })
 
 // * Growth
 // ************************************************************************************
 .controller('growthCtrl', function($scope, Growth) {
   // * Graph Configuration
-  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+  $scope.chartData = [{ data: [] }, { datasetStrokeColor: '#FFFFFF', data: [] }];
 	var ctx = document.getElementById("growthChart").getContext("2d");
-	var growthChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
+	var growthChart = new Chart(ctx).Scatter($scope.chartData, growthChartConfig);
 
   // * Data Fetch
   var growthObj = Growth('S201');
@@ -186,9 +190,9 @@ angular.module('app.controllers', [])
 // ************************************************************************************
 .controller('atmosphereCtrl', function($scope, Atmosphere) {
   // * Graph Configuration
-  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: []}];
+  $scope.chartData = [{ data: [] }, { strokeColor: '#FFFFFF', data: [] }];
 	var ctx = document.getElementById("atmosphereChart").getContext("2d");
-	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, chartSettings);
+	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, atmChartConfig);
 
   // * Data Fetch
   var atmosphereObj = Atmosphere('S305');
@@ -218,7 +222,7 @@ angular.module('app.controllers', [])
 
 // * Actuators
 // ************************************************************************************
-.controller('actuatorCtrl', function($scope,$firebaseObject, Actuators) {
+.controller('actuatorCtrl', function($scope,$ionicModal,$firebaseObject, Actuators, loggedIn) {
 
   //Pull states from database
   $rootScope = $scope
@@ -273,11 +277,32 @@ angular.module('app.controllers', [])
     if(UV_filter){
       $scope.UVfilter = true;
     }
+  }
+  $ionicModal.fromTemplateUrl('templates/loginModal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal
+  })
+  $scope.openLogin = function(){
+    //prompt user to login when they touch the thingy
+    // var state = $scope.id;
+    if(!loggedIn.status){
+      console.log(loggedIn.status);
+      $scope.modal.show();
 
+    }
+    else if (loggedIn.status){
+      // do nothing
+      console.log("logged in ayy lmao");
+
+    }
 
 
   }
-
+  $scope.closeModal = function(){
+    $scope.modal.hide();
+  }
 
 
 })
