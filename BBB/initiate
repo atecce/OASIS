@@ -4,7 +4,7 @@
 import os
 
 # need this for necessary actuators
-from API.actuators import M, P
+from API.actuators import F, M, P
 
 # necessary fans
 fans = M[6], M[7]
@@ -14,6 +14,12 @@ pumps = P[6], P[7], P[9], P[11]
 
 # overhead light
 LED = M[18]
+
+# set UV filter
+UV_filter = F[1]
+
+# turn on filter
+if UV_filter.check_status() == "off": UV_filter.toggle()
 
 # turn fans on high
 for fan in fans:
