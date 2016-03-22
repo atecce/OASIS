@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+# need this for pump and filter
+from API.actuators import P
+
+# need this to wait
+import time
+
+P[1].toggle()
+time.sleep(.75)
+P[1].toggle()
