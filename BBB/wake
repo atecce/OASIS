@@ -38,6 +38,6 @@ def main(argv):
 		sys.exit(1)
 
 	# turn on sensor as a daemon
-	os.system("sudo nohup " + path_name + " " + senseID + " > /tmp/errorlogs/S" + str(SysID) + " 2>&1 &")
+	os.system("sudo nohup " + path_name + " " + senseID + ">/dev/null 2>/tmp/errorlogs/S" + str(SysID) + " &")
 
 if __name__ == "__main__": main(sys.argv)

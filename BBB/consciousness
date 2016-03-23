@@ -7,10 +7,10 @@ mkdir -p /tmp/errorlogs
 initiate
 
 # wake up
-nohup /home/atecce/MarsOASIS/BBB/focus > /tmp/errorlogs/focus 2>&1 &
+nohup /home/atecce/MarsOASIS/BBB/focus>/dev/null 2>/tmp/errorlogs/focus &
 
 # breathe
-#nohup /home/atecce/MarsOASIS/BBB/breathe > /tmp/errorlogs/breathe 2>&1 &
+nohup /home/atecce/MarsOASIS/BBB/breathe>/dev/null 2>/tmp/errorlogs/breathe &
 
 # keep it clean
-nohup /home/atecce/MarsOASIS/BBB/clean > /tmp/errorlogs/clean 2>&1 &
+nohup /home/atecce/MarsOASIS/BBB/clean>/dev/null 2>/tmp/errorlogs/clean &
