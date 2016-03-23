@@ -10,7 +10,7 @@ import psutil
 while True:
 
 	# initialize sensors as not awake
-	awake = {'EC1': bool(), 'pH1': bool(), 'temp1': bool(), 'temp2': bool(), 'temp3': bool(), 'temp4': bool(), 'CO2': bool(), 'TP1': bool(), 'TP2': bool()}
+	awake = {'EC1': bool(), 'pH1': bool(), 'temp1': bool(), 'temp2': bool(), 'temp3': bool(), 'temp4': bool(), 'CO2': bool(), 'TP1': bool(), 'TP2': bool(), 'O2': bool()}
 
 	# for each pid
 	for pid in psutil.pids(): 
@@ -43,3 +43,6 @@ while True:
 
 	# keep the right time
 	os.system("ntpdate -b -s -u pool.ntp.org")
+
+	# update the status
+	os.system("update_status")

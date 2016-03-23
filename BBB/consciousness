@@ -10,7 +10,7 @@ initiate
 nohup /home/atecce/MarsOASIS/BBB/focus > /tmp/errorlogs/focus 2>&1 &
 
 # breathe
-nohup /home/atecce/MarsOASIS/BBB/breathe > /tmp/errorlogs/breathe 2>&1 &
+#nohup /home/atecce/MarsOASIS/BBB/breathe > /tmp/errorlogs/breathe 2>&1 &
 
 # keep it clean
 nohup /home/atecce/MarsOASIS/BBB/clean > /tmp/errorlogs/clean 2>&1 &

@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+# need this to chain SysID's together
+from itertools import chain
+
+# need this for actuators
+from API.actuators import F, V, M, P
+
+# need this to post to database
+from API.REST import REST
+
+# maps actuator to subsystem
+subsystem = {"UV_filter":              "liquid_tanks_and_plumbing",
+	     "CO2_solenoid":           "internal_atmosphere",
+	     "N2_solenoid":            "internal_atmosphere",
+	     "heater":                 "liquid_tanks_and_plumbing",
+	     "chiller":                "liquid_tanks_and_plumbing",
+	     "fan_1":                  "internal_atmosphere",
+	     "fan_2":                  "internal_atmosphere",
+	     "O2_concentrator":        "internal_atmosphere",
+	     "LED":		       "internal_atmosphere",
+	     "main_pump": 	       "growth_medium",
+	     "condensate_pump":        "liquid_tanks_and_plumbing",
+	     "nutrient_1_dosing":      "liquid_tanks_and_plumbing",
+	     "nutrient_2_dosing":      "liquid_tanks_and_plumbing",
+	     "pH_dosing": 	       "liquid_tanks_and_plumbing",
+	     "nutrient_1_circulation": "liquid_tanks_and_plumbing",
+	     "air_bubbler":	       "liquid_tanks_and_plumbing",
+	     "filter_pump":	       "liquid_tanks_and_plumbing",
+	     "nutrient_2_circulation": "liquid_tanks_and_plumbing",
+	     "humidifier_pump":	       "internal_atmosphere",
+	     "main_tank_circulation":  "liquid_tanks_and_plumbing",
+	     "dehumidifier":	       "internal_atmosphere"}
+
+# set up database
+firebase = REST("https://cumarsoasis.firebaseio.com/")
+
+# convert to 0 or 1 for js client
+truth =  {"off": False, "low":  False,
+	  "on":  True,  "high": True}
+
+# filter
+table = "actuators/current/" + subsystem[F[1].name] + "/" + F[1].name + ".json"
+
+firebase.PUT(truth[F[1].check_status()], table)
+
+# valves
+for SysID in range(3, 5):
+
+	table = "actuators/current/" + subsystem[V[SysID].name] + "/" + V[SysID].name + ".json"
+
+	firebase.PUT(truth[V[SysID].check_status()], table)
+
+# miscellaneous
+for SysID in chain(range(1, 3), range(6, 9), range(18, 19)):
+
+	table = "actuators/current/" + subsystem[M[SysID].name] + "/" + M[SysID].name + ".json"
+
+	firebase.PUT(truth[M[SysID].check_status()], table)
+
+# pumps
+for SysID in range(1, 13):
+
+	table = "actuators/current/" + subsystem[P[SysID].name] + "/" + P[SysID].name + ".json"
+
+	firebase.PUT(truth[P[SysID].check_status()], table)
