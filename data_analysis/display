@@ -27,7 +27,7 @@ def main(argv):
 	data = firebase.GET("sensors/historical/S" + str(SysID) + ".json")
 
 	# write csv file
-	with open(senseID + 'data.csv', 'w') as f:
+	with open('data/' + senseID + 'data.csv', 'w') as f:
 
 		# for each sequential entry
 		for entry in sorted(data):
