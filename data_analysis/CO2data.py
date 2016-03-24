@@ -21,3 +21,6 @@ with open('CO2data.csv', 'w') as f:
 
 		# write to csv
 		f.write(str(datetime) + ', ' + str(CO2data[entry]) + '\n')
+
+		# print output
+		print datetime, CO2data[entry]
