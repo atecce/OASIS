@@ -6,7 +6,18 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'firebase', 'chart.js', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
+var app = angular.module('app', [
+  'ionic',
+  'firebase',
+  'chart.js',
+  'ionic-native-transitions',
+  'app.controllers',
+  'app.routes',
+  'app.services',
+  'app.directives'
+]);
+
+
 app.value('loggedIn', {
   status:0
 });
