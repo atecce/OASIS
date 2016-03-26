@@ -17,7 +17,6 @@ var app = angular.module('app', [
   'app.directives'
 ]);
 
-
 app.value('loggedIn', {
   status:0
 });
@@ -35,42 +34,6 @@ app.run(function($ionicPlatform, loggedIn) {
     if(window.StatusBar) $cordovaStatusBar.style(1);
   });
 })
-
-// * Tanks
-// ************************************************************************************
-app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var tankRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(tankRef);
-  }}
-]);
-
-// * Growth
-// ************************************************************************************
-app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var growthRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(growthRef);
-  }}
-]);
-
-// * Atmosphere
-// ************************************************************************************
-app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var atmosphereRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(atmosphereRef);
-  }}
-]);
 
 // * Tank Chart Settings 92d050
 var tankChartConfig = {

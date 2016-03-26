@@ -158,7 +158,7 @@ angular.module('app.controllers', [])
     });
   }
 
-  setTimeout(fetchData, 2000);
+  setTimeout(fetchData, 3000);
 })
 
 // * Growth
@@ -183,7 +183,7 @@ angular.module('app.controllers', [])
     });
   }
 
-  setTimeout(fetchData, 1000);
+  setTimeout(fetchData, 3000);
 })
 
 // * Atmosphere
@@ -211,7 +211,7 @@ angular.module('app.controllers', [])
     });
   }
 
-  setTimeout(fetchData, 2000);
+  setTimeout(fetchData, 3000);
 })
 
 // * Settings
