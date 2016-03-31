@@ -1,0 +1,239 @@
+<ion-view title="Actuators">
+    <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg"  ng-controller="actuatorCtrl">
+      <div class="bar bar-header bar-assertive" ng-show="error" ng-click="saysLogged()">
+        <h1 class="title">Tap when you are logged in.</h1>
+      </div>
+      <div class="bar bar-footer bar-assertive" ng-show="accessErr" ng-click="saysLogged()">
+        <h1 class="title">Access Denied! Or not logged in!</h1>
+      </div>
+      <ul class="list" ng-show="!error">
+        <!-- ======================FILTER========================= -->
+        <li class="item item-positive">
+          Filter
+        </li>
+        <li class="item item-toggle">
+          UV Filter
+          <label class="toggle">
+            <input type="checkbox" ng-model="toggleUv" ng-change="update($scope,'toggleUv',toggleUv)" name="toggleUv">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <!-- ======================VALVES========================= -->
+        <li class="item item-positive">
+          Valves
+        </li>
+        <li class="item item-toggle">
+          C02 Solenoid
+          <label class="toggle">
+            <input type="checkbox" ng-model="toggleC02">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          N2 Solenoid
+          <label class="toggle">
+            <input type="checkbox" ng-model="toggleN2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <!-- ======================PUMPS========================= -->
+        <li class="item item-positive">
+          Pumps
+        </li>
+        <li class="item item-toggle">
+          Main Pump
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpMain">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Condensate Pump
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpCond">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Nutrient 1 Dosing
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpNut1">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Nutrient 2 Dosing
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpNut2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          pH Dosing
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpPh">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Nutrient 1 Circulation
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpNut1Circ">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Air Bubbler
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpAir">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Filter Pump
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpFilter">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Nutrient 2 Circulation
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpNut2Circ">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Humidifier Pump
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpHumid">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Main Tank Circulation
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpTankMainCirc">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Dehumidifier
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="togglePumpDeHumid">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <!-- ======================Misc========================= -->
+        <li class="item item-Positive">
+          Miscellaneous
+        </li>
+        <li class="item item-toggle">
+          Heater
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleHeater">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Chiller
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleChiller">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Fan 1
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleFan1">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          Fan 2
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleFan2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          O2 Concentrator
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleConcenO2">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+        <li class="item item-toggle">
+          LED
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="toggleLed">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+      </ul>
+      <!-- STILL MISSING MISC -->
+    </ion-content>
+</ion-view>
