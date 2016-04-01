@@ -1,19 +1,21 @@
 describe('tanksCtrl', function() {
-  var scope, ctrl;
+  var ctrl;
 
+  beforeEach(module('firebase'))
+  beforeEach(module('app.controllers'))
+  beforeEach(module('app.services'))
   // * INITIALIZE controller and a mock scope.
   beforeEach(function() {
-    module('app');
-    inject(function($rootScope, $controller) {
-      scope = $rootScope.$new();
-      ctrl = $controller('tanksCtrl', { $scope: scope });
+    inject(function(_$rootScope_, _$controller_, _firebase_) {
+      var scope = _$rootScope_.$new();
+      ctrl = _$controller_('tanksCtrl', { $scope: scope });
     });
   });
 
 
   // * TESTS
   it('should have a $scope variable', function() {
-    expect(scope).toBeDefined();
+    expect(ctrl).toBeDefined();
   });
 
   it('should return true', function() {

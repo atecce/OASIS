@@ -8,6 +8,9 @@
   <ion-content overflow-scroll="true" padding="true" class="scroll-bg">
     <!-- <div style="color: white;"> {{ tankData | json }} </div> -->
     <canvas id="tanksChart" height="100" width="100" ></canvas>
+    <button class="button button-small button-clear button-light" ng-click="loadMinute()">minute</button>
+    <button class="button button-small button-clear button-light" ng-click="loadHour()">hour</button>
+    <button class="button button-small button-clear button-light" ng-click="loadHistorical()">historical</button>
 
     <div ng-controller="actuatorCtrl">
       <button class="button button-full button-assertive" ng-click="loaded = true; load($scope);" ng-hide="loaded">

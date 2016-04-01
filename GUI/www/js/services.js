@@ -17,33 +17,36 @@ angular.module('app.services', [])
 
 // * Tanks
 // ************************************************************************************
-app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID, tRange) {
+    var url = "https://cumarsoasis.firebaseio.com/sensors/" + tRange + "/";
+    var ref = new Firebase(url);
     var tankRef = ref.child(sysID);
 
     // return it as a synchronized object
     return $firebaseObject(tankRef);
   }}
-]);
+])
 
 // * Growth
 // ************************************************************************************
-app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+.factory("Growth", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID, tRange) {
+    var url = "https://cumarsoasis.firebaseio.com/sensors/" + tRange + "/";
+    var ref = new Firebase(url);
     var growthRef = ref.child(sysID);
 
     // return it as a synchronized object
     return $firebaseObject(growthRef);
   }}
-]);
+])
 
 // * Atmosphere
 // ************************************************************************************
-app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
+.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
+  return function(sysID, tRange) {
+    var url = "https://cumarsoasis.firebaseio.com/sensors/" + tRange + "/";
+    var ref = new Firebase(url);
     var atmosphereRef = ref.child(sysID);
 
     // return it as a synchronized object

@@ -1,4 +1,4 @@
-var debug = false;
+var debug = true;
 angular.module('app.controllers', [])
 
 // * Login
@@ -142,10 +142,11 @@ angular.module('app.controllers', [])
 	var tanksChart = new Chart(ctx).Scatter($scope.chartData, tankChartConfig);
 
   // * Data Fetch
-  var tanksObj = Tanks('S102');
+  var tanksObj = Tanks('S103', 'hour');
   tanksObj.$bindTo($scope, 'tankData');
-  tanksObj.$watch(function() { console.log('Fetching data in Tanks.'); fetchData(); });
+  tanksObj.$watch(function() { fetchData(); });
   var fetchData = function() {
+    console.log('Fetching data in Tanks.');
     // Enumerating through the JSON data.
     angular.forEach($scope.tankData, function(sensorValue, time) {
       // Firebase appends two useless pieces of data at the end of the JSON file..
@@ -153,12 +154,12 @@ angular.module('app.controllers', [])
       if (typeof sensorValue === 'number') {
         if (debug) console.log(new Date(time * 1000), sensorValue);
         tanksChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
-        tanksChart.update();
       }
     });
+    tanksChart.update();
   }
 
-  setTimeout(fetchData, 3000);
+  setTimeout(fetchData, 2000);
 })
 
 // * Growth
@@ -170,20 +171,21 @@ angular.module('app.controllers', [])
 	var growthChart = new Chart(ctx).Scatter($scope.chartData, growthChartConfig);
 
   // * Data Fetch
-  var growthObj = Growth('S201');
+  var growthObj = Growth('S202', 'hour');
   growthObj.$bindTo($scope, 'growthData');
-  growthObj.$watch(function() { console.log('Fetching data in Growth.'); fetchData(); });
+  growthObj.$watch(function() { fetchData(); });
   var fetchData = function() {
+    console.log('Fetching data in Growth.');
     angular.forEach($scope.growthData, function(sensorValue, time) {
       if (typeof sensorValue === 'number') {
         if (debug) console.log(new Date(time * 1000), sensorValue);
         growthChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
-        growthChart.update();
       }
     });
+    growthChart.update();
   }
 
-  setTimeout(fetchData, 3000);
+  setTimeout(fetchData, 2000);
 })
 
 // * Atmosphere
@@ -195,10 +197,11 @@ angular.module('app.controllers', [])
 	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, atmChartConfig);
 
   // * Data Fetch
-  var atmosphereObj = Atmosphere('S305');
+  var atmosphereObj = Atmosphere('S305', 'hour');
   atmosphereObj.$bindTo($scope, 'atmosphereData');
-  atmosphereObj.$watch(function() { console.log('Fetching data in Atmosphere.'); fetchData(); });
+  atmosphereObj.$watch(function() { fetchData(); });
   var fetchData = function() {
+    console.log('Fetching data in Atmosphere.');
     // Enumerating through the JSON data.
     angular.forEach($scope.atmosphereData, function(sensorValue, time) {
       // Firebase appends two useless pieces of data at the end of the JSON file..
@@ -206,12 +209,12 @@ angular.module('app.controllers', [])
       if (typeof sensorValue === 'number') {
         if (debug) console.log(new Date(time * 1000), sensorValue);
         atmosphereChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
-        atmosphereChart.update();
       }
     });
+    atmosphereChart.update();
   }
 
-  setTimeout(fetchData, 3000);
+  setTimeout(fetchData, 2000);
 })
 
 // * Settings
