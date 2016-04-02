@@ -108,3 +108,24 @@ $positive:												#669c2d !default;
 #timePicker {
 	margin-bottom: 1vh;
 }
+
+.tabs .tab-item .icon.tanksIcon {
+  content: url(../img/tanks.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.tabs .tab-item .icon.growthIcon {
+  content: url(../img/growth.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.tabs .tab-item .icon.atmIcon {
+  content: url(../img/atmosphere.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
