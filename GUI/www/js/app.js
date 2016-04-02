@@ -70,7 +70,7 @@ var growthChartConfig = {
   showScale: true,
   scaleOverride: false,
   scaleShowGridLines : false,
-  datasetStrokeColor: '#92d050'
+  datasetStrokeColor: '#669c2d'
 }
 
 // * Atmosphere Chart Settings

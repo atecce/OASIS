@@ -13,5 +13,11 @@
       <button class="button button-small button-light" ng-click="loadHour()">hour</button>
       <button class="button button-small button-light" ng-click="loadHistorical()">historical</button>
     </div>
+
+    <button class="button button-full button-calm" ng-click="loaded = true; load($scope);">
+      <div ng-model="divText">
+        Show Actuators
+      </div>
+    </button>
   </ion-content>
 </ion-view>

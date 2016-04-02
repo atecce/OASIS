@@ -142,7 +142,7 @@ angular.module('app.controllers', [])
 	var tanksChart = new Chart(ctx).Scatter($scope.chartData, tankChartConfig);
 
   // * Data Fetch
-  var tanksObj = Tanks('S103', 'hour');
+  var tanksObj = Tanks('S101', 'hour');
   tanksObj.$bindTo($scope, 'tankData').then(function() { fetchData(); });
   tanksObj.$watch(function() { fetchData(); });
   var fetchData = function() {
@@ -169,7 +169,7 @@ angular.module('app.controllers', [])
 	var growthChart = new Chart(ctx).Scatter($scope.chartData, growthChartConfig);
 
   // * Data Fetch
-  var growthObj = Growth('S202', 'hour');
+  var growthObj = Growth('S201', 'hour');
   growthObj.$bindTo($scope, 'growthData').then(function() { fetchData(); });
   growthObj.$watch(function() { fetchData(); });
   var fetchData = function() {
