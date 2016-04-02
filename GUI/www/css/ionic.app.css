@@ -9148,7 +9148,7 @@ a.button {
   margin: 0 auto !important;
   width: 95% !important; }
 
-.tab-item-active, .activated {
+.tab-item .tab-item-active {
   border-width: 1px 0 0 0 !important; }
 
 .button.button-light {
@@ -9175,3 +9175,12 @@ a.button {
   width: 24px;
   height: 32px;
   opacity: 0.9; }
+
+a.tab-item-active[icon="tanksIcon"], a.activated[icon="tanksIcon"] {
+  border-color: #DC5978 !important; }
+
+a.tab-item-active[icon="growthIcon"], a.activated[icon="growthIcon"] {
+  border-color: #669c2d !important; }
+
+a.tab-item-active[icon="atmIcon"], a.activated[icon="atmIcon"] {
+  border-color: #387ef5 !important; }

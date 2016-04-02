@@ -1,9 +1,11 @@
 var debug = true;
 angular.module('app.controllers', [])
+.controller('tabsCtrl', function($scope, $ionicTabsDelegate, $ionicHistory) {
+})
 
 // * Login
 // ************************************************************************************
-.controller('loginCtrl', function(loggedIn,$scope) {
+.controller('loginCtrl', function(loggedIn, $scope) {
   $scope.login = function(){
     var AuthRef = new Firebase("https://cumarsoasis.firebaseio.com/");
     $scope.logged = false;
@@ -135,7 +137,11 @@ angular.module('app.controllers', [])
 
 // * Tanks
 // ************************************************************************************
-.controller('tanksCtrl', function($scope, Tanks) {
+.controller('tanksCtrl', function($scope, $ionicTabsDelegate, Tanks) {
+  var cols = document.getElementsByClassName('tab-item-active');
+  for(i=0; i<cols.length; i++) {
+    cols[i].style.color =    'blue';
+  }
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#DC5978', data: [] }];
 	var ctx = document.getElementById("tanksChart").getContext("2d");

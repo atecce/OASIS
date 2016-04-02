@@ -96,7 +96,7 @@ $positive:												#669c2d !default;
   width: 95% !important;
 }
 
-.tab-item-active, .activated {
+.tab-item .tab-item-active {
   border-width: 1px 0 0 0 !important;
 }
 
@@ -128,4 +128,16 @@ $positive:												#669c2d !default;
   width: 24px;
   height: 32px;
   opacity: 0.9;
+}
+
+a.tab-item-active, a.activated {
+	&[icon="tanksIcon"] {
+		border-color: #DC5978 !important;
+	}
+	&[icon="growthIcon"] {
+		border-color: #669c2d !important;
+	}
+	&[icon="atmIcon"] {
+		border-color: #387ef5 !important;
+	}
 }
