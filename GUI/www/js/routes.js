@@ -1,11 +1,12 @@
 angular.module('app.routes', [])
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  $ionicNativeTransitionsProvider.enable(false);
   $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
   // .state('login', {
@@ -23,8 +24,8 @@ angular.module('app.routes', [])
   .state('tabsController.tanks', {
     url: '/tanks',
     nativeTransitions: {
-        "type": "flip",
-        "direction": "up"
+        "type"      : "fade",
+        "duration"  : "250"
     },
     views: {
       'tab1': {
@@ -36,6 +37,10 @@ angular.module('app.routes', [])
 
   .state('tabsController.growth', {
     url: '/growth',
+    nativeTransitions: {
+        "type"      : "fade",
+        "duration"  : "250"
+    },
     views: {
       'tab2': {
         templateUrl: 'templates/growth.html',
@@ -46,6 +51,10 @@ angular.module('app.routes', [])
 
   .state('tabsController.atmosphere', {
     url: '/atmosphere',
+    nativeTransitions: {
+        "type"      : "fade",
+        "duration"  : "250"
+    },
     views: {
       'tab3': {
         templateUrl: 'templates/atmosphere.html',

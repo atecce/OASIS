@@ -9150,3 +9150,10 @@ a.button {
 
 .tab-item-active, .activated {
   border-width: 1px 0 0 0 !important; }
+
+.button.button-light {
+  background-color: transparent;
+  color: white; }
+
+#timePicker {
+  margin-bottom: 1vh; }
