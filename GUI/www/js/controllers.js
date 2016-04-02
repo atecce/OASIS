@@ -143,7 +143,7 @@ angular.module('app.controllers', [])
 
   // * Data Fetch
   var tanksObj = Tanks('S103', 'hour');
-  tanksObj.$bindTo($scope, 'tankData');
+  tanksObj.$bindTo($scope, 'tankData').then(function() { fetchData(); });
   tanksObj.$watch(function() { fetchData(); });
   var fetchData = function() {
     console.log('Fetching data in Tanks.');
@@ -158,8 +158,6 @@ angular.module('app.controllers', [])
     });
     tanksChart.update();
   }
-
-  setTimeout(fetchData, 2000);
 })
 
 // * Growth
@@ -172,7 +170,7 @@ angular.module('app.controllers', [])
 
   // * Data Fetch
   var growthObj = Growth('S202', 'hour');
-  growthObj.$bindTo($scope, 'growthData');
+  growthObj.$bindTo($scope, 'growthData').then(function() { fetchData(); });
   growthObj.$watch(function() { fetchData(); });
   var fetchData = function() {
     console.log('Fetching data in Growth.');
@@ -184,8 +182,6 @@ angular.module('app.controllers', [])
     });
     growthChart.update();
   }
-
-  setTimeout(fetchData, 2000);
 })
 
 // * Atmosphere
@@ -198,7 +194,7 @@ angular.module('app.controllers', [])
 
   // * Data Fetch
   var atmosphereObj = Atmosphere('S305', 'hour');
-  atmosphereObj.$bindTo($scope, 'atmosphereData');
+  atmosphereObj.$bindTo($scope, 'atmosphereData').then(function() { fetchData(); });
   atmosphereObj.$watch(function() { fetchData(); });
   var fetchData = function() {
     console.log('Fetching data in Atmosphere.');
@@ -213,8 +209,6 @@ angular.module('app.controllers', [])
     });
     atmosphereChart.update();
   }
-
-  setTimeout(fetchData, 2000);
 })
 
 // * Settings

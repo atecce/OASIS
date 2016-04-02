@@ -22,6 +22,10 @@ angular.module('app.routes', [])
 
   .state('tabsController.tanks', {
     url: '/tanks',
+    nativeTransitions: {
+        "type": "flip",
+        "direction": "up"
+    },
     views: {
       'tab1': {
         templateUrl: 'templates/tanks.html',

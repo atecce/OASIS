@@ -30,7 +30,6 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-wkwebview",
     {
       "locator": "https://github.com/Telerik-Verified-Plugins/NativePageTransitions",
       "id": "com.telerik.plugins.nativepagetransitions"
