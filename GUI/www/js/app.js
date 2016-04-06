@@ -6,10 +6,21 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('app', ['ionic', 'firebase', 'chart.js', 'app.controllers', 'app.routes', 'app.services', 'app.directives']);
+var app = angular.module('app', [
+  'ionic',
+  'firebase',
+  'chart.js',
+  'ionic-native-transitions',
+  'app.controllers',
+  'app.routes',
+  'app.services',
+  'app.directives'
+]);
+
 app.value('loggedIn', {
   status:0
 });
+
 app.run(function($ionicPlatform, loggedIn) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -24,42 +35,6 @@ app.run(function($ionicPlatform, loggedIn) {
     if(window.StatusBar) $cordovaStatusBar.style(1);
   });
 })
-
-// * Tanks
-// ************************************************************************************
-app.factory("Tanks", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var tankRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(tankRef);
-  }}
-]);
-
-// * Growth
-// ************************************************************************************
-app.factory("Growth", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var growthRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(growthRef);
-  }}
-]);
-
-// * Atmosphere
-// ************************************************************************************
-app.factory("Atmosphere", ["$firebaseObject", function($firebaseObject) {
-  return function(sysID) {
-    var ref = new Firebase("https://cumarsoasis.firebaseio.com/sensors/minute/");
-    var atmosphereRef = ref.child(sysID);
-
-    // return it as a synchronized object
-    return $firebaseObject(atmosphereRef);
-  }}
-]);
 
 // * Tank Chart Settings 92d050
 var tankChartConfig = {
@@ -96,7 +71,7 @@ var growthChartConfig = {
   showScale: true,
   scaleOverride: false,
   scaleShowGridLines : false,
-  datasetStrokeColor: '#92d050'
+  datasetStrokeColor: '#669c2d'
 }
 
 // * Atmosphere Chart Settings

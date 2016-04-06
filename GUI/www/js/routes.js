@@ -1,11 +1,13 @@
 angular.module('app.routes', [])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $ionicNativeTransitionsProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  $ionicNativeTransitionsProvider.enable(false);
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
   // .state('login', {
   //   url: '/login',
@@ -19,8 +21,12 @@ angular.module('app.routes', [])
     controller: 'registerCtrl'
   })
 
-  .state('tabsController.tanks', {
+  .state('tabs.tanks', {
     url: '/tanks',
+    nativeTransitions: {
+        "type"      : "fade",
+        "duration"  : "250"
+    },
     views: {
       'tab1': {
         templateUrl: 'templates/tanks.html',
@@ -29,8 +35,12 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController.growth', {
+  .state('tabs.growth', {
     url: '/growth',
+    nativeTransitions: {
+        "type"      : "fade",
+        "duration"  : "250"
+    },
     views: {
       'tab2': {
         templateUrl: 'templates/growth.html',
@@ -39,8 +49,12 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController.atmosphere', {
+  .state('tabs.atmosphere', {
     url: '/atmosphere',
+    nativeTransitions: {
+        "type"      : "fade",
+        "duration"  : "250"
+    },
     views: {
       'tab3': {
         templateUrl: 'templates/atmosphere.html',
@@ -49,7 +63,7 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController.settings', {
+  .state('tabs.settings', {
     url: '/settings',
     views: {
       'tab4': {
@@ -58,7 +72,7 @@ angular.module('app.routes', [])
       }
     }
   })
-  .state('tabsController.login', {
+  .state('tabs.login', {
     url: '/login',
     views: {
       'tab5' : {
@@ -67,7 +81,7 @@ angular.module('app.routes', [])
       }
     }
   })
-  .state('tabsController.actuators', {
+  .state('tabs.actuators', {
     url: '/actuators',
     views: {
       'tab6' : {
@@ -77,9 +91,10 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController', {
+  .state('tabs', {
     url: '/main',
-    templateUrl: 'templates/tabsController.html',
+    templateUrl: 'templates/tabs.html',
+    controller: 'tabsCtrl',
     abstract: true
   })
 

@@ -16,7 +16,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="SplashScreenDelay" value="4000"/>
+  <preference name="SplashScreenDelay" value="2000"/>
   <preference name="FadeSplashScreen" value="true"/>
   <link rel="shortcut icon" href="img/favicon.ico"/>
   <feature name="StatusBar">
