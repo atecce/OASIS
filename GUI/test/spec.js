@@ -14,7 +14,7 @@ describe('MarsOASIS', function() {
     expect(browser.getTitle()).toEqual('Growth');
     expect(element(by.id('growthChart')).isPresent()).toBe(true);
   });
-
+  
   it('should render the Atmosphere graph on switch', function() {
     element(by.linkText('Atmosphere')).click();
     expect(browser.getTitle()).toEqual('Atmosphere');
@@ -22,16 +22,25 @@ describe('MarsOASIS', function() {
   });
 
   it('should toggle Actuators view on click in Tanks', function() {
-    expect(element(by.id('tanksChart')).isPresent()).toBe(true);
+    element(by.model('divText')).click();
+    element.all(by.css('.list li')).then(function(items) {
+      expect(items.length > 0).toBeTruthy();
+    });
   });
 
   it('should toggle Actuators view on click in Growth', function() {
     element(by.linkText('Growth Medium')).click();
-    expect(element(by.id('growthChart')).isPresent()).toBe(true);
+    element(by.model('divText')).click();
+    element.all(by.css('.list li')).then(function(items) {
+      expect(items.length > 0).toBeTruthy();
+    });
   });
 
   it('should toggle Actuators view on click in Atmosphere', function() {
     element(by.linkText('Atmosphere')).click();
-    expect(element(by.id('atmosphereChart')).isPresent()).toBe(true);
+    element(by.model('divText')).click();
+    element.all(by.css('.list li')).then(function(items) {
+      expect(items.length > 0).toBeTruthy();
+    });
   });
 });
