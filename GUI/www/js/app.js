@@ -20,6 +20,7 @@ var app = angular.module('app', [
 app.value('loggedIn', {
   status:0
 });
+
 app.run(function($ionicPlatform, loggedIn) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

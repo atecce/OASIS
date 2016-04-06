@@ -137,11 +137,7 @@ angular.module('app.controllers', [])
 
 // * Tanks
 // ************************************************************************************
-.controller('tanksCtrl', function($scope, $ionicTabsDelegate, Tanks) {
-  var cols = document.getElementsByClassName('tab-item-active');
-  for(i=0; i<cols.length; i++) {
-    cols[i].style.color =    'blue';
-  }
+.controller('tanksCtrl', function($scope, Tanks) {
   // * Graph Configuration
   $scope.chartData = [{ data: [] }, { strokeColor: '#DC5978', data: [] }];
 	var ctx = document.getElementById("tanksChart").getContext("2d");
