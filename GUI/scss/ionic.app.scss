@@ -20,6 +20,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $big-bg: 													'../img/bg.jpg';
 $dark: 														#1e1e1e !default;
 $assertive:                       #DC5978 !default;
+$calm:                            #387ef5 !default;
+$positive:												#669c2d !default;
 
 @import "themes/dark.scss";
 // Include all of Ionic
@@ -94,6 +96,48 @@ $assertive:                       #DC5978 !default;
   width: 95% !important;
 }
 
-.tab-item-active, .activated {
+.tab-item .tab-item-active {
   border-width: 1px 0 0 0 !important;
+}
+
+.button.button-light {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+#timePicker {
+	margin-bottom: 1vh;
+}
+
+.tabs .tab-item .icon.tanksIcon {
+  content: url(../img/tanks.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.tabs .tab-item .icon.growthIcon {
+  content: url(../img/growth.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+.tabs .tab-item .icon.atmIcon {
+  content: url(../img/atmosphere.svg);
+  width: 24px;
+  height: 32px;
+  opacity: 0.9;
+}
+
+a.tab-item-active, a.activated {
+	&[icon="tanksIcon"] {
+		border-color: #DC5978 !important;
+	}
+	&[icon="growthIcon"] {
+		border-color: #669c2d !important;
+	}
+	&[icon="atmIcon"] {
+		border-color: #387ef5 !important;
+	}
 }

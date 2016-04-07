@@ -8,5 +8,17 @@
   <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
     <!-- <div style="color: white;"> {{ growthData | json }} </div> -->
     <canvas id="growthChart" height="100" width="100" ></canvas>
+    <br>
+    <div id="timePicker" class="button-bar">
+      <button class="button button-small button-light" ng-click="loadMinute()">minute</button>
+      <button class="button button-small button-light" ng-click="loadHour()">hour</button>
+      <button class="button button-small button-light" ng-click="loadHistorical()">historical</button>
+    </div>
+
+    <button class="button button-full button-positive" ng-click="loaded = true; load($scope);">
+      <div ng-model="divText">
+        Show Actuators
+      </div>
+    </button>
   </ion-content>
 </ion-view>

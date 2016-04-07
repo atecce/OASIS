@@ -7,5 +7,17 @@
 <ion-view title="Atmosphere">
   <ion-content overflow-scroll="true" padding="true" class="has-header scroll-bg">
     <canvas id="atmosphereChart" height="100" width="100" ></canvas>
+    <br>
+    <div id="timePicker" class="button-bar">
+      <button class="button button-small button-light" ng-click="loadMinute()">minute</button>
+      <button class="button button-small button-light" ng-click="loadHour()">hour</button>
+      <button class="button button-small button-light" ng-click="loadHistorical()">historical</button>
+    </div>
+
+    <button class="button button-full button-calm" ng-click="loaded = true; load($scope);">
+      <div ng-model="divText">
+        Show Actuators
+      </div>
+    </button>
   </ion-content>
 </ion-view>

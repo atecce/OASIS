@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var exec = require('child_process').exec;
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -37,15 +38,22 @@ gulp.task('install', ['git-check'], function() {
     });
 });
 
-gulp.task('git-check', function(done) {
-  if (!sh.which('git')) {
-    console.log(
-      '  ' + gutil.colors.red('Git is not installed.'),
-      '\n  Git, the version control system, is required to download Ionic.',
-      '\n  Download git here:', gutil.colors.cyan('http://git-scm.com/downloads') + '.',
-      '\n  Once git is installed, run \'' + gutil.colors.cyan('gulp install') + '\' again.'
-    );
-    process.exit(1);
-  }
-  done();
+gulp.task('clean-plugins', function(){
+  exec('ionic state reset', function (err, stdout, stderr) {
+    handleOutput(err,stdout, stderr);
+  });
 });
+
+// * Helper
+function handleOutput(err,stdout, stderr){
+  if (err){
+    console.log('error in build: ' + err);
+  }
+  else if (stderr){
+    console.log('st error in build: ' + stderr);
+
+  }
+  else{
+    console.log(stdout);
+  }
+}
