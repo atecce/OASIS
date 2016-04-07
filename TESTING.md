@@ -1,11 +1,7 @@
-# CSCI 3308: MarsOASIS Testing
----
-
-#### Who:
+# CSCI 3308: MarsOASIS - Testing
 ###### GUI: Prayash Thapa, Conor Amanatullah, Kyle Giacomini, Trevor Gould
 ###### Systems software: Alessandro Tecce
-
-#### Title: MarsOASIS
+---
 
 #### Vision:
 > Between Blue Origin's successful landing of a booster on a sub-orbital launch and SpaceX's even more impressive landing of the Falcon 9's rocket booster on a mission that launched 11 satellites, an incredibly impressive amount of progress is being made on the space transportation problem. Back-of-the-envelope calculations place SpaceX's feat in particular at reducing the variable cost of space transport by a factor of three-hundred.
