@@ -144,7 +144,7 @@ angular.module('app.controllers', [])
 	var tanksChart = new Chart(ctx).Scatter($scope.chartData, tankChartConfig);
 
   // * Data Fetch
-  var tanksObj = Tanks('S101', 'hour');
+  var tanksObj = Tanks('S101', 'historical');
   tanksObj.$bindTo($scope, 'tankData').then(function() { fetchData(); });
   tanksObj.$watch(function() { fetchData(); });
   var fetchData = function() {
@@ -171,7 +171,7 @@ angular.module('app.controllers', [])
 	var growthChart = new Chart(ctx).Scatter($scope.chartData, growthChartConfig);
 
   // * Data Fetch
-  var growthObj = Growth('S201', 'hour');
+  var growthObj = Growth('S201', 'historical');
   growthObj.$bindTo($scope, 'growthData').then(function() { fetchData(); });
   growthObj.$watch(function() { fetchData(); });
   var fetchData = function() {
@@ -195,7 +195,7 @@ angular.module('app.controllers', [])
 	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, atmChartConfig);
 
   // * Data Fetch
-  var atmosphereObj = Atmosphere('S305', 'hour');
+  var atmosphereObj = Atmosphere('S305', 'historical');
   atmosphereObj.$bindTo($scope, 'atmosphereData').then(function() { fetchData(); });
   atmosphereObj.$watch(function() { fetchData(); });
   var fetchData = function() {
