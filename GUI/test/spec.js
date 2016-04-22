@@ -28,6 +28,17 @@ describe('MarsOASIS', function() {
     });
   });
 
+
+
+  it('should toggle individual Actuators on click in Tanks', function() {
+    
+    element.all(by.css('.list li')).then(function(items) {
+      element(by.model('airBubblerState')).click();
+      expect(toggle.value == true).toBeTruthy();
+    });
+  });
+
+
   it('should toggle Actuators view on click in Growth', function() {
     element(by.linkText('Growth Medium')).click();
     element(by.model('divText')).click();
