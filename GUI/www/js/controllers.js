@@ -154,7 +154,7 @@ angular.module('app.controllers', [])
       // Firebase appends two useless pieces of data at the end of the JSON file..
       // We need to guard against those or else the graph shits itself.
       if (typeof sensorValue === 'number') {
-        if (debug) console.log(new Date(time * 1000), sensorValue);
+        // if (debug) console.log(new Date(time * 1000), sensorValue);
         tanksChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
       }
     });
@@ -178,7 +178,7 @@ angular.module('app.controllers', [])
     console.log('Fetching data in Growth.');
     angular.forEach($scope.growthData, function(sensorValue, time) {
       if (typeof sensorValue === 'number') {
-        if (debug) console.log(new Date(time * 1000), sensorValue);
+        // if (debug) console.log(new Date(time * 1000), sensorValue);
         growthChart.datasets[0].addPoint(new Date(time * 1000), sensorValue);
       }
     });
