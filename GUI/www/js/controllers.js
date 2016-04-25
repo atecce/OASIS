@@ -227,7 +227,7 @@ angular.module('app.controllers', [])
   $rootScope = $scope
 
   $scope.load = function($rootScope){
-    //I hope I find a way to simplify all of this...lol
+
     var air_bubbler = Actuators.liquid_tanks_and_plumbing.air_bubbler;
     var chiller = Actuators.liquid_tanks_and_plumbing.chiller;
     var condensate_pump = Actuators.liquid_tanks_and_plumbing.condensate_pump;
@@ -241,40 +241,23 @@ angular.module('app.controllers', [])
     var pH_dosing = Actuators.liquid_tanks_and_plumbing.pH_dosing;
     var UV_filter = Actuators.liquid_tanks_and_plumbing.UV_filter;
 
-    console.log("Successfully Retrieved Actuator Status");
-
-    if(air_bubbler){
-      $scope.airBubblerState=true;
+    try {
+      $scope.airBubblerState=air_bubbler;
+      $scope.chillerState=chiller;
+      $scope.condensatePumpState=condensate_pump;
+      $scope.filterPumpState = filter_pump;
+      $scope.mainTankCirculationState = main_tank_circ;
+      $scope.nutrient1Circulation = nutrient_1_circ;
+      $scope.nutrient1Dosing = nutrient_1_dosing;
+      $scope.nutrient2Circulation = nutrient_2_circ;
+      $scope.nutrient2Dosing = nutrient_2_dosing;
+      $scope.pHdosing = pH_dosing;
+      $scope.UVfilter = UV_filter;
+      // Assuming things r gud
+      console.log("Successfully retrieved data!");
     }
-    if(chiller){
-      $scope.chillerState=true;
-    }
-    if(condensate_pump){
-      $scope.condensatePumpState=true;
-    }
-    if(filter_pump){
-      $scope.filterPumpState = true;
-    }
-    if(main_tank_circ){
-      $scope.mainTankCirculationState = true;
-    }
-    if(nutrient_1_circ){
-      $scope.nutrient1Circulation = true;
-    }
-    if(nutrient_1_dosing){
-      $scope.nutrient1Dosing = true;
-    }
-    if(nutrient_2_circ){
-      $scope.nutrient2Circulation = true;
-    }
-    if(nutrient_2_dosing){
-      $scope.nutrient2Dosing = true;
-    }
-    if(pH_dosing){
-      $scope.pHdosing = true;
-    }
-    if(UV_filter){
-      $scope.UVfilter = true;
+    catch(err){
+      console.log("Cannot retrieve data.");
     }
   }
   $ionicModal.fromTemplateUrl('templates/loginModal.html', {
