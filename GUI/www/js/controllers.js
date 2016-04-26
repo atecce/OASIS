@@ -195,7 +195,7 @@ angular.module('app.controllers', [])
 	var atmosphereChart = new Chart(ctx).Scatter($scope.chartData, atmChartConfig);
 
   // * Data Fetch
-  var atmosphereObj = Atmosphere('S305', 'historical');
+  var atmosphereObj = Atmosphere('S402', 'historical');
   atmosphereObj.$bindTo($scope, 'atmosphereData').then(function() { fetchData(); });
   atmosphereObj.$watch(function() { fetchData(); });
   var fetchData = function() {
