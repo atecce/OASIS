@@ -24,25 +24,6 @@ Because interplanetary civilization.
 - Running multiple diverse threads in parallel and putting it altogether successfully at the end.
 - Mitigate the risks by staying motivated. Success is a function of effort.
 
-#### List of requirements for the project
-| User          | Functional    | Non-Functional  |
-| ------------- |:-------------:| ---------------:|
-| 01 - [S] As a user, I can log into the app.      | 10 - [L] Display dependent data using graphs.  | 30 - [L] Data transfer between database and front-end must be low-latency. |
-| 02 - [L] As a user, I am able to view the dashboard and relevant data such as CO2 levels, temperature, humidity, etc.      | 11 - [M] Display sliders and buttons for control parameters.       |   31 - [S] Latency between control surface and sensors/actuators must be low (almost imperceptible). |
-| 03 - [L] As a user, I am able to send commands control the systems in the greenhouse.  |     |    |
+###### Trello: https://trello.com/b/pem09ey2/marsoasis
 
-#### Time estimate to complete
-- [S] -> 1 - 2 hours
-- [M] -> 3 - 5 hours
-- [L] -> 6 - 8 hours
-
-#### Methodology:
-We will be using Agile Methodology for our project. Our sprints will consist of 1 week worth of tasks and we will have a weekly meeting to check-in and update each others on our progress.
-
-#### Project Tracking software: 
-###### Trello (https://trello.com/b/pem09ey2/marsoasis)!
-
-#### GitHub Issues & Milestones
-
-#### Project plan:
-https://www.dropbox.com/s/g7ti9bhhmzt4mfg/project.png?dl=0
+###### Project plan: https://www.dropbox.com/s/g7ti9bhhmzt4mfg/project.png?dl=0
