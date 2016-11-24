@@ -1,7 +1,10 @@
 # CSCI 3308 Project - MarsOASIS
-###### GUI: Prayash Thapa, Conor Amanatullah, Kyle Giacomini, Trevor Gould
+###### GUI: Prayash Thapa, Conor Amanatullah, Trevor Gould
 ###### Systems software: Alessandro Tecce
 ___
+
+![Application]
+(http://i.imgur.com/FwFwBRB.png)
 
 #### Description:
 We are writing the systems software and building a GUI for iOS and Android which monitors and controls a plant life-support system prototype that is funded by NASA to research making a hospitable artificial environment on Mars. The final product should display sensor data to any user who is curious about how the project is going and also allow the systems engineers to check the status of the relevant data, perform tests, calibrate the sensors, toggle the actuators, etc. through an interface which does not require a CS background and allows greater specialization amongst the team working on it.
