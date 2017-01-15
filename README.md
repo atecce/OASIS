@@ -1,6 +1,6 @@
 # CSCI 3308 Project - MarsOASIS
 ###### GUI: Prayash Thapa, Conor Amanatullah, Trevor Gould
-###### Systems software: Alessandro Tecce
+###### Systems software: Alex Tecce
 ___
 
 ![Application]
